@@ -1,6 +1,9 @@
 # dependencies
 node_modules
 
+# build
+build
+
 # temporal files
 .DS_Store
 *.tmp
