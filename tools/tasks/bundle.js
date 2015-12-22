@@ -1,14 +1,15 @@
 import webpack from 'webpack';
-import { webpackServer, stats } from '../config';
+import { webpackServer, webpackClient, stats } from '../config';
 
 function bundle() {
   return new Promise((resolve, reject) => {
-    const bundler = webpack(webpackServer);
-    bundler.run((err, stats) => {
+    const webpackPackage = [webpackServer, webpackClient];
+    const bundler = webpack(webpackPackage);
+    bundler.run((err, res) => {
       if (err) {
         return reject(err)
       }
-      console.log(stats.toString(stats));
+      console.log(res.toString(stats));
       return resolve();
     });
   });

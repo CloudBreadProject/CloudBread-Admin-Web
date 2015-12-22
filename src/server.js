@@ -1,9 +1,14 @@
 import express from 'express';
+import { resolve } from 'path';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import Html from './components/Html';
 
+const ROOT = resolve(__dirname, '.');
 const app = express();
-
-app.get('/', (req, res) => {
-  res.status(200).send('Hello World');
+app.use(express.static(`${ROOT}/public`));
+app.get('*', (req, res) => {
+  res.status(200).send(renderToStaticMarkup(<Html />));
 });
 
 const server = app.listen(process.env.PORT || 5000, () => {

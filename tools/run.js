@@ -9,4 +9,5 @@ const task = require(`./tasks/${taskName}`);
 if (!task) {
   throw Error(`Unknown task <${taskName}>`);
 }
-run(task.default);
+run(task.default)
+  .catch(e => console.error(e));
