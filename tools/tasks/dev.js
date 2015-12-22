@@ -4,15 +4,16 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import { webpackServer, webpackClient, stats } from '../config';
 import run from '../lib/run';
 import serve from './serve';
+import clean from './clean';
+import copy from './copy';
 
-function dev() {
+function _dev() {
   return new Promise((resolve, reject) => {
     const webpackPackage = [webpackClient, webpackServer];
     const bundler = webpack(webpackPackage);
     const hotMiddlewares = bundler.compilers
       .filter(compiler => compiler.options.target !== 'node')
       .map(compiler => webpackHotMiddleware(compiler));
-
     let bs;
     let runCount = 0;
     bundler.watch(200, async (err, res) => {
@@ -38,6 +39,12 @@ function dev() {
       }
     });
   });
+}
+
+async function dev() {
+  await run(clean);
+  await run(copy);
+  await _dev();
 }
 
 export default dev;
