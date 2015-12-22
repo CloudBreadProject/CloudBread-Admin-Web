@@ -3,7 +3,7 @@ import dateFormat from '../lib/dateFormat';
 import { DEBUG, buildPath } from '../config';
 import gaze from 'gaze';
 import run from '../lib/run';
-import build from './build';
+import watch from '../lib/watch';
 
 const RUNNING_REGEXP = '__DEV_START__';
 const serverFile = `${buildPath}/server.js`;
@@ -22,7 +22,7 @@ process.on('exit', () => {
   kill();
 });
 
-function _serve() {
+function serve() {
   return new Promise((resolve, reject) => {
     function runServer() {
       kill();
@@ -44,20 +44,13 @@ function _serve() {
       server.stdout.on('data', onStdOut);
     }
     runServer();
-    gaze(serverFile, (err, watcher) => {
-      if (err) {
-        return reject(err);
-      }
+    (async function () {
+      const watcher = await watch(serverFile);
       watcher.on('changed', () => {
         runServer();
       });
-    });
+    })();
   });
-}
-
-async function serve() {
-  await run(build);
-  await _serve();
 }
 
 export default serve;

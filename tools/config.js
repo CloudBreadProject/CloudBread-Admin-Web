@@ -155,6 +155,7 @@ export {
   stats,
   webpackServer,
   webpackClient,
+  ROOT,
   buildPath,
   buildStaticPath,
   srcPath,
