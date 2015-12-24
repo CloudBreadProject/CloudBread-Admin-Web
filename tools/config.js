@@ -56,7 +56,7 @@ const webpackClient = merge({}, webpackCommon, {
   entry: {
     app: [
       ...(DEBUG ? ['webpack-hot-middleware/client'] : []),
-      `${srcPath}/client.js`,
+      `${srcPath}/client.jsx`,
     ],
   },
   output: {
@@ -115,7 +115,7 @@ if (DEBUG) {
 const webpackServer = merge({}, webpackCommon, {
   entry: {
     server: [
-      `${srcPath}/server.js`,
+      `${srcPath}/server.jsx`,
     ],
   },
   output: {

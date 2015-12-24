@@ -36,7 +36,6 @@ function serve() {
         process.stdout.write(`[${dateFormat(time)}] `);
         process.stdout.write(data);
         if (match) {
-          server.stdout.removeListener('data', onStdOut);
           return resolve();
         }
       }

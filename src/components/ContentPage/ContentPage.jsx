@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class ContentPage extends Component {
+
   render() {
     return (
       <div>
-        test
-        !@$!@$!@$
+        <p>test!!!</p>
       </div>
     );
   }
 }
 
-export default App;
+export default ContentPage;

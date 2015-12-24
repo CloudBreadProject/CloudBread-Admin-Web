@@ -21,6 +21,8 @@ function _dev() {
         return reject(err);
       }
 
+      console.log(res.toString(stats));
+
       if (++runCount % webpackPackage.length !== 0) {
         return;
       }
