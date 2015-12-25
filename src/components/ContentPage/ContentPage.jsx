@@ -14,15 +14,21 @@ class ContentPage extends Component {
     })();
   }
 
+  renderError() {
+    const { error } = this.props;
+
+    return (
+      <div>
+        <p>12{error}</p>
+      </div>
+    );
+  }
+
   render() {
     const { content, title, error } = this.props;
 
-    if (error) {
-      return (
-        <div>
-          <p>{error}</p>
-        </div>
-      );
+    if (this.props) {
+      return this.renderError();
     }
 
     return (

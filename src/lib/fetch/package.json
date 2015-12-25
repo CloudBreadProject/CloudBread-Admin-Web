@@ -1,5 +1,6 @@
 {
   "private": true,
-  "main": "./fetch-server.js",
-  "browser": "./fetch-client.js"
+  "name": "fetch",
+  "main": "./fetch-server",
+  "browser": "./fetch-client"
 }

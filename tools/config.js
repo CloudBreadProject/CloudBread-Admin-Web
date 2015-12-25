@@ -4,18 +4,18 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { merge } from 'lodash';
 import { resolve } from 'path';
 
-const ROOT = resolve(__dirname, '../');
-const buildPath = `${ROOT}/build`;
-const buildStaticPath = `${buildPath}/public`;
-const srcPath = `${ROOT}/src`;
+export const ROOT = resolve(__dirname, '../');
+export const buildPath = `${ROOT}/build`;
+export const buildStaticPath = `${buildPath}/public`;
+export const srcPath = `${ROOT}/src`;
 
-const DEBUG = !process.argv.includes('--release');
-const VERBOSE = process.argv.includes('--verbose');
+export const DEBUG = !process.argv.includes('--release');
+export const VERBOSE = process.argv.includes('--verbose');
 const GLOBALS = {
   'process.env.NODE_ENV': DEBUG ? `'development'` : `'production'`,
   __DEV__: DEBUG,
 };
-const stats = {
+export const stats = {
   colors: true,
   reasons: DEBUG,
   hash: VERBOSE,
@@ -58,7 +58,7 @@ const webpackCommon = {
   },
 };
 
-const webpackClient = merge({}, webpackCommon, {
+export const webpackClient = merge({}, webpackCommon, {
   entry: {
     app: [
       ...(DEBUG ? ['webpack-hot-middleware/client'] : []),
@@ -66,6 +66,7 @@ const webpackClient = merge({}, webpackCommon, {
       `${srcPath}/client.jsx`,
     ],
   },
+  target: 'web',
   output: {
     path: buildStaticPath,
     filename: DEBUG ? '[name].js?[hash]' : '[name].[hash].js',
@@ -119,7 +120,7 @@ if (DEBUG) {
     });
 }
 
-const webpackServer = merge({}, webpackCommon, {
+export const webpackServer = merge({}, webpackCommon, {
   entry: {
     server: [
       'babel-polyfill',
@@ -156,15 +157,3 @@ const webpackServer = merge({}, webpackCommon, {
     ),
   ],
 });
-
-export {
-  DEBUG,
-  VERBOSE,
-  stats,
-  webpackServer,
-  webpackClient,
-  ROOT,
-  buildPath,
-  buildStaticPath,
-  srcPath,
-};
