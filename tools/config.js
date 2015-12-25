@@ -39,6 +39,12 @@ const webpackCommon = {
     extensions: ['', '.jsx', '.json', '.js'],
   },
   module: {
+    preLoaders : [
+      {
+       test: /\.json$/,
+       loader: 'json-loader',
+      },
+    ],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -56,6 +62,7 @@ const webpackClient = merge({}, webpackCommon, {
   entry: {
     app: [
       ...(DEBUG ? ['webpack-hot-middleware/client'] : []),
+      'babel-polyfill',
       `${srcPath}/client.jsx`,
     ],
   },
@@ -115,6 +122,7 @@ if (DEBUG) {
 const webpackServer = merge({}, webpackCommon, {
   entry: {
     server: [
+      'babel-polyfill',
       `${srcPath}/server.jsx`,
     ],
   },

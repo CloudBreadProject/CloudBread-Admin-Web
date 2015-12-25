@@ -5,10 +5,6 @@ class App extends Component {
     children: PropTypes.object,
   };
 
-  static loadProps(params, cb) {
-    return cb();
-  }
-
   render() {
     return (
       <div>

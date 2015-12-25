@@ -1,5 +1,6 @@
 import { canUseDOM } from './env';
 import { createMemoryHistory, createHistory } from 'history';
+import createHashHistory from 'history/lib/createHashHistory';
 
 // to render Material-UI, need fake user-agent
 if (global && !global.navigator) {
@@ -10,12 +11,8 @@ if (global && !global.navigator) {
 
 let _title = '';
 let _tail = '';
-const socket = canUseDOM && window.io ? io.connect('localhost:5000') : null;
-const history = canUseDOM ? createHistory({
-  queryKey: false,
-}) : createMemoryHistory();
-
-const workQueue = [];
+export const socket = canUseDOM && window.io ? io.connect('localhost:5000') : null;
+export const history = canUseDOM ? createHistory() : createMemoryHistory();
 
 export function initDOM(req) {
   _title = '';

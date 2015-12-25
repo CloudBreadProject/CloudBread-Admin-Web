@@ -3,8 +3,8 @@ import express from 'express';
 import socketIO from 'socket.io';
 import React from 'react';
 import { match, RoutingContext } from 'react-router';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server'
-import AsyncProps, { loadPropsOnServer } from 'async-props';
+import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import AsyncProps, { loadPropsOnServer } from 'async-props'
 import routes from './routes';
 import Html from './components/Html';
 import { initDOM, addTail } from './lib/context';
@@ -13,6 +13,13 @@ import apiV1 from './api/v1';
 const ROOT = resolve(__dirname, '.');
 const app = express();
 app.use(express.static(`${ROOT}/public`));
+
+if (__DEV__) {
+  app.use((req, res, next) => {
+    console.log(req.url);
+    return next();
+  });
+}
 app.use('/v1', apiV1);
 
 app.get('*', (req, res) => {
