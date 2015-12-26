@@ -1,6 +1,7 @@
 import browserSync from 'browser-sync';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-middleware';
 import { webpackServer, webpackClient, stats } from '../config';
 import run from '../lib/run';
 import serve from './serve';
@@ -34,6 +35,10 @@ function _dev() {
           proxy: {
             target: 'localhost:5000',
             middleware: [
+              webpackDevMiddleware(bundler, {
+                publicPath: '/',
+                stats,
+              }),
               ...hotMiddlewares,
             ],
           },

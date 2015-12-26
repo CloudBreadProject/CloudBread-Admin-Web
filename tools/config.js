@@ -67,13 +67,13 @@ const webpackCommon = {
         ...(DEBUG ? {
           loaders: [
             'style-loader',
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
             'postcss-loader',
           ],
         } : {
           loader: ExtractTextPlugin.extract(
             'style-loader',
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
             'postcss-loader',
           )
         }),
