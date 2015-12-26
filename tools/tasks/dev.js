@@ -25,7 +25,7 @@ function _dev() {
       console.log(res.toString(stats));
 
       if (++runCount % webpackPackage.length !== 0) {
-        return;
+        return null;
       }
 
       if (!bs) {

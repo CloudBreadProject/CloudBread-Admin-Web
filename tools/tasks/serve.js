@@ -1,8 +1,6 @@
 import { spawn } from 'child_process';
 import dateFormat from '../lib/dateFormat';
-import { DEBUG, buildPath } from '../config';
-import gaze from 'gaze';
-import run from '../lib/run';
+import { buildPath } from '../config';
 import watch from '../lib/watch';
 
 const RUNNING_REGEXP = '__DEV_START__';
@@ -23,7 +21,7 @@ process.on('exit', () => {
 });
 
 function serve() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     function runServer() {
       kill();
       server = spawn('node', [serverFile], {
@@ -43,7 +41,7 @@ function serve() {
       server.stdout.on('data', onStdOut);
     }
     runServer();
-    (async function () {
+    (async () => {
       const watcher = await watch(serverFile);
       watcher.on('changed', () => {
         runServer();

@@ -7,7 +7,7 @@ function bundle() {
     const bundler = webpack(webpackPackage);
     bundler.run((err, res) => {
       if (err) {
-        return reject(err)
+        return reject(err);
       }
       console.log(res.toString(stats));
       return resolve();

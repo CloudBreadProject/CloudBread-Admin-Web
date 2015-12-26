@@ -9,7 +9,8 @@
     "node": true
   },
   "globals": {
-    "__DEV__": true
+    "__DEV__": true,
+    "io": true
   },
   "rules": {
     "quotes": [2, "single"],
