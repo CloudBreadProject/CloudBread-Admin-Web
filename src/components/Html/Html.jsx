@@ -12,6 +12,8 @@ class Html extends Component {
       <html>
         <head>
           <title>{getTitle()}</title>
+          <link rel="stylesheet" media="all" href={assets.app.css} />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{__html: this.props.children}} />

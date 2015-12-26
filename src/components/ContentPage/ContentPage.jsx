@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import fetch from '../../lib/fetch';
 
 class ContentPage extends Component {
-  static loadProps(params, cb) {
-    (async () => {
-      try {
-        const data = await (await fetch(`v1/content/${params.pageId}`)).json();
-        cb(null, data);
-      } catch (err) {
-        console.log(err);
-        cb(null, err);
-      }
-    })();
+  static async loadProps(params, cb) {
+    try {
+      const data = await (await fetch(`v1/content/${params.pageId}`)).json();
+      cb(null, data);
+    } catch (err) {
+      console.log(err);
+      cb(null, err);
+    }
   }
 
   renderError() {

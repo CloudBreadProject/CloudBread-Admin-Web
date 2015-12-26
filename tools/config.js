@@ -1,6 +1,9 @@
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import postcssImport from 'postcss-import';
+import precss from 'precss';
+import autoprefixer from 'autoprefixer';
 import { merge } from 'lodash';
 import { resolve } from 'path';
 
@@ -8,7 +11,16 @@ export const ROOT = resolve(__dirname, '../');
 export const buildPath = `${ROOT}/build`;
 export const buildStaticPath = `${buildPath}/public`;
 export const srcPath = `${ROOT}/src`;
-
+export const AUTOPREFIXER_BROWSERS = [
+  'Android 2.3',
+  'Android >= 4',
+  'Chrome >= 35',
+  'Firefox >= 31',
+  'Explorer >= 9',
+  'iOS >= 7',
+  'Opera >= 12',
+  'Safari >= 7.1',
+];
 export const DEBUG = !process.argv.includes('--release');
 export const VERBOSE = process.argv.includes('--verbose');
 const GLOBALS = {
@@ -39,12 +51,6 @@ const webpackCommon = {
     extensions: ['', '.jsx', '.json', '.js'],
   },
   module: {
-    preLoaders : [
-      {
-       test: /\.json$/,
-       loader: 'json-loader',
-      },
-    ],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -53,10 +59,61 @@ const webpackCommon = {
         query: {
           presets: ['react', 'es2015', 'stage-0', 'stage-1', 'stage-2', 'stage-3'],
         },
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader',
+      }, {
+        test: /\.scss$/,
+        ...(DEBUG ? {
+          loaders: [
+            'style-loader',
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'postcss-loader',
+          ],
+        } : {
+          loader: ExtractTextPlugin.extract(
+            'style-loader',
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'postcss-loader',
+          )
+        }),
+      }, {
+        test: /\.txt$/,
+        loader: 'raw-loader',
+      }, {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        loader: 'url-loader?limit=10000',
+      }, {
+        test: /\.(eot|ttf|wav|mp3)$/,
+        loader: 'file-loader',
       },
     ],
+    postcss(bundler) {
+      return [
+        postcssImport({
+          addDependencyTo: bundler,
+        }),
+        precss(),
+        autoprefixer({
+          browsers: AUTOPREFIXER_BROWSERS,
+        }),
+      ];
+    },
   },
 };
+
+export const webpackCommonPlugins = [
+  new webpack.DefinePlugin(GLOBALS),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  ...(DEBUG ? [
+    // development
+  ] : [
+    // productions
+    new ExtractTextPlugin('style.css', {
+      allChunks: true,
+    }),
+  ]),
+];
 
 export const webpackClient = merge({}, webpackCommon, {
   entry: {
@@ -73,8 +130,7 @@ export const webpackClient = merge({}, webpackCommon, {
   },
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
   plugins: [
-    new webpack.DefinePlugin(GLOBALS),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    ...webpackCommonPlugins,
     new AssetsPlugin({
       path: buildPath,
       filename: 'assets.json',
@@ -84,10 +140,6 @@ export const webpackClient = merge({}, webpackCommon, {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
     ] : [
-      // productions
-      new ExtractTextPlugin('style.css', {
-        allChunks: true,
-      }),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -150,10 +202,16 @@ export const webpackServer = merge({}, webpackCommon, {
     },
   ],
   plugins: [
-    new webpack.DefinePlugin(GLOBALS),
+    ...webpackCommonPlugins,
     new webpack.BannerPlugin(
       `require('source-map-support').install();`,
       { raw: true, entryOnly: false }
     ),
   ],
 });
+
+if (DEBUG) {
+  webpackServer.module.loaders
+    .filter(x => x.loaders && x.loaders[0] === 'style-loader')
+    .forEach(x => x.loaders.shift());
+}
