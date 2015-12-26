@@ -18,7 +18,7 @@ function parseJade(jadeContent) {
   const fmContent = fm(jadeContent);
   const htmlContent = jade.render(fmContent.body);
   return Object.assign({ content: htmlContent }, fmContent.attributes);
-};
+}
 
 const router = Router();
 
