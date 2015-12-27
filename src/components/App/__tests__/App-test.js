@@ -2,7 +2,6 @@ jest.dontMock('../App.jsx');
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 
 const App = require('../App.jsx').default;
 

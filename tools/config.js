@@ -23,6 +23,7 @@ export const AUTOPREFIXER_BROWSERS = [
 ];
 export const DEBUG = !process.argv.includes('--release');
 export const VERBOSE = process.argv.includes('--verbose');
+export const WATCH = process.argv.includes('--watch');
 const GLOBALS = {
   'process.env.NODE_ENV': DEBUG ? `'development'` : `'production'`,
   __DEV__: DEBUG,

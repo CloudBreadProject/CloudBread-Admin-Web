@@ -1,12 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "test": "$(npm bin)/jest",
+    "test": "npm run lint && $(npm bin)/jest",
     "postinstall": "$(npm bin)/babel-node tools/run build --release",
     "start": "node build/server",
     "dev": "$(npm bin)/babel-node tools/run dev",
     "build": "$(npm bin)/babel-node tools/run build",
-    "lint": "$(npm bin)/babel-node tools/run lint"
+    "lint": "$(npm bin)/eslint ./src ./tools",
+    "deploy": "npm run test && tools/deploy.sh"
   },
   "babel": {
     "presets": [

@@ -1,11 +1,12 @@
 # React Isomorphic Starter Kit
 
 ## Features
-* babel6, webpack
+* babel6, full-presets, webpack
 * react, react-router, async-props
-* hot replacement module
+* react-transform-hmr
+* jest, enzyme
+* airbnb config eslint
 * sass like css loader
-* commands for build
 
 ## Installation
 ```
@@ -31,3 +32,22 @@ npm run dev
 ```
 npm run lint
 ```
+
+### Test
+```
+npm test
+npm test -- --watch
+```
+
+### Deployment
+```
+# edit ./tools/deploy.sh before use this command
+sudo npm run deploy
+```
+
+## Directory Map
+* `src`: where you work, server and client entry here
+* `tools`: build tasks
+* `jest`: jest preprocessor
+* `build`: will be created after build
+* `node_modules`: node module dependencies
