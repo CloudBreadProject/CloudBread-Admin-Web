@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "$(npm bin)/jest",
     "postinstall": "$(npm bin)/babel-node tools/run build --release",
     "start": "node build/server",
     "dev": "$(npm bin)/babel-node tools/run dev",
@@ -16,6 +16,22 @@
       "stage-2",
       "stage-3",
       "react"
+    ]
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/jest/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs",
+      "enzyme",
+      "cheerio",
+      "htmlparser2",
+      "sinon"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
     ]
   },
   "engines": {
@@ -42,6 +58,7 @@
     "assets-webpack-plugin": "^3.2.0",
     "babel-cli": "^6.3.17",
     "babel-eslint": "^4.1.6",
+    "babel-jest": "^6.0.1",
     "babel-loader": "^6.2.0",
     "babel-plugin-react-transform": "^2.0.0-beta1",
     "babel-preset-es2015": "^6.3.13",
@@ -54,20 +71,26 @@
     "browser-sync": "^2.10.1",
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
+    "enzyme": "^1.2.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.13.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "gaze": "^0.5.2",
+    "jasmine": "^2.4.1",
+    "jest-cli": "^0.8.2",
+    "jest-webpack-alias": "^2.0.0",
     "json-loader": "^0.5.4",
     "lodash": "^3.10.1",
     "mkdirp": "^0.5.1",
+    "mocha": "^2.3.4",
     "ncp": "^2.0.0",
     "postcss-import": "^7.1.3",
     "postcss-loader": "^0.8.0",
     "precss": "^1.3.0",
     "raw-loader": "^0.5.1",
+    "react-addons-test-utils": "^0.14.3",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",

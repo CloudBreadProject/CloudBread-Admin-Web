@@ -26,3 +26,8 @@ npm run build -- --release
 ```
 npm run dev
 ```
+
+### Lint
+```
+npm run lint
+```
