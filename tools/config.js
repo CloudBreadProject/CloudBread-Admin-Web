@@ -74,8 +74,7 @@ const webpackCommon = {
         } : {
           loader: ExtractTextPlugin.extract(
             'style-loader',
-            'css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-            'postcss-loader',
+            'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader',
           ),
         }),
       }, {
@@ -89,17 +88,17 @@ const webpackCommon = {
         loader: 'file-loader',
       },
     ],
-    postcss(bundler) {
-      return [
-        postcssImport({
-          addDependencyTo: bundler,
-        }),
-        precss(),
-        autoprefixer({
-          browsers: AUTOPREFIXER_BROWSERS,
-        }),
-      ];
-    },
+  },
+  postcss(bundler) {
+    return [
+      postcssImport({
+        addDependencyTo: bundler,
+      }),
+      precss(),
+      autoprefixer({
+        browsers: AUTOPREFIXER_BROWSERS,
+      }),
+    ];
   },
 };
 
@@ -214,5 +213,8 @@ export const webpackServer = merge({}, webpackCommon, {
 if (DEBUG) {
   webpackServer.module.loaders
     .filter(x => x.loaders && x.loaders[0] === 'style-loader')
-    .forEach(x => x.loaders.shift());
+    .forEach(x => {
+      x.loaders.shift();
+      x.loaders[0] = x.loaders[0].replace(/css-loader?/, 'css-loader/locals?');
+    });
 }
