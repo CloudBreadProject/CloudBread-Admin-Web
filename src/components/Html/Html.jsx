@@ -2,6 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { getTitle, getTail } from '../../lib/context';
 import assets from './assets.json';
 
+const preventFOUC = `
+#app {
+  visibility: hidden;
+}
+`;
+
 class Html extends Component {
   static propTypes = {
     children: PropTypes.string.isRequired,
@@ -12,6 +18,7 @@ class Html extends Component {
       <html>
         <head>
           <title>{getTitle()}</title>
+          <style type="text/css">{preventFOUC}</style>
           <link rel="stylesheet" media="all" href={assets.app.css} />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </head>

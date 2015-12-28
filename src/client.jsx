@@ -7,8 +7,13 @@ injectTapEventPlugin();
 
 const appContainer = document.getElementById('app');
 
-function renderReact() {
+function run() {
   render(routes, appContainer);
+  appContainer.style.visibility = 'initial';
 }
 
-renderReact();
+if (['complete', 'loaded', 'interactive'].includes(document.readyState) && document.body) {
+  run();
+} else {
+  document.addEventListener('DOMContentLoaded', run, false);
+}
