@@ -2,13 +2,13 @@
   "private": true,
   "scripts": {
     "test": "npm run lint && $(npm bin)/jest",
-    "postinstall": "$(npm bin)/babel-node tools/run build --release",
+    "postinstall": "$(npm bin)/babel-node tools/run build",
     "start": "node build/server",
     "serve": "$(npm bin)/babel-node tools/run dev",
-    "dev": "$(npm bin)/esw ./src && $(npm bin)/jest -- --watch && npm run dev",
-    "build": "$(npm bin)/babel-node tools/run build",
+    "dev": "$(npm bin)/esw ./src && $(npm bin)/jest -- --watch && npm run serve",
+    "build": "npm run test && $(npm bin)/babel-node tools/run build -- --release",
     "lint": "$(npm bin)/eslint ./src ./tools",
-    "deploy": "npm run test && bash tools/deploy.sh"
+    "deploy": "npm run build -- --release && bash tools/deploy.sh"
   },
   "babel": {
     "presets": [
