@@ -9,25 +9,18 @@ import clean from './clean';
 import copy from './copy';
 
 function _dev() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const webpackPackage = [webpackClient, webpackServer];
     const bundler = webpack(webpackPackage);
     const hotMiddlewares = bundler.compilers
       .filter(compiler => compiler.options.target !== 'node')
       .map(compiler => webpackHotMiddleware(compiler));
+    const wpMiddleware = webpackDevMiddleware(bundler, {
+      publicPath: '/',
+      stats,
+    });
     let bs;
-    let runCount = 0;
-    bundler.watch(200, async (err, res) => {
-      if (err) {
-        return reject(err);
-      }
-
-      console.log(res.toString(stats));
-
-      if (++runCount % webpackPackage.length !== 0) {
-        return null;
-      }
-
+    bundler.plugin('done', async () => {
       if (!bs) {
         await run(serve);
         bs = browserSync.create();
@@ -35,10 +28,7 @@ function _dev() {
           proxy: {
             target: 'localhost:5000',
             middleware: [
-              webpackDevMiddleware(bundler, {
-                publicPath: '/',
-                stats,
-              }),
+              wpMiddleware,
               ...hotMiddlewares,
             ],
           },
