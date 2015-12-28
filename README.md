@@ -1,11 +1,17 @@
 # React Isomorphic Starter Kit
+
+Quick start react package.
+
 ## Features
-- babel6, full-presets, webpack
-- react, react-router, async-props
-- react-transform-hmr
-- jest, enzyme for unit testing
-- airbnb config eslint
-- sass like css loader
+
+* Babel 6, ES2015 + ES7
+* Webpack, development and production
+* React 0.14, react-router, async-props
+* HMR, reloading page through
+* Jest, Enzyme for unit testing
+* Airbnb config eslint
+* Sass like css loaders
+* MaterialUI to provide better UI
 
 ## Installation
 
@@ -15,56 +21,75 @@ cd react-isomorphic-starter-kit
 npm i # alias to install
 ```
 
+### About postinstall
+
 `postinstall` command in `package.json` will be executed after `npm install`.
-I added it to deploy on Heroku.
+I added that command to deploy on Heroku.
 If you don't want to use it, no matter to detach that command.
 
 ## Usage
 
-### Build
+### Custom Scripts
+
+These scripts are useful to
+
+#### Development
 
 ```sh
-npm run build
-npm run build -- --release
-```
-
-### Development
-
-```sh
-# run watches lint and test file
 npm run dev
 ```
 
-### Serve
+It will run lint and jest watchers with a browser window.
+In development environment, [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) could be happened.
+Don't worry. FOUC is not in production environment.
+
+#### Build
 
 ```sh
-# just open browser without any lint and test watcher
+npm run build
+```
+
+It will build package for production.
+
+#### Serve
+
+```sh
 npm run serve
 ```
 
-### Lint
+It will open browser as development environment.
+
+#### Lint
 
 ```sh
 npm run lint
 ```
 
-### Test
+It will eslint this package.
+
+#### Test
 
 ```sh
 npm test
 npm test -- --watch
 ```
 
-### Deployment
+It will eslint and unit test.
+
+#### Deployment
 
 ```sh
-# edit ./tools/deploy.sh before use this command
 sudo npm run deploy
 ```
 
-## Directory Map
+You should edit `./tools/deploy.sh` file before use this command.
+It demand to you.
+Deployment ways are uncountable.
+
+### Directory Map
 
 ```sh
+tree -L 2 -I 'node_modules|build'
 .
 ├── README.md         # what you are reading
 ├── jest              # jest configurations
@@ -87,4 +112,3 @@ sudo npm run deploy
     ├── run.js        # file to run a task
     └── tasks         # sub tasks
 ```
-By `tree -L 2 -I 'node_modules|build'`
