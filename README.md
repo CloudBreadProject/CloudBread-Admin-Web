@@ -39,7 +39,7 @@ These scripts are useful to
 npm run dev
 ```
 
-It will run lint and jest watchers with a browser window.
+It will open a browser window.
 In development environment, [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) could be happened.
 Don't worry. FOUC is not in production environment.
 
@@ -50,14 +50,6 @@ npm run build
 ```
 
 It will build package for production.
-
-#### Serve
-
-```sh
-npm run serve
-```
-
-It will open browser as development environment.
 
 #### Lint
 

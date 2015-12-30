@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from '../../lib/fetch';
+import styles from './ContentPage.scss';
 
 class ContentPage extends Component {
   static async loadProps(params, cb) {
@@ -17,7 +18,7 @@ class ContentPage extends Component {
 
     return (
       <div>
-        <p>12{error}</p>
+        <p>{error}</p>
       </div>
     );
   }
@@ -25,14 +26,12 @@ class ContentPage extends Component {
   render() {
     const { content, title, error } = this.props;
 
-    if (this.props) {
+    if (this.error) {
       return this.renderError();
     }
 
     return (
-      <div>
-        <div dangerouslySetInnerHTML={{__html: content}} />
-      </div>
+      <div className={styles.ContentPage} dangerouslySetInnerHTML={{__html: content}} />
     );
   }
 }

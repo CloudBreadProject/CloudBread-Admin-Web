@@ -16,8 +16,4 @@ describe('App', () => {
   it('renders children when passed in', () => {
     expect(wrapper.find('p').length).toBe(1);
   });
-
-  it('renders content passed', () => {
-    expect(wrapper.text()).toBe(content);
-  });
 });

@@ -1,0 +1,15 @@
+@import "../styles/variables.scss";
+
+:local .HomePage {
+  composes: Container from "../styles/Container.scss";
+}
+
+:local .Card {
+  margin: 0; padding: 0;
+  width: 25%;
+  display: inline-block;
+
+  > div {
+    margin: 4px 8px;
+  }
+}

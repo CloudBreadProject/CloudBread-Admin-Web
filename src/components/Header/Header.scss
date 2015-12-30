@@ -1,0 +1,74 @@
+$headerHeight: 54px;
+
+:local .Header {
+  composes: PrimaryBox from "../styles/Container.scss";
+}
+
+:local .Container {
+  composes: Container from "../styles/Container.scss";
+  height: $headerHeight;
+}
+
+.Side {
+  min-width: 200px;
+
+  > p {
+    margin: 0; padding: 0;
+    font-size: 16px;
+    line-height: $headerHeight;
+  }
+}
+
+:local .LeftSide {
+  composes: Side;
+  float: left;
+
+  > h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: $headerHeight;
+
+    > a {
+      text-decoration: none;
+      color: inherit;
+      line-height: inherit;
+    }
+  }
+}
+
+:local .Middle {
+  float: left;
+}
+
+:local .RightSide {
+  composes: Side;
+  float: right;
+  text-align: right;
+}
+
+.Nav {
+  margin: 0; padding: 0;
+  display: block;
+
+  > li {
+    margin: 0 10px;
+    display: inline-block;
+    line-height: $headerHeight;
+
+    > a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+:local .MainNav {
+  composes: Nav;
+  font-size: 18px;
+}
+
+:local .SubNav {
+  composes: Nav;
+}
