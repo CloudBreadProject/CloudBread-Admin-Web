@@ -21,6 +21,7 @@ class Html extends Component {
           <style type="text/css">{preventFOUC}</style>
           <link rel="stylesheet" media="all" href={assets.app.css} />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{__html: this.props.children}} />
