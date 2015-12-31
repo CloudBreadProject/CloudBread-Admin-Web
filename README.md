@@ -71,12 +71,10 @@ It will eslint and unit test.
 #### Deployment
 
 ```sh
-sudo npm run deploy
+npm run deploy
 ```
 
-You should edit `./tools/deploy.sh` file before use this command.
-It demand to you.
-Deployment ways are uncountable.
+You should edit `./tools/tasks/deploy.js` file before use this command.
 
 ### Directory Map
 

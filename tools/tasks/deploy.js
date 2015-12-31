@@ -1,20 +1,10 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
- 
 import GitRepo from 'git-repository';
 import run from '../lib/run';
 import fetch from '../lib/fetch';
 import build from './build';
 
 // TODO: Update deployment URL
-// For more information visit http://gitolite.com/deploy.html
-const getRemote = (slot) => ({
+const getRemote = () => ({
   name: 'heroku',
   url: `https://git.heroku.com/react-isomorphic.git`,
   website: `http://react-isomorphic.herokuapp.com`,
@@ -27,7 +17,7 @@ const getRemote = (slot) => ({
 async function deploy() {
 
   // By default deploy to the staging deployment slot
-  const remote = getRemote(process.argv.includes('--production') ? null : 'staging');
+  const remote = getRemote();
 
   // Initialize a new Git repository inside the `/build` folder
   // if it doesn't exist yet
