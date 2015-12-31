@@ -8,6 +8,7 @@
     "dev": "  npm run serve",
     "build": "npm run test && $(npm bin)/babel-node tools/run build -- --release",
     "lint": "$(npm bin)/eslint ./src ./tools",
+    "clean": "$(npm bin)/babel-node tools/run clean",
     "deploy": "npm run build && bash tools/deploy.sh"
   },
   "babel": {

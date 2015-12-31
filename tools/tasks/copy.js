@@ -1,5 +1,6 @@
 import ncp from 'ncp';
 import watch from '../lib/watch';
+import mkdir from '../lib/mkdir';
 import { all } from 'bluebird';
 import { DEBUG, ROOT } from '../config';
 
@@ -16,6 +17,9 @@ async function carryFile(file) {
 }
 
 async function copy() {
+  await mkdir('build/public');
+  await mkdir('build/assets');
+
   await all([
     ncpAsync('./src/public', './build/public'),
     ncpAsync('./src/assets', './build/assets'),
