@@ -4,7 +4,6 @@ import fm from 'front-matter';
 import { resolve as pathResolve } from 'path';
 import { readFile as _readFile, stat } from 'fs';
 import { promisify } from 'bluebird';
-import greetings from './greetings.json';
 
 const CONTENT_DIR = pathResolve(__dirname, './assets/content');
 
@@ -34,14 +33,6 @@ router.get('/content/:identifier', (req, res) => {
 
     res.status(200).send(content);
   })();
-});
-
-router.get('/greetings', (req, res) => {
-  const messages = [];
-  for (let idx = 0; idx < 30; idx++) {
-    messages.push(greetings[Math.floor((Math.random() * greetings.length))]);
-  }
-  res.status(200).send(messages);
 });
 
 export default router;

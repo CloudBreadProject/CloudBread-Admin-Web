@@ -2,14 +2,11 @@
   "private": true,
   "scripts": {
     "test": "npm run lint && $(npm bin)/jest",
-    "postinstall": "$(npm bin)/babel-node tools/run build",
-    "start": "node build/server",
-    "serve": "$(npm bin)/babel-node tools/run dev",
-    "dev": "  npm run serve",
+    "start": "$(npm bin)/babel-node tools/run dev",
     "build": "npm run test && $(npm bin)/babel-node tools/run build -- --release",
     "lint": "$(npm bin)/eslint ./src ./tools",
     "clean": "$(npm bin)/babel-node tools/run clean",
-    "deploy": "npm run build && bash tools/deploy.sh"
+    "deploy": "$(npm bin)/babel-node tools/run deploy -- --release"
   },
   "babel": {
     "presets": [
@@ -44,6 +41,7 @@
   "dependencies": {
     "async-props": "^0.2.2",
     "autoprefixer": "^6.2.1",
+    "babel-polyfill": "^6.3.14",
     "bluebird": "^3.1.1",
     "express": "^4.13.3",
     "front-matter": "^2.0.1",
@@ -83,6 +81,7 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "gaze": "^0.5.2",
+    "git-repository": "^0.1.1",
     "jest-cli": "^0.8.2",
     "jest-webpack-alias": "^2.0.0",
     "json-loader": "^0.5.4",
@@ -99,6 +98,7 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
+    "replace": "^0.3.0",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",

@@ -1,4 +1,5 @@
 import ncp from 'ncp';
+import replace from 'replace';
 import watch from '../lib/watch';
 import mkdir from '../lib/mkdir';
 import { all } from 'bluebird';
@@ -23,7 +24,16 @@ async function copy() {
   await all([
     ncpAsync('./src/public', './build/public'),
     ncpAsync('./src/assets', './build/assets'),
+    ncpAsync('./package.json', './build/package.json'),
   ]);
+
+  replace({
+    regex: `"start".*`,
+    replacement: `"start": "node server.js",`,
+    paths: ['build/package.json'],
+    recursive: false,
+    silent: false,
+  });
 
   if (DEBUG) {
     const watcher = await watch(['./src/public/**/*', './src/assets/**/*']);

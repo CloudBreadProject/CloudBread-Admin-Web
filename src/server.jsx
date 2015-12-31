@@ -1,6 +1,5 @@
 import { resolve } from 'path';
 import express from 'express';
-import socketIO from 'socket.io';
 import React from 'react';
 import { match, RoutingContext } from 'react-router';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
@@ -52,9 +51,4 @@ const server = app.listen(process.env.PORT || 5000, () => {
   if (__DEV__) {
     console.log('__DEV_START__');
   }
-});
-
-const io = socketIO(server);
-io.on('connection', (socket) => {
-
 });
