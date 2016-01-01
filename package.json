@@ -39,7 +39,7 @@
     "npm": ">=3.3 <4"
   },
   "dependencies": {
-    "async-props": "^0.2.2",
+    "async-props": "git+https://github.com/rackt/async-props.git",
     "autoprefixer": "^6.2.1",
     "babel-polyfill": "^6.3.14",
     "bluebird": "^3.1.1",
@@ -52,7 +52,7 @@
     "normalize.css": "^3.0.3",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
-    "react-router": "^1.0.3",
+    "react-router": "^2.0.0-rc4",
     "react-tap-event-plugin": "^0.2.1",
     "source-map-support": "^0.4.0",
     "whatwg-fetch": "^0.10.1"

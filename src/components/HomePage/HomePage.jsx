@@ -16,9 +16,11 @@ export default class HomePage extends Component {
       try {
         const response = await fetch('https://api.github.com/repos/Beingbook/react-isomorphic-starter-kit/stargazers');
         const githubUsers = await response.json();
-        cb(null, {
-          githubUsers,
-        });
+        setTimeout(() => {
+          cb(null, {
+            githubUsers,
+          });
+        }, 1000);
       } catch (error) {
         cb(null, {error});
       }
