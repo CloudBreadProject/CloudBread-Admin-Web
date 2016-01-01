@@ -1,0 +1,61 @@
+:local .LoadingWrapper {
+  position: relative;
+  min-height: 120px;
+  display: block;
+}
+
+:local .Loading {
+  position: absolute;
+  min-height: 100px;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+
+  &:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background: #004476;
+    animation: preloader 500ms linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+  }
+  &:before {
+    content: '';
+    width: 50px;
+    height: 5px;
+    background: #000;
+    animation: preloader-shadow 500ms linear infinite;
+    opacity: 0.1;
+    position: absolute;
+    top: 59px;
+    left: 0;
+    border-radius: 50%;
+  }
+}
+@keyframes preloader {
+  17% {
+    border-bottom-right-radius: 3px;
+  }
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
+  50% {
+    transform: scale(1, 0.9) translateY(18px) rotate(45deg);
+    border-bottom-right-radius: 40px;
+  }
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+@keyframes preloader-shadow {
+  50% {
+    transform: scale(1.2, 1);
+  }
+}
