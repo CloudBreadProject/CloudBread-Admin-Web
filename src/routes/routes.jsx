@@ -9,11 +9,12 @@ import AsyncProps from 'async-props';
 const routeContainer = (
   <Router
     history={history}
-    render={(props) => (
-      <AsyncProps
-        {...props}
-        renderLoading={() => <div>Loading...</div>}
-      />)}>
+    render={(props) => {
+      return (
+        <AsyncProps
+          {...props} />
+      );
+    }}>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path=":pageId" component={ContentPage} />

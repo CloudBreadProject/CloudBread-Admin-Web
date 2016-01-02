@@ -9,6 +9,7 @@ import {
   CardMedia,
   Paper
 } from 'material-ui';
+import Loading from '../Loading';
 
 export default class HomePage extends Component {
   static loadProps(params, cb) {

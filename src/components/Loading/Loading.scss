@@ -1,7 +1,14 @@
 :local .LoadingWrapper {
-  position: relative;
-  min-height: 120px;
+  position: absolute;
   display: block;
+  width: 200px; height: 200px;
+  right: 0; bottom: 0;
+  opacity: 0;
+  transition: all 500ms linear;
+}
+
+:local .Activated {
+  opacity: 1;
 }
 
 :local .Loading {
