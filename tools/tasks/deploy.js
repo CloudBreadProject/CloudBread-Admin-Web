@@ -15,7 +15,6 @@ const getRemote = () => ({
  * server via Git. Example: `npm run deploy -- production`
  */
 async function deploy() {
-
   // By default deploy to the staging deployment slot
   const remote = getRemote();
 
