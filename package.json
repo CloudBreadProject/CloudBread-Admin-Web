@@ -39,7 +39,6 @@
     "npm": ">=3.3 <4"
   },
   "dependencies": {
-    "async-props": "git+https://github.com/rackt/async-props.git",
     "autoprefixer": "^6.2.1",
     "babel-polyfill": "^6.3.14",
     "bluebird": "^3.1.1",

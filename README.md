@@ -6,7 +6,7 @@ Quick start react package.
 
 * Babel 6, ES2015 + ES7
 * Webpack, development and production
-* React 0.14, react-router, async-props
+* React 0.14, react-router
 * HMR, reloading page through
 * Jest, Enzyme for unit testing
 * Airbnb config eslint

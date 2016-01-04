@@ -1,12 +1,11 @@
 import { resolve } from 'path';
 import express from 'express';
 import React from 'react';
-import { match, RoutingContext } from 'react-router';
+import { match, RouterContext } from 'react-router';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
-import AsyncProps, { loadPropsOnServer } from 'async-props'
 import routes from './routes';
 import Html from './components/Html';
-import { initDOM, addTail } from './lib/context';
+import { initDOM } from './lib/context';
 import apiV1 from './api/v1';
 
 const ROOT = resolve(__dirname, '.');
@@ -28,17 +27,12 @@ app.get('*', (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      const components = renderProps.components.filter(x => !!x);
-      renderProps.components = components;
-      loadPropsOnServer(renderProps, (err, asyncProps, scriptTag) => {
-        initDOM(req);
-        const content = renderToString(<AsyncProps {...renderProps} {...asyncProps} />);
-        addTail(scriptTag);
-        res.status(200).send(
-          `<!doctype html>` +
-          renderToStaticMarkup(<Html>{content}</Html>)
-        );
-      });
+      initDOM(req);
+      const content = renderToString(<RouterContext {...renderProps} />);
+      res.status(200).send(
+        `<!doctype html>` +
+        renderToStaticMarkup(<Html>{content}</Html>)
+      );
     } else {
       res.status(404).send('Not found');
     }
