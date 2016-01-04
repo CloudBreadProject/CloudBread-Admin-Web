@@ -9,11 +9,9 @@ class App extends Component {
   };
 
   render() {
-    const { loading } = this.props;
-
     return (
       <div>
-        <Loading show={loading} />
+        <Loading show={false} />
         <Header />
         {this.props.children}
       </div>
