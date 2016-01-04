@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import fetch from '../../lib/fetch';
 import styles from './ContentPage.scss';
 
 class ContentPage extends Component {

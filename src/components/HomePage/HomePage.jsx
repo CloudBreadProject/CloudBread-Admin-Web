@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import fetch from '../../lib/fetch';
 import styles from './HomePage.scss';
 import {
   Avatar,
