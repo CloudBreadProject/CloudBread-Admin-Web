@@ -53,6 +53,7 @@
     "react-dom": "^0.14.5",
     "react-router": "^2.0.0-rc4",
     "react-tap-event-plugin": "^0.2.1",
+    "redux-simple-router": "^2.0.1",
     "source-map-support": "^0.4.0"
   },
   "devDependencies": {
