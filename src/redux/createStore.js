@@ -2,7 +2,6 @@ import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import { syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import createLogger from 'redux-logger';
 import { canUseDOM } from '../lib/env';
 
 export default function createStore(customMiddlewares = [], history, reducers, data) {
@@ -21,7 +20,7 @@ export default function createStore(customMiddlewares = [], history, reducers, d
     middlewares.concat([
     ]);
     finalCreateStore = compose(
-      applyMiddleware(...middlewares, createLogger()),
+      applyMiddleware(...middlewares, require('redux-logger')()),
     )(_createStore);
   } else {
     finalCreateStore = applyMiddleware(...middlewares)(_createStore);

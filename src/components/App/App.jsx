@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Header from '../Header';
 import styles from './App.scss';
-import Loading from '../Loading';
 
 class App extends Component {
   static propTypes = {
@@ -11,7 +10,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Loading show={false} />
         <Header />
         {this.props.children}
       </div>

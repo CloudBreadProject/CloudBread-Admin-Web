@@ -11,11 +11,17 @@ class Loading extends Component {
     show: false,
   };
 
+  componentDidMount() {
+    this.didMount = true;
+  }
+
   render() {
     const { show } = this.props;
 
-    const wrapperStyles = cx(styles.LoadingWrapper, {
+    const wrapperStyles = cx({
+      [styles.LoadingWrapper]: true,
       [styles.Activated]: show,
+      [styles.Mounted]: this.didMount,
     });
 
     return (

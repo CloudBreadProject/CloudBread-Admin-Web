@@ -6,9 +6,12 @@
   opacity: 0;
 }
 
+:local .Mounted {
+  transition: opacity 200ms linear;  
+}
+
 :local .Activated {
   opacity: 1;
-  transition: all 500ms linear;
 }
 
 :local .Loading {

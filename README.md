@@ -1,4 +1,4 @@
-# React Isomorphic Starter Kit
+# React Universal Starter Kit
 
 Quick start react package.
 

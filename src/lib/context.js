@@ -29,6 +29,10 @@ export function getTitle() {
 
 export function setTitle(title) {
   _title = title;
+
+  if (canUseDOM) {
+    document.title = _title;
+  }
 }
 
 export function getTail() {

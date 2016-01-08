@@ -2,49 +2,60 @@ import React, { Component } from 'react';
 import styles from './ContentPage.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loadPage, loadPageS } from '../../redux/modules/page';
+import { loadPage, unloadPage } from '../../redux/modules/page';
 import { canUseDOM } from '../../lib/env';
+import { setTitle } from '../../lib/context';
+import Loading from '../Loading';
 
 function mapStateToProps(state) {
   return {
     content: state.page.content,
-    loading: state.page.loading,
+    title: state.page.title,
+    isLoading: state.page.isLoading,
+    error: state.page.error,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     loadPage,
+    unloadPage,
   }, dispatch);
 }
 
 class ContentPage extends Component {
   static needs = [
-    loadPageS,
+    loadPage,
   ];
 
-  componentDidMount() {
-    this.loadPage(this.props.params);
-  }
-
-  componentWillUpdate(nextProps) {
-    this.loadPage(nextProps.params);
-  }
-
-  loadPage(nextParams) {
-    const newPageId = nextParams.pageId;
-    const oldPageId = this.props.params.pageId;
-
-    if (oldPageId !== newPageId) {
-      this.props.loadPage(newPageId);
+  componentWillMount() {
+    if (!this.props.content && !this.props.error) {
+      this.props.loadPage(this.props.params);
     }
   }
 
+  componentWillUpdate(nextProps) {
+    const newPageId = nextProps.params.pageId;
+    const oldPageId = this.props.params.pageId;
+
+    if ((oldPageId !== newPageId)) {
+      this.props.loadPage(nextProps.params);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.unloadPage();
+  }
+
   render() {
-    const { content, title } = this.props;
+    const { content, title, isLoading, error } = this.props;
+    setTitle(title);
 
     return (
-      <div className={styles.ContentPage} dangerouslySetInnerHTML={{__html: content}} />
+      <div>
+        <div className={styles.ContentPage} dangerouslySetInnerHTML={{__html: content || error}} />
+        <Loading show={isLoading} />
+      </div>
     );
   }
 }

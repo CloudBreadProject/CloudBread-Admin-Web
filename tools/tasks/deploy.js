@@ -3,20 +3,17 @@ import run from '../lib/run';
 import fetch from '../lib/fetch';
 import build from './build';
 
-// TODO: Update deployment URL
-const getRemote = () => ({
-  name: 'heroku',
-  url: `https://git.heroku.com/react-isomorphic.git`,
-  website: `http://react-isomorphic.herokuapp.com`,
-});
-
 /**
  * Deploy the contents of the `/build` folder to a remote
  * server via Git. Example: `npm run deploy -- production`
  */
 async function deploy() {
   // By default deploy to the staging deployment slot
-  const remote = getRemote();
+  const remote = {
+    name: 'heroku',
+    url: `https://git.heroku.com/react-isomorphic.git`,
+    website: `https://react-isomorphic.herokuapp.com`,
+  };
 
   // Initialize a new Git repository inside the `/build` folder
   // if it doesn't exist yet

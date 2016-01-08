@@ -1,15 +1,14 @@
 import superagent from 'superagent';
-import { canUseDOM } from './context';
-import { API_ENDPOINT, SERVER_HOST } from '../config';
+import { API_ENDPOINT } from '../config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
-  const adjustedPath = path[0] !== '/' ? '/' + path : path;
-  if (canUseDOM) {
-    return API_ENDPOINT + adjustedPath;
+  if (path.match('//')) {
+    return path;
   }
-  return SERVER_HOST + adjustedPath;
+  const adjustedPath = path[0] !== '/' ? '/' + path : path;
+  return API_ENDPOINT + adjustedPath;
 }
 
 class ApiFetcher {
@@ -33,7 +32,6 @@ class ApiFetcher {
             resolve(res);
           }
         });
-
       }));
   }
 }
