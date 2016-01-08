@@ -10,7 +10,7 @@ const routeContainer = (
     history={history}>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path=":pageId" component={ContentPage} />
+      <Route path="page/:pageId" component={ContentPage} />
     </Route>
   </Router>
 );

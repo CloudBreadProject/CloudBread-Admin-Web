@@ -6,10 +6,10 @@ import { Link } from 'react-router';
 const mainRoutes = [
   {
     label: 'Introduction',
-    link: '/intro',
+    link: '/page/intro',
   }, {
     label: 'Test',
-    link: '/test',
+    link: '/page/test',
   },
 ];
 
@@ -53,7 +53,6 @@ function SubNav({ routes }) {
 }
 
 class Header extends Component {
-
   render() {
     return (
       <div className={styles.Header}>
