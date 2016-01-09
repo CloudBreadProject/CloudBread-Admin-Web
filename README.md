@@ -1,6 +1,6 @@
 # React Universal Starter Kit
 
-Quick start react package.
+Quick start react package. See [this live](http://react-isomorphic.herokuapp.com/)
 
 ## Features
 
