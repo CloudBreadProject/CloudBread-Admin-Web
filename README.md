@@ -51,6 +51,14 @@ npm run lint
 
 It will eslint this package.
 
+#### CSS Comb
+
+```sh
+npm run csscomb
+```
+
+Make your css code beautiful.
+
 #### Deployment
 
 You should edit `./tools/tasks/deploy.js` file before use this command.

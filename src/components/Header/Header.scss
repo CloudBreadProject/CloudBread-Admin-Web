@@ -1,39 +1,42 @@
 $headerHeight: 54px;
 
 :local .Header {
-  composes: PrimaryBox from "styles/Container.scss";
+  composes: PrimaryBox from 'styles/Container.scss';
 }
 
 :local .Container {
-  composes: Container from "styles/Container.scss";
   height: $headerHeight;
+
+  composes: Container from 'styles/Container.scss';
 }
 
 .Side {
   min-width: 200px;
 
   > p {
-    margin: 0; padding: 0;
+    padding: 0;
+    margin: 0;
     font-size: 16px;
     line-height: $headerHeight;
   }
 }
 
 :local .LeftSide {
-  composes: Side;
   float: left;
 
+  composes: Side;
+
   > h1 {
-    margin: 0;
     padding: 0;
-    font-weight: 400;
+    margin: 0;
     font-size: 36px;
+    font-weight: 400;
     line-height: $headerHeight;
 
     > a {
-      text-decoration: none;
-      color: inherit;
       line-height: inherit;
+      color: inherit;
+      text-decoration: none;
     }
   }
 }
@@ -43,30 +46,33 @@ $headerHeight: 54px;
 }
 
 :local .RightSide {
-  composes: Side;
   float: right;
   text-align: right;
+
+  composes: Side;
 }
 
 .Nav {
-  margin: 0; padding: 0;
   display: block;
+  padding: 0;
+  margin: 0;
 
   > li {
-    margin: 0 10px;
     display: inline-block;
+    margin: 0 10px;
     line-height: $headerHeight;
 
     > a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
   }
 }
 
 :local .MainNav {
-  composes: Nav;
   font-size: 18px;
+
+  composes: Nav;
 }
 
 :local .SubNav {

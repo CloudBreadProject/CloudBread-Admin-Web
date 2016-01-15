@@ -1,13 +1,15 @@
 :local .LoadingWrapper {
   position: absolute;
+  right: 0;
+  bottom: 0;
   display: block;
-  width: 200px; height: 200px;
-  right: 0; bottom: 0;
+  width: 200px;
+  height: 200px;
   opacity: 0;
 }
 
 :local .Mounted {
-  transition: opacity 200ms linear;  
+  transition: opacity 200ms linear;
 }
 
 :local .Activated {
@@ -16,34 +18,34 @@
 
 :local .Loading {
   position: absolute;
-  min-height: 100px;
   top: 50%;
-  left: 50%;
   right: 0;
   bottom: 0;
+  left: 50%;
+  min-height: 100px;
 
   &:after {
-    content: '';
-    width: 50px;
-    height: 50px;
-    background: #004476;
-    animation: preloader 500ms linear infinite;
     position: absolute;
     top: 0;
     left: 0;
+    width: 50px;
+    height: 50px;
+    content: '';
+    background: #004476;
     border-radius: 3px;
+    animation: preloader 500ms linear infinite;
   }
   &:before {
-    content: '';
-    width: 50px;
-    height: 5px;
-    background: #000;
-    animation: preloader-shadow 500ms linear infinite;
-    opacity: 0.1;
     position: absolute;
     top: 59px;
     left: 0;
+    width: 50px;
+    height: 5px;
+    content: '';
+    background: #000;
     border-radius: 50%;
+    opacity: .1;
+    animation: preloader-shadow 500ms linear infinite;
   }
 }
 @keyframes preloader {
@@ -54,8 +56,8 @@
     transform: translateY(9px) rotate(22.5deg);
   }
   50% {
-    transform: scale(1, 0.9) translateY(18px) rotate(45deg);
     border-bottom-right-radius: 40px;
+    transform: scale(1, .9) translateY(18px) rotate(45deg);
   }
   75% {
     transform: translateY(9px) rotate(67.5deg);

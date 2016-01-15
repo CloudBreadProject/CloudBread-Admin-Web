@@ -1,11 +1,12 @@
 :local .HomePage {
-  composes: Container from "styles/Container.scss";
+  composes: Container from 'styles/Container.scss';
 }
 
 :local .Card {
-  margin: 0; padding: 0;
-  width: 25%;
   display: inline-block;
+  width: 25%;
+  padding: 0;
+  margin: 0;
 
   > div {
     margin: 4px 8px;
