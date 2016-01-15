@@ -6,6 +6,7 @@ import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import { merge } from 'lodash';
 import { resolve } from 'path';
+import fs from 'fs';
 
 export const DEBUG = !process.argv.includes('--release');
 export const VERBOSE = process.argv.includes('--verbose');
@@ -15,6 +16,7 @@ export const ROOT = resolve(__dirname, '../');
 export const buildPath = `${ROOT}/build`;
 export const buildStaticPath = `${buildPath}/public`;
 export const srcPath = `${ROOT}/src`;
+export const modulePath = `${ROOT}/node_modules`;
 export const AUTOPREFIXER_BROWSERS = [
   'Android 2.3',
   'Android >= 4',
@@ -50,6 +52,7 @@ const webpackCommon = {
   debug: DEBUG,
   stats,
   resolve: {
+    root: srcPath,
     extensions: ['', '.jsx', '.json', '.js'],
   },
   module: {
@@ -197,10 +200,7 @@ export const webpackServer = merge({}, webpackCommon, {
   },
   externals: [
     /^\.\/assets\.json$/,
-    function filter(context, request, cb) {
-      const isExternal = request.match(/^[@a-z][a-z\/\.\-0-9]*$/i);
-      return cb(null, Boolean(isExternal));
-    },
+    fs.readdirSync(modulePath).filter(x => x !== '.bin'),
   ],
   plugins: [
     ...webpackCommonPlugins,

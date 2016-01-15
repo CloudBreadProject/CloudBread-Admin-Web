@@ -1,7 +1,5 @@
-@import "../styles/variables.scss";
-
 :local .HomePage {
-  composes: Container from "../styles/Container.scss";
+  composes: Container from "styles/Container.scss";
 }
 
 :local .Card {

@@ -1,11 +1,11 @@
 $headerHeight: 54px;
 
 :local .Header {
-  composes: PrimaryBox from "../styles/Container.scss";
+  composes: PrimaryBox from "styles/Container.scss";
 }
 
 :local .Container {
-  composes: Container from "../styles/Container.scss";
+  composes: Container from "styles/Container.scss";
   height: $headerHeight;
 }
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { loadPage, unloadPage } from '../../redux/modules/page';
 import { canUseDOM } from '../../lib/env';
 import { setTitle } from '../../lib/context';
-import Loading from '../Loading';
+import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
   return {
