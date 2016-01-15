@@ -1,5 +1,5 @@
 import superagent from 'superagent';
-import { API_ENDPOINT } from '../config';
+import { API_ENDPOINT } from 'config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 

@@ -1,4 +1,3 @@
-import { canUseDOM } from 'lib/env';
 import fetch from 'lib/fetch';
 
 export const LOAD_PAGE = 'LOAD_PAGE';

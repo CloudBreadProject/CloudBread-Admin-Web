@@ -10,8 +10,7 @@ if (global && !global.navigator) {
 }
 
 let _title = '';
-let _tail = '';
-export const socket = canUseDOM && window.io ? io.connect('localhost:5000') : null;
+let _store = null;
 export const history = canUseDOM ? browserHistory : createMemoryHistory();
 
 export function initDOM(req) {
@@ -20,7 +19,7 @@ export function initDOM(req) {
   }
 
   _title = '';
-  _tail = '';
+  _store = null;
 }
 
 export function getTitle() {
@@ -35,22 +34,10 @@ export function setTitle(title) {
   }
 }
 
-export function getTail() {
-  return _tail;
+export function setStore(store) {
+  _store = store;
 }
 
-export function addTail(content) {
-  _tail += content;
+export function getStore() {
+  return _store;
 }
-
-const context = {
-  history,
-  getTitle,
-  setTitle,
-  socket,
-  getTail,
-  addTail,
-  initDOM,
-};
-
-export default context;

@@ -19,7 +19,7 @@ function parseJade(jadeContent) {
   return Object.assign({ content: htmlContent }, fmContent.attributes);
 }
 
-const router = Router(); // eslint-disable-line new-cap
+const router = Router();
 
 router.get('/content/:identifier', (req, res) => {
   const filePath = `${CONTENT_DIR}/${req.params.identifier}.jade`;

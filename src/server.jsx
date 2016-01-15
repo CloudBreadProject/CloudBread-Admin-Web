@@ -5,14 +5,13 @@ import { match, RouterContext } from 'react-router';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import httpProxy from 'http-proxy';
-import createStore from './redux/createStore';
-import reducer from './redux/reducer';
-import fetchComponent from './redux/fetchComponent';
-import routes from './routes';
-import * as reduxMiddlewares from './redux/middlewares';
-import Html from './components/Html';
-import { initDOM, history } from './lib/context';
-import apiV1 from './api/v1';
+import createStore from 'redux/createStore';
+import reducer from 'redux/reducer';
+import fetchComponent from 'redux/fetchComponent';
+import routes from 'routes';
+import Html from 'components/Html';
+import { initDOM, history, setStore } from 'lib/context';
+import api from 'api';
 import assets from './assets.json';
 
 const ROOT = resolve(__dirname, '.');
@@ -30,7 +29,7 @@ const proxy = httpProxy.createProxyServer();
 app.use('/github', (req, res) => {
   proxy.web(req, res, { target: 'http://api.github.com/' });
 });
-app.use('/v1', apiV1);
+app.use('/api', api);
 
 app.get('*', (req, res) => {
   match({ routes, location: req.url }, async (error, redirectLocation, renderProps) => {
@@ -41,14 +40,8 @@ app.get('*', (req, res) => {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         initDOM(req);
-        const customMiddlewares = [];
-        for (const idx in reduxMiddlewares) {
-          const middleware = reduxMiddlewares[idx];
-          if (typeof(middleware) === 'function') {
-            customMiddlewares.push(middleware(req, res));
-          }
-        }
-        const store = createStore(customMiddlewares, history, reducer);
+        const store = createStore(history, reducer);
+        setStore(store);
         await fetchComponent(store.dispatch, renderProps.components, renderProps.params);
         const content = renderToString((
           <Provider store={store}>

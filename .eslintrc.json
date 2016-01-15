@@ -14,6 +14,11 @@
   "rules": {
     "quotes": [2, "single"],
     "curly": 2,
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "new-cap": [
+      2, {
+        "capIsNewExceptions": ["Router"]
+      }
+    ]
   }
 }

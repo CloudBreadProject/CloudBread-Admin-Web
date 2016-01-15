@@ -1,4 +1,3 @@
-import { canUseDOM } from 'lib/env';
 import fetch from 'lib/fetch';
 
 export const GET_STAR = 'GET_STAR';

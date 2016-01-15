@@ -1,18 +1,13 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import { syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
-import promiseMiddleware from 'redux-promise-middleware';
-import { canUseDOM } from '../lib/env';
+import { canUseDOM } from 'lib/env';
 
-export default function createStore(customMiddlewares = [], history, reducers, data) {
+export default function createStore(history, reducers, data) {
   const router = syncHistory(history);
   const middlewares = [
-    promiseMiddleware({
-      promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR'],
-    }),
     thunk,
     router,
-    ...customMiddlewares,
   ];
 
   let finalCreateStore;
