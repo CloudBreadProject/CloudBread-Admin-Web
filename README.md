@@ -28,7 +28,7 @@ npm i # alias to install
 #### Development
 
 ```sh
-npm run dev
+npm start
 ```
 
 It will open a browser window.

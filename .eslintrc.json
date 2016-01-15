@@ -6,10 +6,12 @@
   ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "globals": {
-    "__DEV__": true
+    "__DEV__": true,
+    "expect": true
   },
   "rules": {
     "quotes": [2, "single"],
