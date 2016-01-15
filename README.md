@@ -6,9 +6,9 @@ Quick start react package. See [this live](http://react-isomorphic.herokuapp.com
 
 * Babel 6, ES2015 + ES7
 * Webpack, development and production
-* React 0.14, react-router
+* React 0.14.x, react-router
 * HMR, reloading page through
-* Jest, Enzyme for unit testing
+* Jest, Enzyme for unit testing (will be changed to Mocha with Krama)
 * Airbnb config eslint
 * Sass like css loaders
 * MaterialUI to provide better UI
@@ -21,17 +21,9 @@ cd react-isomorphic-starter-kit
 npm i # alias to install
 ```
 
-### About postinstall
-
-`postinstall` command in `package.json` will be executed after `npm install`.
-I added that command to deploy on Heroku.
-If you don't want to use it, no matter to detach that command.
-
 ## Usage
 
 ### Custom Scripts
-
-These scripts are useful to
 
 #### Development
 
@@ -59,46 +51,44 @@ npm run lint
 
 It will eslint this package.
 
-#### Test
-
-```sh
-npm test
-npm test -- --watch
-```
-
-It will eslint and unit test.
-
 #### Deployment
+
+You should edit `./tools/tasks/deploy.js` file before use this command.
 
 ```sh
 npm run deploy
 ```
 
-You should edit `./tools/tasks/deploy.js` file before use this command.
+Basically this script deploys this package on git repository after build.
+GitHub, Heroku, Azure, AWS, AppEngine doesn't matter, perhaps.
 
 ### Directory Map
 
 ```sh
 tree -L 2 -I 'node_modules|build'
 .
-├── README.md         # what you are reading
-├── jest              # jest configurations
-│ └── preprocessor.js # to enable es6 features, use custom preprocessor
-├── package.json      # node package file
-├── src               # where you will work
-│ ├── api             # server
-│ ├── assets          # contents here will be maintained when builded
-│ ├── client.jsx      # client entry
-│ ├── components      # react components
-│ ├── config.js       # custom configurations
-│ ├── lib             # custom libraries
-│ ├── public          # static assets
-│ ├── routes          # route configurations
-│ └── server.jsx      # server entry
-└── tools             # build or manage scripts
-    ├── config.js     # webpack, path etc...
-    ├── deploy.sh     # deploy command
-    ├── lib           # task libraries
-    ├── run.js        # file to run a task
-    └── tasks         # sub tasks
+├── jest                # unit test
+│   └── preprocessor.js # jest transpiler
+├── package.json        # list of dependencies, babel options
+├── .eslintrc.json      # eslint configurations
+├── src                 # the source code of the application
+│   ├── api             # API end
+│   ├── assets          # static assets
+│   ├── client.jsx      # client entry
+│   ├── components      # react components
+│   ├── config.js       # application configurations
+│   ├── containers      # react containers
+│   ├── layouts         # react layouts
+│   ├── lib             # utilities to realize it
+│   ├── modules         # redux modules
+│   ├── public          # static assets to serve
+│   ├── redux           # redux store, middlewares
+│   ├── routes          # routes
+│   ├── server.jsx      # server entry
+│   └── styles          # css code
+└── tools               # build commands
+    ├── config.js       # webpack and project settings
+    ├── lib             # utilities for tasks
+    ├── run.js          # task runner
+    └── tasks           # build tasks
 ```

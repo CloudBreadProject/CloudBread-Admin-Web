@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styles from './ContentPage.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loadPage, unloadPage } from '../../redux/modules/page';
-import { canUseDOM } from '../../lib/env';
-import { setTitle } from '../../lib/context';
+import { loadPage, unloadPage } from 'modules/page';
+import { canUseDOM } from 'lib/env';
+import { setTitle } from 'lib/context';
 import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
@@ -34,12 +34,12 @@ class ContentPage extends Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
+  async componentWillUpdate(nextProps) {
     const newPageId = nextProps.params.pageId;
     const oldPageId = this.props.params.pageId;
 
     if ((oldPageId !== newPageId)) {
-      this.props.loadPage(nextProps.params);
+      await this.props.loadPage(nextProps.params);
     }
   }
 

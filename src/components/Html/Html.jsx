@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { getTitle } from '../../lib/context';
+import { getTitle } from 'lib/context';
 import serialize from 'serialize-javascript';
 
 const preventFOUC = `

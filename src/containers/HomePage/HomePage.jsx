@@ -8,14 +8,16 @@ import {
   CardMedia,
   Paper
 } from 'material-ui';
-import { setTitle } from '../../lib/context';
-import { getStars } from '../../redux/modules/github';
+import { setTitle } from 'lib/context';
+import { getStars } from 'modules/github';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
+  const { stars, isLoading } = state.github;
   return {
-    stars: state.github.stars,
+    stars, isLoading,
   };
 }
 
@@ -30,8 +32,14 @@ class HomePage extends Component {
     getStars,
   ];
 
+  componentWillMount() {
+    if (!this.props.stars.length) {
+      this.props.getStars();
+    }
+  }
+
   render() {
-    const { stars } = this.props;
+    const { stars, isLoading } = this.props;
     setTitle('HomePage');
     return (
       <div className={styles.HomePage}>
@@ -53,6 +61,7 @@ class HomePage extends Component {
             );
           })
         }
+        <Loading show={isLoading} />
       </div>
     );
   }

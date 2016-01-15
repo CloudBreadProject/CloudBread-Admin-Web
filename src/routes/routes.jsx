@@ -1,9 +1,9 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import { history } from 'lib/context';
-import App from 'components/App';
-import HomePage from 'components/HomePage';
-import ContentPage from 'components/ContentPage';
+import App from 'layouts/App';
+import HomePage from 'containers/HomePage';
+import ContentPage from 'containers/ContentPage';
 
 const routeContainer = (
   <Router

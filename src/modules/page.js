@@ -1,5 +1,5 @@
-import { canUseDOM } from '../../lib/env';
-import fetch from '../../lib/fetch';
+import { canUseDOM } from 'lib/env';
+import fetch from 'lib/fetch';
 
 export const LOAD_PAGE = 'LOAD_PAGE';
 export const LOAD_PAGE_LOADING = 'LOAD_PAGE_LOADING';
@@ -58,28 +58,21 @@ export function unloadPage() {
 }
 
 export function loadPage({ pageId }) {
-  const reqPromise = fetch.get(`content/${pageId}`);
-  if (canUseDOM) {
-    return {
-      type: LOAD_PAGE,
-      payload: {
-        promise: reqPromise,
-      },
-    };
-  }
-
   return async (dispatch) => {
     try {
-      const res = await reqPromise;
+      dispatch({
+        type: LOAD_PAGE_LOADING,
+      });
+      const res = await fetch.get(`content/${pageId}`);
       if (res.error) {
         throw res.error;
       }
-      dispatch({
+      return dispatch({
         type: LOAD_PAGE_SUCCESS,
         payload: res,
       });
     } catch (error) {
-      dispatch({
+      return dispatch({
         type: LOAD_PAGE_ERROR,
         payload: {
           error,
