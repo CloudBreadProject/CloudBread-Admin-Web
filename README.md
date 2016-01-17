@@ -78,28 +78,29 @@ GitHub, Heroku, Azure, AWS, AppEngine doesn't matter, perhaps.
 ```sh
 tree -L 2 -I 'node_modules|build'
 .
-├── jest                # unit test
-│   └── preprocessor.js # jest transpiler
-├── package.json        # list of dependencies, babel options
-├── .eslintrc.json      # eslint configurations
-├── src                 # the source code of the application
-│   ├── api             # API end
-│   ├── assets          # static assets
-│   ├── client.jsx      # client entry
-│   ├── components      # react components
-│   ├── config.js       # application configurations
-│   ├── containers      # react containers
-│   ├── layouts         # react layouts
-│   ├── lib             # utilities to realize it
-│   ├── modules         # redux modules
-│   ├── public          # static assets to serve
-│   ├── redux           # redux store, middlewares
-│   ├── routes          # routes
-│   ├── server.jsx      # server entry
-│   └── styles          # css code
-└── tools               # build commands
-    ├── config.js       # webpack and project settings
-    ├── lib             # utilities for tasks
-    ├── run.js          # task runner
-    └── tasks           # build tasks
+├── package.json    # list of dependencies, babel options
+├── .eslintrc.json  # eslint configurations
+├── .editorconfig   # common editor configurations
+├── .csscomb.json   # css comb configurations for lint
+├── karma.config.js # karma test configurations
+├── src             # the source code of the application
+│   ├── api         # API end
+│   ├── assets      # static assets
+│   ├── client.jsx  # client entry
+│   ├── components  # react components
+│   ├── config.js   # application configurations
+│   ├── containers  # react containers
+│   ├── layouts     # react layouts
+│   ├── lib         # utilities to realize it
+│   ├── modules     # redux modules
+│   ├── public      # static assets to serve
+│   ├── redux       # redux store, middlewares
+│   ├── routes      # routes
+│   ├── server.jsx  # server entry
+│   └── styles      # css code
+└── tools           # build commands
+    ├── config.js   # webpack and project settings
+    ├── lib         # utilities for tasks
+    ├── run.js      # task runner
+    └── tasks       # build tasks
 ```
