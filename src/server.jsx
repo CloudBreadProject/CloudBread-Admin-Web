@@ -68,7 +68,7 @@ app.get('*', (req, res) => {
   });
 });
 
-const server = app.listen(process.env.PORT || 5000, () => {
+const server = app.listen(process.env.PORT || __PORT__, () => {
   const { port } = server.address();
   console.log(`The server is listening at http://localhost:${port}`);
   if (__DEV__) {

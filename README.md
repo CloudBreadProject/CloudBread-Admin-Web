@@ -29,11 +29,14 @@ npm i # alias to install
 
 ```sh
 npm start
+npm start -- --port=8080 # if you want to change the port
 ```
 
 It will open a browser window.
 In development environment, [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) could be happened.
 Don't worry. FOUC is not in production environment.
+Never use this command for production directly because this command will be executed via `babel-node` which makes performance slower.
+To serve production application, you have to deploy or build it and execute `npm start` in the build folder.
 
 #### Build
 

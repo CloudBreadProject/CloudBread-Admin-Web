@@ -2,7 +2,7 @@ import browserSync from 'browser-sync';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-middleware';
-import { webpackServer, webpackClient, stats } from '../config';
+import { webpackServer, webpackClient, stats, DEV_PORT } from '../config';
 import run from '../lib/run';
 import serve from './serve';
 import clean from './clean';
@@ -26,7 +26,7 @@ function _dev() {
         bs = browserSync.create();
         bs.init({
           proxy: {
-            target: 'localhost:5000',
+            target: `localhost:${DEV_PORT}`,
             middleware: [
               wpMiddleware,
               ...hotMiddlewares,

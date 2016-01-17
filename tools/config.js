@@ -7,10 +7,13 @@ import autoprefixer from 'autoprefixer';
 import { merge } from 'lodash';
 import { resolve } from 'path';
 import fs from 'fs';
+import { argv } from 'yargs';
 
 export const DEBUG = !process.argv.includes('--release');
 export const VERBOSE = process.argv.includes('--verbose');
 export const WATCH = process.argv.includes('--watch');
+
+export const DEV_PORT = argv.port || 4000;
 
 export const ROOT = resolve(__dirname, '../');
 export const buildPath = `${ROOT}/build`;
@@ -30,6 +33,7 @@ export const AUTOPREFIXER_BROWSERS = [
 const GLOBALS = {
   'process.env.NODE_ENV': DEBUG ? `'development'` : `'production'`,
   __DEV__: DEBUG,
+  __PORT__: DEV_PORT,
 };
 export const stats = {
   colors: true,

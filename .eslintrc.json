@@ -11,7 +11,8 @@
   },
   "globals": {
     "__DEV__": true,
-    "expect": true
+    "expect": true,
+    "__PORT__": true
   },
   "rules": {
     "quotes": [2, "single"],
