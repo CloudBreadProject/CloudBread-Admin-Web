@@ -4,7 +4,6 @@ import React from 'react';
 import { match, RouterContext } from 'react-router';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import httpProxy from 'http-proxy';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
 import fetchComponent from 'redux/fetchComponent';
@@ -25,10 +24,6 @@ if (__DEV__) {
   });
 }
 
-const proxy = httpProxy.createProxyServer();
-app.use('/github', (req, res) => {
-  proxy.web(req, res, { target: 'http://api.github.com/' });
-});
 app.use('/api', api);
 
 app.get('*', (req, res) => {

@@ -8,7 +8,7 @@ Quick start react package. See [this live](http://react-isomorphic.herokuapp.com
 * Webpack, development and production
 * React 0.14.x, react-router
 * HMR, reloading page through
-* Jest, Enzyme for unit testing (will be changed to Mocha with Krama)
+* Karma, Mocha test
 * Airbnb config eslint
 * Sass like css loaders
 * MaterialUI to provide better UI

@@ -39,7 +39,7 @@ export function getStars() {
       dispatch({
         type: GET_STAR_LOADING,
       });
-      const res = await fetch.get('https://api.github.com/repos/Beingbook/react-isomorphic-starter-kit/stargazers');
+      const res = await fetch.get('https://api.github.com/repos/Beingbook/react-universal-starter-kit/stargazers');
       if (res.error) {
         throw res.error;
       }
