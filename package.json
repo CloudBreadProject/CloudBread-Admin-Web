@@ -1,14 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "test": "npm run lint && $(npm bin)/karma start ./karma.config.js",
+    "test": "$(npm bin)/karma start ./karma.config.js",
     "test:dev": "npm run test -- --watch",
     "csscomb": "$(npm bin)/csscomb ./src",
     "start": "$(npm bin)/babel-node tools/run dev",
     "build": "npm run test && $(npm bin)/babel-node tools/run build -- --release",
     "lint": "$(npm bin)/eslint ./src ./tools",
     "clean": "$(npm bin)/babel-node tools/run clean",
-    "deploy": "npm run test && $(npm bin)/babel-node tools/run deploy -- --release"
+    "deploy": "npm run lint && npm run test && $(npm bin)/babel-node tools/run deploy -- --release"
   },
   "babel": {
     "presets": [

@@ -10,10 +10,10 @@ module.exports = function (config) {
     files: [
       './node_modules/babel-polyfill/dist/polyfill.js',
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
-      './src/**/*.spec.js',
+      './tests/**/*.js*',
     ],
     preprocessors: {
-      ['./src/**/*.js*']: ['webpack', 'sourcemap'],
+      ['./tests/**/*.js*']: ['webpack', 'sourcemap'],
     },
     webpack: {
        devtool: 'inline-source-map',
@@ -43,8 +43,8 @@ module.exports = function (config) {
         ],
       },
       externals: {
-        'jsdom': 'window',
-        'cheerio': 'window',
+        jsdom: 'window',
+        cheerio: 'window',
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
       },

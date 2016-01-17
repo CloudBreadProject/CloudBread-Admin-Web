@@ -1,4 +1,4 @@
-# React Universal Starter Kit
+# React Universal Starter Kit !(dependencies)[https://david-dm.org/Beingbook/react-universal-starter-kit.svg]
 
 Quick start react package. See [this live](http://react-isomorphic.herokuapp.com/)
 
