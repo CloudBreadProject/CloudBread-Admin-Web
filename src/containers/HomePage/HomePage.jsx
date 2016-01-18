@@ -15,9 +15,11 @@ import { bindActionCreators } from 'redux';
 import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
-  const { stars, isLoading } = state.github;
+  const { stars, isLoading, error } = state.github;
   return {
-    stars, isLoading,
+    stars,
+    isLoading,
+    error,
   };
 }
 
@@ -32,15 +34,23 @@ class HomePage extends Component {
     getStars,
   ];
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.stars.length) {
       this.props.getStars();
     }
   }
 
   render() {
-    const { stars, isLoading } = this.props;
+    const { stars, isLoading, error } = this.props;
     setTitle('HomePage');
+    if (error) {
+      return (
+        <div className={styles.HomePage}>
+          <p>Failed to load github stars, checkout network status or github api changes.</p>
+        </div>
+      );
+    }
+
     return (
       <div className={styles.HomePage}>
         <h1>People liked this package</h1>

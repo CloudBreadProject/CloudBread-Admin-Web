@@ -2,7 +2,6 @@ import fetch from 'lib/fetch';
 
 export const GITHUB_API_STARS = 'https://api.github.com/repos/Beingbook/react-universal-starter-kit/stargazers';
 
-export const GET_STAR = 'GET_STAR';
 export const GET_STAR_LOADING = 'GET_STAR_LOADING';
 export const GET_STAR_SUCCESS = 'GET_STAR_SUCCESS';
 export const GET_STAR_ERROR = 'GET_STAR_ERROR';
@@ -10,6 +9,7 @@ export const GET_STAR_ERROR = 'GET_STAR_ERROR';
 export const initialState = {
   isLoading: false,
   stars: [],
+  error: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,6 +18,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isLoading: true,
+        error: null,
       };
     case GET_STAR_SUCCESS:
       return {
@@ -43,9 +44,6 @@ export function getStars() {
         type: GET_STAR_LOADING,
       });
       const res = await fetch.get(GITHUB_API_STARS);
-      if (res.error) {
-        throw res.error;
-      }
       return dispatch({
         type: GET_STAR_SUCCESS,
         stars: res.body,

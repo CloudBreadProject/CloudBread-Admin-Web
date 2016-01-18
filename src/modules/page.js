@@ -1,6 +1,5 @@
 import fetch from 'lib/fetch';
 
-export const LOAD_PAGE = 'LOAD_PAGE';
 export const LOAD_PAGE_LOADING = 'LOAD_PAGE_LOADING';
 export const LOAD_PAGE_SUCCESS = 'LOAD_PAGE_SUCCESS';
 export const LOAD_PAGE_ERROR = 'LOAD_PAGE_ERROR';
@@ -10,7 +9,7 @@ const initialState = {
   isLoading: false,
   content: '',
   title: '',
-  error: '',
+  error: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -24,26 +23,24 @@ export default function reducer(state = initialState, action = {}) {
         error: '',
       };
     case LOAD_PAGE_ERROR:
-      const { error } = action.payload.error;
       return {
         ...state,
         isLoading: false,
-        error,
+        error: action.error,
       };
     case LOAD_PAGE_SUCCESS:
-      const { content, title } = action.payload.body;
       return {
         ...state,
         isLoading: false,
-        content,
-        title,
+        content: action.content,
+        title: action.title,
       };
     case UNLOAD_PAGE:
       return {
         ...state,
         content: '',
         title: '',
-        error: '',
+        error: null,
       };
     default:
       return state;
@@ -63,19 +60,16 @@ export function loadPage({ pageId }) {
         type: LOAD_PAGE_LOADING,
       });
       const res = await fetch.get(`content/${pageId}`);
-      if (res.error) {
-        throw res.error;
-      }
+      const { content, title } = res.body;
       return dispatch({
         type: LOAD_PAGE_SUCCESS,
-        payload: res,
+        content,
+        title,
       });
     } catch (error) {
       return dispatch({
         type: LOAD_PAGE_ERROR,
-        payload: {
-          error,
-        },
+        error,
       });
     }
   };
