@@ -1,5 +1,6 @@
 # React Universal Starter Kit
 ![Dependency Badge](https://david-dm.org/Beingbook/react-universal-starter-kit.svg)
+![Build Badge](https://travis-ci.org/Beingbook/react-universal-starter-kit.svg)
 
 Quick start react package. See [this live](http://react-isomorphic.herokuapp.com/)
 
