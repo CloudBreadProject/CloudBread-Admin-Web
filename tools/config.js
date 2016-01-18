@@ -47,7 +47,7 @@ export const stats = {
   cachedAssets: VERBOSE,
 };
 
-const webpackCommon = {
+export const webpackCommon = {
   output: {
     publicPath: '/',
     sourcePrefix: ' ',

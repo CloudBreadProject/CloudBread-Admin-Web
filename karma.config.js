@@ -1,7 +1,9 @@
+require('babel-register');
 var argv = require('yargs').argv;
 var path = require('path');
+var webpackCommon = require('./tools/config').webpackCommon;
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !argv.watch,
@@ -15,32 +17,20 @@ module.exports = function (config) {
     preprocessors: {
       ['./tests/**/*.js*']: ['webpack', 'sourcemap'],
     },
-    webpack: {
-       devtool: 'inline-source-map',
-       resolve: {
-        root: path.resolve(__dirname, './src'),
-        extensions: ['', '.js', '.jsx'],
+    webpack: Object.assign({}, webpackCommon, {
+      devtool: 'inline-source-map',
+      resolve: Object.assign({}, webpackCommon.resolve, {
         alias: {
           'sinon': 'sinon/pkg/sinon',
         },
-      },
-      module: {
+      }),
+      module: Object.assign({}, webpackCommon.module, {
         noParse: [
           /node_modules\/sinon\//
         ],
-        loaders: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-          }, {
-            test: /\.scss$/,
-            loaders: [
-              'style-loader',
-              'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader',
-            ],
-          },
-        ],
+      }),
+      node: {
+        fs: 'empty',
       },
       externals: {
         jsdom: 'window',
@@ -48,7 +38,7 @@ module.exports = function (config) {
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
       },
-    },
+    }),
     webpackMiddleware: {
       noInfo: true,
     },
