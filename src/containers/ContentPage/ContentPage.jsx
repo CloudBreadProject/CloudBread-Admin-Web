@@ -28,7 +28,7 @@ class ContentPage extends Component {
     loadPage,
   ];
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.content && !this.props.error) {
       this.props.loadPage(this.props.params);
     }
@@ -50,6 +50,14 @@ class ContentPage extends Component {
   render() {
     const { content, title, isLoading, error } = this.props;
     setTitle(title);
+
+    if (error) {
+      return (
+        <div className={styles.ContentPage}>
+          <p>Failed to fetch pages, checkout network status</p>
+        </div>
+      );
+    }
 
     return (
       <div>
