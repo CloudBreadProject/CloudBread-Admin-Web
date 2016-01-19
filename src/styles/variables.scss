@@ -1,5 +1,13 @@
-$max-content-width: 1170px;
-$lg-width: (min-width: 1170px);
-$md-width: (max-width: 840px);
-$xs-width: (max-width: 480px);
+$maxContentWidth: 1170px;
+
+$deviceWidthXS: 480px;
+$deviceWidthSM: 640px;
+$deviceWidthMD: 1024px;
+$deviceWidthLG: 1280px;
+
+$mediaXS: (width <= $deviceWidthXS);
+$mediaSM: ($deviceWidthXS < width <= $deviceWidthSM);
+$mediaMD: ($deviceWidthSM < width <= $deviceWidthMD);
+$mediaLG: ($deviceWidthMD < width);
+
 $transition: all .2s ease-in-out;

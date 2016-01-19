@@ -101,6 +101,9 @@ export const webpackCommon = {
     return [
       postcssImport({
         addDependencyTo: bundler,
+        path: [
+          srcPath,
+        ],
       }),
       precss(),
       autoprefixer({
