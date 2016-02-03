@@ -76,13 +76,13 @@ export const webpackCommon = {
         ...(DEBUG ? {
           loaders: [
             'style-loader',
-            'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', // eslint-disable-line
             'postcss-loader',
           ],
         } : {
           loader: ExtractTextPlugin.extract(
             'style-loader',
-            'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader',
+            'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader', // eslint-disable-line
           ),
         }),
       }, {
@@ -166,7 +166,7 @@ export const webpackClient = merge({}, webpackCommon, {
 if (DEBUG) {
   webpackClient.module.loaders
     .filter(x => x.loader === 'babel-loader')
-    .forEach(x => x.query = {
+    .forEach(x => x.query = { // eslint-disable-line
       ...x.query,
       plugins: [
         ['react-transform', {
@@ -175,8 +175,8 @@ if (DEBUG) {
             imports: ['react'],
             locals: ['module'],
           }, {
-            'transform': 'react-transform-catch-errors',
-            'imports': ['react', 'redbox-react'],
+            transform: 'react-transform-catch-errors',
+            imports: ['react', 'redbox-react'],
           }],
         }],
       ],
@@ -223,6 +223,6 @@ if (DEBUG) {
     .filter(x => x.loaders && x.loaders[0] === 'style-loader')
     .forEach(x => {
       x.loaders.shift();
-      x.loaders[0] = x.loaders[0].replace(/css-loader?/, 'css-loader/locals?');
+      x.loaders[0] = x.loaders[0].replace(/css-loader?/, 'css-loader/locals?'); // eslint-disable-line
     });
 }

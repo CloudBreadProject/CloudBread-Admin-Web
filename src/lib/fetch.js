@@ -7,7 +7,7 @@ function formatUrl(path) {
   if (path.match('//')) {
     return path;
   }
-  const adjustedPath = path[0] !== '/' ? '/' + path : path;
+  const adjustedPath = path[0] !== '/' ? `/${path}` : path;
   return API_ENDPOINT + adjustedPath;
 }
 

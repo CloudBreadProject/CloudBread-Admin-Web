@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 // to render Material-UI, need fake user-agent
 if (global && !global.navigator) {
   global.navigator = {
-    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36',
+    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36', // eslint-disable-line
   };
 }
 
