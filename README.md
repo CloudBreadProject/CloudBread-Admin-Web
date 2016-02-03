@@ -2,7 +2,7 @@
 ![Dependency Badge](https://david-dm.org/Beingbook/react-universal-starter-kit.svg)
 ![Build Badge](https://travis-ci.org/Beingbook/react-universal-starter-kit.svg)
 
-Quick start react package. See [this live](http://react-isomorphic.herokuapp.com/)
+Quick start react package. See [this live](http://react-universe.herokuapp.com/)
 
 ## Features
 
@@ -18,8 +18,8 @@ Quick start react package. See [this live](http://react-isomorphic.herokuapp.com
 ## Installation
 
 ```sh
-git clone https://github.com/Beingbook/react-isomorphic-starter-kit.git
-cd react-isomorphic-starter-kit
+git clone https://github.com/Beingbook/react-universal-starter-kit.git
+cd react-universal-starter-kit
 npm i # alias to install
 ```
 

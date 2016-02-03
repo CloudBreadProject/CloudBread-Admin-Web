@@ -1,5 +1,5 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
-import { syncHistory } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { canUseDOM } from 'lib/env';
 

@@ -11,8 +11,8 @@ async function deploy() {
   // By default deploy to the staging deployment slot
   const remote = {
     name: 'heroku',
-    url: `https://git.heroku.com/react-isomorphic.git`,
-    website: `https://react-isomorphic.herokuapp.com`,
+    url: `https://git.heroku.com/react-universe.git`,
+    website: `https://react-universe.herokuapp.com`,
   };
 
   // Initialize a new Git repository inside the `/build` folder
