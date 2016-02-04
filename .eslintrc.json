@@ -1,9 +1,7 @@
 {
+  "root": true,
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "plugins": [
-    "react"
-  ],
   "env": {
     "browser": true,
     "node": true,
@@ -22,6 +20,7 @@
       2, {
         "capIsNewExceptions": ["Router"]
       }
-    ]
+    ],
+    "react/sort-comp": 0
   }
 }

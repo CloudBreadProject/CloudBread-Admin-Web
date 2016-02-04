@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from './ContentPage.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loadPage, unloadPage } from 'modules/page';
-import { canUseDOM } from 'lib/env';
 import { setTitle } from 'lib/context';
 import Loading from 'components/Loading';
 
@@ -27,6 +26,16 @@ class ContentPage extends Component {
   static needs = [
     loadPage,
   ];
+
+  static propTypes = {
+    content: PropTypes.string,
+    title: PropTypes.string,
+    isLoading: PropTypes.bool,
+    error: PropTypes.object,
+    loadPage: PropTypes.func,
+    params: PropTypes.object,
+    unloadPage: PropTypes.func,
+  };
 
   componentDidMount() {
     if (!this.props.content && !this.props.error) {
@@ -61,7 +70,12 @@ class ContentPage extends Component {
 
     return (
       <div>
-        <div className={styles.ContentPage} dangerouslySetInnerHTML={{__html: content || error}} />
+        <div
+          className={styles.ContentPage}
+          dangerouslySetInnerHTML={{
+            __html: content || error,
+          }}
+        />
         <Loading show={isLoading} />
       </div>
     );

@@ -12,14 +12,12 @@ class Loading extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      didMount: true,
-    });
+    this.didMount = true;
   }
 
   render() {
     const { show } = this.props;
-    const { didMount } = this.state || {};
+    const { didMount } = this;
 
     const wrapperStyles = cx({
       [styles.LoadingWrapper]: true,

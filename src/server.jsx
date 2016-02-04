@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import { resolve } from 'path';
 import express from 'express';
 import React from 'react';
@@ -44,11 +45,12 @@ app.get('*', (req, res) => {
           </Provider>
         ));
         res.status(200).send(
-          `<!doctype html>` +
+          `<!doctype html>` + // eslint-disable-line
           renderToStaticMarkup((
             <Html
               store={store}
-              assets={assets}>
+              assets={assets}
+            >
               {content}
             </Html>
           ))

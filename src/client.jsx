@@ -6,7 +6,6 @@ import routes from 'routes';
 import { history, setStore } from 'lib/context';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
-import * as reduxMiddlewares from 'redux/middlewares';
 
 injectTapEventPlugin();
 

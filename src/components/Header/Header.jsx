@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './Header.scss';
-import { IconButton } from 'material-ui';
 import { Link } from 'react-router';
 
 const mainRoutes = [
@@ -22,8 +21,17 @@ const subRoutes = [
 ];
 
 function NavItem({ label, link, isExternal }) {
-  const _label = typeof(label) !== 'string' ? label :
-  isExternal ? <a href={link} target="_blank">{label}</a> : <Link to={link}>{label}</Link>;
+  let _label;
+
+  if (typeof(label) !== 'string') {
+    _label = label;
+  } else {
+    if (isExternal) {
+      _label = <a href={link} target="_blank">{label}</a>;
+    } else {
+      _label = <Link to={link}>{label}</Link>;
+    }
+  }
 
   return (
     <li>
@@ -35,9 +43,7 @@ function NavItem({ label, link, isExternal }) {
 function MainNav({ routes }) {
   return (
     <ul className={styles.MainNav}>
-      {routes.map((route, idx) => {
-        return <NavItem key={idx} {...route} />;
-      })}
+      {routes.map((route, idx) => <NavItem key={idx} {...route} />)}
     </ul>
   );
 }
@@ -45,9 +51,7 @@ function MainNav({ routes }) {
 function SubNav({ routes }) {
   return (
     <ul className={styles.SubNav}>
-      {routes.map((route, idx) => {
-        return <NavItem key={idx} {...route} />;
-      })}
+      {routes.map((route, idx) => <NavItem key={idx} {...route} />)}
     </ul>
   );
 }

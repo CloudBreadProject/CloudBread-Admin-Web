@@ -4,9 +4,7 @@ import {
   Avatar,
   Card,
   CardHeader,
-  CardText,
   CardMedia,
-  Paper
 } from 'material-ui';
 import { setTitle } from 'lib/context';
 import { getStars } from 'modules/github';
@@ -34,6 +32,13 @@ class HomePage extends Component {
     getStars,
   ];
 
+  static propTypes = {
+    stars: PropTypes.array,
+    getStars: PropTypes.func,
+    isLoading: PropTypes.bool,
+    error: PropTypes.object,
+  };
+
   componentDidMount() {
     if (!this.props.stars.length) {
       this.props.getStars();
@@ -53,23 +58,22 @@ class HomePage extends Component {
 
     return (
       <div className={styles.HomePage}>
-        <h1>People liked this package</h1>
+        <h1>People liked this package:</h1>
         {
-          stars.map((star, idx) => {
-            return (
-              <a href={star.html_url} target="_blank" className={styles.Card} key={idx}>
-                <Card>
-                  <CardHeader
-                    title={star.login}
-                    subtitle="Liked this package"
-                    avatar={<Avatar>{star.login[0]}</Avatar>} />
-                  <CardMedia>
-                    <img src={star.avatar_url} />
-                  </CardMedia>
-                </Card>
-              </a>
-            );
-          })
+          stars.map((star, idx) => (
+            <a href={star.html_url} target="_blank" className={styles.Card} key={idx}>
+              <Card>
+                <CardHeader
+                  title={star.login}
+                  subtitle="Liked this package"
+                  avatar={<Avatar>{star.login[0]}</Avatar>}
+                />
+                <CardMedia>
+                  <img src={star.avatar_url} />
+                </CardMedia>
+              </Card>
+            </a>
+          ))
         }
         <Loading show={isLoading} />
       </div>

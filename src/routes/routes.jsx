@@ -7,7 +7,8 @@ import ContentPage from 'containers/ContentPage';
 
 const routeContainer = (
   <Router
-    history={history}>
+    history={history}
+  >
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path="page/:pageId" component={ContentPage} />

@@ -12,6 +12,7 @@ class Html extends Component {
   static propTypes = {
     children: PropTypes.string.isRequired,
     store: PropTypes.object.isRequired,
+    assets: PropTypes.object.isRequired,
   };
 
   render() {
@@ -26,8 +27,12 @@ class Html extends Component {
           <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         </head>
         <body>
-          <div id="app" dangerouslySetInnerHTML={{__html: children}} />
-          <script dangerouslySetInnerHTML={{__html: `window.__SYNC_DATA = ${serialize(store.getState())};`}} />
+          <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__SYNC_DATA = ${serialize(store.getState())};`,
+            }}
+          />
           <script src={assets.app.js} />
         </body>
       </html>

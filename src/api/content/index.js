@@ -10,7 +10,7 @@ const CONTENT_DIR = pathResolve(__dirname, './assets/content');
 const readFile = promisify(_readFile);
 function isExist(file) {
   return new Promise((resolve) => {
-    stat(file, (err) => resolve(err ? false : true));
+    stat(file, (err) => resolve(!err));
   });
 }
 function parseJade(jadeContent) {
@@ -21,18 +21,16 @@ function parseJade(jadeContent) {
 
 const router = Router();
 
-router.get('/content/:identifier', (req, res) => {
+router.get('/content/:identifier', async (req, res) => {
   const filePath = `${CONTENT_DIR}/${req.params.identifier}.jade`;
-  (async () => {
-    if (!(await isExist(filePath))) {
-      return res.status(404).send({ error: 'content you requested is not found' });
-    }
+  if (!(await isExist(filePath))) {
+    return res.status(404).send({ error: 'content you requested is not found' });
+  }
 
-    const source = await readFile(filePath, { encoding: 'utf8' });
-    const content = await parseJade(source);
+  const source = await readFile(filePath, { encoding: 'utf8' });
+  const content = await parseJade(source);
 
-    res.status(200).send(content);
-  })();
+  res.status(200).send(content);
 });
 
 export default router;
