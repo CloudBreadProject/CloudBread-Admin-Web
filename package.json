@@ -35,7 +35,7 @@
     "front-matter": "^2.0.5",
     "history": "^2.0.0-rc3",
     "jade": "^1.11.0",
-    "lodash": "^4.3.0",
+    "lodash": "^3.10.1",
     "material-ui": "^0.14.4",
     "normalize.css": "^3.0.3",
     "react": "^0.14.7",
