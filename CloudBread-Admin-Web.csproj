@@ -43,7 +43,7 @@
   <ItemGroup>
     <Reference Include="CloudBreadLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CloudBread-Lib\bin\Release\CloudBreadLib.dll</HintPath>
+      <HintPath>.\CloudBreadLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
@@ -313,6 +313,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CloudBreadLib.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
