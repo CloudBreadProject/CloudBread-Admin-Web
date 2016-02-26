@@ -30,7 +30,7 @@ router.get('/content/:identifier', async (req, res) => {
   const source = await readFile(filePath, { encoding: 'utf8' });
   const content = await parseJade(source);
 
-  res.status(200).send(content);
+  return res.status(200).send(content);
 });
 
 export default router;

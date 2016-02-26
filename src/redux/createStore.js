@@ -1,13 +1,10 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
-import { syncHistory } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { canUseDOM } from 'lib/env';
 
 export default function createStore(history, reducers, data) {
-  const router = syncHistory(history);
   const middlewares = [
     thunk,
-    router,
   ];
 
   let finalCreateStore;
@@ -25,11 +22,11 @@ export default function createStore(history, reducers, data) {
 
   if (__DEV__ && canUseDOM) {
     // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
-    // if (module.hot) {
-    //   module.hot.accept('./modules', () =>
-    //     store.replaceReducer(require('./modules').default)
-    //   );
-    // }
+    if (module.hot) {
+      module.hot.accept('reducers', () =>
+        store.replaceReducer(require('reducers').default)
+      );
+    }
   }
 
   return store;

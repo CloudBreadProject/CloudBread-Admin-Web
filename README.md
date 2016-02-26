@@ -102,7 +102,7 @@ Run `tree -L 2 -I 'node_modules|build|.git|.DS_Store' -A -a` then you will see b
 │ ├── containers    # containers such as HomePage, ContentPage, etc.
 │ ├── layouts       # layout such as commonLayout or ChannelLayout, etc.
 │ ├── lib           # common library, utilities such as DOM, fetch, etc.
-│ ├── modules       # Redux reducers, actions and constants
+│ ├── reducers      # Redux reducers, actions and constants
 │ ├── public        # static files to serve through http or https
 │ ├── redux         # redux store and middlewares
 │ ├── routes        # route configurations

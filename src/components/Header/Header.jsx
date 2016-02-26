@@ -20,7 +20,7 @@ const subRoutes = [
   },
 ];
 
-function NavItem({ label, link, isExternal }) {
+function NavItem({ label, link, isExternal }) { // eslint-disable-line
   let _label;
 
   if (typeof(label) !== 'string') {
@@ -40,7 +40,7 @@ function NavItem({ label, link, isExternal }) {
   );
 }
 
-function MainNav({ routes }) {
+function MainNav({ routes }) { // eslint-disable-line
   return (
     <ul className={styles.MainNav}>
       {routes.map((route, idx) => <NavItem key={idx} {...route} />)}
@@ -48,7 +48,7 @@ function MainNav({ routes }) {
   );
 }
 
-function SubNav({ routes }) {
+function SubNav({ routes }) { // eslint-disable-line
   return (
     <ul className={styles.SubNav}>
       {routes.map((route, idx) => <NavItem key={idx} {...route} />)}

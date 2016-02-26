@@ -13,7 +13,7 @@ function formatUrl(path) {
 
 class ApiFetcher {
   constructor() {
-    methods.forEach((method) =>
+    methods.forEach((method) => // eslint-disable-line
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
 

@@ -28,7 +28,7 @@ function serve() {
         env: Object.assign({ NODE_ENV: 'development' }, process.env),
         silent: false,
       });
-      function onStdOut(data) {
+      function onStdOut(data) { // eslint-disable-line
         const time = new Date();
         const match = data.toString('utf8').match(RUNNING_REGEXP);
         process.stdout.write(`[${dateFormat(time)}] `);

@@ -7,7 +7,7 @@ import {
   CardMedia,
 } from 'material-ui';
 import { setTitle } from 'lib/context';
-import { getStars } from 'modules/github';
+import { getStars } from 'reducers/github';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loading from 'components/Loading';

@@ -4,18 +4,18 @@ import fetch from '../lib/fetch';
 import build from './build';
 
 /**
- * Deploy the contents of the `/build` folder to a remote
- * server via Git. Example: `npm run deploy -- production`
+ * Deploy the contents of the '/build' folder to a remote
+ * server via Git. Example: 'npm run deploy -- production'
  */
 async function deploy() {
   // By default deploy to the staging deployment slot
   const remote = {
     name: 'heroku',
-    url: `https://git.heroku.com/react-universe.git`,
-    website: `https://react-universe.herokuapp.com`,
+    url: 'https://git.heroku.com/react-universe.git',
+    website: 'https://react-universe.herokuapp.com',
   };
 
-  // Initialize a new Git repository inside the `/build` folder
+  // Initialize a new Git repository inside the '/build' folder
   // if it doesn't exist yet
   const repo = await GitRepo.open('build', { init: true });
   await repo.setRemote(remote.name, remote.url);

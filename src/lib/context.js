@@ -1,6 +1,4 @@
 import { canUseDOM } from './env';
-import { createMemoryHistory } from 'history';
-import { browserHistory } from 'react-router';
 
 // to render Material-UI, need fake user-agent
 if (global && !global.navigator) {
@@ -11,7 +9,6 @@ if (global && !global.navigator) {
 
 let _title = '';
 let _store = null;
-export const history = canUseDOM ? browserHistory : createMemoryHistory();
 
 export function initDOM(req) {
   if (!canUseDOM && req.headers['user-agent']) {
