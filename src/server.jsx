@@ -2,7 +2,8 @@
 import { resolve } from 'path';
 import express from 'express';
 import React from 'react';
-import { match, RouterContext } from 'react-router';
+import { match, RouterContext, createMemoryHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import createStore from 'redux/createStore';
@@ -10,7 +11,7 @@ import reducer from 'redux/reducer';
 import fetchComponent from 'redux/fetchComponent';
 import routes from 'routes';
 import Html from 'components/Html';
-import { initDOM, history, setStore } from 'lib/context';
+import { initDOM, setStore } from 'lib/context';
 import api from 'api';
 import assets from './assets.json';
 
@@ -28,7 +29,11 @@ if (__DEV__) {
 app.use('/api', api);
 
 app.get('*', (req, res) => {
-  match({ routes, location: req.url }, async (error, redirectLocation, renderProps) => {
+  const memoryHistory = createMemoryHistory(req.path);
+  const store = createStore(memoryHistory, reducer);
+  const history = syncHistoryWithStore(memoryHistory, store);
+  setStore(store);
+  match({ history, routes, location: req.url }, async (error, redirectLocation, renderProps) => {
     try {
       if (error) {
         res.status(500).send(error.message);
@@ -36,8 +41,6 @@ app.get('*', (req, res) => {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         initDOM(req);
-        const store = createStore(history, reducer);
-        setStore(store);
         await fetchComponent(store.dispatch, renderProps.components, renderProps.params);
         const content = renderToString((
           <Provider store={store}>
