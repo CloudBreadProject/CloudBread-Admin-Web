@@ -1,6 +1,10 @@
 # React Universal Starter Kit
-![Dependency Badge](https://david-dm.org/Beingbook/react-universal-starter-kit.svg)
-![Build Badge](https://travis-ci.org/Beingbook/react-universal-starter-kit.svg)
+
+[![Build Status](https://travis-ci.org/Beingbook/react-universal-starter-kit.svg?branch=master)](https://travis-ci.org/Beingbook/react-universal-starter-kit)
+[![Dependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit.svg?style=flat-square)](https://david-dm.org/Beingbook/react-universal-starter-kit)
+[![devDependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit/dev-status.svg?style=flat-square)](https://david-dm.org/Beingbook/react-universal-starter-kit#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/Beingbook/react-universal-starter-kit/badges/gpa.svg)](https://codeclimate.com/github/Beingbook/react-universal-starter-kit)
+[![Issue Count](https://codeclimate.com/github/Beingbook/react-universal-starter-kit/badges/issue_count.svg)](https://codeclimate.com/github/Beingbook/react-universal-starter-kit)
 
 Quick start react package. See [this live](http://react-universe.herokuapp.com/)
 
