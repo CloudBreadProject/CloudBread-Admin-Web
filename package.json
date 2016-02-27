@@ -50,6 +50,7 @@
   "devDependencies": {
     "assets-webpack-plugin": "^3.3.0",
     "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
     "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.3",
     "babel-plugin-react-transform": "^2.0.0",
