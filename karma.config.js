@@ -1,9 +1,10 @@
+/* eslint vars-on-top: 0, no-var: 0 */
 require('babel-register');
+
 var argv = require('yargs').argv;
-var path = require('path');
 var webpackCommon = require('./tools/config').webpackCommon;
 
-module.exports = function(config) {
+module.exports = function karmaConfig(config) {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !argv.watch,
@@ -15,18 +16,18 @@ module.exports = function(config) {
       './tests/**/*.js*',
     ],
     preprocessors: {
-      ['./tests/**/*.js*']: ['webpack', 'sourcemap'],
+      './tests/**/*.js*': ['webpack', 'sourcemap'],
     },
     webpack: Object.assign({}, webpackCommon, {
       devtool: 'inline-source-map',
       resolve: Object.assign({}, webpackCommon.resolve, {
         alias: {
-          'sinon': 'sinon/pkg/sinon',
+          sinon: 'sinon/pkg/sinon',
         },
       }),
       module: Object.assign({}, webpackCommon.module, {
         noParse: [
-          /node_modules\/sinon\//
+          /node_modules\/sinon\//,
         ],
       }),
       node: {
