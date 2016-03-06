@@ -68,13 +68,3 @@ $headerHeight: 54px;
     }
   }
 }
-
-:local .MainNav {
-  font-size: 18px;
-
-  composes: Nav;
-}
-
-:local .SubNav {
-  composes: Nav;
-}
