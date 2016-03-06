@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HomePage.scss';
+import { setTitle } from 'lib/context';
+import { getStars } from 'reducers/github';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Avatar,
   Card,
   CardHeader,
   CardMedia,
 } from 'material-ui';
-import { setTitle } from 'lib/context';
-import { getStars } from 'reducers/github';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
