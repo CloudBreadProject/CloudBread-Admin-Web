@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from './Loading.scss';
 import cx from 'classnames';
 
-class Loading extends Component {
+export class Loading extends Component {
   static propTypes = {
     show: PropTypes.bool,
   };

@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-class HomePage extends Component {
+export class HomePage extends Component {
   static needs = [
     getStars,
   ];
@@ -37,6 +37,10 @@ class HomePage extends Component {
     getStars: PropTypes.func,
     isLoading: PropTypes.bool,
     error: PropTypes.object,
+  };
+
+  static defaultProps = {
+    stars: [],
   };
 
   componentDidMount() {

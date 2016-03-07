@@ -5,7 +5,7 @@ export const LOAD_PAGE_SUCCESS = 'LOAD_PAGE_SUCCESS';
 export const LOAD_PAGE_ERROR = 'LOAD_PAGE_ERROR';
 export const UNLOAD_PAGE = 'UNLOAD_PAGE';
 
-const initialState = {
+export const initialState = {
   isLoading: false,
   content: '',
   title: '',
@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action = {}) {
         isLoading: true,
         title: '',
         content: '',
-        error: '',
+        error: null,
       };
     case LOAD_PAGE_ERROR:
       return {
