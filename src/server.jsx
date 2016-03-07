@@ -8,6 +8,7 @@ import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
+import PrettyError from 'pretty-error';
 import fetchComponent from 'redux/fetchComponent';
 import routes from 'routes';
 import Html from 'components/Html';
@@ -18,6 +19,7 @@ import assets from './assets.json';
 const ROOT = resolve(__dirname, '.');
 const app = express();
 app.use(express.static(`${ROOT}/public`));
+const pe = new PrettyError();
 
 if (__DEV__) {
   app.use((req, res, next) => {
@@ -66,6 +68,11 @@ app.get('*', (req, res) => {
       res.status(500).send('server error');
     }
   });
+});
+
+app.use((err, req, res, next) => { // eslint-disable-line
+  console.log(pe.render(err));
+  return res.status(500).send(err);
 });
 
 const server = app.listen(process.env.PORT || __PORT__, () => {
