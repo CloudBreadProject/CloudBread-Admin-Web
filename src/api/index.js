@@ -1,7 +1,14 @@
 import { Router } from 'express';
-import contentApi from './content';
+import graphqlHTTP from 'express-graphql';
+import schema from 'schema';
 
 const router = Router();
-router.use(contentApi);
+
+router.use('/graphql', graphqlHTTP({
+  schema,
+  pretty: process.env.NODE_ENV !== 'production',
+  graphql: true,
+  rootValue: {},
+}));
 
 export default router;

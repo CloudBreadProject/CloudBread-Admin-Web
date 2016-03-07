@@ -59,8 +59,9 @@ export function loadPage({ pageId }) {
       dispatch({
         type: LOAD_PAGE_LOADING,
       });
-      const res = await fetch.get(`content/${pageId}`);
-      const { content, title } = res.body;
+      const query = `{ page (path: "${pageId}") { title, content } }`;
+      const res = await fetch.get(`/graphql?query=${query}`);
+      const { content, title } = res.body.data.page;
       return dispatch({
         type: LOAD_PAGE_SUCCESS,
         content,
@@ -69,7 +70,7 @@ export function loadPage({ pageId }) {
     } catch (error) {
       return dispatch({
         type: LOAD_PAGE_ERROR,
-        error,
+        error: 'Failed to load page',
       });
     }
   };
