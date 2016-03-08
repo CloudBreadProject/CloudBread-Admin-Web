@@ -18,7 +18,7 @@ namespace CloudBread_Admin_Web
         public string ItemListID { get; set; }
         public string ItemCount { get; set; }
         public string FromMemberID { get; set; }
-        public string ToMemberID { get; set; }
+        public string MemberID { get; set; }
         public string sCol1 { get; set; }
         public string sCol2 { get; set; }
         public string sCol3 { get; set; }

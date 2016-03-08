@@ -25,9 +25,7 @@ namespace CloudBread_Admin_Web
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GiftDepositories> GiftDepositories { get; set; }
-        public virtual DbSet<MemberItems> MemberItems { get; set; }
-        public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<ServerInfo> ServerInfo { get; set; }
+        public virtual DbSet<GiftDepositories> GiftDepositories { get; set; }
     }
 }
