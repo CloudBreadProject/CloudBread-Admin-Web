@@ -56,6 +56,7 @@
         <EntityContainer Name="CBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" />
           <EntitySet Name="GiftDepositories" EntityType="CBModel.GiftDepositories" />
+          <EntitySet Name="ItemLists" EntityType="CBModel.ItemLists" />
         </EntityContainer>
         <EntityType Name="GiftDepositories">
           <Key>
@@ -83,6 +84,29 @@
           <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
           <Property Name="DataFromRegion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ItemLists">
+          <Key>
+            <PropertyRef Name="ItemListID" />
+          </Key>
+          <Property Name="ItemListID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemName" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemDescription" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemPrice" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemSellPrice" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemCategory1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemCategory2" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemCategory3" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
