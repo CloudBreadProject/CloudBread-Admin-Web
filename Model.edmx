@@ -89,24 +89,32 @@
           <Key>
             <PropertyRef Name="ItemListID" />
           </Key>
-          <Property Name="ItemListID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemName" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemDescription" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemPrice" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemSellPrice" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemCategory1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemCategory2" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ItemCategory3" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ItemListID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ItemPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemSellPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCategory1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCategory2" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCategory3" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sCol1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol4" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol5" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol6" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol7" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol8" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol9" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol10" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IteamCreateAdminID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IteamUpdateAdminID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HideYN" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DeleteYN" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

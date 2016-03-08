@@ -32,5 +32,13 @@ namespace CloudBread_Admin_Web
         public string sCol8 { get; set; }
         public string sCol9 { get; set; }
         public string sCol10 { get; set; }
+        public string IteamCreateAdminID { get; set; }
+        public string IteamUpdateAdminID { get; set; }
+        public string HideYN { get; set; }
+        public string DeleteYN { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
+        public string DataFromRegion { get; set; }
+        public System.DateTimeOffset DataFromRegionDT { get; set; }
     }
 }

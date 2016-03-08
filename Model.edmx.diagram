@@ -7,7 +7,7 @@
       <Diagram DiagramId="0394631f0fb34fd3b94278f4adf33f63" Name="Diagram1" ZoomLevel="66">
         <EntityTypeShape EntityType="CBModel.ServerInfo" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CBModel.GiftDepositories" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.ItemLists" PointX="3.375" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="CBModel.ItemLists" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
