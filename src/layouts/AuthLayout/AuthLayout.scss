@@ -1,0 +1,12 @@
+.AuthLayout {
+}
+
+.Center {
+  composes: MiniContainer from 'styles/Container.scss';
+  margin-top: 10px; padding: 10px;
+  overflow: hidden;
+
+  h1 {
+    margin: 0; margin-top: 10px; padding: 0;
+  }
+}

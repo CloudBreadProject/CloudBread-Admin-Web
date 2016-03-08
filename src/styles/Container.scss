@@ -2,12 +2,21 @@
 
 $paddingVertical: 10px;
 $width: calc($maxContentWidth - ($paddingVertical * 2));
+$miniWidth: calc($miniContentWidth - ($paddingVertical * 2));
 
 :local .Container {
   max-width: $width;
-  padding: 0 10px;
+  padding: 0 $paddingVertical;
   margin: 0 auto;
-  overflow: hidden;
+}
+
+:local .MiniContainer {
+  max-width: $miniWidth;
+  padding: 0 $paddingVertical;
+  margin: 0 auto;
+  @media (width < $miniContentWidth) {
+    margin: 10px;
+  }
 }
 
 :local .PrimaryBox {

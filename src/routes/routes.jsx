@@ -4,10 +4,15 @@ import App from 'layouts/App';
 import HomePage from 'containers/HomePage';
 import ContentPage from 'containers/ContentPage';
 
+import AuthRoute from 'routes/AuthRoute';
+
 const routeContainer = (
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
-    <Route path="page/:pageId" component={ContentPage} />
+  <Route>
+    <Route path="/" component={App}>
+      <IndexRoute component={HomePage} />
+      <Route path="page/:pageId" component={ContentPage} />
+    </Route>
+    {AuthRoute}
   </Route>
 );
 
