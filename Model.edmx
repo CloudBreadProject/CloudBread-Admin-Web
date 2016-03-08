@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GiftDepositories">
+          <Key>
+            <PropertyRef Name="GiftDepositoryID" />
+          </Key>
+          <Property Name="GiftDepositoryID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ItemListID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ItemCount" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="FromMemberID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ToMemberID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="sCol1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol3" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol4" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol5" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol6" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol7" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol8" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol9" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol10" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SentMemberYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="HideYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="DeleteYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DataFromRegion" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberItems">
+          <Key>
+            <PropertyRef Name="MemberItemID" />
+          </Key>
+          <Property Name="MemberItemID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MemberID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ItemListID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ItemCount" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="ItemStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sCol1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol3" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol4" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol5" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol6" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol7" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol8" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol9" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol10" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HideYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="DeleteYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DataFromRegion" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MemberPWD" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="EmailConfirmedYN" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="PhoneNumber1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PINumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name3" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecommenderID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MemberGroup" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastDeviceID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LastIPaddress" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LastLoginDT" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastLogoutDT" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastMACAddress" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AccountBlockYN" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="AccountBlockEndDT" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AnonymousYN" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="3rdAuthProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="3rdAuthID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="3rdAuthParam" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PushNotificationID" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="PushNotificationProvider" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PushNotificationGroup" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="sCol1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol3" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol4" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol5" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol6" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol7" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol8" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol9" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol10" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TimeZoneID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="HideYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="DeleteYN" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DataFromRegion" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServerInfo">
+          <Key>
+            <PropertyRef Name="InfoID" />
+          </Key>
+          <Property Name="InfoID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FEServerLists" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="SocketServerLists" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResourceLink" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="EULAText" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="sCol1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol3" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol4" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sCol5" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DataFromRegion" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CBModelStoreContainer">
+          <EntitySet Name="GiftDepositories" EntityType="Self.GiftDepositories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberItems" EntityType="Self.MemberItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GiftDepositories">
+          <Key>
+            <PropertyRef Name="GiftDepositoryID" />
+          </Key>
+          <Property Name="GiftDepositoryID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemListID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemCount" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromMemberID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToMemberID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SentMemberYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="MemberItems">
+          <Key>
+            <PropertyRef Name="MemberItemID" />
+          </Key>
+          <Property Name="MemberItemID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemListID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemCount" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberPWD" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailConfirmedYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PINumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecommenderID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastDeviceID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastIPaddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastLoginDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastLogoutDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastMACAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountBlockYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountBlockEndDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnonymousYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthParam" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationID" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationProvider" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationGroup" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeZoneID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ServerInfo">
+          <Key>
+            <PropertyRef Name="InfoID" />
+          </Key>
+          <Property Name="InfoID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FEServerLists" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SocketServerLists" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResourceLink" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EULAText" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityContainer Name="CBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GiftDepositories" EntityType="Self.GiftDepositories" />
+          <EntitySet Name="MemberItems" EntityType="Self.MemberItems" />
+          <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CBModelStoreContainer" CdmEntityContainer="CBEntities">
+          <EntitySetMapping Name="GiftDepositories">
+            <EntityTypeMapping TypeName="CBModel.GiftDepositories">
+              <MappingFragment StoreEntitySet="GiftDepositories">
+                <ScalarProperty Name="GiftDepositoryID" ColumnName="GiftDepositoryID" />
+                <ScalarProperty Name="ItemListID" ColumnName="ItemListID" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="FromMemberID" ColumnName="FromMemberID" />
+                <ScalarProperty Name="ToMemberID" ColumnName="ToMemberID" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
+                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
+                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
+                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
+                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
+                <ScalarProperty Name="SentMemberYN" ColumnName="SentMemberYN" />
+                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberItems">
+            <EntityTypeMapping TypeName="CBModel.MemberItems">
+              <MappingFragment StoreEntitySet="MemberItems">
+                <ScalarProperty Name="MemberItemID" ColumnName="MemberItemID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ItemListID" ColumnName="ItemListID" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
+                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
+                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
+                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
+                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
+                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="CBModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberPWD" ColumnName="MemberPWD" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="EmailConfirmedYN" ColumnName="EmailConfirmedYN" />
+                <ScalarProperty Name="PhoneNumber1" ColumnName="PhoneNumber1" />
+                <ScalarProperty Name="PhoneNumber2" ColumnName="PhoneNumber2" />
+                <ScalarProperty Name="PINumber" ColumnName="PINumber" />
+                <ScalarProperty Name="Name1" ColumnName="Name1" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Name3" ColumnName="Name3" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="RecommenderID" ColumnName="RecommenderID" />
+                <ScalarProperty Name="MemberGroup" ColumnName="MemberGroup" />
+                <ScalarProperty Name="LastDeviceID" ColumnName="LastDeviceID" />
+                <ScalarProperty Name="LastIPaddress" ColumnName="LastIPaddress" />
+                <ScalarProperty Name="LastLoginDT" ColumnName="LastLoginDT" />
+                <ScalarProperty Name="LastLogoutDT" ColumnName="LastLogoutDT" />
+                <ScalarProperty Name="LastMACAddress" ColumnName="LastMACAddress" />
+                <ScalarProperty Name="AccountBlockYN" ColumnName="AccountBlockYN" />
+                <ScalarProperty Name="AccountBlockEndDT" ColumnName="AccountBlockEndDT" />
+                <ScalarProperty Name="AnonymousYN" ColumnName="AnonymousYN" />
+                <ScalarProperty Name="C3rdAuthProvider" ColumnName="3rdAuthProvider" />
+                <ScalarProperty Name="C3rdAuthID" ColumnName="3rdAuthID" />
+                <ScalarProperty Name="C3rdAuthParam" ColumnName="3rdAuthParam" />
+                <ScalarProperty Name="PushNotificationID" ColumnName="PushNotificationID" />
+                <ScalarProperty Name="PushNotificationProvider" ColumnName="PushNotificationProvider" />
+                <ScalarProperty Name="PushNotificationGroup" ColumnName="PushNotificationGroup" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
+                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
+                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
+                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
+                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerInfo">
+            <EntityTypeMapping TypeName="CBModel.ServerInfo">
+              <MappingFragment StoreEntitySet="ServerInfo">
+                <ScalarProperty Name="InfoID" ColumnName="InfoID" />
+                <ScalarProperty Name="FEServerLists" ColumnName="FEServerLists" />
+                <ScalarProperty Name="SocketServerLists" ColumnName="SocketServerLists" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ResourceLink" ColumnName="ResourceLink" />
+                <ScalarProperty Name="EULAText" ColumnName="EULAText" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
