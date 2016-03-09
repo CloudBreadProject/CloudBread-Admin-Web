@@ -57,6 +57,7 @@
           <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" />
           <EntitySet Name="GiftDepositories" EntityType="CBModel.GiftDepositories" />
           <EntitySet Name="ItemLists" EntityType="CBModel.ItemLists" />
+          <EntitySet Name="Sessions" EntityType="CBModel.Sessions" />
         </EntityContainer>
         <EntityType Name="GiftDepositories">
           <Key>
@@ -115,6 +116,16 @@
           <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
           <Property Name="DataFromRegion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="88" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Expires" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LockDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LockCookie" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

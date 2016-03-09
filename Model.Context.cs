@@ -28,5 +28,6 @@ namespace CloudBread_Admin_Web
         public virtual DbSet<ServerInfo> ServerInfo { get; set; }
         public virtual DbSet<GiftDepositories> GiftDepositories { get; set; }
         public virtual DbSet<ItemLists> ItemLists { get; set; }
+        public virtual DbSet<Sessions> Sessions { get; set; }
     }
 }
