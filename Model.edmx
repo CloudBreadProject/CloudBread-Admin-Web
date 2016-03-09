@@ -58,6 +58,7 @@
           <EntitySet Name="GiftDepositories" EntityType="CBModel.GiftDepositories" />
           <EntitySet Name="ItemLists" EntityType="CBModel.ItemLists" />
           <EntitySet Name="Sessions" EntityType="CBModel.Sessions" />
+          <EntitySet Name="Notices" EntityType="CBModel.Notices" />
         </EntityContainer>
         <EntityType Name="GiftDepositories">
           <Key>
@@ -130,6 +131,41 @@
           <Property Name="SessionItem" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Flags" Type="Int32" Nullable="false" />
           <Property Name="Timeout" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notices">
+          <Key>
+            <PropertyRef Name="NoticeID" />
+          </Key>
+          <Property Name="NoticeID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeCategory1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeCategory2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeCategory3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetGroup" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetOS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetDevice" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeImageLink" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="sCol1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol4" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol5" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol6" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol7" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol8" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol9" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sCol10" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeDurationFrom" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="NoticeDurationTo" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="CreateAdminID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HideYN" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DeleteYN" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
