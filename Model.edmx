@@ -126,6 +126,10 @@
           <Property Name="Expires" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LockDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LockCookie" Type="Int32" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="SessionItem" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+          <Property Name="Timeout" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

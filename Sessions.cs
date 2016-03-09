@@ -19,5 +19,9 @@ namespace CloudBread_Admin_Web
         public System.DateTime Expires { get; set; }
         public System.DateTime LockDate { get; set; }
         public int LockCookie { get; set; }
+        public bool Locked { get; set; }
+        public byte[] SessionItem { get; set; }
+        public int Flags { get; set; }
+        public int Timeout { get; set; }
     }
 }
