@@ -58,6 +58,8 @@ namespace CloudBread_Admin_Web.Controllers
                 return NotFound();
             }
 
+            patch.Put(notices);
+
             try
             {
                 db.SaveChanges();
