@@ -16,6 +16,7 @@ import { showSnackbarMessage } from 'reducers/display';
 function mapStateToProps({ user }) {
   return {
     isAuthenticating: user.isAuthenticating,
+    isAuthenticated: user.isAuthenticated,
   };
 }
 
@@ -35,6 +36,7 @@ export class AuthPage extends Component {
     authenticate: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
     isAuthenticating: PropTypes.bool,
+    isAuthenticated: PropTypes.bool,
   };
 
   constructor() {
@@ -43,6 +45,12 @@ export class AuthPage extends Component {
   }
 
   componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.showSnackbarMessage({
+        snackbarMessage: 'Already authenticated',
+      });
+      this.context.router.push('/');
+    }
     const { identifierInput } = this.refs;
     identifierInput.focus();
   }

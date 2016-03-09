@@ -1,15 +1,50 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-function InspectorLayout({ children }) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { showSnackbarMessage } from 'reducers/display';
+
+function mapStateToProps({ user }) {
+  return {
+    isAuthenticated: user.isAuthenticated,
+  };
 }
 
-InspectorLayout.propTypes = {
-  children: PropTypes.node,
-};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    showSnackbarMessage,
+  }, dispatch);
+}
 
-export default InspectorLayout;
+class InspectorLayout extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    children: PropTypes.node,
+    isAuthenticated: PropTypes.bool,
+    showSnackbarMessage: PropTypes.func,
+  };
+
+  componentDidMount() {
+    if (!this.props.isAuthenticated) {
+      this.context.router.push('/auth');
+      this.props.showSnackbarMessage({
+        snackbarMessage: 'You should be authorized to use inspector',
+      });
+    }
+  }
+
+  render() {
+    const { children } = this.props;
+    return (
+      <div>
+        {children}
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InspectorLayout);
