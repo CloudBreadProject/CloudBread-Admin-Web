@@ -709,7 +709,12 @@
           <Property Name="CouponDurationTo" Type="DateTimeOffset" Nullable="false" Precision="7" />
           <Property Name="CreateAdminID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          </EntityType>
+          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+        </EntityType>
         <EntityType Name="CouponMember">
           <Key>
             <PropertyRef Name="CouponMemberID" />
@@ -1303,7 +1308,12 @@
                 <ScalarProperty Name="CouponDurationTo" ColumnName="CouponDurationTo" />
                 <ScalarProperty Name="CreateAdminID" ColumnName="CreateAdminID" />
                 <ScalarProperty Name="HideYN" ColumnName="HideYN" />
-                </MappingFragment>
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CouponMember">
