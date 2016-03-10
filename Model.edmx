@@ -758,10 +758,10 @@
           <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
         </EntityType>
         <EntityType Name="GameEvents">
           <Key>
