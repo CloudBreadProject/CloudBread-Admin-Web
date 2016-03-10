@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { showSnackbarMessage } from 'reducers/display';
 
+import InspectorHeader from './InspectorHeader';
+
 function mapStateToProps({ user }) {
   return {
     isAuthenticated: user.isAuthenticated,
@@ -41,6 +43,7 @@ class InspectorLayout extends Component {
     const { children } = this.props;
     return (
       <div>
+        <InspectorHeader />
         {children}
       </div>
     );

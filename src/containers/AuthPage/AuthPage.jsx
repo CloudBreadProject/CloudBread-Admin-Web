@@ -42,6 +42,7 @@ export class AuthPage extends Component {
   constructor() {
     super();
     this.handleClickAuthorize = this.handleClickAuthorize.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +67,7 @@ export class AuthPage extends Component {
           disabled={isAuthenticating}
           fullWidth
           ref="identifierInput"
+          onEnterKeyDown={this.handleEnter}
         />
         <TextField
           hintText="Password"
@@ -73,6 +75,7 @@ export class AuthPage extends Component {
           fullWidth
           type="password"
           ref="passwordInput"
+          onEnterKeyDown={this.handleEnter}
         />
         <p
           style={{
@@ -103,11 +106,21 @@ export class AuthPage extends Component {
     );
   }
 
-  async handleClickAuthorize() {
+  handleEnter() {
+    if (this.refs.identifierInput.getValue() && this.refs.passwordInput.getValue()) {
+      this.authorize();
+    }
+  }
+
+  handleClickAuthorize() {
+    this.authorize();
+  }
+
+  async authorize() {
     try {
       await this.props.authenticate({
-        identifier: this.refs.identifierInput.value,
-        password: this.refs.passwordInput.value,
+        identifier: this.refs.identifierInput.getValue(),
+        password: this.refs.passwordInput.getValue(),
       });
       this.props.showSnackbarMessage({
         snackbarMessage: 'Successfully authenticated',

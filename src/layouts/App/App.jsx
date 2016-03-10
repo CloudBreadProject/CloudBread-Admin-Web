@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './App.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -48,7 +49,7 @@ class App extends Component {
       snackbarActionHandler,
     } = this.props;
     return (
-      <div>
+      <div className={styles.App}>
         {children}
         <Snackbar
           open={snackbarOpen}
