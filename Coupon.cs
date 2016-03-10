@@ -41,5 +41,11 @@ namespace CloudBread_Admin_Web
         public System.DateTimeOffset CouponDurationFrom { get; set; }
         public System.DateTimeOffset CouponDurationTo { get; set; }
         public string CreateAdminID { get; set; }
+        public string HideYN { get; set; }
+        public string DeleteYN { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
+        public string DataFromRegion { get; set; }
+        public System.DateTimeOffset DataFromRegionDT { get; set; }
     }
 }
