@@ -183,55 +183,15 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminMembers.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CBAuth.cs" />
     <Compile Include="CBLogger.cs" />
-    <Compile Include="CloudBreadAdminLog.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CloudBreadErrorLog.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CloudBreadLog.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\AdminMembersController.cs" />
-    <Compile Include="Controllers\CloudBreadAdminLogsController.cs" />
-    <Compile Include="Controllers\CloudBreadErrorLogsController.cs" />
-    <Compile Include="Controllers\CloudBreadLogsController.cs" />
-    <Compile Include="Controllers\CouponMembersController.cs" />
-    <Compile Include="Controllers\CouponsController.cs" />
-    <Compile Include="Controllers\GameEventMembersController.cs" />
-    <Compile Include="Controllers\GameEventsController.cs" />
     <Compile Include="Controllers\GiftDepositoriesController.cs" />
     <Compile Include="Controllers\ItemListsController.cs" />
-    <Compile Include="Controllers\MemberAccountBlockLogsController.cs" />
-    <Compile Include="Controllers\MemberGameInfoesController.cs" />
-    <Compile Include="Controllers\MemberGameInfoStagesController.cs" />
-    <Compile Include="Controllers\MemberItemPurchasesController.cs" />
-    <Compile Include="Controllers\MemberItemsController.cs" />
-    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\ServerInfoesController.cs" />
-    <Compile Include="Controllers\StatsDatasController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Coupon.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CouponMember.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataObject\globalVal.cs" />
-    <Compile Include="GameEventMember.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GameEvents.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="GiftDepositories.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -239,24 +199,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ItemLists.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MemberAccountBlockLog.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MemberGameInfoes.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MemberGameInfoStages.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MemberItemPurchases.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MemberItems.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Members.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
@@ -282,9 +224,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Sessions.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StatsData.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
