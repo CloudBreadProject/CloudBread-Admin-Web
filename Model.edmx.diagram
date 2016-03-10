@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="CBModel.Sessions" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="CBModel.Notices" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="CBModel.Coupon" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CBModel.CouponMember" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
