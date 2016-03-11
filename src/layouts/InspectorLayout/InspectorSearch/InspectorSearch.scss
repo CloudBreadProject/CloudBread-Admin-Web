@@ -14,15 +14,16 @@
 
 .SearchState {
   margin: auto 12px;
+  display: flex;
+
+  > div {
+    margin: auto 0;
+  }
 }
 
 .SearchStateWorking {
   animation: searchWorking 1s infinite;
   animation-timing-function: linear;
-}
-
-.SearchUtil {
-  margin: auto 0;
 }
 
 @keyframes searchWorking {

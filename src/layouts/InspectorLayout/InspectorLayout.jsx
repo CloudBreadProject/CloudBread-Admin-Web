@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './InspectorLayout.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { showSnackbarMessage } from 'reducers/display';
 
 import InspectorHeader from './InspectorHeader';
+import InspectorSideNav from './InspectorSideNav';
 
 function mapStateToProps({ user }) {
   return {
@@ -42,9 +44,14 @@ class InspectorLayout extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
+      <div className={styles.InspectorLayout}>
         <InspectorHeader />
-        {children}
+        <div className={styles.Section}>
+          <InspectorSideNav />
+          <div className={styles.Main}>
+            {children}
+          </div>
+        </div>
       </div>
     );
   }

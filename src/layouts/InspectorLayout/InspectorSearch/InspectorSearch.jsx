@@ -1,11 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
 import styles from './InspectorSearch.scss';
-import cx from 'classnames';
 
-import IconButton from 'material-ui/lib/icon-button';
 import SearchIcon from 'material-ui/lib/svg-icons/action/search';
-import CloseIcon from 'material-ui/lib/svg-icons/navigation/close';
 import SyncIcon from 'material-ui/lib/svg-icons/notification/sync';
 
 class InspectorSearch extends Component {
@@ -29,7 +26,6 @@ class InspectorSearch extends Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleDoneTyping = this.handleDoneTyping.bind(this);
     this.handleFocusInput = this.handleFocusInput.bind(this);
-    this.handleClickRemove = this.handleClickRemove.bind(this);
   }
 
   componentDidMount() {
@@ -42,8 +38,6 @@ class InspectorSearch extends Component {
   }
 
   render() {
-    const { hasValue } = this.state || {};
-    const { isWorking } = this.props;
     return (
       <div className={styles.InspectorSearch}>
         {this.renderSearchState()}
@@ -56,31 +50,30 @@ class InspectorSearch extends Component {
           onBlur={this.handleBlurInput}
           onChange={this.handleChangeInput}
         />
-        <IconButton
-          className={styles.SearchUtil}
-          onClick={this.handleClickRemove}
-          style={{
-            border: '0px',
-            width: 'auto',
-            height: 'auto',
-            padding: '6px',
-            opacity: hasValue && !isWorking ? 1 : 0,
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
       </div>
     );
   }
 
   renderSearchState() {
     const isWorking = this.props.isWorking;
-    if (isWorking) {
-      return (
-        <SyncIcon className={cx(styles.SearchState, styles.SearchStateWorking)} />
-      );
-    }
-    return <SearchIcon className={styles.SearchState} />;
+    return (
+      <div className={styles.SearchState}>
+        <div
+          style={{
+            display: isWorking ? 'block' : 'none',
+          }}
+        >
+          <SyncIcon className={styles.SearchStateWorking} />
+        </div>
+        <div
+          style={{
+            display: isWorking ? 'none' : 'block',
+          }}
+        >
+          <SearchIcon />
+        </div>
+        </div>
+    );
   }
 
   handleBlurInput(event) {
@@ -103,12 +96,7 @@ class InspectorSearch extends Component {
     const { searchInput } = this.refs;
     if (searchInput.value) {
       this.setState({
-        hasValue: true,
         watcherTyping: setTimeout(this.handleDoneTyping, this.props.typingWatchTime),
-      });
-    } else {
-      this.setState({
-        hasValue: false,
       });
     }
   }
@@ -128,14 +116,6 @@ class InspectorSearch extends Component {
     if (onFocus) {
       onFocus(event);
     }
-  }
-
-  handleClickRemove() {
-    const { searchInput } = this.refs;
-    searchInput.value = '';
-    this.setState({
-      hasValue: false,
-    });
   }
 }
 
