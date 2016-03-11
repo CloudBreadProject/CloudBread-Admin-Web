@@ -67,12 +67,6 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<ItemLists> GetItemLists([FromODataUri] string key)
         {
-            /// 로그 남기는 테스트
-            Debug.WriteLine(this.Request.Method);
-            Debug.WriteLine(this.Request.RequestUri);
-            Debug.WriteLine(this.Request.RequestUri.Query);     /// getbyid에서 this.Request.RequestUri.Query는 남지 않는다.
-            Debug.WriteLine(this.Request.RequestUri.PathAndQuery);     /// getbyid에서 this.Request.RequestUri.Query는 남지 않는다.
-
             // Get the sid of the current user.
             string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
             //string sid = CBAuth.getMemberID("CBAdmin", this.User as ClaimsPrincipal);   // 인증 없이 로그 처리 테스트
