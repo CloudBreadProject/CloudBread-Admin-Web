@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './InspectorHeader.scss';
+import cx from 'classnames';
 
 import Link from 'react-router/lib/Link';
 import InspectorSearch from '../InspectorSearch';
@@ -32,7 +33,7 @@ class InspectorHeader extends Component {
               onDoneTyping={this.handleDoneTyping}
             />
           </div>
-          <div className={styles.Side}>
+          <div className={cx(styles.Side, styles.Right)}>
             <IconButton tooltip="Sign out"><ExitToApp /></IconButton>
             <IconButton tooltip="Settings"><Settings /></IconButton>
             <IconButton tooltip="CloudBread"><CloudQueue /></IconButton>

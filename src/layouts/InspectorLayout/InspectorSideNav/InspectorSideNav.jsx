@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from './InspectorSideNav.scss';
 
 import List from 'material-ui/lib/lists/list';
@@ -13,6 +13,10 @@ import DataUsage from 'material-ui/lib/svg-icons/device/data-usage';
 import Divider from 'material-ui/lib/divider';
 
 class InspectorSideNav extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   componentDidMount() {
   }
 
@@ -20,7 +24,11 @@ class InspectorSideNav extends Component {
     return (
       <div className={styles.InspectorSideNav}>
         <List>
-          <ListItem primaryText="Notice" leftIcon={<ContentSend />} />
+          {this.renderListItem({ primaryText: 'Notice', to: '/finder/test', leftIcon: <ContentSend /> })}
+          <ListItem
+            primaryText="Notice"
+            leftIcon={<ContentSend />}
+          />
           <ListItem primaryText="Event" leftIcon={<ActionGrade />} />
           <ListItem primaryText="Gift" leftIcon={<ContentDrafts />} />
           <ListItem primaryText="Activity" leftIcon={<ContentInbox />} />
@@ -34,6 +42,26 @@ class InspectorSideNav extends Component {
         </List>
       </div>
     );
+  }
+
+  renderListItem({
+    to,
+    primaryText,
+    leftIcon,
+  }) {
+    return (
+      <ListItem
+        primaryText={primaryText}
+        leftIcon={leftIcon}
+        onTouchTap={this.handleTouchListItem(to)}
+      />
+    );
+  }
+
+  handleTouchListItem(to) {
+    return () => {
+      this.context.router.push(to);
+    };
   }
 }
 
