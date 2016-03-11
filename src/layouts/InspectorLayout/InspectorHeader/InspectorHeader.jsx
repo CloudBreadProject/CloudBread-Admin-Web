@@ -4,6 +4,11 @@ import styles from './InspectorHeader.scss';
 import Link from 'react-router/lib/Link';
 import InspectorSearch from '../InspectorSearch';
 
+import IconButton from 'material-ui/lib/icon-button';
+import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
+import Settings from 'material-ui/lib/svg-icons/action/settings';
+import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
+
 class InspectorHeader extends Component {
   constructor() {
     super();
@@ -28,7 +33,9 @@ class InspectorHeader extends Component {
             />
           </div>
           <div className={styles.Side}>
-            Right Menu
+            <IconButton tooltip="Sign out"><ExitToApp /></IconButton>
+            <IconButton tooltip="Settings"><Settings /></IconButton>
+            <IconButton tooltip="CloudBread"><CloudQueue /></IconButton>
           </div>
         </div>
       </div>
