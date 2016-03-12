@@ -1,0 +1,90 @@
+import {
+  sortable,
+  readonly,
+  Resource,
+} from '../types';
+
+const Members = new Resource({
+  resourceId: 'Members',
+  title: 'Member',
+  description: 'Collection of member data',
+  showFields: [
+    'MemberID',
+    'EmailAddress',
+    'Name1',
+    'MemberGroup',
+    'LastDeviceID',
+    '3rdAuthID',
+    'PushNotificationID',
+    'HideYN',
+    'DeleteYN',
+    'CreatedAt',
+    'UpdatedAt',
+  ],
+  schema: {
+    MemberID: {
+      description: 'User identifier',
+      readonly,
+    },
+    MemberPWD: {
+      description: 'User password',
+    },
+    EmailAddress: {
+      description: 'User email address',
+    },
+    EmailConfirmedYN: {
+      description: 'Is User confirmed via email?',
+    },
+    PhoneNumber1: {},
+    PhoneNumber2: {},
+    PINumber: {},
+    Name1: {},
+    Name2: {},
+    Name3: {},
+    DOB: {},
+    RecommenderID: {},
+    MemberGroup: {},
+    LastDeviceID: {},
+    LastIPaddress: {},
+    LastLoginDT: {},
+    LastLogoutDT: {},
+    LastMACAddress: {},
+    AccountBlockYN: {},
+    AccountBlockEndDT: {},
+    AnonymousYN: {},
+    '3rdAuthProvider': {},
+    '3rdAuthID': {},
+    '3rdAuthParam': {},
+    PushNotificationID: {},
+    PushNotificationProvider: {},
+    PushNotificationGroup: {},
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    TimeZoneID: {},
+    HideYN: {},
+    DeleteYN: {},
+    CreatedAt: {
+      readonly,
+      sortable,
+    },
+    UpdatedAt: {
+      readonly,
+    },
+    DataFromRegion: {
+      readonly,
+    },
+    DataFromRegionDT: {
+      readonly,
+    },
+  },
+});
+
+export default Members;

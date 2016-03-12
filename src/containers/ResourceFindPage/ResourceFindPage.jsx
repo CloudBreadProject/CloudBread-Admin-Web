@@ -37,6 +37,8 @@ class ResourceFindPage extends Component {
     isRequesting: PropTypes.bool,
     showFields: PropTypes.array,
     errorMessage: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
     params: PropTypes.object,
   };
 
@@ -45,42 +47,55 @@ class ResourceFindPage extends Component {
   }
 
   render() {
+    const { title, description } = this.props;
     return (
       <div>
-        <h1>Member</h1>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <Table
+          selectable={false}
+        >
+          <TableHeader displaySelectAll={false}>
+            <TableRow selectable={false}>
+              {this.renderHeaderCells()}
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableRowColumn>1</TableRowColumn>
-              <TableRowColumn>John Smith</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>2</TableRowColumn>
-              <TableRowColumn>Randal White</TableRowColumn>
-              <TableRowColumn>Unemployed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>3</TableRowColumn>
-              <TableRowColumn>Stephanie Sanders</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>4</TableRowColumn>
-              <TableRowColumn>Steve Brown</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
+            {this.renderBodyCells()}
           </TableBody>
         </Table>
       </div>
     );
+  }
+
+  renderHeaderCells() {
+    const { showFields } = this.props;
+    return showFields.map((field, key) => (
+      <TableHeaderColumn
+        key={key}
+        children={field.name}
+        tooltip={field.description}
+      />
+    ));
+  }
+
+  renderBodyCells() {
+    const { resources, showFields } = this.props;
+    return resources.map((resource, key) => {
+      function renderColumn(field, key2) {
+        return (
+          <TableRowColumn
+            key={key2}
+            children={resource[field.name]}
+          />
+        );
+      }
+      return (
+        <TableRow key={key} selectable={false}>
+          {showFields.map(renderColumn)}
+        </TableRow>
+      );
+    });
   }
 }
 

@@ -1,4 +1,5 @@
 import fetch from 'lib/fetch';
+import * as models from 'models';
 
 const initialState = {
   resourceId: '',
@@ -8,6 +9,8 @@ const initialState = {
   allArticles: 0,
   isRequesting: false,
   errorMessage: '',
+  title: '',
+  description: '',
 };
 
 export const LOAD_RESOURCE_REQUEST = 'LOAD_RESOURCE_REQUEST';
@@ -17,9 +20,12 @@ export const LOAD_RESOURCE_ERROR = 'LOAD_RESOURCE_ERROR';
 export default function reducer(state = initialState, action = {}) {
   const {
     resourceId,
+    showFields,
     error,
     resources,
     allArticles,
+    title,
+    description,
   } = action.payload || {};
   switch (action.type) {
     case LOAD_RESOURCE_REQUEST:
@@ -28,15 +34,17 @@ export default function reducer(state = initialState, action = {}) {
         isRequesting: true,
         resourceId,
         resources: [],
-        showFields: [],
+        showFields,
         allArticles: 0,
+        title,
+        description,
       };
     case LOAD_RESOURCE_SUCCESS:
       return {
         ...state,
         isRequesting: false,
         resources,
-        allArticles,
+        allArticles: parseInt(allArticles, 10),
       };
     case LOAD_RESOURCE_ERROR:
       console.log(error); // eslint-disable-line
@@ -53,10 +61,18 @@ export default function reducer(state = initialState, action = {}) {
 export function loadResources({ resourceId }) {
   return async dispatch => {
     try {
+      const model = models[resourceId];
+      const showFields = [];
+      model.showFields.forEach(showField => {
+        showFields.push(model.schema[showField]);
+      });
       dispatch({
         type: LOAD_RESOURCE_REQUEST,
         payload: {
           resourceId,
+          showFields,
+          title: model.title,
+          description: model.description,
         },
       });
       const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=2`);
