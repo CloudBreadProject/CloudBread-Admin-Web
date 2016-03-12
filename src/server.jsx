@@ -44,6 +44,7 @@ app.get('*', (req, res) => {
       } else if (renderProps) {
         initDOM(req);
         await fetchComponent(store.dispatch, renderProps.components, renderProps.params);
+        console.log(renderProps.params, req.query);
         const content = renderToString((
           <Provider store={store}>
             <RouterContext {...renderProps} />

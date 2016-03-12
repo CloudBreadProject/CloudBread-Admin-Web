@@ -21,10 +21,17 @@ class InspectorSideNav extends Component {
   }
 
   render() {
+    const topNavs = [
+      {
+        primaryText: 'Member',
+        to: '/finder/Members',
+        leftIcon: <People />,
+      },
+    ];
     return (
       <div className={styles.InspectorSideNav}>
         <List>
-          {this.renderListItem({ primaryText: 'Notice', to: '/finder/test', leftIcon: <ContentSend /> })}
+          {topNavs.map((nav, key) => this.renderListItem({ ...nav, key }))}
           <ListItem
             primaryText="Notice"
             leftIcon={<ContentSend />}
@@ -32,7 +39,6 @@ class InspectorSideNav extends Component {
           <ListItem primaryText="Event" leftIcon={<ActionGrade />} />
           <ListItem primaryText="Gift" leftIcon={<ContentDrafts />} />
           <ListItem primaryText="Activity" leftIcon={<ContentInbox />} />
-          <ListItem primaryText="Users" leftIcon={<People />} />
           <ListItem primaryText="Monitor" leftIcon={<DataUsage />} />
         </List>
         <Divider />
@@ -48,12 +54,14 @@ class InspectorSideNav extends Component {
     to,
     primaryText,
     leftIcon,
+    key,
   }) {
     return (
       <ListItem
         primaryText={primaryText}
         leftIcon={leftIcon}
         onTouchTap={this.handleTouchListItem(to)}
+        key={key}
       />
     );
   }
