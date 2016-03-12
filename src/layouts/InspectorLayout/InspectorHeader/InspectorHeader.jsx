@@ -3,7 +3,6 @@ import styles from './InspectorHeader.scss';
 import cx from 'classnames';
 
 import Link from 'react-router/lib/Link';
-import InspectorSearch from '../InspectorSearch';
 
 import IconButton from 'material-ui/lib/icon-button';
 import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
@@ -20,7 +19,6 @@ class InspectorHeader extends Component {
   }
 
   render() {
-    const { isRequesting } = this.state || {};
     return (
       <div className={styles.InspectorHeader}>
         <div className={styles.Wrapper}>
@@ -28,10 +26,6 @@ class InspectorHeader extends Component {
             <Link to="/" className={styles.Title}>Inspector</Link>
           </div>
           <div className={styles.Content}>
-            <InspectorSearch
-              isWorking={isRequesting}
-              onDoneTyping={this.handleDoneTyping}
-            />
           </div>
           <div className={cx(styles.Side, styles.Right)}>
             <IconButton tooltip="Sign out"><ExitToApp /></IconButton>
