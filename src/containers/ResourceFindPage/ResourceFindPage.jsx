@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './ResourceFindPage.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +12,7 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
+import Divider from 'material-ui/lib/divider';
 
 function mapStateToProps({ resource }) {
   return {
@@ -39,6 +41,7 @@ class ResourceFindPage extends Component {
     errorMessage: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    allArticles: PropTypes.number,
     params: PropTypes.object,
   };
 
@@ -47,11 +50,13 @@ class ResourceFindPage extends Component {
   }
 
   render() {
-    const { title, description } = this.props;
+    const { title, description, allArticles } = this.props;
     return (
-      <div>
+      <div className={styles.ResourceFindPage}>
         <h1>{title}</h1>
         <p>{description}</p>
+        <p>Total Articles: {allArticles}</p>
+        <Divider />
         <Table
           selectable={false}
         >
@@ -64,6 +69,7 @@ class ResourceFindPage extends Component {
             {this.renderBodyCells()}
           </TableBody>
         </Table>
+        <Divider />
       </div>
     );
   }
