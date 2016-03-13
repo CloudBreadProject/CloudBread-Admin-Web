@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { hideSnackbarMessage } from 'reducers/display';
 
 import Snackbar from 'material-ui/lib/snackbar';
+import Loading from 'components/Loading';
 
 function mapStateToProps({ display }) {
   return {
@@ -22,6 +23,7 @@ function mapDispatchToProps(dispatch) {
 
 class App extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     snackbarOpen: PropTypes.bool,
     snackbarMessage: PropTypes.string,
     snackbarDuration: PropTypes.number,
@@ -47,6 +49,7 @@ class App extends Component {
       snackbarDuration,
       snackbarAction,
       snackbarActionHandler,
+      isLoading,
     } = this.props;
     return (
       <div className={styles.App}>
@@ -59,6 +62,7 @@ class App extends Component {
           onActionTouchTap={snackbarActionHandler}
           onRequestClose={this.handleRequestSnackbarClose}
         />
+        <Loading show={isLoading} />
       </div>
     );
   }

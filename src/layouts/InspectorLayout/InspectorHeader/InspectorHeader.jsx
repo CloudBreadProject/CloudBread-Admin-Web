@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from './InspectorHeader.scss';
 import cx from 'classnames';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { signout } from 'reducers/user';
+import { showSnackbarMessage } from 'reducers/display';
 
 import Link from 'react-router/lib/Link';
 
@@ -9,16 +14,35 @@ import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import Settings from 'material-ui/lib/svg-icons/action/settings';
 import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    signout,
+    showSnackbarMessage,
+  }, dispatch);
+}
+
 class InspectorHeader extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    signout: PropTypes.func,
+    showSnackbarMessage: PropTypes.func,
+  };
+
   constructor() {
     super();
-    this.handleDoneTyping = this.handleDoneTyping.bind(this);
+    this.handleClickSignOut = this.handleClickSignOut.bind(this);
   }
 
   componentDidMount() {
   }
 
   render() {
+    const iconProperty = {
+      color: '#fff',
+    };
     return (
       <div className={styles.InspectorHeader}>
         <div className={styles.Wrapper}>
@@ -28,25 +52,35 @@ class InspectorHeader extends Component {
           <div className={styles.Content}>
           </div>
           <div className={cx(styles.Side, styles.Right)}>
-            <IconButton tooltip="Sign out"><ExitToApp /></IconButton>
-            <IconButton tooltip="Settings"><Settings /></IconButton>
-            <IconButton tooltip="CloudBread"><CloudQueue /></IconButton>
+            <IconButton
+              tooltip="Sign out"
+              onClick={this.handleClickSignOut}
+            >
+              <ExitToApp {...iconProperty} />
+            </IconButton>
+            <IconButton
+              tooltip="Settings"
+            >
+              <Settings {...iconProperty} />
+            </IconButton>
+            <IconButton
+              tooltip="CloudBread"
+            >
+              <CloudQueue {...iconProperty} />
+            </IconButton>
           </div>
         </div>
       </div>
     );
   }
 
-  handleDoneTyping() {
-    this.setState({
-      isRequesting: true,
+  handleClickSignOut() {
+    this.props.signout();
+    this.context.router.push('/auth');
+    this.props.showSnackbarMessage({
+      snackbarMessage: 'Successfully signed out',
     });
-    setTimeout(() => {
-      this.setState({
-        isRequesting: false,
-      });
-    }, 1000);
   }
 }
 
-export default InspectorHeader;
+export default connect(null, mapDispatchToProps)(InspectorHeader);

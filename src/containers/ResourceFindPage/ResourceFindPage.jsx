@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { loadResources } from 'reducers/resource';
+import {
+  showLoading,
+  hideLoading,
+} from 'reducers/display';
 
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
@@ -23,6 +27,8 @@ function mapStateToProps({ resource }) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     loadResources,
+    showLoading,
+    hideLoading,
   }, dispatch);
 }
 
@@ -43,14 +49,22 @@ class ResourceFindPage extends Component {
     description: PropTypes.string,
     allArticles: PropTypes.number,
     params: PropTypes.object,
+    showLoading: PropTypes.func,
+    hideLoading: PropTypes.func,
   };
 
-  componentDidMount() {
-    this.props.loadResources(this.props.params);
+  async componentDidMount() {
+    this.props.showLoading();
+    await this.props.loadResources(this.props.params);
+    this.props.hideLoading();
   }
 
   render() {
-    const { title, description, allArticles } = this.props;
+    const {
+      title,
+      description,
+      allArticles,
+    } = this.props;
     return (
       <div className={styles.ResourceFindPage}>
         <h1>{title}</h1>
@@ -58,10 +72,10 @@ class ResourceFindPage extends Component {
         <p>Total Articles: {allArticles}</p>
         <Divider />
         <Table
-          selectable={false}
+          selectable
         >
-          <TableHeader displaySelectAll={false}>
-            <TableRow selectable={false}>
+          <TableHeader displaySelectAll={false} enableSelectAll={false}>
+            <TableRow>
               {this.renderHeaderCells()}
             </TableRow>
           </TableHeader>
@@ -97,7 +111,7 @@ class ResourceFindPage extends Component {
         );
       }
       return (
-        <TableRow key={key} selectable={false}>
+        <TableRow key={key}>
           {showFields.map(renderColumn)}
         </TableRow>
       );

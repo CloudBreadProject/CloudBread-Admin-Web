@@ -14,13 +14,14 @@ const Members = new Resource({
     'Name1',
     'MemberGroup',
     'LastDeviceID',
-    '3rdAuthID',
+    // '3rdAuthID',
     'PushNotificationID',
-    'HideYN',
-    'DeleteYN',
+    // 'HideYN',
+    // 'DeleteYN',
     'CreatedAt',
-    'UpdatedAt',
+    // 'UpdatedAt',
   ],
+  primaryKey: 'MemberID',
   schema: {
     MemberID: {
       description: 'User identifier',

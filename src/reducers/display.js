@@ -6,10 +6,13 @@ const initialState = {
   snackbarAction: '',
   snackbarActionHandler: null,
   snackbarOpen: false,
+  isLoading: false,
 };
 
 const SHOW_SNACKBAR_MESSAGE = 'SHOW_SNACKBAR_MESSAGE';
 const HIDE_SNACKBAR_MESSAGE = 'HIDE_SNACKBAR_MESSAGE';
+const SHOW_LOADING = 'SHOW_LOADING';
+const HIDE_LOADING = 'HIDE_LOADING';
 
 export default function reducer(state = initialState, action = {}) {
   const {
@@ -20,6 +23,16 @@ export default function reducer(state = initialState, action = {}) {
   } = action.payload || {};
 
   switch (action.type) {
+    case SHOW_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case HIDE_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+      };
     case SHOW_SNACKBAR_MESSAGE:
       return {
         ...state,
@@ -63,5 +76,17 @@ export function showSnackbarMessage({
 export function hideSnackbarMessage() {
   return {
     type: HIDE_SNACKBAR_MESSAGE,
+  };
+}
+
+export function showLoading() {
+  return {
+    type: SHOW_LOADING,
+  };
+}
+
+export function hideLoading() {
+  return {
+    type: HIDE_LOADING,
   };
 }

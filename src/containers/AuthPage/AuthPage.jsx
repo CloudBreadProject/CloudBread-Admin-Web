@@ -5,13 +5,16 @@ import styles from './AuthPage.scss';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Checkbox from 'material-ui/lib/checkbox';
-import Loading from 'components/Loading';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { authenticate } from 'reducers/user';
-import { showSnackbarMessage } from 'reducers/display';
+import {
+  showSnackbarMessage,
+  showLoading,
+  hideLoading,
+} from 'reducers/display';
 
 function mapStateToProps({ user }) {
   return {
@@ -24,6 +27,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     authenticate,
     showSnackbarMessage,
+    showLoading,
+    hideLoading,
   }, dispatch);
 }
 
@@ -37,6 +42,8 @@ export class AuthPage extends Component {
     showSnackbarMessage: PropTypes.func,
     isAuthenticating: PropTypes.bool,
     isAuthenticated: PropTypes.bool,
+    showLoading: PropTypes.func,
+    hideLoading: PropTypes.func,
   };
 
   constructor() {
@@ -57,8 +64,8 @@ export class AuthPage extends Component {
   }
 
   render() {
-    const { isAuthenticating } = this.props;
     const { errorText } = this.state || {};
+    const { isAuthenticating } = this.props;
     return (
       <div>
         <h1>CloudBread Inspector</h1>
@@ -101,7 +108,6 @@ export class AuthPage extends Component {
             disabled={isAuthenticating}
           />
         </div>
-        <Loading show={isAuthenticating} />
       </div>
     );
   }
@@ -117,6 +123,7 @@ export class AuthPage extends Component {
   }
 
   async authorize() {
+    this.props.showLoading();
     try {
       await this.props.authenticate({
         identifier: this.refs.identifierInput.getValue(),
@@ -131,6 +138,7 @@ export class AuthPage extends Component {
         errorText: 'Failed to login',
       });
     }
+    this.props.hideLoading();
   }
 }
 

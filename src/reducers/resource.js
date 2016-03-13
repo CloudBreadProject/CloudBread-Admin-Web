@@ -5,9 +5,10 @@ const initialState = {
   resourceId: '',
   resources: [],
   showFields: [],
-  showResources: 2,
+  showResources: 20,
   allArticles: 0,
   isRequesting: false,
+  isLoaded: false,
   errorMessage: '',
   title: '',
   description: '',
@@ -75,7 +76,7 @@ export function loadResources({ resourceId }) {
           description: model.description,
         },
       });
-      const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=2`);
+      const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=30`);
       dispatch({
         type: LOAD_RESOURCE_SUCCESS,
         payload: {
