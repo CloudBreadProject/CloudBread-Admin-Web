@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  display: block;
+  display: none;
   width: 200px;
   height: 200px;
   opacity: 0;
@@ -14,6 +14,7 @@
 
 :local .Activated {
   opacity: 1;
+  display: block;
 }
 
 :local .Loading {

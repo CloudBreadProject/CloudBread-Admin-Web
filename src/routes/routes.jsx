@@ -17,7 +17,7 @@ const routeContainer = (
     <Route path="/" component={InspectorLayout}>
       <IndexRoute component={HomePage} />
       <Route path="finder/:resourceId" component={ResourceFindPage} />
-      <Route path="viewer/:resourceId" component={ResourceViewPage} />
+      <Route path="viewer/:resourceId/:identifier" component={ResourceViewPage} />
       <Route path="page/:pageId" component={ContentPage} />
     </Route>
     {AuthRoute}

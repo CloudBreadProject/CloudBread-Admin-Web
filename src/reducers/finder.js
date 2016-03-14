@@ -5,6 +5,7 @@ const initialState = {
   resourceId: '',
   resources: [],
   showFields: [],
+  primaryKey: '',
   showResources: 20,
   allArticles: 0,
   isRequesting: false,
@@ -27,6 +28,7 @@ export default function reducer(state = initialState, action = {}) {
     allArticles,
     title,
     description,
+    primaryKey,
   } = action.payload || {};
   switch (action.type) {
     case LOAD_RESOURCE_REQUEST:
@@ -39,6 +41,7 @@ export default function reducer(state = initialState, action = {}) {
         allArticles: 0,
         title,
         description,
+        primaryKey,
       };
     case LOAD_RESOURCE_SUCCESS:
       return {
@@ -67,13 +70,19 @@ export function loadResources({ resourceId }) {
       model.showFields.forEach(showField => {
         showFields.push(model.schema[showField]);
       });
+      const {
+        title,
+        description,
+        primaryKey,
+      } = model;
       dispatch({
         type: LOAD_RESOURCE_REQUEST,
         payload: {
           resourceId,
           showFields,
-          title: model.title,
-          description: model.description,
+          primaryKey,
+          title,
+          description,
         },
       });
       const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=30`);

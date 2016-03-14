@@ -16,6 +16,8 @@ import {
   hideLoading,
 } from 'reducers/display';
 
+import { setTitle } from 'lib/context';
+
 function mapStateToProps({ user }) {
   return {
     isAuthenticating: user.isAuthenticating,
@@ -50,6 +52,10 @@ export class AuthPage extends Component {
     super();
     this.handleClickAuthorize = this.handleClickAuthorize.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  componentWillMount() {
+    setTitle('Inspector Authentication');
   }
 
   componentDidMount() {

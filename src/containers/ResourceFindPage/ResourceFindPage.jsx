@@ -4,7 +4,7 @@ import styles from './ResourceFindPage.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { loadResources } from 'reducers/resource';
+import { loadResources } from 'reducers/finder';
 import {
   showLoading,
   hideLoading,
@@ -18,9 +18,9 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 import Divider from 'material-ui/lib/divider';
 
-function mapStateToProps({ resource }) {
+function mapStateToProps({ finder }) {
   return {
-    ...resource,
+    ...finder,
   };
 }
 
@@ -37,6 +37,10 @@ class ResourceFindPage extends Component {
     loadResources,
   ];
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     loadResources: PropTypes.func,
     resourceId: PropTypes.string,
@@ -51,7 +55,13 @@ class ResourceFindPage extends Component {
     params: PropTypes.object,
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
+    primaryKey: PropTypes.string,
   };
+
+  constructor() {
+    super();
+    this.handleClickResourceItem = this.handleClickResourceItem.bind(this);
+  }
 
   async componentDidMount() {
     this.props.showLoading();
@@ -72,14 +82,15 @@ class ResourceFindPage extends Component {
         <p>Total Articles: {allArticles}</p>
         <Divider />
         <Table
-          selectable
+          selectable={false}
+          onCellClick={this.handleClickResourceItem}
         >
-          <TableHeader displaySelectAll={false} enableSelectAll={false}>
+          <TableHeader displaySelectAll={false} enableSelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               {this.renderHeaderCells()}
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody displayRowCheckbox={false}>
             {this.renderBodyCells()}
           </TableBody>
         </Table>
@@ -111,11 +122,21 @@ class ResourceFindPage extends Component {
         );
       }
       return (
-        <TableRow key={key}>
+        <TableRow
+          key={key}
+          className={styles.ResourceItem}
+        >
           {showFields.map(renderColumn)}
         </TableRow>
       );
     });
+  }
+
+  handleClickResourceItem(row) {
+    const { resourceId, resources, primaryKey } = this.props;
+    const resource = resources[row];
+    const identifier = resource[primaryKey];
+    this.context.router.push(`/viewer/${resourceId}/${identifier}`);
   }
 }
 

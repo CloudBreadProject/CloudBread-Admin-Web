@@ -1,6 +1,7 @@
 import {
   sortable,
   readonly,
+  boolean,
   Resource,
 } from '../types';
 
@@ -35,6 +36,7 @@ const Members = new Resource({
     },
     EmailConfirmedYN: {
       description: 'Is User confirmed via email?',
+      boolean,
     },
     PhoneNumber1: {},
     PhoneNumber2: {},
@@ -50,9 +52,13 @@ const Members = new Resource({
     LastLoginDT: {},
     LastLogoutDT: {},
     LastMACAddress: {},
-    AccountBlockYN: {},
+    AccountBlockYN: {
+      boolean,
+    },
     AccountBlockEndDT: {},
-    AnonymousYN: {},
+    AnonymousYN: {
+      boolean,
+    },
     '3rdAuthProvider': {},
     '3rdAuthID': {},
     '3rdAuthParam': {},
@@ -70,8 +76,12 @@ const Members = new Resource({
     sCol9: {},
     sCol10: {},
     TimeZoneID: {},
-    HideYN: {},
-    DeleteYN: {},
+    HideYN: {
+      boolean,
+    },
+    DeleteYN: {
+      boolean,
+    },
     CreatedAt: {
       readonly,
       sortable,
