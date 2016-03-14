@@ -1024,13 +1024,7 @@
           <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Members">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -1633,13 +1627,7 @@
                 <ScalarProperty Name="sCol8" ColumnName="sCol8" />
                 <ScalarProperty Name="sCol9" ColumnName="sCol9" />
                 <ScalarProperty Name="sCol10" ColumnName="sCol10" />
-                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
-                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
-                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Members">
