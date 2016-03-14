@@ -1032,7 +1032,54 @@
           <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Members">
-          </EntityType>
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="MemberPWD" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="EmailAddress" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="EmailConfirmedYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PhoneNumber1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PhoneNumber2" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PINumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name2" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name3" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DOB" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="RecommenderID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="MemberGroup" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastDeviceID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastIPaddress" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastLoginDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastLogoutDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastMACAddress" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="AccountBlockYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="AccountBlockEndDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="AnonymousYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="C3rdAuthProvider" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="C3rdAuthID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="C3rdAuthParam" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PushNotificationID" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PushNotificationProvider" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PushNotificationGroup" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="TimeZoneID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+        </EntityType>
         <EntityType Name="Notices">
           <Key>
             <PropertyRef Name="NoticeID" />
@@ -1598,7 +1645,51 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="CBModel.Members">
               <MappingFragment StoreEntitySet="Members">
-                </MappingFragment>
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberPWD" ColumnName="MemberPWD" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="EmailConfirmedYN" ColumnName="EmailConfirmedYN" />
+                <ScalarProperty Name="PhoneNumber1" ColumnName="PhoneNumber1" />
+                <ScalarProperty Name="PhoneNumber2" ColumnName="PhoneNumber2" />
+                <ScalarProperty Name="PINumber" ColumnName="PINumber" />
+                <ScalarProperty Name="Name1" ColumnName="Name1" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Name3" ColumnName="Name3" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="RecommenderID" ColumnName="RecommenderID" />
+                <ScalarProperty Name="MemberGroup" ColumnName="MemberGroup" />
+                <ScalarProperty Name="LastDeviceID" ColumnName="LastDeviceID" />
+                <ScalarProperty Name="LastIPaddress" ColumnName="LastIPaddress" />
+                <ScalarProperty Name="LastLoginDT" ColumnName="LastLoginDT" />
+                <ScalarProperty Name="LastLogoutDT" ColumnName="LastLogoutDT" />
+                <ScalarProperty Name="LastMACAddress" ColumnName="LastMACAddress" />
+                <ScalarProperty Name="AccountBlockYN" ColumnName="AccountBlockYN" />
+                <ScalarProperty Name="AccountBlockEndDT" ColumnName="AccountBlockEndDT" />
+                <ScalarProperty Name="AnonymousYN" ColumnName="AnonymousYN" />
+                <ScalarProperty Name="C3rdAuthProvider" ColumnName="3rdAuthProvider" />
+                <ScalarProperty Name="C3rdAuthID" ColumnName="3rdAuthID" />
+                <ScalarProperty Name="C3rdAuthParam" ColumnName="3rdAuthParam" />
+                <ScalarProperty Name="PushNotificationID" ColumnName="PushNotificationID" />
+                <ScalarProperty Name="PushNotificationProvider" ColumnName="PushNotificationProvider" />
+                <ScalarProperty Name="PushNotificationGroup" ColumnName="PushNotificationGroup" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
+                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
+                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
+                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
+                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
+              </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notices">
