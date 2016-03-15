@@ -53,6 +53,7 @@ class ResourceViewPage extends Component {
   static propTypes = {
     resource: PropTypes.object,
     isRequesting: PropTypes.bool,
+    isLoaded: PropTypes.bool,
     loadResource: PropTypes.func,
     editResource: PropTypes.func,
     updateResource: PropTypes.func,
@@ -69,6 +70,8 @@ class ResourceViewPage extends Component {
     this.renderField = this.renderField.bind(this);
     this.handleClickModeEdit = this.handleClickModeEdit.bind(this);
     this.handleClickActionDelete = this.handleClickActionDelete.bind(this);
+    this.handleChangeInputBound = {};
+    this.handleToggleSwitchBound = {};
   }
 
   componentWillMount() {
@@ -83,11 +86,20 @@ class ResourceViewPage extends Component {
       identifier,
     });
     this.props.hideLoading();
+    const { schemaArray } = this.props;
+    schemaArray.forEach((field) => {
+      if (field.boolean) {
+        this.handleToggleSwitchBound[field.name] = this.handleToggleSwitch(field.name);
+      } else {
+        this.handleChangeInputBound[field.name] = this.handleChangeInput(field.name);
+      }
+    });
+    this.forceUpdate();
   }
 
   render() {
-    const { schemaArray } = this.props;
-    if (!schemaArray) {
+    const { schemaArray, isLoaded } = this.props;
+    if (!schemaArray || !isLoaded) {
       return <p>Loading target resource...</p>;
     }
     return (
@@ -140,6 +152,7 @@ class ResourceViewPage extends Component {
               label={field.name}
               labelPosition="left"
               disabled={field.readonly || isRequesting}
+              onToggle={this.handleToggleSwitchBound[field.name]}
             />
           </div>
         </div>
@@ -152,6 +165,7 @@ class ResourceViewPage extends Component {
           hintText={field.description}
           defaultValue={resource[field.name]}
           disabled={field.readonly || isRequesting}
+          onBlur={this.handleChangeInputBound[field.name]}
           fullWidth
         />
       );
@@ -173,13 +187,6 @@ class ResourceViewPage extends Component {
     this.props.showLoading();
     try {
       const params = this.props.params;
-      const refs = this.refs;
-      for (const key in refs) {
-        if (typeof(refs[key]) === 'object') {
-          const ref = refs[key];
-          editResource(key, ref.getValue());
-        }
-      }
       const resource = this.props.resource;
       const { identifier, resourceId } = params;
       await this.props.updateResource({
@@ -217,6 +224,25 @@ class ResourceViewPage extends Component {
       });
     }
     this.props.hideLoading();
+  }
+
+  handleChangeInput(field) {
+    return (event) => {
+      this.props.editResource({
+        field,
+        value: event.target.value,
+      });
+    };
+  }
+
+  handleToggleSwitch(field) {
+    return () => {
+      const resource = this.props.resource;
+      this.props.editResource({
+        field,
+        value: resource[field] === 'Y' ? 'N' : 'Y',
+      });
+    };
   }
 }
 

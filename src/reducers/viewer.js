@@ -6,6 +6,7 @@ const initialState = {
   resourceId: '',
   identifier: '',
   isRequesting: false,
+  isLoaded: false,
   schemaArray: null,
   errorMessage: '',
 };
@@ -41,6 +42,7 @@ export default function reducer(state = initialState, action = {}) {
         isRequesting: true,
         errorMessage: '',
         schemaArray,
+        isLoaded: false,
       };
     case FIND_ONE_SUCCESS:
       return {
@@ -49,6 +51,7 @@ export default function reducer(state = initialState, action = {}) {
         identifier,
         resourceId,
         resource,
+        isLoaded: true,
       };
     case FIND_ONE_ERROR:
       console.log(error); // eslint-disable-line
@@ -138,8 +141,10 @@ export function loadResource({ identifier, resourceId }) {
 export function editResource({ field, value }) {
   return {
     type: EDIT_RESOURCE,
-    field,
-    updateValue: value,
+    payload: {
+      field,
+      updateValue: value,
+    },
   };
 }
 
