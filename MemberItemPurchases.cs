@@ -35,22 +35,5 @@ namespace CloudBread_Admin_Web
         public string PurchaseCancelDeviceID { get; set; }
         public string PurchaseCancelDeviceIPAddress { get; set; }
         public string PurchaseCancelDeviceMACAddress { get; set; }
-        public string sCol1 { get; set; }
-        public string sCol2 { get; set; }
-        public string sCol3 { get; set; }
-        public string sCol4 { get; set; }
-        public string sCol5 { get; set; }
-        public string sCol6 { get; set; }
-        public string sCol7 { get; set; }
-        public string sCol8 { get; set; }
-        public string sCol9 { get; set; }
-        public string sCol10 { get; set; }
-        public string HideYN { get; set; }
-        public string DeleteYN { get; set; }
-        public string PurchaseCancelConfirmAdminMemberID { get; set; }
-        public System.DateTimeOffset CreatedAt { get; set; }
-        public System.DateTimeOffset UpdatedAt { get; set; }
-        public string DataFromRegion { get; set; }
-        public System.DateTimeOffset DataFromRegionDT { get; set; }
     }
 }

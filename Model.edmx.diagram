@@ -17,6 +17,7 @@
         <EntityTypeShape EntityType="CBModel.AdminMembers" Width="1.5" PointX="9.375" PointY="6.75" />
         <EntityTypeShape EntityType="CBModel.Members" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="CBModel.MemberItems" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="CBModel.MemberItemPurchases" Width="1.5" PointX="0.75" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
