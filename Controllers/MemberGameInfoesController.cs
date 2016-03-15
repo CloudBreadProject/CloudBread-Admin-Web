@@ -161,5 +161,18 @@ namespace CloudBread_Admin_Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool MemberGameInfoesExists(string key)
+        {
+            return db.MemberGameInfoes.Count(e => e.MemberID == key) > 0;
+        }
     }
 }
