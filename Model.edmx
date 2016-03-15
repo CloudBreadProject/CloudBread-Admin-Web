@@ -987,6 +987,23 @@
           <Property Name="PurchaseCancelDeviceID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseCancelDeviceIPAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseCancelDeviceMACAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PurchaseCancelConfirmAdminMemberID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
         </EntityType>
         <EntityType Name="MemberItems">
           <Key>
@@ -1578,6 +1595,23 @@
                 <ScalarProperty Name="PurchaseCancelDeviceID" ColumnName="PurchaseCancelDeviceID" />
                 <ScalarProperty Name="PurchaseCancelDeviceIPAddress" ColumnName="PurchaseCancelDeviceIPAddress" />
                 <ScalarProperty Name="PurchaseCancelDeviceMACAddress" ColumnName="PurchaseCancelDeviceMACAddress" />
+                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
+                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
+                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
+                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
+                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
+                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
+                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
+                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
+                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
+                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
+                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
+                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+                <ScalarProperty Name="PurchaseCancelConfirmAdminMemberID" ColumnName="PurchaseCancelConfirmAdminMemberID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
+                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
