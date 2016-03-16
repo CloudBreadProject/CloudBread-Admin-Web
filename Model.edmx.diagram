@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="CBModel.MemberGameInfoStages" Width="1.5" PointX="5.375" PointY="13.75" />
         <EntityTypeShape EntityType="CBModel.StatsData" Width="1.5" PointX="13.375" PointY="13.75" />
         <EntityTypeShape EntityType="CBModel.CloudBreadLog" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="CBModel.CloudBreadAdminLog" Width="1.5" PointX="15.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
