@@ -19,7 +19,7 @@
 <script>
   var host = "http://dw-apiapp-dev-01.azurewebsites.net/";
   var DAU_list = new Array();
-
+  var DARPU_list = new Array();
   //DAU Data
   $(document).ready(function() {
     $.ajax({
@@ -47,6 +47,42 @@
             'Count': count_max
           };
           DAU_list.push(dataset);
+          field_fst = value[i]['Fields'];
+          count_max = value[i]['CountNum'];
+        } else {
+          if (count_max < value[i]['CountNum']) {
+            count_max = value[i]['CountNum'];
+          }
+        }
+      }
+    });
+
+    //DARPU Data
+    $.ajax({
+      type: "GET",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&orderby=Fields%20desc",
+      dataType: "text",
+      error: function() {
+        alert('Not found!');
+      },
+      success: function(data) {
+        //anything
+      }
+    }).done(function(data) {
+      var i = 1;
+      var pars = JSON.parse(data);
+      var value = pars['value'];
+
+      var field_fst = value[0]['Fields'];
+      var count_max = value[0]['CountNum'];
+
+      for (; i < value.length; i++) {
+        if (field_fst != value[i]['Fields']) {
+          var dataset = {
+            'Field': field_fst,
+            'Count': count_max
+          };
+          DARPU_list.push(dataset);
           field_fst = value[i]['Fields'];
           count_max = value[i]['CountNum'];
         } else {
@@ -92,6 +128,35 @@
       chart.draw(DAU_data, DAU_options);
     }
 
+    google.charts.setOnLoadCallback(drawLineGraph);
+
+    function drawLineGraph() {
+      var DARPU_data = new google.visualization.DataTable();
+      DARPU_data.addColumn('string', 'Time of Day');
+      DARPU_data.addColumn('number', '수입 ($)');
+
+      for (i = 0; i < DARPU_list.length; i++) {
+        var mon = DAU_list[i]['Field'].substring(4, 6);
+        var day = DAU_list[i]['Field'].substring(6, 8);
+        DARPU_data.addRows([
+          [{
+            v: mon + '/' + day
+          }, Number(DARPU_list[i]['Count'])]
+        ]);
+      }
+      var DARPU_options = {
+        title: 'DARPU 유저 한명당 일 평균 매출',
+        isStacked: true,
+        hAxis: {
+          title: 'Date'
+        },
+        vAxis: {
+          title: 'DARPU ($/명)'
+        }
+      };
+      var chart = new google.visualization.LineChart(document.getElementById('DARPU_div'));
+      chart.draw(DARPU_data, DARPU_options);
+    }
   });
 </script>
 
