@@ -945,23 +945,7 @@
           <Property Name="StageStat3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StageStat4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StageStat5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HideYN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeleteYN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
-          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="MemberItemPurchases">
           <Key>
             <PropertyRef Name="MemberItemPurchaseID" />
@@ -1552,23 +1536,7 @@
                 <ScalarProperty Name="StageStat3" ColumnName="StageStat3" />
                 <ScalarProperty Name="StageStat4" ColumnName="StageStat4" />
                 <ScalarProperty Name="StageStat5" ColumnName="StageStat5" />
-                <ScalarProperty Name="sCol1" ColumnName="sCol1" />
-                <ScalarProperty Name="sCol2" ColumnName="sCol2" />
-                <ScalarProperty Name="sCol3" ColumnName="sCol3" />
-                <ScalarProperty Name="sCol4" ColumnName="sCol4" />
-                <ScalarProperty Name="sCol5" ColumnName="sCol5" />
-                <ScalarProperty Name="sCol6" ColumnName="sCol6" />
-                <ScalarProperty Name="sCol7" ColumnName="sCol7" />
-                <ScalarProperty Name="sCol8" ColumnName="sCol8" />
-                <ScalarProperty Name="sCol9" ColumnName="sCol9" />
-                <ScalarProperty Name="sCol10" ColumnName="sCol10" />
-                <ScalarProperty Name="HideYN" ColumnName="HideYN" />
-                <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="DataFromRegion" ColumnName="DataFromRegion" />
-                <ScalarProperty Name="DataFromRegionDT" ColumnName="DataFromRegionDT" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MemberItemPurchases">
