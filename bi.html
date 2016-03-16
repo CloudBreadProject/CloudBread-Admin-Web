@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <!--Load tha js and jquery API-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+  <script type="text/javascript" charset="utf-8"></script>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  <!--Div that will hold the pie chart-->
+  <div id="DAU_div"></div>
+  <div id="DARPU_div"></div>
+</body>
+<script>
+  var host = "http://dw-apiapp-dev-01.azurewebsites.net/";
+  var DAU_list = new Array();
+
+  //DAU Data
+  $(document).ready(function() {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&orderby=Fields%20desc",
+      dataType: "text",
+      error: function() {
+        alert('Not found!');
+      },
+      success: function(data) {
+        //anything
+      }
+    }).done(function(data) {
+      var i = 1;
+      var pars = JSON.parse(data);
+      var value = pars['value'];
+
+      var field_fst = value[0]['Fields'];
+      var count_max = value[0]['CountNum'];
+
+      for (; i < value.length; i++) {
+        if (field_fst != value[i]['Fields']) {
+          var dataset = {
+            'Field': field_fst,
+            'Count': count_max
+          };
+          DAU_list.push(dataset);
+          field_fst = value[i]['Fields'];
+          count_max = value[i]['CountNum'];
+        } else {
+          if (count_max < value[i]['CountNum']) {
+            count_max = value[i]['CountNum'];
+          }
+        }
+      }
+    });
+  });
+</script>
+
+</html>
