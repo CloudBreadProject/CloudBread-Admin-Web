@@ -56,6 +56,42 @@
         }
       }
     });
+
+    google.charts.load('current', {
+      packages: ['corechart', 'line']
+    });
+    google.charts.setOnLoadCallback(drawStacked);
+
+    function drawStacked() {
+      var DAU_data = new google.visualization.DataTable();
+      DAU_data.addColumn('string', 'Time of Day');
+      DAU_data.addColumn('number', '재방문 유저');
+      DAU_data.addColumn('number', '신규 유저');
+
+      for (i = 0; i < DAU_list.length; i++) {
+        var mon = DAU_list[i]['Field'].substring(4, 6);
+        var day = DAU_list[i]['Field'].substring(6, 8);
+        DAU_data.addRows([
+          [{
+            v: mon + '/' + day
+          }, Number(DAU_list[i]['Count']), 1]
+        ]);
+      }
+      var DAU_options = {
+        title: 'DAU 일일 활동 유저수',
+        isStacked: true,
+        hAxis: {
+          title: 'Date'
+        },
+        vAxis: {
+          title: 'DAU (명)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('DAU_div'));
+      chart.draw(DAU_data, DAU_options);
+    }
+
   });
 </script>
 
