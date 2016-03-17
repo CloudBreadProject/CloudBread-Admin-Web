@@ -15,13 +15,6 @@ const SHOW_LOADING = 'SHOW_LOADING';
 const HIDE_LOADING = 'HIDE_LOADING';
 
 export default function reducer(state = initialState, action = {}) {
-  const {
-    snackbarMessage,
-    snackbarDuration,
-    snackbarAction,
-    snackbarActionHandler,
-  } = action.payload || {};
-
   switch (action.type) {
     case SHOW_LOADING:
       return {
@@ -33,7 +26,13 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isLoading: false,
       };
-    case SHOW_SNACKBAR_MESSAGE:
+    case SHOW_SNACKBAR_MESSAGE: {
+      const {
+        snackbarMessage,
+        snackbarDuration,
+        snackbarAction,
+        snackbarActionHandler,
+      } = action.payload || {};
       return {
         ...state,
         snackbarMessage,
@@ -42,6 +41,7 @@ export default function reducer(state = initialState, action = {}) {
         snackbarActionHandler,
         snackbarOpen: true,
       };
+    }
     case HIDE_SNACKBAR_MESSAGE:
       return {
         ...state,

@@ -12,6 +12,8 @@ import Link from 'react-router/lib/Link';
 import IconButton from 'material-ui/lib/icon-button';
 import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 
+import Logo from 'public/logo.png';
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     signout,
@@ -45,7 +47,10 @@ class InspectorHeader extends Component {
       <div className={styles.InspectorHeader}>
         <div className={styles.Wrapper}>
           <div className={styles.Side}>
-            <Link to="/" className={styles.Title}>Inspector</Link>
+            <Link to="/" className={styles.Title}>
+              <img src={Logo} className={styles.Logo} />
+              Inspector
+            </Link>
           </div>
           <div className={styles.Content}>
           </div>

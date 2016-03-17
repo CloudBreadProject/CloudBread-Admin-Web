@@ -15,6 +15,7 @@ async function carryFile(file) {
   const relPath = `.${file.replace(ROOT, '')}`;
   const carryPath = relPath.replace('./src', './build');
   await ncpAsync(relPath, carryPath);
+  console.log(`${relPath} copied to ${carryPath}`);
 }
 
 async function copy() {

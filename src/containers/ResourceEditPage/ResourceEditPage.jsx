@@ -9,7 +9,10 @@ import {
   editResource,
   updateResource,
   deleteResource,
-} from 'reducers/viewer';
+} from 'reducers/editor';
+import {
+  removeResourceItem,
+} from 'reducers/finder';
 import {
   showLoading,
   hideLoading,
@@ -23,10 +26,12 @@ import Paper from 'material-ui/lib/paper';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 import ModeEdit from 'material-ui/lib/svg-icons/editor/mode-edit';
+import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
+import IconButton from 'material-ui/lib/icon-button';
 
-function mapStateToProps({ viewer }) {
+function mapStateToProps({ editor }) {
   return {
-    ...viewer,
+    ...editor,
   };
 }
 
@@ -39,6 +44,7 @@ function mapDispatchToProps(dispatch) {
     showLoading,
     hideLoading,
     showSnackbarMessage,
+    removeResourceItem,
   }, dispatch);
 }
 
@@ -67,6 +73,7 @@ class ResourceViewPage extends Component {
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
+    removeResourceItem: PropTypes.func,
   };
 
   constructor() {
@@ -77,6 +84,7 @@ class ResourceViewPage extends Component {
     this.handleClickActionDelete = this.handleClickActionDelete.bind(this);
     this.handleChangeInputBound = {};
     this.handleToggleSwitchBound = {};
+    this.handleTapBack = this.handleTapBack.bind(this);
   }
 
   componentWillMount() {
@@ -127,11 +135,19 @@ class ResourceViewPage extends Component {
           >
             <h1
               style={{
-                fontSize: '28px',
+                fontSize: '36px',
                 margin: '6px 0',
                 fontWeight: 400,
               }}
             >
+              <IconButton
+                style={{
+                  marginRight: '5px',
+                }}
+                onTouchTap={this.handleTapBack}
+              >
+                <ArrowBack />
+              </IconButton>
               {identifier} of {resourceId}
             </h1>
             <Divider />
@@ -175,14 +191,25 @@ class ResourceViewPage extends Component {
       >
         <h1
           style={{
-            margin: '0px',
+            margin: '10px 0px',
+            marginTop: '0px',
             fontWeight: 400,
             fontSize: '24px',
+            color: '#222',
           }}
         >
           {name}
+          <span
+            style={{
+              margin: '5px 0',
+              marginLeft: '5px',
+              fontSize: '13px',
+              color: '#444',
+            }}
+          >
+            {description}
+          </span>
         </h1>
-        <p>{description}</p>
         {fields.map(this.renderField)}
       </Paper>
     );
@@ -263,6 +290,7 @@ class ResourceViewPage extends Component {
         identifier,
         resourceId,
       });
+      await this.props.removeResourceItem(identifier);
       this.props.showSnackbarMessage({
         snackbarMessage: 'Succeed to delete',
       });
@@ -292,6 +320,10 @@ class ResourceViewPage extends Component {
         value: resource[field] === 'Y' ? 'N' : 'Y',
       });
     };
+  }
+
+  handleTapBack() {
+    this.context.router.goBack();
   }
 }
 

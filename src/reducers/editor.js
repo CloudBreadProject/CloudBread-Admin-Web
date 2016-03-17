@@ -27,16 +27,6 @@ const DELETE_RESOURCE_SUCCESS = 'DELETE_RESOURCE_SUCCESS';
 const DELETE_RESOURCE_ERROR = 'DELETE_RESOURCE_ERROR';
 
 export default function reducer(state = initialState, action = {}) {
-  const {
-    resource,
-    fieldGroup,
-    error,
-    schema,
-    field,
-    updateValue,
-    identifier,
-    resourceId,
-  } = action.payload || {};
   switch (action.type) {
     case FIND_ONE_REQUEST:
       return {
@@ -50,7 +40,14 @@ export default function reducer(state = initialState, action = {}) {
         schema: null,
         isLoaded: false,
       };
-    case FIND_ONE_SUCCESS:
+    case FIND_ONE_SUCCESS: {
+      const {
+        resource,
+        fieldGroup,
+        schema,
+        identifier,
+        resourceId,
+      } = action.payload;
       return {
         ...state,
         isRequesting: false,
@@ -61,20 +58,27 @@ export default function reducer(state = initialState, action = {}) {
         schema,
         isLoaded: true,
       };
-    case FIND_ONE_ERROR:
+    }
+    case FIND_ONE_ERROR: {
+      const { error } = action.payload;
       console.log(error); // eslint-disable-line
       return {
         ...state,
         errorMessage: 'Error occurs',
       };
-    case EDIT_RESOURCE:
+    }
+    case EDIT_RESOURCE: {
+      const {
+        field,
+        value,
+      } = action.payload;
+      const { resource } = state;
+      resource[field] = value;
       return {
         ...state,
-        resource: {
-          ...state.resource,
-          [field]: updateValue,
-        },
+        resource,
       };
+    }
     case UPDATE_RESOURCE_REQUEST:
       return {
         ...state,
@@ -153,7 +157,7 @@ export function editResource({ field, value }) {
     type: EDIT_RESOURCE,
     payload: {
       field,
-      updateValue: value,
+      value,
     },
   };
 }

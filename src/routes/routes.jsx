@@ -8,7 +8,7 @@ import InspectorLayout from 'layouts/InspectorLayout';
 import HomePage from 'containers/HomePage';
 import ContentPage from 'containers/ContentPage';
 import ResourceFindPage from 'containers/ResourceFindPage';
-import ResourceViewPage from 'containers/ResourceViewPage';
+import ResourceEditPage from 'containers/ResourceEditPage';
 
 import AuthRoute from 'routes/AuthRoute';
 
@@ -17,7 +17,8 @@ const routeContainer = (
     <Route path="/" component={InspectorLayout}>
       <IndexRoute component={HomePage} />
       <Route path="finder/:resourceId" component={ResourceFindPage} />
-      <Route path="viewer/:resourceId/:identifier" component={ResourceViewPage} />
+      <Route path="editor/:resourceId" component={ResourceEditPage} />
+      <Route path="editor/:resourceId/:identifier" component={ResourceEditPage} />
       <Route path="page/:pageId" component={ContentPage} />
     </Route>
     {AuthRoute}

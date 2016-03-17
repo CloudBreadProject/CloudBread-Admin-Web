@@ -11,22 +11,21 @@ const AUTHENTICATE_PENDING = 'AUTHENTICATE_PENDING';
 const SIGNOUT = 'SINGOUT';
 
 export default function reducer(state = initialState, action = {}) {
-  const {
-    accessToken,
-  } = action.payload || {};
   switch (action.type) {
     case AUTHENTICATE_PENDING:
       return {
         ...state,
         isAuthenticating: true,
       };
-    case AUTHENTICATE_SUCCESS:
+    case AUTHENTICATE_SUCCESS: {
+      const { accessToken } = action.payload;
       return {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
         accessToken,
       };
+    }
     case AUTHENTICATE_ERROR:
       return {
         ...state,

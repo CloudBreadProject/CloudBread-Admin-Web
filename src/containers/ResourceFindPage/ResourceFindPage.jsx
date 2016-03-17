@@ -56,6 +56,7 @@ class ResourceFindPage extends Component {
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     primaryKey: PropTypes.string,
+    isLoaded: PropTypes.bool,
   };
 
   constructor() {
@@ -64,9 +65,12 @@ class ResourceFindPage extends Component {
   }
 
   async componentDidMount() {
-    this.props.showLoading();
-    await this.props.loadResources(this.props.params);
-    this.props.hideLoading();
+    const { params, resourceId, isLoaded } = this.props;
+    if (!(params.resourceId === resourceId && isLoaded)) {
+      this.props.showLoading();
+      await this.props.loadResources(params);
+      this.props.hideLoading();
+    }
   }
 
   render() {
@@ -74,7 +78,11 @@ class ResourceFindPage extends Component {
       title,
       description,
       allArticles,
+      isLoaded,
     } = this.props;
+    if (!isLoaded) {
+      return <p>Loading resource ...</p>;
+    }
     return (
       <div className={styles.ResourceFindPage}>
         <h1>{title}</h1>
@@ -136,7 +144,7 @@ class ResourceFindPage extends Component {
     const { resourceId, resources, primaryKey } = this.props;
     const resource = resources[row];
     const identifier = resource[primaryKey];
-    this.context.router.push(`/viewer/${resourceId}/${identifier}`);
+    this.context.router.push(`/editor/${resourceId}/${identifier}`);
   }
 }
 

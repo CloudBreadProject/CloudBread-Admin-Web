@@ -37,10 +37,19 @@
   font-size: 24px;
   font-weight: 400;
   text-decoration: none;
+  display: flex;
 
   &:link, &:focus, &:visited, &:active {
     color: inherit;
   }
+
+  > span {
+    margin: auto 5px;
+  }
+}
+
+.Logo {
+  height: 36px;
 }
 
 .Content {
