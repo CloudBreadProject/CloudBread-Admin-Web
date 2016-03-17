@@ -11,6 +11,7 @@ export class Resource {
     this.title = resource.title;
     this.description = resource.description;
     this.primaryKey = resource.primaryKey;
+    this.fieldGroup = resource.fieldGroup;
     this.schemaArray = [];
 
     for (const key in this.schema) {

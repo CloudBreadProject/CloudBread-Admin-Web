@@ -16,6 +16,7 @@ import {
   showSnackbarMessage,
 } from 'reducers/display';
 
+import Divider from 'material-ui/lib/divider';
 import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 import Paper from 'material-ui/lib/paper';
@@ -54,12 +55,15 @@ class ResourceViewPage extends Component {
     resource: PropTypes.object,
     isRequesting: PropTypes.bool,
     isLoaded: PropTypes.bool,
+    resourceId: PropTypes.string,
+    identifier: PropTypes.string,
     loadResource: PropTypes.func,
     editResource: PropTypes.func,
     updateResource: PropTypes.func,
     deleteResource: PropTypes.func,
     params: PropTypes.object,
-    schemaArray: PropTypes.array,
+    schema: PropTypes.object,
+    fieldGroup: PropTypes.array,
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
@@ -68,6 +72,7 @@ class ResourceViewPage extends Component {
   constructor() {
     super();
     this.renderField = this.renderField.bind(this);
+    this.renderGroup = this.renderGroup.bind(this);
     this.handleClickModeEdit = this.handleClickModeEdit.bind(this);
     this.handleClickActionDelete = this.handleClickActionDelete.bind(this);
     this.handleChangeInputBound = {};
@@ -86,20 +91,26 @@ class ResourceViewPage extends Component {
       identifier,
     });
     this.props.hideLoading();
-    const { schemaArray } = this.props;
-    schemaArray.forEach((field) => {
+    const { schema } = this.props;
+    for (const key in schema) { // eslint-disable-line
+      const field = schema[key];
       if (field.boolean) {
         this.handleToggleSwitchBound[field.name] = this.handleToggleSwitch(field.name);
       } else {
         this.handleChangeInputBound[field.name] = this.handleChangeInput(field.name);
       }
-    });
+    }
     this.forceUpdate();
   }
 
   render() {
-    const { schemaArray, isLoaded } = this.props;
-    if (!schemaArray || !isLoaded) {
+    const {
+      fieldGroup,
+      isLoaded,
+      identifier,
+      resourceId,
+    } = this.props;
+    if (!isLoaded) {
       return <p>Loading target resource...</p>;
     }
     return (
@@ -109,7 +120,23 @@ class ResourceViewPage extends Component {
             maxWidth: '640px',
           }}
         >
-          {schemaArray.map(this.renderField)}
+          <div
+            style={{
+              marginBottom: '20px',
+            }}
+          >
+            <h1
+              style={{
+                fontSize: '28px',
+                margin: '6px 0',
+                fontWeight: 400,
+              }}
+            >
+              {identifier} of {resourceId}
+            </h1>
+            <Divider />
+          </div>
+          {fieldGroup.map(this.renderGroup)}
         </div>
         <FloatingActionButton
           secondary
@@ -136,8 +163,34 @@ class ResourceViewPage extends Component {
     );
   }
 
-  renderField(field, key) {
-    const { resource, isRequesting } = this.props;
+  renderGroup(group, key) {
+    const { fields, name, description } = group;
+    return (
+      <Paper
+        key={key}
+        style={{
+          padding: '20px',
+          marginBottom: '20px',
+        }}
+      >
+        <h1
+          style={{
+            margin: '0px',
+            fontWeight: 400,
+            fontSize: '24px',
+          }}
+        >
+          {name}
+        </h1>
+        <p>{description}</p>
+        {fields.map(this.renderField)}
+      </Paper>
+    );
+  }
+
+  renderField(name, key) {
+    const { resource, isRequesting, schema } = this.props;
+    const field = schema[name];
     let result;
     if (field.boolean) {
       result = (
@@ -163,7 +216,7 @@ class ResourceViewPage extends Component {
           ref={field.name}
           floatingLabelText={field.name}
           hintText={field.description}
-          defaultValue={resource[field.name]}
+          defaultValue={resource[name]}
           disabled={field.readonly || isRequesting}
           onBlur={this.handleChangeInputBound[field.name]}
           fullWidth
@@ -171,15 +224,11 @@ class ResourceViewPage extends Component {
       );
     }
     return (
-      <Paper
+      <div
         key={key}
-        style={{
-          marginBottom: '20px',
-          padding: '20px 40px',
-        }}
       >
         {result}
-      </Paper>
+      </div>
     );
   }
 

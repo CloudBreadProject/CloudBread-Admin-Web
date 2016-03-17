@@ -4,12 +4,12 @@ import styles from './InspectorSideNav.scss';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
 import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import People from 'material-ui/lib/svg-icons/social/people';
 import DataUsage from 'material-ui/lib/svg-icons/device/data-usage';
+import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
 import Divider from 'material-ui/lib/divider';
 
 class InspectorSideNav extends Component {
@@ -43,8 +43,7 @@ class InspectorSideNav extends Component {
         </List>
         <Divider />
         <List>
-          <ListItem primaryText="Policy" rightIcon={<ActionInfo />} />
-          <ListItem primaryText="License" rightIcon={<ActionInfo />} />
+          <ListItem primaryText="CloudBread" rightIcon={<CloudQueue />} href="http://aka.ms/cbp" target="_blank" />
         </List>
       </div>
     );

@@ -42,7 +42,10 @@ class InspectorLayout extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, isAuthenticated } = this.props;
+    if (!isAuthenticated) {
+      return <p>You did not authenticated</p>;
+    }
     return (
       <div className={styles.InspectorLayout}>
         <InspectorHeader />

@@ -7,7 +7,8 @@ const initialState = {
   identifier: '',
   isRequesting: false,
   isLoaded: false,
-  schemaArray: null,
+  schema: null,
+  fieldGroup: null,
   errorMessage: '',
 };
 
@@ -28,8 +29,9 @@ const DELETE_RESOURCE_ERROR = 'DELETE_RESOURCE_ERROR';
 export default function reducer(state = initialState, action = {}) {
   const {
     resource,
-    schemaArray,
+    fieldGroup,
     error,
+    schema,
     field,
     updateValue,
     identifier,
@@ -41,7 +43,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isRequesting: true,
         errorMessage: '',
-        schemaArray,
+        identifier: null,
+        resourceId: null,
+        resource: null,
+        fieldGroup: null,
+        schema: null,
         isLoaded: false,
       };
     case FIND_ONE_SUCCESS:
@@ -51,6 +57,8 @@ export default function reducer(state = initialState, action = {}) {
         identifier,
         resourceId,
         resource,
+        fieldGroup,
+        schema,
         isLoaded: true,
       };
     case FIND_ONE_ERROR:
@@ -114,12 +122,12 @@ export function loadResource({ identifier, resourceId }) {
   return async dispatch => {
     try {
       const model = models[resourceId];
-      const schemaArray = model.schemaArray;
+      const {
+        schema,
+        fieldGroup,
+      } = model;
       dispatch({
         type: FIND_ONE_REQUEST,
-        payload: {
-          schemaArray,
-        },
       });
       const res = await fetch.get(`/${resourceId}('${identifier}')`);
       dispatch({
@@ -128,6 +136,8 @@ export function loadResource({ identifier, resourceId }) {
           resource: res.body,
           identifier,
           resourceId,
+          fieldGroup,
+          schema,
         },
       });
     } catch (error) {

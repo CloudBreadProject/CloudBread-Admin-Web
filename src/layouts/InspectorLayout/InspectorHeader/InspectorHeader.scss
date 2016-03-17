@@ -23,6 +23,13 @@
 }
 
 .Right {
+  margin-right: 10px;
+
+  > button {
+    &:first-child {
+      margin-left: auto;
+    }
+  }
 }
 
 .Title {

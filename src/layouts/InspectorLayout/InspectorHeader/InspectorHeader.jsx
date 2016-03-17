@@ -11,8 +11,6 @@ import Link from 'react-router/lib/Link';
 
 import IconButton from 'material-ui/lib/icon-button';
 import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
-import Settings from 'material-ui/lib/svg-icons/action/settings';
-import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
@@ -57,16 +55,6 @@ class InspectorHeader extends Component {
               onClick={this.handleClickSignOut}
             >
               <ExitToApp {...iconProperty} />
-            </IconButton>
-            <IconButton
-              tooltip="Settings"
-            >
-              <Settings {...iconProperty} />
-            </IconButton>
-            <IconButton
-              tooltip="CloudBread"
-            >
-              <CloudQueue {...iconProperty} />
             </IconButton>
           </div>
         </div>
