@@ -3,7 +3,6 @@ import { setTitle } from 'lib/context';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import {
   loadResource,
   editResource,
@@ -92,13 +91,21 @@ class ResourceViewPage extends Component {
   }
 
   async componentDidMount() {
-    const { resourceId, identifier } = this.props.params;
-    this.props.showLoading();
-    await this.props.loadResource({
+    const {
+      params,
       resourceId,
       identifier,
-    });
-    this.props.hideLoading();
+    } = this.props;
+    // load resource if different resource
+    if (resourceId !== params.resourceId || identifier !== params.identifier) {
+      this.props.showLoading();
+      await this.props.loadResource({
+        resourceId,
+        identifier,
+      });
+      this.props.hideLoading();
+    }
+    // cache callback funcs for editing
     const { schema } = this.props;
     for (const key in schema) { // eslint-disable-line
       const field = schema[key];
