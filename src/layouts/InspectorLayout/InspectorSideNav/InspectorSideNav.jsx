@@ -17,6 +17,12 @@ class InspectorSideNav extends Component {
     router: PropTypes.object,
   };
 
+  constructor() {
+    super();
+    this.renderListItem = this.renderListItem.bind(this);
+    this.handleTouchListItem = this.handleTouchListItem.bind(this);
+  }
+
   componentDidMount() {
   }
 
@@ -31,7 +37,7 @@ class InspectorSideNav extends Component {
     return (
       <div className={styles.InspectorSideNav}>
         <List>
-          {topNavs.map((nav, key) => this.renderListItem({ ...nav, key }))}
+          {topNavs.map(this.renderListItem)}
           <ListItem
             primaryText="Notice"
             leftIcon={<ContentSend />}
@@ -49,12 +55,12 @@ class InspectorSideNav extends Component {
     );
   }
 
-  renderListItem({
-    to,
-    primaryText,
-    leftIcon,
-    key,
-  }) {
+  renderListItem(nav, key) {
+    const {
+      to,
+      primaryText,
+      leftIcon,
+    } = nav;
     return (
       <ListItem
         primaryText={primaryText}
