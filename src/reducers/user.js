@@ -1,18 +1,19 @@
+import {
+  AUTHENTICATE_REQUEST,
+  AUTHENTICATE_SUCCESS,
+  AUTHENTICATE_ERROR,
+  SIGNOUT,
+} from 'constants/user';
+
 const initialState = {
   isAuthenticated: false,
   isAuthenticating: false,
   accessToken: '',
 };
 
-const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS';
-const AUTHENTICATE_ERROR = 'AUTHENTICATE_ERROR';
-const AUTHENTICATE_PENDING = 'AUTHENTICATE_PENDING';
-
-const SIGNOUT = 'SINGOUT';
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case AUTHENTICATE_PENDING:
+    case AUTHENTICATE_REQUEST:
       return {
         ...state,
         isAuthenticating: true,
@@ -40,30 +41,4 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function authenticate() {
-  return dispatch => {
-    dispatch({
-      type: AUTHENTICATE_PENDING,
-    });
-    // @TODO real authentication
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type: AUTHENTICATE_SUCCESS,
-          payload: {
-            accessToken: 'fewfewfwefwefwefwewfoiwemfoweifmweokfmowieanweoaifnwei',
-          },
-        });
-        resolve();
-      }, 1000);
-    });
-  };
-}
-
-export function signout() {
-  return {
-    type: SIGNOUT,
-  };
 }

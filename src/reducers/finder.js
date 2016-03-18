@@ -1,6 +1,3 @@
-import fetch from 'lib/fetch';
-import * as models from 'models';
-
 const initialState = {
   resourceId: '',
   resources: [],
@@ -10,20 +7,22 @@ const initialState = {
   allArticles: 0,
   isRequesting: false,
   isLoaded: false,
+  isFinding: false,
   errorMessage: '',
   title: '',
   description: '',
 };
 
-export const LOAD_RESOURCE_REQUEST = 'LOAD_RESOURCE_REQUEST';
-export const LOAD_RESOURCE_SUCCESS = 'LOAD_RESOURCE_SUCCESS';
-export const LOAD_RESOURCE_ERROR = 'LOAD_RESOURCE_ERROR';
-
-export const REMOVE_RESOURCE_ITEM = 'REMOVE_RESOURCE_ITEM';
+import {
+  FIND_RESOURCES_REQUEST,
+  FIND_RESOURCES_SUCCESS,
+  FIND_RESOURCES_ERROR,
+  DELETE_RESOURCE_SUCCESS,
+} from 'constants/resource';
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_RESOURCE_REQUEST:
+    case FIND_RESOURCES_REQUEST:
       return {
         ...state,
         isRequesting: true,
@@ -36,7 +35,7 @@ export default function reducer(state = initialState, action = {}) {
         showFields: [],
         isLoaded: false,
       };
-    case LOAD_RESOURCE_SUCCESS: {
+    case FIND_RESOURCES_SUCCESS: {
       const {
         resourceId,
         showFields,
@@ -59,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
         isLoaded: true,
       };
     }
-    case LOAD_RESOURCE_ERROR: {
+    case FIND_RESOURCES_ERROR: {
       const { error } = action.payload;
       console.log(error); // eslint-disable-line
       return {
@@ -68,65 +67,24 @@ export default function reducer(state = initialState, action = {}) {
         errorMessage: 'Error occured',
       };
     }
-    case REMOVE_RESOURCE_ITEM: {
-      const { identifier } = action.payload;
-      const { resources } = state;
-      const removeItem = resources.find(x => x[state.primaryKey] === identifier);
-      state.resources.splice(resources.indexOf(removeItem), 1);
-      return {
-        ...state,
-      };
+    case DELETE_RESOURCE_SUCCESS: {
+      const {
+        identifier,
+        resourceId,
+      } = action.payload || {};
+      if (resourceId === state.resourceId) {
+        const { resources } = state;
+        const removeItem = resources.find(x => x[state.primaryKey] === identifier);
+        if (removeItem) {
+          state.resources.splice(resources.indexOf(removeItem), 1);
+        }
+        return {
+          ...state,
+        };
+      }
+      return state;
     }
     default:
       return state;
   }
-}
-
-export function loadResources({ resourceId }) {
-  return async dispatch => {
-    try {
-      const model = models[resourceId];
-      const showFields = [];
-      model.showFields.forEach(showField => {
-        showFields.push(model.schema[showField]);
-      });
-      const {
-        title,
-        description,
-        primaryKey,
-      } = model;
-      dispatch({
-        type: LOAD_RESOURCE_REQUEST,
-      });
-      const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=30`);
-      dispatch({
-        type: LOAD_RESOURCE_SUCCESS,
-        payload: {
-          allArticles: res.body['odata.count'],
-          resources: res.body.value,
-          resourceId,
-          showFields,
-          primaryKey,
-          title,
-          description,
-        },
-      });
-    } catch (error) {
-      dispatch({
-        type: LOAD_RESOURCE_ERROR,
-        payload: {
-          error,
-        },
-      });
-    }
-  };
-}
-
-export function removeResourceItem(identifier) {
-  return {
-    type: REMOVE_RESOURCE_ITEM,
-    payload: {
-      identifier,
-    },
-  };
 }

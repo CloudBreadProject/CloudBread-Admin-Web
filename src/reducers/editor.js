@@ -1,5 +1,17 @@
-import fetch from 'lib/fetch';
-import * as models from 'models';
+import {
+  FIND_RESOURCE_ONE_REQUEST,
+  FIND_RESOURCE_ONE_SUCCESS,
+  FIND_RESOURCE_ONE_ERROR,
+  UPDATE_RESOURCE_REQUEST,
+  UPDATE_RESOURCE_SUCCESS,
+  UPDATE_RESOURCE_ERROR,
+  DELETE_RESOURCE_REQUEST,
+  DELETE_RESOURCE_SUCCESS,
+  DELETE_RESOURCE_ERROR,
+  START_EDIT_RESOURCE,
+  STOP_EDIT_RESOURCE,
+  EDIT_RESOURCE,
+} from 'constants/resource';
 
 const initialState = {
   resource: null,
@@ -10,25 +22,12 @@ const initialState = {
   schema: null,
   fieldGroup: null,
   errorMessage: '',
+  isEditing: false,
 };
-
-const FIND_ONE_REQUEST = 'FIND_ONE_REQUEST';
-const FIND_ONE_SUCCESS = 'FIND_ONE_SUCCESS';
-const FIND_ONE_ERROR = 'FIND_ONE_ERROR';
-
-const EDIT_RESOURCE = 'EDIT_RESOURCE';
-
-const UPDATE_RESOURCE_REQUEST = 'UPDATE_RESOURCE_REQUEST';
-const UPDATE_RESOURCE_SUCCESS = 'UPDATE_RESOURCE_SUCCESS';
-const UPDATE_RESOURCE_ERROR = 'UPDATE_RESOURCE_ERROR';
-
-const DELETE_RESOURCE_REQUEST = 'DELETE_RESOURCE_REQUEST';
-const DELETE_RESOURCE_SUCCESS = 'DELETE_RESOURCE_SUCCESS';
-const DELETE_RESOURCE_ERROR = 'DELETE_RESOURCE_ERROR';
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case FIND_ONE_REQUEST:
+    case FIND_RESOURCE_ONE_REQUEST:
       return {
         ...state,
         isRequesting: true,
@@ -40,7 +39,7 @@ export default function reducer(state = initialState, action = {}) {
         schema: null,
         isLoaded: false,
       };
-    case FIND_ONE_SUCCESS: {
+    case FIND_RESOURCE_ONE_SUCCESS: {
       const {
         resource,
         fieldGroup,
@@ -59,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
         isLoaded: true,
       };
     }
-    case FIND_ONE_ERROR: {
+    case FIND_RESOURCE_ONE_ERROR: {
       const { error } = action.payload;
       console.log(error); // eslint-disable-line
       return {
@@ -117,91 +116,19 @@ export default function reducer(state = initialState, action = {}) {
         isRequesting: false,
         errorMessage: 'Error occurs in during delete',
       };
+    case START_EDIT_RESOURCE: {
+      return {
+        ...state,
+        isEditing: true,
+      };
+    }
+    case STOP_EDIT_RESOURCE: {
+      return {
+        ...state,
+        isEditing: false,
+      };
+    }
     default:
       return state;
   }
-}
-
-export function loadResource({ identifier, resourceId }) {
-  return async dispatch => {
-    try {
-      const model = models[resourceId];
-      const {
-        schema,
-        fieldGroup,
-      } = model;
-      dispatch({
-        type: FIND_ONE_REQUEST,
-      });
-      const res = await fetch.get(`/${resourceId}('${identifier}')`);
-      dispatch({
-        type: FIND_ONE_SUCCESS,
-        payload: {
-          resource: res.body,
-          identifier,
-          resourceId,
-          fieldGroup,
-          schema,
-        },
-      });
-    } catch (error) {
-      dispatch({
-        type: FIND_ONE_ERROR,
-      });
-    }
-  };
-}
-
-export function editResource({ field, value }) {
-  return {
-    type: EDIT_RESOURCE,
-    payload: {
-      field,
-      value,
-    },
-  };
-}
-
-export function updateResource({ resourceId, identifier, resource }) {
-  return async dispatch => {
-    try {
-      dispatch({
-        type: UPDATE_RESOURCE_REQUEST,
-      });
-      await fetch.patch(`/${resourceId}('${identifier}')`, {
-        data: resource,
-      });
-      dispatch({
-        type: UPDATE_RESOURCE_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: UPDATE_RESOURCE_ERROR,
-        payload: {
-          error,
-        },
-      });
-    }
-  };
-}
-
-export function deleteResource({ resourceId, identifier }) {
-  return async dispatch => {
-    try {
-      dispatch({
-        type: UPDATE_RESOURCE_REQUEST,
-      });
-      await fetch.del(`/${resourceId}('${identifier}')`);
-      dispatch({
-        type: UPDATE_RESOURCE_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: UPDATE_RESOURCE_ERROR,
-        payload: {
-          error,
-        },
-      });
-    }
-  };
 }

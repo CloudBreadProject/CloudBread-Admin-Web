@@ -9,12 +9,12 @@ import Checkbox from 'material-ui/lib/checkbox';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { authenticate } from 'reducers/user';
+import { authenticate } from 'actions/user';
 import {
   showSnackbarMessage,
   showLoading,
   hideLoading,
-} from 'reducers/display';
+} from 'actions/display';
 
 import { setTitle } from 'lib/context';
 

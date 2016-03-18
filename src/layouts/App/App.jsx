@@ -4,7 +4,7 @@ import styles from './App.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { hideSnackbarMessage } from 'reducers/display';
+import { hideSnackbarMessage } from 'actions/display';
 
 import Snackbar from 'material-ui/lib/snackbar';
 import Loading from 'components/Loading';

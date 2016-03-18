@@ -4,11 +4,11 @@ import styles from './ResourceFindPage.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { loadResources } from 'reducers/finder';
+import { loadResources } from 'actions/resource';
 import {
   showLoading,
   hideLoading,
-} from 'reducers/display';
+} from 'actions/display';
 
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';

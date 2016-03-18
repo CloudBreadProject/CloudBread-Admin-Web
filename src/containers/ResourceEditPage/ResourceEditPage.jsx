@@ -8,15 +8,12 @@ import {
   editResource,
   updateResource,
   deleteResource,
-} from 'reducers/editor';
-import {
-  removeResourceItem,
-} from 'reducers/finder';
+} from 'actions/resource';
 import {
   showLoading,
   hideLoading,
   showSnackbarMessage,
-} from 'reducers/display';
+} from 'actions/display';
 
 import Divider from 'material-ui/lib/divider';
 import TextField from 'material-ui/lib/text-field';
@@ -43,7 +40,6 @@ function mapDispatchToProps(dispatch) {
     showLoading,
     hideLoading,
     showSnackbarMessage,
-    removeResourceItem,
   }, dispatch);
 }
 
@@ -72,7 +68,6 @@ class ResourceViewPage extends Component {
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
-    removeResourceItem: PropTypes.func,
   };
 
   constructor() {
@@ -99,10 +94,7 @@ class ResourceViewPage extends Component {
     // load resource if different resource
     if (resourceId !== params.resourceId || identifier !== params.identifier) {
       this.props.showLoading();
-      await this.props.loadResource({
-        resourceId,
-        identifier,
-      });
+      await this.props.loadResource(params);
       this.props.hideLoading();
     }
     // cache callback funcs for editing
@@ -297,7 +289,6 @@ class ResourceViewPage extends Component {
         identifier,
         resourceId,
       });
-      await this.props.removeResourceItem(identifier);
       this.props.showSnackbarMessage({
         snackbarMessage: 'Succeed to delete',
       });

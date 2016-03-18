@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ContentPage.scss';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loadPage, unloadPage } from 'reducers/page';
+import { loadPage, unloadPage } from 'actions/page';
+
 import { setTitle } from 'lib/context';
 import Loading from 'components/Loading';
 

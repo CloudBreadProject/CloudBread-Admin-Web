@@ -4,7 +4,7 @@ import styles from './InspectorLayout.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { showSnackbarMessage } from 'reducers/display';
+import { showSnackbarMessage } from 'actions/display';
 
 import InspectorHeader from './InspectorHeader';
 import InspectorSideNav from './InspectorSideNav';
