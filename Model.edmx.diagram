@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0394631f0fb34fd3b94278f4adf33f63" Name="Diagram1" ZoomLevel="66">
+      <Diagram DiagramId="0394631f0fb34fd3b94278f4adf33f63" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="CBModel.AdminMembers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.CloudBreadAdminLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.CloudBreadErrorLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.CloudBreadLog" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.Coupon" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.CouponMember" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.GameEventMember" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.GameEvents" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.GiftDepositories" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.ItemLists" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.MemberAccountBlockLog" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.MemberGameInfoes" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.MemberGameInfoStages" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.MemberItemPurchases" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.MemberItems" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.Members" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.Notices" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CBModel.ServerInfo" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CBModel.GiftDepositories" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.ItemLists" Width="1.5" PointX="0.625" PointY="6.75" />
-        <EntityTypeShape EntityType="CBModel.Sessions" Width="1.5" PointX="5.625" PointY="9.375" />
-        <EntityTypeShape EntityType="CBModel.Notices" Width="1.5" PointX="3.125" PointY="8.5" />
-        <EntityTypeShape EntityType="CBModel.Coupon" Width="1.5" PointX="3.125" PointY="0.625" />
-        <EntityTypeShape EntityType="CBModel.CouponMember" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.GameEvents" Width="1.5" PointX="5.125" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.GameEventMember" Width="1.5" PointX="9.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.AdminMembers" Width="1.5" PointX="9.375" PointY="6.75" />
-        <EntityTypeShape EntityType="CBModel.Members" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.MemberItems" Width="1.5" PointX="11.375" PointY="11.75" />
-        <EntityTypeShape EntityType="CBModel.MemberItemPurchases" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="CBModel.MemberGameInfoes" Width="1.5" PointX="13.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.MemberGameInfoStages" Width="1.5" PointX="5.375" PointY="13.75" />
-        <EntityTypeShape EntityType="CBModel.StatsData" Width="1.5" PointX="13.375" PointY="13.75" />
-        <EntityTypeShape EntityType="CBModel.CloudBreadLog" Width="1.5" PointX="7.375" PointY="14.75" />
-        <EntityTypeShape EntityType="CBModel.CloudBreadAdminLog" Width="1.5" PointX="15.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CBModel.CloudBreadErrorLog" Width="1.5" PointX="15.375" PointY="4.75" />
-        <EntityTypeShape EntityType="CBModel.MemberAccountBlockLog" Width="1.5" PointX="15.375" PointY="13.75" />
+        <EntityTypeShape EntityType="CBModel.Sessions" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CBModel.StatsData" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

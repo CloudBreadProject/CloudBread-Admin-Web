@@ -708,12 +708,12 @@
           <Property Name="CouponDurationFrom" Type="DateTimeOffset" Nullable="false" Precision="7" />
           <Property Name="CouponDurationTo" Type="DateTimeOffset" Nullable="false" Precision="7" />
           <Property Name="CreateAdminID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="CouponMember">
           <Key>
@@ -733,11 +733,11 @@
           <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="GameEventMember">
           <Key>
@@ -758,10 +758,10 @@
           <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="GameEvents">
           <Key>
@@ -945,22 +945,22 @@
           <Property Name="StageStat3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StageStat4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StageStat5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="HideYN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="MemberItemPurchases">
           <Key>
@@ -987,23 +987,23 @@
           <Property Name="PurchaseCancelDeviceID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseCancelDeviceIPAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PurchaseCancelDeviceMACAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PurchaseCancelConfirmAdminMemberID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PurchaseCancelConfirmAdminMemberID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="MemberItems">
           <Key>
@@ -1024,61 +1024,61 @@
           <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
             <PropertyRef Name="MemberID" />
           </Key>
-          <Property Name="MemberID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MemberPWD" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="EmailAddress" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="EmailConfirmedYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PhoneNumber1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PhoneNumber2" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PINumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Name1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Name2" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Name3" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DOB" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="RecommenderID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MemberGroup" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastDeviceID" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastIPaddress" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastLoginDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastLogoutDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastMACAddress" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AccountBlockYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AccountBlockEndDT" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="AnonymousYN" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="C3rdAuthProvider" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="C3rdAuthID" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="C3rdAuthParam" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PushNotificationID" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PushNotificationProvider" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PushNotificationGroup" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol3" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol4" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol5" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol6" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol7" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol8" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol9" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="sCol10" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="TimeZoneID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="HideYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DeleteYN" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CreatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="UpdatedAt" Nullable="false" Precision="7" Type="DateTimeOffset" />
-          <Property Name="DataFromRegion" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DataFromRegionDT" Nullable="false" Precision="7" Type="DateTimeOffset" />
+          <Property Name="MemberID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberPWD" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailConfirmedYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PINumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecommenderID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastDeviceID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastIPaddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastLoginDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastLogoutDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastMACAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountBlockYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountBlockEndDT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnonymousYN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C3rdAuthParam" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationID" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationProvider" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PushNotificationGroup" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sCol10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeZoneID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HideYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeleteYN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DataFromRegion" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataFromRegionDT" Type="DateTimeOffset" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Notices">
           <Key>
