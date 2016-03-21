@@ -43,7 +43,10 @@ app.get('*', (req, res) => {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         initDOM(req);
-        await fetchComponent(store.dispatch, renderProps.components, renderProps.params);
+        await fetchComponent(store.dispatch, renderProps.components, {
+          ...renderProps.params,
+          ...req.query,
+        });
         const content = renderToString((
           <Provider store={store}>
             <RouterContext {...renderProps} />

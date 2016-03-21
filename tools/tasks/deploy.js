@@ -11,8 +11,8 @@ async function deploy() {
   // By default deploy to the staging deployment slot
   const remote = {
     name: 'heroku',
-    url: 'https://git.heroku.com/react-universe.git',
-    website: 'https://react-universe.herokuapp.com',
+    url: 'https://beingbook@hbh-cloudbread-inspector.scm.azurewebsites.net:443/hbh-cloudbread-inspector.git',
+    website: 'https://hbh-cloudbread-inspector.azurewebsites.net',
   };
 
   // Initialize a new Git repository inside the '/build' folder

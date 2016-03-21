@@ -16,6 +16,8 @@ import {
   DELETE_RESOURCE_ERROR,
   START_EDIT_RESOURCE,
   STOP_EDIT_RESOURCE,
+  START_FIND_RESOURCE,
+  STOP_FIND_RESOURCE,
   EDIT_RESOURCE,
 } from 'constants/resource';
 
@@ -150,7 +152,7 @@ export function deleteResource({ resourceId, identifier }) {
   };
 }
 
-export function startEditing() {
+export function startEditingResource() {
   if (canUseDOM) {
     return async dispatch => {
       dispatch({
@@ -163,7 +165,7 @@ export function startEditing() {
   };
 }
 
-export function stopEditing() {
+export function stopEditingResource() {
   if (canUseDOM) {
     return async dispatch => {
       dispatch({
@@ -173,5 +175,31 @@ export function stopEditing() {
   }
   return {
     type: STOP_EDIT_RESOURCE,
+  };
+}
+
+export function startFindingResource() {
+  if (canUseDOM) {
+    return async dispatch => {
+      dispatch({
+        type: START_FIND_RESOURCE,
+      });
+    };
+  }
+  return {
+    type: START_FIND_RESOURCE,
+  };
+}
+
+export function stopFindingResource() {
+  if (canUseDOM) {
+    return async dispatch => {
+      dispatch({
+        type: STOP_FIND_RESOURCE,
+      });
+    };
+  }
+  return {
+    type: STOP_FIND_RESOURCE,
   };
 }

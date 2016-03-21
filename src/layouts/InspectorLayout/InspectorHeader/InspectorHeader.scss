@@ -1,4 +1,5 @@
 .InspectorHeader {
+  composes: Transition from "styles/Transition.scss";
   position: fixed;
   top: 0;
   width: 100%;
@@ -8,6 +9,13 @@
   z-index: 1001;
   background: #4285f4;
   color: #fff;
+
+  &.Activated {
+    background: #E64A19;
+  }
+}
+
+.Activated {
 }
 
 .Wrapper {
@@ -18,12 +26,12 @@
 
 .Side {
   min-width: 200px;
-  margin: auto 0;
+  margin: auto 10px;
   display: flex;
 }
 
 .Right {
-  margin-right: 10px;
+  float: right;
 
   > button {
     &:first-child {
@@ -57,5 +65,49 @@
   display: flex;
   box-sizing: border-box;
   width: 66.6%;
-  height: 36px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.Finder {
+  margin: auto 0; padding-left: 40px;
+  display: flex;
+  width: 100%;
+}
+
+.FinderSearch {
+  flex: 3;
+  display: flex;
+  padding: 0 5px;
+}
+
+.FinderSearchField {
+  padding-right: 10px;
+}
+
+.FinderSearchIcon {
+  margin: auto;
+  width: 40px;
+  text-align: center;
+}
+
+.FinderSearchInput {
+  flex: 1;
+}
+
+.FinderDateFilter {
+  flex: 1;
+  display: flex;
+  max-width: 200px;
+
+  > div {
+    flex: 1;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+}
+
+.FinderSort {
+  padding: 0 5px;
+  flex: 1;
 }

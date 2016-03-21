@@ -2,18 +2,11 @@ import React, { PropTypes } from 'react';
 import { getTitle } from 'lib/context';
 import serialize from 'serialize-javascript';
 
-const preventFOUC = `
-#app {
-  visibility: hidden;
-}
-`;
-
 function Html({ children, store, assets }) {
   return (
     <html>
       <head>
         <title>{getTitle()}</title>
-        <style type="text/css">{preventFOUC}</style>
         <link rel="stylesheet" media="all" href={assets.app.css} />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />

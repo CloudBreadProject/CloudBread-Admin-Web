@@ -3,6 +3,7 @@ import {
   HIDE_LOADING,
   SHOW_SNACKBAR_MESSAGE,
   HIDE_SNACKBAR_MESSAGE,
+  UPDATE_TIMEZONE,
   defaultSnackbarShowDuration,
 } from 'constants/display';
 
@@ -13,6 +14,7 @@ const initialState = {
   snackbarActionHandler: null,
   snackbarOpen: false,
   isLoading: false,
+  timezone: 'Asia/Seoul',
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -52,6 +54,13 @@ export default function reducer(state = initialState, action = {}) {
         snackbarActionHandler: null,
         snackbarOpen: false,
       };
+    case UPDATE_TIMEZONE: {
+      const { timezone } = action.payload;
+      return {
+        ...state,
+        timezone,
+      };
+    }
     default:
       return state;
   }

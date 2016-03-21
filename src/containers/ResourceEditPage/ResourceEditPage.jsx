@@ -8,6 +8,8 @@ import {
   editResource,
   updateResource,
   deleteResource,
+  startEditingResource,
+  stopEditingResource,
 } from 'actions/resource';
 import {
   showLoading,
@@ -22,8 +24,6 @@ import Paper from 'material-ui/lib/paper';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 import ModeEdit from 'material-ui/lib/svg-icons/editor/mode-edit';
-import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
-import IconButton from 'material-ui/lib/icon-button';
 
 function mapStateToProps({ editor }) {
   return {
@@ -40,6 +40,8 @@ function mapDispatchToProps(dispatch) {
     showLoading,
     hideLoading,
     showSnackbarMessage,
+    startEditingResource,
+    stopEditingResource,
   }, dispatch);
 }
 
@@ -68,6 +70,8 @@ class ResourceViewPage extends Component {
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
+    startEditingResource: PropTypes.func,
+    stopEditingResource: PropTypes.func,
   };
 
   constructor() {
@@ -78,7 +82,6 @@ class ResourceViewPage extends Component {
     this.handleClickActionDelete = this.handleClickActionDelete.bind(this);
     this.handleChangeInputBound = {};
     this.handleToggleSwitchBound = {};
-    this.handleTapBack = this.handleTapBack.bind(this);
   }
 
   componentWillMount() {
@@ -107,7 +110,12 @@ class ResourceViewPage extends Component {
         this.handleChangeInputBound[field.name] = this.handleChangeInput(field.name);
       }
     }
+    this.props.startEditingResource();
     this.forceUpdate();
+  }
+
+  componentWillUnmount() {
+    this.props.stopEditingResource();
   }
 
   render() {
@@ -139,14 +147,6 @@ class ResourceViewPage extends Component {
                 fontWeight: 400,
               }}
             >
-              <IconButton
-                style={{
-                  marginRight: '5px',
-                }}
-                onTouchTap={this.handleTapBack}
-              >
-                <ArrowBack />
-              </IconButton>
               {identifier} of {resourceId}
             </h1>
             <Divider />
@@ -318,10 +318,6 @@ class ResourceViewPage extends Component {
         value: resource[field] === 'Y' ? 'N' : 'Y',
       });
     };
-  }
-
-  handleTapBack() {
-    this.context.router.goBack();
   }
 }
 

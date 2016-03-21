@@ -2,6 +2,7 @@ import {
   sortable,
   readonly,
   boolean,
+  datetime,
   Resource,
 } from '../types';
 
@@ -165,6 +166,7 @@ const Members = new Resource({
     CreatedAt: {
       readonly,
       sortable,
+      datetime,
     },
     UpdatedAt: {
       readonly,

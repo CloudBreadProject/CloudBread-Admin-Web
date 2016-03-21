@@ -1,6 +1,7 @@
 export const sortable = true;
 export const readonly = true;
 export const boolean = true;
+export const datetime = true;
 
 export class Resource {
   constructor(resource) {

@@ -1,10 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ResourceFindPage.scss';
+import momentTZ from 'moment-timezone';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { loadResources } from 'actions/resource';
+import {
+  loadResources,
+  startFindingResource,
+  stopFindingResource,
+} from 'actions/resource';
 import {
   showLoading,
   hideLoading,
@@ -18,9 +23,10 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 import Divider from 'material-ui/lib/divider';
 
-function mapStateToProps({ finder }) {
+function mapStateToProps({ finder, display }) {
   return {
     ...finder,
+    timezone: display.timezone,
   };
 }
 
@@ -29,6 +35,8 @@ function mapDispatchToProps(dispatch) {
     loadResources,
     showLoading,
     hideLoading,
+    startFindingResource,
+    stopFindingResource,
   }, dispatch);
 }
 
@@ -57,6 +65,9 @@ class ResourceFindPage extends Component {
     hideLoading: PropTypes.func,
     primaryKey: PropTypes.string,
     isLoaded: PropTypes.bool,
+    startFindingResource: PropTypes.func,
+    stopFindingResource: PropTypes.func,
+    timezone: PropTypes.string,
   };
 
   constructor() {
@@ -71,6 +82,11 @@ class ResourceFindPage extends Component {
       await this.props.loadResources(params);
       this.props.hideLoading();
     }
+    this.props.startFindingResource();
+  }
+
+  componentWillUnmount() {
+    this.props.stopFindingResource();
   }
 
   render() {
@@ -119,13 +135,17 @@ class ResourceFindPage extends Component {
   }
 
   renderBodyCells() {
-    const { resources, showFields } = this.props;
+    const { resources, showFields, timezone } = this.props;
     return resources.map((resource, key) => {
       function renderColumn(field, key2) {
+        let value = resource[field.name];
+        if (field.datetime) {
+          value = momentTZ(value).tz(timezone).format();
+        }
         return (
           <TableRowColumn
             key={key2}
-            children={resource[field.name]}
+            children={value}
           />
         );
       }

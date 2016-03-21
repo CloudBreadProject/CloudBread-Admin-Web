@@ -18,6 +18,8 @@ import {
   FIND_RESOURCES_SUCCESS,
   FIND_RESOURCES_ERROR,
   DELETE_RESOURCE_SUCCESS,
+  START_FIND_RESOURCE,
+  STOP_FIND_RESOURCE,
 } from 'constants/resource';
 
 export default function reducer(state = initialState, action = {}) {
@@ -83,6 +85,18 @@ export default function reducer(state = initialState, action = {}) {
         };
       }
       return state;
+    }
+    case START_FIND_RESOURCE: {
+      return {
+        ...state,
+        isFinding: true,
+      };
+    }
+    case STOP_FIND_RESOURCE: {
+      return {
+        ...state,
+        isFinding: false,
+      };
     }
     default:
       return state;

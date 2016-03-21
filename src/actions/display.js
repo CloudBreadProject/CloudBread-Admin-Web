@@ -3,6 +3,7 @@ import {
   HIDE_SNACKBAR_MESSAGE,
   SHOW_LOADING,
   HIDE_LOADING,
+  UPDATE_TIMEZONE,
   defaultSnackbarShowDuration,
 } from 'constants/display';
 
@@ -38,5 +39,14 @@ export function showLoading() {
 export function hideLoading() {
   return {
     type: HIDE_LOADING,
+  };
+}
+
+export function updateTimezone(timezone) {
+  return {
+    type: UPDATE_TIMEZONE,
+    payload: {
+      timezone,
+    },
   };
 }

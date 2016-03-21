@@ -38,8 +38,7 @@ class App extends Component {
     this.handleRequestSnackbarClose = this.handleRequestSnackbarClose.bind(this);
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     const {
@@ -52,7 +51,9 @@ class App extends Component {
       isLoading,
     } = this.props;
     return (
-      <div className={styles.App}>
+      <div
+        className={styles.App}
+      >
         {children}
         <Snackbar
           open={snackbarOpen}
