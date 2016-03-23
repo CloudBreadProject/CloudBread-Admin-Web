@@ -5,8 +5,9 @@ import { queryToObject } from 'lib/util';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signout } from 'reducers/user';
-import { showSnackbarMessage } from 'reducers/display';
+import { signout } from 'actions/user';
+import { showSnackbarMessage } from 'actions/display';
+import { loadResources } from 'actions/resource';
 
 import Link from 'react-router/lib/Link';
 
@@ -27,6 +28,8 @@ function mapStateToProps({ editor, finder, display }) {
     isEditingResource: editor.isEditing,
     isFindingResource: finder.isFinding,
     isLoading: display.isLoading,
+    searchFields: finder.searchFields,
+    resourceId: finder.resourceId,
   };
 }
 
@@ -34,6 +37,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     signout,
     showSnackbarMessage,
+    loadResources,
   }, dispatch);
 }
 
@@ -48,6 +52,13 @@ class InspectorHeader extends Component {
     isEditingResource: PropTypes.bool,
     isFindingResource: PropTypes.bool,
     isLoading: PropTypes.bool,
+    searchFields: PropTypes.array,
+    resourceId: PropTypes.string,
+    loadResources: PropTypes.func,
+  };
+
+  static defaultProps = {
+    searchFields: [],
   };
 
   constructor() {
@@ -60,20 +71,45 @@ class InspectorHeader extends Component {
     this.handleClickBack = this.handleClickBack.bind(this);
     this.handleChangeToDate = this.handleChangeToDate.bind(this);
     this.handleChangeFromDate = this.handleChangeFromDate.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleChangeSearchField = this.handleChangeSearchField.bind(this);
+    this.handleChangeLocation = this.handleChangeLocation.bind(this);
   }
 
   componentDidMount() {
+    this.context.router.listen(this.handleChangeLocation);
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     const {
       isFindingResource,
       isEditingResource,
+      searchFields,
     } = nextProps;
 
+    const { searchField, needToUpdateNewResource } = this.state || {};
+    const query = queryToObject(window.location.href);
+    const {
+      search,
+      sort,
+      toDate, fromDate,
+    } = query;
     this.setState({
+      search,
+      searchField: searchFields.indexOf(searchField) + 1,
+      sort: sort === 'desc' ? 2 : 1,
+      toDate: toDate ? new Date(toDate) : undefined,
+      fromDate: fromDate ? new Date(fromDate) : undefined,
       isActivated: isFindingResource || isEditingResource,
     });
+    this.forceUpdate();
+    if (needToUpdateNewResource) {
+      await this.reloadResources();
+    }
+  }
+
+  handleChangeLocation(event, tt) {
+    console.log('fwefew', event, tt);
   }
 
   render() {
@@ -155,7 +191,13 @@ class InspectorHeader extends Component {
   renderContent() {
     const {
       isFindingResource,
+      searchFields,
     } = this.props;
+    const {
+      searchField,
+      sort,
+      toDate, fromDate,
+    } = this.state || {};
     if (isFindingResource) {
       return (
         <div className={styles.Finder}>
@@ -165,16 +207,16 @@ class InspectorHeader extends Component {
             </div>
             <div className={styles.FinderSearchField}>
               <SelectField
-                value={1}
+                value={searchField || 1}
                 labelStyle={{
                   color: '#fff',
                 }}
                 style={{
-                  width: 'auto',
+                  width: '100%',
                 }}
+                onChange={this.handleChangeSearchField}
               >
-                <MenuItem value={0} primaryText="MemberID" />
-                <MenuItem value={1} primaryText="EmailAddress" />
+                {searchFields.map(this.renderSearchFields)}
               </SelectField>
             </div>
             <div className={styles.FinderSearchInput}>
@@ -195,32 +237,37 @@ class InspectorHeader extends Component {
           </div>
           <div className={styles.FinderSort}>
             <SelectField
-              value={1}
+              value={sort || 1}
               labelStyle={{
                 color: '#fff',
               }}
               style={{
                 width: 'auto',
               }}
+              onChange={this.handleChangeSort}
             >
-              <MenuItem value={0} primaryText="Ascending order" />
-              <MenuItem value={1} primaryText="Descending order" />
+              <MenuItem value={1} primaryText="Ascending order" />
+              <MenuItem value={2} primaryText="Descending order" />
             </SelectField>
           </div>
           <div className={styles.FinderDateFilter}>
             <DatePicker
               hintText="From"
-              textFieldStyle={{
+              inputStyle={{
                 color: '#ffffff',
               }}
               onChange={this.handleChangeFromDate}
+              value={fromDate}
+              maxDate={toDate}
             />
             <DatePicker
               hintText="To"
-              textFieldStyle={{
+              inputStyle={{
                 color: '#ffffff',
               }}
               onChange={this.handleChangeToDate}
+              value={toDate}
+              minDate={fromDate}
             />
           </div>
         </div>
@@ -229,15 +276,8 @@ class InspectorHeader extends Component {
     return '';
   }
 
-  changePath({ query }) {
-    const _query = {
-      ...queryToObject(window.location.search),
-      ...query,
-    };
-    this.context.router.push({
-      pathname: window.location.pathname,
-      query: _query,
-    });
+  renderSearchFields(field, key) {
+    return <MenuItem key={key} value={key + 1} primaryText={field} />;
   }
 
   handleChangeToDate(event, date) {
@@ -256,6 +296,23 @@ class InspectorHeader extends Component {
     });
   }
 
+  handleChangeSearchField(event, value) {
+    const { searchFields } = this.props;
+    this.changePath({
+      query: {
+        field: searchFields[value],
+      },
+    });
+  }
+
+  handleChangeSort(event, value) {
+    this.changePath({
+      query: {
+        sort: value === 0 ? 'asc' : 'desc',
+      },
+    });
+  }
+
   handleClickSignOut() {
     this.props.signout();
     this.context.router.push('/auth');
@@ -266,6 +323,43 @@ class InspectorHeader extends Component {
 
   handleClickBack() {
     this.context.router.goBack();
+  }
+
+  async changePath({ query }) {
+    const _query = {
+      ...queryToObject(window.location.search),
+      ...query,
+    };
+    this.setState({
+      needToUpdateNewResource: true,
+    });
+    await this.reloadResources();
+    this.context.router.push({
+      pathname: window.location.pathname,
+      query: _query,
+    });
+  }
+
+  async reloadResources() {
+    const { resourceId } = this.props;
+    const {
+      field, search,
+      toDate, fromDate,
+      sort,
+    } = this.state || {};
+    await this.props.loadResources({
+      resourceId,
+      field, search,
+      toDate, fromDate,
+      sort: sort === 'desc' ? 2 : 1,
+    });
+    this.setState({
+      needToUpdateNewResource: false,
+    });
+  }
+
+  syncLocation() {
+
   }
 }
 

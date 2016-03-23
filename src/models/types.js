@@ -14,6 +14,7 @@ export class Resource {
     this.primaryKey = resource.primaryKey;
     this.fieldGroup = resource.fieldGroup;
     this.schemaArray = [];
+    this.searchFields = resource.searchFields;
 
     for (const key in this.schema) {
       if (typeof(this.schema[key]) === 'object') {

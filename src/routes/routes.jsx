@@ -9,6 +9,7 @@ import HomePage from 'containers/HomePage';
 import ContentPage from 'containers/ContentPage';
 import ResourceFindPage from 'containers/ResourceFindPage';
 import ResourceEditPage from 'containers/ResourceEditPage';
+import AnalystPage from 'containers/AnalystPage';
 
 import AuthRoute from 'routes/AuthRoute';
 
@@ -20,6 +21,7 @@ const routeContainer = (
       <Route path="editor/:resourceId" component={ResourceEditPage} />
       <Route path="editor/:resourceId/:identifier" component={ResourceEditPage} />
       <Route path="page/:pageId" component={ContentPage} />
+      <Route path="analyst" component={AnalystPage} />
     </Route>
     {AuthRoute}
   </Route>

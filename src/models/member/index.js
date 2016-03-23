@@ -24,6 +24,14 @@ const Members = new Resource({
     // 'UpdatedAt',
   ],
   primaryKey: 'MemberID',
+  searchFields: [
+    'MemberID',
+    'EmailAddress',
+    'Name1',
+    'LastDeviceID',
+    '3rdAuthID',
+    'PushNotificationID',
+  ],
   fieldGroup: [
     {
       name: 'Credentials',

@@ -21,7 +21,13 @@ import {
   EDIT_RESOURCE,
 } from 'constants/resource';
 
-export function loadResources({ resourceId }) {
+export function loadResources({
+  resourceId, // target resource
+  fromDate, toDate, // resource date range
+  field, search, // field and word to search resource
+  sort, // sorting
+  skip, limit, // paging
+}) {
   return async dispatch => {
     try {
       const model = models[resourceId];
@@ -33,11 +39,35 @@ export function loadResources({ resourceId }) {
         title,
         description,
         primaryKey,
+        searchFields,
       } = model;
       dispatch({
         type: FIND_RESOURCES_REQUEST,
       });
-      const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&$top=30`);
+      let $filter = '';
+      const $orderBy = sort || 'CreatedAt desc';
+      const $skip = skip || 0;
+      const $top = limit || 30;
+      function addCondition(condition) { // eslint-disable-line no-inner-declarations
+        if ($filter) {
+          $filter += ' and ';
+        }
+        $filter += condition;
+      }
+      if (fromDate) {
+        addCondition(`CreatedAt ge datetimeoffset'${fromDate}'`);
+      }
+      if (toDate) {
+        addCondition(`CreatedAt le datetimeoffset'${toDate}'`);
+      }
+      if (search && field) {
+        addCondition(`${field} eq '${search}'`);
+      }
+      let query = `orderby=${$orderBy}&$skip=${$skip}&$top=${$top}`;
+      if ($filter) {
+        query += `&$filter=${$filter}`;
+      }
+      const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&${query}`);
       dispatch({
         type: FIND_RESOURCES_SUCCESS,
         payload: {
@@ -48,6 +78,7 @@ export function loadResources({ resourceId }) {
           primaryKey,
           title,
           description,
+          searchFields,
         },
       });
     } catch (error) {

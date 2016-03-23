@@ -3,6 +3,7 @@ const initialState = {
   resources: [],
   showFields: [],
   primaryKey: '',
+  searchFields: [],
   showResources: 20,
   allArticles: 0,
   isRequesting: false,
@@ -36,6 +37,7 @@ export default function reducer(state = initialState, action = {}) {
         resourceId: '',
         showFields: [],
         isLoaded: false,
+        searchFields: [],
       };
     case FIND_RESOURCES_SUCCESS: {
       const {
@@ -46,6 +48,7 @@ export default function reducer(state = initialState, action = {}) {
         title,
         description,
         primaryKey,
+        searchFields,
       } = action.payload;
       return {
         ...state,
@@ -57,6 +60,7 @@ export default function reducer(state = initialState, action = {}) {
         primaryKey,
         resourceId,
         showFields,
+        searchFields,
         isLoaded: true,
       };
     }

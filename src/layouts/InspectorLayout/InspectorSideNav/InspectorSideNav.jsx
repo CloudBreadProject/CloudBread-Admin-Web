@@ -32,6 +32,10 @@ class InspectorSideNav extends Component {
         primaryText: 'Member',
         to: '/finder/Members',
         leftIcon: <People />,
+      }, {
+        primaryText: 'Monitor',
+        to: '/analyst',
+        leftIcon: <DataUsage />,
       },
     ];
     return (
@@ -45,7 +49,6 @@ class InspectorSideNav extends Component {
           <ListItem primaryText="Event" leftIcon={<ActionGrade />} />
           <ListItem primaryText="Gift" leftIcon={<ContentDrafts />} />
           <ListItem primaryText="Activity" leftIcon={<ContentInbox />} />
-          <ListItem primaryText="Monitor" leftIcon={<DataUsage />} />
         </List>
         <Divider />
         <List>
