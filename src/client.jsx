@@ -25,7 +25,6 @@ function run() {
     ),
     appContainer
   );
-  appContainer.style.visibility = 'initial';
 }
 
 if (['complete', 'loaded', 'interactive'].includes(document.readyState) && document.body) {

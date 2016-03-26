@@ -1,20 +1,24 @@
 /* eslint no-console: 0 */
 import { resolve } from 'path';
 import express from 'express';
+
+// render components
 import React from 'react';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import fetchComponent from 'redux/fetchComponent';
 import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
-import PrettyError from 'pretty-error';
-import fetchComponent from 'redux/fetchComponent';
 import routes from 'routes';
+import PrettyError from 'pretty-error';
 import Html from 'components/Html';
 import { initDOM, setStore } from 'lib/context';
-import api from 'api';
 import assets from './assets.json';
+
+// bind API endpoint
+import api from 'api';
 
 const ROOT = resolve(__dirname, '.');
 const app = express();

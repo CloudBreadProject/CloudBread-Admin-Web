@@ -1,5 +1,3 @@
-import fetch from 'lib/fetch';
-
 import {
   LOAD_PAGE_LOADING,
   LOAD_PAGE_ERROR,
