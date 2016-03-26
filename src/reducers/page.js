@@ -1,9 +1,11 @@
 import fetch from 'lib/fetch';
 
-export const LOAD_PAGE_LOADING = 'LOAD_PAGE_LOADING';
-export const LOAD_PAGE_SUCCESS = 'LOAD_PAGE_SUCCESS';
-export const LOAD_PAGE_ERROR = 'LOAD_PAGE_ERROR';
-export const UNLOAD_PAGE = 'UNLOAD_PAGE';
+import {
+  LOAD_PAGE_LOADING,
+  LOAD_PAGE_ERROR,
+  LOAD_PAGE_SUCCESS,
+  UNLOAD_PAGE,
+} from 'constants/page';
 
 export const initialState = {
   isLoading: false,
@@ -45,33 +47,4 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function unloadPage() {
-  return {
-    type: UNLOAD_PAGE,
-  };
-}
-
-export function loadPage({ pageId }) {
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: LOAD_PAGE_LOADING,
-      });
-      const query = `{ page (path: "${pageId}") { title, content } }`;
-      const res = await fetch.get(`/graphql?query=${query}`);
-      const { content, title } = res.body.data.page;
-      return dispatch({
-        type: LOAD_PAGE_SUCCESS,
-        content,
-        title,
-      });
-    } catch (error) {
-      return dispatch({
-        type: LOAD_PAGE_ERROR,
-        error: 'Failed to load page',
-      });
-    }
-  };
 }

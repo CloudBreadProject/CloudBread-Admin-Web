@@ -1,0 +1,3 @@
+export const GET_STAR_LOADING = 'GET_STAR_LOADING';
+export const GET_STAR_SUCCESS = 'GET_STAR_SUCCESS';
+export const GET_STAR_ERROR = 'GET_STAR_ERROR';

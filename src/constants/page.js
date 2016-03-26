@@ -1,0 +1,4 @@
+export const LOAD_PAGE_LOADING = 'LOAD_PAGE_LOADING';
+export const LOAD_PAGE_SUCCESS = 'LOAD_PAGE_SUCCESS';
+export const LOAD_PAGE_ERROR = 'LOAD_PAGE_ERROR';
+export const UNLOAD_PAGE = 'UNLOAD_PAGE';

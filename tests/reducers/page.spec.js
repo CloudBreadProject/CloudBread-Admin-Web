@@ -1,10 +1,10 @@
-import reducer, {
-  initialState,
+import reducer, { initialState } from 'reducers/page';
+import {
   LOAD_PAGE_LOADING,
   LOAD_PAGE_ERROR,
   LOAD_PAGE_SUCCESS,
   UNLOAD_PAGE,
-} from 'reducers/page';
+} from 'constants/page';
 
 describe('page reducer', () => {
   it('returns initial state', () => {
