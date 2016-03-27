@@ -24,8 +24,8 @@ Quick start package for [React](https://facebook.github.io/react/) Universal(Iso
 ## References
 
 * [Get Started](./docs/getting-started.md)
-* [Directory map](./docs/directory-map.md)
 * [Development Guideline](./docs/guideline.md)
+* [Directory map](./docs/directory-map.md)
 
 ## Demo
 

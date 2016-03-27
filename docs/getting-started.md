@@ -77,3 +77,7 @@ git fetch react-kit
 git merge react-kit/master
 npm i
 ```
+
+Done all above?
+Then now is time to develop something.
+See [Development Guideline](./docs/guideline.md)

@@ -7,7 +7,7 @@ Please share the idea and make people stop suffering!*
 
 ## Webpack Configurations
 Webpack configuration file is at `./tools/config.js`.
-Default resolve path is './src'.
+Default resolve path is `./src`.
 So you can ref some files with relative path even if the file depth is too deep.
 
 * Server entry file: `./src/server.jsx`.
@@ -103,7 +103,7 @@ async function deleteUserById(id, data) {
 ## Expand API
 
 ### Express middleware
-In `./src/api` directory
+In `./src/api` directory, you can add some api routes.
 
 ```js
 // something.js
@@ -144,6 +144,55 @@ To modify routes, you need to read [react-router reference](https://github.com/r
 
 ### React Component
 
+#### Pure Component (Stateless Component)
+```js
+import React from 'react';
+
+function PureComponent(...props) {
+  return (
+    <div>Render contents</div>
+  );
+}
+
+PureComponent.propTypes = { ... };
+PureComponent.defaultProps = { ... };
+PureComponent.contextTypes = { ... };
+```
+
+*HMR doesn't support pure component.*
+
+#### State Component
+```js
+import React, { Component } from 'react';
+
+class StateComponent extends Component {
+  static propTypes = { ... };
+  static defaultProps = { ... };
+  static contextTypes = { ... };
+
+  componentWillMount() {
+    // ...
+  }
+
+  componentDidMount() {
+    // ...
+  }
+
+  componentWillUnmount() {
+    // ...
+  }
+
+  render() {
+    return (
+      <div>Render contents.</div>
+    );
+  }
+}
+```
+If you don't need state or lifecycle callback,
+pure component is better.
+It makes your application very light.
+
 ## Redux Guideline
 * `./src/actions`: action creators
 * `./src/constants`: action constants
@@ -153,7 +202,7 @@ Our store has `redux-thunk` middleware.
 In development, `redux-logger` is included.
 You can add middlewares. See `./src/redux/middlewares`.
 
-### Basic
+### Basic Usage
 
 ```js
 // ./src/constants/some.js
@@ -167,18 +216,25 @@ import { SOME_ACTION_CONSTANT } from 'constants/some';
 export function someAction() {
   return {
     type: SOME_ACTION_CONSTANT,
+    // you can pass some arguments
+    payload: { ... },
+    data: { ... },
   };
 }
 ```
 
 ```js
 // ./src/reducers/some.js
-export default function reducer(state = { ...initialState }, action = {}) {
+const initialState = {
+  count: 0,
+};
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SOME_ACTION_CONSTANT: {
-      const { ... } = action.payload;
+      const { ... } = action.payload; // you can receive some arguments.
       return {
         ...state,
+        count: state.count + 1,
       };
     }
     default: {
@@ -191,4 +247,50 @@ export default function reducer(state = { ...initialState }, action = {}) {
 ```js
 // ./src/reducers/index.js
 export some from './some';
+```
+
+```js
+// ./src/components/SomeComponent/SomeComponent.jsx
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { someAction } from 'actions/some';
+
+function mapStateToProps(state) {
+  return {
+    count: state.some.count,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    someAction,
+  }, dispatch);
+}
+
+function SomeComponent({ count, someAction }) {
+  return (
+    <div>
+      <p>I am pure component. I did some action {count} times!</p>
+      <button onClick={someAction}>Some Action</button>
+    </div>
+  );
+}
+
+SomeComponent.propTypes = {
+  count: PropTypes.number,
+  someAction: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SomeComponent);
+```
+
+### Server side prefetch data
+Some components need to fetch data before serving to clients.
+You can set `needs` property to pre-fetch data.
+
+```js
+SomeComponent.needs = [
+  someAction,
+];
 ```

@@ -7,7 +7,7 @@ import { DEBUG, ROOT } from '../config';
 
 function ncpAsync(origin, carry) {
   return new Promise((resolve, reject) => {
-    ncp(origin, carry, (err) => err ? reject(err) : resolve());
+    ncp(origin, carry, (err) => (err ? reject(err) : resolve()));
   });
 }
 
