@@ -4,6 +4,7 @@ import schema from 'schema';
 
 const router = Router();
 
+// bind graphql
 router.use('/graphql', graphqlHTTP({
   schema,
   pretty: process.env.NODE_ENV !== 'production',
