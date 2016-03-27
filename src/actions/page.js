@@ -1,4 +1,4 @@
-import fetch from 'lib/fetch';
+import fetch from 'core/fetch';
 
 import {
   LOAD_PAGE_LOADING,

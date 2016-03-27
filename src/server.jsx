@@ -14,7 +14,7 @@ import reducer from 'redux/reducer';
 import routes from 'routes';
 import PrettyError from 'pretty-error';
 import Html from 'components/Html';
-import { initDOM, setStore } from 'lib/context';
+import { initDOM, setStore } from 'core/context';
 import assets from './assets.json';
 
 // serve static public assets
@@ -32,7 +32,7 @@ if (__DEV__) {
 }
 
 // bind API endpoint
-app.use('/api', require('api'));
+app.use('/api', require('api').default);
 
 // serve client
 app.get('*', (req, res) => {

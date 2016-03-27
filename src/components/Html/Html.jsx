@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { getTitle } from 'lib/context';
+import { getTitle } from 'core/context';
 import serialize from 'serialize-javascript';
 
 function Html({ children, store, assets }) {

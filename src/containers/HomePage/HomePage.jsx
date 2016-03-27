@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HomePage.scss';
-import { setTitle } from 'lib/context';
+import { setTitle } from 'core/context';
 import { getStars } from 'actions/github';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

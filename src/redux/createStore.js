@@ -1,6 +1,6 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { canUseDOM } from 'lib/env';
+import { canUseDOM } from 'core/env';
 
 export default function createStore(history, reducers, data) {
   const middlewares = [

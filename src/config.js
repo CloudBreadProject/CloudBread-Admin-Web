@@ -1,4 +1,4 @@
-import { canUseDOM } from 'lib/env';
+import { canUseDOM } from 'core/env';
 
 global.__DEV__ = global.__DEV__ ? __DEV__ : false;
 

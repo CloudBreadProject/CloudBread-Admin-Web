@@ -3,7 +3,7 @@ import styles from './ContentPage.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loadPage, unloadPage } from 'actions/page';
-import { setTitle } from 'lib/context';
+import { setTitle } from 'core/context';
 import Loading from 'components/Loading';
 
 function mapStateToProps(state) {

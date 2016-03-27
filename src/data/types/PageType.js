@@ -2,7 +2,7 @@ import {
   NonNull,
   ObjectType,
   StringType,
-} from 'schema/lib';
+} from 'data/types';
 
 const ContentType = new ObjectType({
   name: 'Page',

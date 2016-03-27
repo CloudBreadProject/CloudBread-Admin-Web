@@ -1,10 +1,10 @@
+import fetch from 'core/fetch';
+
 import {
   GET_STAR_LOADING,
   GET_STAR_SUCCESS,
   GET_STAR_ERROR,
 } from 'constants/github';
-
-import fetch from 'lib/fetch';
 
 export const GITHUB_API_STARS = 'https://api.github.com/repos/Beingbook/react-universal-starter-kit/stargazers';
 

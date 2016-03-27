@@ -1,9 +1,10 @@
 import {
   StringType,
   NonNull,
-} from 'schema/lib';
+} from 'data/types';
 
-import PageType from 'schema/types/PageType';
+import PageType from 'data/types/PageType';
+
 import jade from 'jade';
 import fm from 'front-matter';
 import { resolve as pathResolve } from 'path';
