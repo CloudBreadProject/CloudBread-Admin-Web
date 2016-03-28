@@ -1,7 +1,7 @@
 import browserSync from 'browser-sync';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackDevMiddleware from 'webpack-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import { webpackServer, webpackClient, stats, DEV_PORT } from '../config';
 import run from '../lib/run';
 import serve from './serve';
@@ -9,28 +9,34 @@ import clean from './clean';
 import copy from './copy';
 
 function _dev() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const webpackPackage = [webpackClient, webpackServer];
     const bundler = webpack(webpackPackage);
-    const hotMiddlewares = bundler.compilers
-      .filter(compiler => compiler.options.target !== 'node')
-      .map(compiler => webpackHotMiddleware(compiler));
-    const wpMiddleware = webpackDevMiddleware(bundler, {
+    const clientBundle = webpack(webpackClient);
+
+    const devMiddleware = webpackDevMiddleware(clientBundle, {
       publicPath: '/',
       stats,
     });
-    let bs;
-    bundler.plugin('done', async () => {
-      if (!bs) {
+
+    const hotMiddleware = webpackHotMiddleware(clientBundle);
+
+    let runCount = 0;
+
+    bundler.watch({
+      aggregateTimeout: 200,
+    }, async (err, result) => {
+      if (err) {
+        return reject(err);
+      }
+      console.log(result.toString(stats));
+      if (++runCount === webpackPackage.length) {
         await run(serve);
-        bs = browserSync.create();
+        const bs = browserSync.create();
         bs.init({
           proxy: {
             target: `localhost:${DEV_PORT}`,
-            middleware: [
-              wpMiddleware,
-              ...hotMiddlewares,
-            ],
+            middleware: [devMiddleware, hotMiddleware],
           },
         }, resolve);
       }
