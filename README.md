@@ -10,10 +10,10 @@ Quick start package for [React](https://facebook.github.io/react/) Universal(Iso
 
 ## Stacks
 
-* [Webpack](https://webpack.github.io/) compiles your application with useful loaders.
-* [BabelJS](http://babeljs.io/) enables you to write ES2015 + ES7 spec javascript.
+* [Webpack](https://webpack.github.io/) compiles your application with useful loaders which makes your code very flexiable.
+* [BabelJS](http://babeljs.io/) enables you to write ES2015 + ES7 spec javascript (as a loader)
 * [React 0.14.x](https://facebook.github.io/react/) for better UI.
-* [Redux](http://redux.js.org/) and [react-redux-router](https://github.com/reactjs/react-router-redux) manages data flow.
+* [Redux](http://redux.js.org/) and [react-redux-router](https://github.com/reactjs/react-router-redux) allow your application to become huge.
 * [GraphQL](http://graphql.org) provides data as client desired.
 * [HMR](https://webpack.github.io/docs/hot-module-replacement.html) for better debugging
 * [Karma](https://karma-runner.github.io/0.13/index.html) and [Mocha](https://github.com/mochajs/mocha) to test

@@ -9,25 +9,15 @@ export default function createStore(history, reducers, data) {
 
   let finalCreateStore;
   if (__DEV__ && canUseDOM) {
-    middlewares.concat([
-    ]);
     finalCreateStore = compose(
       applyMiddleware(...middlewares, require('redux-logger')()),
+      typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f,
     )(_createStore);
   } else {
     finalCreateStore = applyMiddleware(...middlewares)(_createStore);
   }
 
   const store = finalCreateStore(reducers, data);
-
-  if (__DEV__ && canUseDOM) {
-    // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
-    if (module.hot) {
-      module.hot.accept('reducers', () =>
-        store.replaceReducer(require('reducers').default)
-      );
-    }
-  }
 
   return store;
 }

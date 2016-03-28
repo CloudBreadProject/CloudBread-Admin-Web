@@ -14,7 +14,7 @@ export const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_PAGE_LOADING:
+    case LOAD_PAGE_LOADING: {
       return {
         ...state,
         isLoading: true,
@@ -22,27 +22,34 @@ export default function reducer(state = initialState, action = {}) {
         content: '',
         error: null,
       };
-    case LOAD_PAGE_ERROR:
+    }
+    case LOAD_PAGE_ERROR: {
+      const { error } = action;
       return {
         ...state,
         isLoading: false,
-        error: action.error,
+        error,
       };
-    case LOAD_PAGE_SUCCESS:
+    }
+    case LOAD_PAGE_SUCCESS: {
+      const { content, title } = action;
       return {
         ...state,
         isLoading: false,
-        content: action.content,
-        title: action.title,
+        content,
+        title,
       };
-    case UNLOAD_PAGE:
+    }
+    case UNLOAD_PAGE: {
       return {
         ...state,
         content: '',
         title: '',
         error: null,
       };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }

@@ -65,7 +65,7 @@ If you need to authenticate or bring api end point for your data fetcher,
 You can get store's state, like:
 ```js
 const store = getStore();
-const state = getState();
+const state = store.getState();
 const { user, config } = state;
 const { accessToken } = user;
 const { apiEndPoint } = config;

@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loadPage, unloadPage } from 'actions/page';
 import { setTitle } from 'core/context';
-import Loading from 'components/Loading';
 
 function mapStateToProps(state) {
   return {
@@ -57,7 +56,7 @@ class ContentPage extends Component {
   }
 
   render() {
-    const { content, title, isLoading, error } = this.props;
+    const { content, title, error } = this.props;
     setTitle(title);
 
     if (error) {
@@ -73,10 +72,9 @@ class ContentPage extends Component {
         <div
           className={styles.ContentPage}
           dangerouslySetInnerHTML={{
-            __html: content || error,
+            __html: content,
           }}
         />
-        <Loading show={isLoading} />
       </div>
     );
   }

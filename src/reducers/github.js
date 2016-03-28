@@ -12,25 +12,31 @@ export const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case GET_STAR_LOADING:
+    case GET_STAR_LOADING: {
       return {
         ...state,
         isLoading: true,
         error: null,
       };
-    case GET_STAR_SUCCESS:
+    }
+    case GET_STAR_SUCCESS: {
+      const { stars } = action;
       return {
         ...state,
         isLoading: false,
-        stars: action.stars,
+        stars,
       };
-    case GET_STAR_ERROR:
+    }
+    case GET_STAR_ERROR: {
+      const { error } = action;
       return {
         ...state,
         isLoading: false,
-        error: action.error,
+        error,
       };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
