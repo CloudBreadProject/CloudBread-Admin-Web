@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react';
-import { getTitle } from 'core/context';
 import serialize from 'serialize-javascript';
+import Helmet from 'react-helmet';
 
 function Html({ children, store, assets }) {
+  const head = Helmet.rewind();
   return (
-    <html>
+    <html {...head.htmlAttributes.toComponent()}>
       <head>
-        <title>{getTitle()}</title>
+        {head.title.toComponent()}
+        {head.meta.toComponent()}
+        {head.link.toComponent()}
+        {head.base.toComponent()}
         <link rel="stylesheet" media="all" href={assets.app.css} />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
@@ -18,6 +20,7 @@ function Html({ children, store, assets }) {
             __html: `window.__SYNC_DATA = ${serialize(store.getState())};`,
           }}
         />
+        {head.script.toComponent()}
         <script src={assets.app.js} />
       </body>
     </html>

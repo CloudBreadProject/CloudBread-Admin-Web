@@ -29,6 +29,6 @@ describe('<HomePage />', () => {
 
   it('renders error message', () => {
     const wrapper = shallow(<HomePage error={{ error: 'error' }} />);
-    expect(wrapper.children().type()).to.equal('p');
+    expect(wrapper.children('p')).to.have.length(1);
   });
 });

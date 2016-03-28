@@ -7,7 +7,6 @@ if (global && !global.navigator) {
   };
 }
 
-let _title = '';
 let _store = null;
 
 export function initDOM(req) {
@@ -15,20 +14,7 @@ export function initDOM(req) {
     navigator.userAgent = req.headers['user-agent'];
   }
 
-  _title = '';
   _store = null;
-}
-
-export function getTitle() {
-  return _title;
-}
-
-export function setTitle(title) {
-  _title = title;
-
-  if (canUseDOM) {
-    document.title = _title;
-  }
 }
 
 export function setStore(store) {

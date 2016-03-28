@@ -1,22 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HomePage.scss';
-import { setTitle } from 'core/context';
-import { getStars } from 'actions/github';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getStars } from 'actions/github';
+import { showLoading, hideLoading } from 'actions/display';
+
 import {
   Avatar,
   Card,
   CardHeader,
   CardMedia,
 } from 'material-ui';
-import Loading from 'components/Loading';
+import Helmet from 'react-helmet';
 
 function mapStateToProps(state) {
-  const { stars, isLoading, error } = state.github;
+  const { stars, error } = state.github;
   return {
     stars,
-    isLoading,
     error,
   };
 }
@@ -24,6 +25,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getStars,
+    showLoading, hideLoading,
   }, dispatch);
 }
 
@@ -35,26 +37,30 @@ export class HomePage extends Component {
   static propTypes = {
     stars: PropTypes.array,
     getStars: PropTypes.func,
-    isLoading: PropTypes.bool,
     error: PropTypes.object,
+    showLoading: PropTypes.func,
+    hideLoading: PropTypes.func,
   };
 
   static defaultProps = {
     stars: [],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.props.stars.length) {
-      this.props.getStars();
+      this.props.showLoading();
+      await this.props.getStars();
+      this.props.hideLoading();
     }
   }
 
   render() {
-    const { stars, isLoading, error } = this.props;
-    setTitle('HomePage');
+    const { stars, error } = this.props;
+
     if (error) {
       return (
         <div className={styles.HomePage}>
+          <Helmet title="This page has error" />
           <p>Failed to load github stars, checkout network status or github api changes.</p>
         </div>
       );
@@ -62,6 +68,7 @@ export class HomePage extends Component {
 
     return (
       <div className={styles.HomePage}>
+        <Helmet title="HomePage" />
         <h1>People liked this package:</h1>
         {
           stars.map((star, idx) => (
@@ -79,7 +86,6 @@ export class HomePage extends Component {
             </a>
           ))
         }
-        <Loading show={isLoading} />
       </div>
     );
   }

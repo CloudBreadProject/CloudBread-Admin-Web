@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from 'layouts/App';
+import { App } from 'layouts/App';
 import Header from 'components/Header';
 
 describe('<App />', () => {

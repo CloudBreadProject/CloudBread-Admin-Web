@@ -71,14 +71,6 @@ const { accessToken } = user;
 const { apiEndPoint } = config;
 ```
 
-### Control Document Title
-```js
-import { setTitle, getTitle } from 'core/context';
-
-setTitle('New Title');
-console.log(getTitle()); // New Title
-```
-
 ### Check Client Environments
 ```js
 import {
@@ -167,6 +159,16 @@ There are three folders to manage react components.
 * `./src/components`: common components
 * `./src/containers`: page components
 * `./src/layouts`: layout components
+
+### Document Configuration
+If you need one of among below:
+
+* change document title
+* add some script files
+* add some link tags
+* add some meta tags
+
+The answer is [react-helmet](https://github.com/nfl/react-helmet#use-cases).
 
 ### Route Configurations
 Routes entry file is at `./src/routes/routes.jsx`.
@@ -274,6 +276,8 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 ```
+
+**Be careful** you have to add your reducer to index file.
 
 ```js
 // ./src/reducers/index.js

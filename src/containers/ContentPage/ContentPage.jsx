@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ContentPage.scss';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loadPage, unloadPage } from 'actions/page';
-import { setTitle } from 'core/context';
+import { showLoading, hideLoading } from 'actions/display';
+
+import Helmet from 'react-helmet';
 
 function mapStateToProps(state) {
   return {
     content: state.page.content,
     title: state.page.title,
-    isLoading: state.page.isLoading,
     error: state.page.error,
   };
 }
@@ -18,6 +20,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     loadPage,
     unloadPage,
+    showLoading,
+    hideLoading,
   }, dispatch);
 }
 
@@ -29,11 +33,14 @@ class ContentPage extends Component {
   static propTypes = {
     content: PropTypes.string,
     title: PropTypes.string,
-    isLoading: PropTypes.bool,
     error: PropTypes.string,
     loadPage: PropTypes.func,
     params: PropTypes.object,
     unloadPage: PropTypes.func,
+
+    // display loading
+    showLoading: PropTypes.func,
+    hideLoading: PropTypes.func,
   };
 
   componentDidMount() {
@@ -47,7 +54,9 @@ class ContentPage extends Component {
     const oldPageId = this.props.params.pageId;
 
     if ((oldPageId !== newPageId)) {
+      this.props.showLoading();
       await this.props.loadPage(nextProps.params);
+      this.props.hideLoading();
     }
   }
 
@@ -57,11 +66,11 @@ class ContentPage extends Component {
 
   render() {
     const { content, title, error } = this.props;
-    setTitle(title);
 
     if (error) {
       return (
         <div className={styles.ContentPage}>
+          <Helmet title="Failed to fetch content" />
           <p>Failed to fetch pages, checkout network status</p>
         </div>
       );
@@ -69,6 +78,7 @@ class ContentPage extends Component {
 
     return (
       <div>
+        <Helmet title={title} />
         <div
           className={styles.ContentPage}
           dangerouslySetInnerHTML={{
