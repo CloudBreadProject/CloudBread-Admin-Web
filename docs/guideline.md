@@ -7,6 +7,12 @@ Please share the idea and make people stop suffering!*
 
 ## Webpack Configurations
 Webpack configuration file is at `./tools/config.js`.
+
+### Dev Port
+Port duplication is usual in development.
+You can bypass this situation through editing `DEV_PORT` variable.
+
+### Relative Path
 Default resolve path is `./src`.
 So you can ref some files with relative path even if the file depth is too deep.
 
@@ -14,9 +20,18 @@ So you can ref some files with relative path even if the file depth is too deep.
 * Client entry file: `./src/client.jsx`.
 * HTML page template: `./src/components/Html/Html.jsx`
 
+Entry file means start of something.
+
 ### Environment Variables
 ```js
 if (__DEV__) {
+  // this is in development mode
+} else {
+  // this is in production mode
+}
+
+// or you can
+if (process.env.NODE_ENV === 'development') {
   // this is in development mode
 } else {
   // this is in production mode
@@ -40,8 +55,17 @@ store.dispatch({
 console.log(store.getState());
 ```
 
-### Control Document Title
+If you need to authenticate or bring api end point for your data fetcher,
+You can get store's state, like:
+```js
+const store = getStore();
+const state = getState();
+const { user, config } = state;
+const { accessToken } = user;
+const { apiEndPoint } = config;
+```
 
+### Control Document Title
 ```js
 import { setTitle, getTitle } from 'core/context';
 
@@ -50,7 +74,6 @@ console.log(getTitle()); // New Title
 ```
 
 ### Check Client Environments
-
 ```js
 import {
   canUseDOM,
@@ -60,18 +83,19 @@ import {
 } from 'core/env';
 
 if (canUseDOM) {
-  // client ...
+  // it's client ...
 }
 if (canUseWorkers) {
-  // client and support workers ...
+  // it's client and support workers ...
 }
 if (canUseEventListeners) {
-  // client and support event listener ...
+  // it's client and support event listener ...
 }
 if (canUseViewport) {
-  // client and support viewport ...
+  // it's client and support viewport ...
 }
 ```
+You can set environment variable such as `__CLIENT__` or `__SERVER__` in Webpack Config.
 
 ### Data Fetcher
 It uses [superagent](https://www.npmjs.com/package/superagent) module to fetch data.

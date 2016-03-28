@@ -25,7 +25,7 @@ function _dev() {
 
     bundler.watch({
       aggregateTimeout: 200,
-    }, async (err, result) => {
+    }, async (err, result) => { // eslint-disable-line consistent-return
       if (err) {
         return reject(err);
       }
