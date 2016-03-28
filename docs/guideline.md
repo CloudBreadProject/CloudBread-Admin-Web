@@ -16,21 +16,27 @@ You can bypass this situation through editing `DEV_PORT` variable.
 Default resolve path is `./src`.
 So you can ref some files with relative path even if the file depth is too deep.
 
+### Entry files
 * Server entry file: `./src/server.jsx`.
 * Client entry file: `./src/client.jsx`.
-* HTML page template: `./src/components/Html/Html.jsx`
+* HTML page template: `./src/components/Html/Html.jsx` (actually it's not webpack's configuration)
 
-Entry file means start of something.
+Entry file means start point of the part.
+You can add more the entry to fill your desire.
+If you want to include bootstrap or jQuery or provide some scripts and meta,
+edit HTML page template.
+But never work layout in HTML page template.
 
 ### Environment Variables
 ```js
+// client and server
 if (__DEV__) {
   // this is in development mode
 } else {
   // this is in production mode
 }
 
-// or you can
+// or you can. but not support for client
 if (process.env.NODE_ENV === 'development') {
   // this is in development mode
 } else {
@@ -195,15 +201,15 @@ class StateComponent extends Component {
   static contextTypes = { ... };
 
   componentWillMount() {
-    // ...
+    // ...will appear
   }
 
   componentDidMount() {
-    // ...
+    // ...ready
   }
 
   componentWillUnmount() {
-    // ...
+    // ...will disappear
   }
 
   render() {
@@ -221,6 +227,7 @@ It makes your application very light.
 * `./src/actions`: action creators
 * `./src/constants`: action constants
 * `./src/reducers`: reducers
+* `./src/redux`: store creator and reducer creator
 
 Our store has `redux-thunk` middleware.
 In development, `redux-logger` is included.
@@ -318,3 +325,8 @@ SomeComponent.needs = [
   someAction,
 ];
 ```
+
+Then server will render components after dispatching someAction.
+It's important to synchro client and server.
+The server will provide `__SYNC_DATA` global variable to javascript.
+Redux initializes with `__SYNC_DATA` and everything is good.
