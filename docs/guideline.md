@@ -1,4 +1,4 @@
-## Development Guideline
+# Development Guideline
 This document explains how you can
 
 *You don't need to follow all of this guideline!
@@ -6,18 +6,18 @@ I just suggest what I experienced.
 If you have better way?
 Please share the idea and make people stop suffering!*
 
-### Webpack Configurations
+## Webpack Configurations
 Webpack configuration file is at `./tools/config.js`.
 
-#### Dev Port
+### Dev Port
 Port duplication is usual in development.
 You can bypass this situation through editing `DEV_PORT` variable.
 
-#### Relative Path
+### Relative Path
 Default resolve path is `./src`.
 So you can ref some files with relative path even if the file depth is too deep.
 
-#### Webpack Loaders
+### Webpack Loaders
 [About webpack loader](http://webpack.github.io/docs/using-loaders.html)
 > Loaders are transformations that are applied on a resource file of your app. They are functions (running in node.js) that take the source of a resource file as the parameter and return the new source.
 >
@@ -34,7 +34,7 @@ This react package uses below loaders:
 * [url-loader](https://github.com/webpack/url-loader)
 * [file-loader](https://github.com/webpack/url-loader)
 
-#### Environment Variables
+### Environment Variables
 ```js
 // client and server
 if (__DEV__) {
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'development') {
 console.log(__PORT__); // server port
 ```
 
-### BabelJS Configurations
+## BabelJS Configurations
 > [Babel](http://babeljs.io/) is a JavaScript compiler.
 > Use next generation JavaScript, today.
 > [check out the Babel Handbook!](https://github.com/thejameskyle/babel-handbook)
@@ -68,11 +68,11 @@ This react package uses
 
 Checkout `./package.json` and `./tools/config.js` to modify babel configurations.
 
-### Entry Point
+## Entry Point
 Entry file means start point of the part.
 You can add more the entry to fill your desire.
 
-#### Server
+### Server
 * Server entry file: `./src/server.jsx`.
 * Static folder: `./src/public`
 * HTML page template: `./src/components/Html/Html.jsx`
@@ -83,20 +83,20 @@ You can integrate other HTTP server frameworks such as
 [Hapi](https://www.npmjs.com/package/hapi), etc...
 Place all your public static files to static folder.
 
-##### Add 3rd-party framework
+#### Add 3rd-party framework
 If you want to add venders (such as jQuery, Bootstrap, etc...) to your document,
 edit HTML page template and place your venders to static folder.
 [React Helmet](#document-configuration) is also good solution.
 
 **Be careful** It can make your application very dirty, I don't recommend.
 
-#### Client
+### Client
 * Client entry file: `./src/client.jsx`.
 
-### Core Utility
+## Core Utility
 I brought some useful utility placed `./src/core`.
 
-#### Redux Store
+### Redux Store
 ```js
 import { getStore } from 'core/context';
 
@@ -118,7 +118,7 @@ const { accessToken } = user;
 const { apiEndPoint } = config;
 ```
 
-#### Check Client Environments
+### Check Client Environments
 ```js
 import {
   canUseDOM,
@@ -142,11 +142,11 @@ if (canUseViewport) {
 ```
 You can set environment variable such as `__CLIENT__` or `__SERVER__` in Webpack Config.
 
-#### Data Fetcher
+### Data Fetcher
 It uses [superagent](https://www.npmjs.com/package/superagent) module to fetch data.
 You can choose other universal http request client like [isomorphic-fetch](https://www.npmjs.com/package/isomorphic-fetch).
 
-##### Basic Usage
+#### Basic Usage
 ```js
 import fetch from 'core/fetch';
 
@@ -169,9 +169,9 @@ async function deleteUserById(id, data) {
 }
 ```
 
-### Expand API
+## Expand API
 
-#### Express middleware
+### Express middleware
 In `./src/api` directory, you can add some api routes.
 
 ```js
@@ -197,19 +197,19 @@ router.use(require('something').default);
 
 [Here are more examples](http://expressjs.com/en/guide/routing.html)
 
-#### GraphQL
+### GraphQL
 GraphQL directory is `./src/data` and `schema.js` is in the path.
 You can customize Queries and Mutations.
 
-### React Guideline
+## React Guideline
 There are three folders to manage react components.
 * `./src/components`: common components
 * `./src/containers`: page components
 * `./src/layouts`: layout components
 
-#### Trouble Shooting Tool
+### Trouble Shooting Tool
 
-#### Document Configuration
+### Document Configuration
 If you need one of among below:
 
 * change document title
@@ -219,11 +219,11 @@ If you need one of among below:
 
 The answer is [react-helmet](https://github.com/nfl/react-helmet#use-cases).
 
-#### Route Configurations
+### Route Configurations
 Routes entry file is at `./src/routes/routes.jsx`.
 To modify routes, you need to read [react-router reference](https://github.com/reactjs/react-router/tree/master/docs)
 
-#### React Component
+### React Component
 
 I recommend you to compose your react component this way.
 
@@ -276,7 +276,7 @@ export default Navigation;
 
 Curious at css flow? read [this](#css-guideline)
 
-##### Pure Component (Stateless Component)
+#### Pure Component (Stateless Component)
 ```js
 import React from 'react';
 
@@ -293,7 +293,7 @@ PureComponent.contextTypes = { ... };
 
 *HMR doesn't support pure component.*
 
-##### State Component
+#### State Component
 ```js
 import React, { Component } from 'react';
 
@@ -325,7 +325,7 @@ If you don't need state or lifecycle callback,
 pure component is better.
 It makes your application very light.
 
-### Redux Guideline
+## Redux Guideline
 * `./src/actions`: action creators
 * `./src/constants`: action constants
 * `./src/reducers`: reducers
@@ -335,7 +335,7 @@ Our store has `redux-thunk` middleware.
 In development, `redux-logger` is included.
 You can add middlewares. See `./src/redux/middlewares`.
 
-#### Basic Usage
+### Basic Usage
 
 ```js
 // ./src/constants/some.js
@@ -420,7 +420,7 @@ SomeComponent.propTypes = {
 export default connect(mapStateToProps, mapDispatchToProps)(SomeComponent);
 ```
 
-#### Server side prefetch data
+### Server side prefetch data
 Some components need to fetch data before serving to clients.
 You can set `needs` property to pre-fetch data.
 
@@ -435,15 +435,15 @@ It's important to synchro client and server.
 The server will provide `__SYNC_DATA` global variable to javascript.
 Redux initializes with `__SYNC_DATA`.
 
-### CSS Guideline
+## CSS Guideline
 
 You can insert CSS through three ways.
 
-#### Public stylesheet
+### Public stylesheet
 Place your stylesheet to `./src/public` folder and reference stylesheet
 through [React Helmet](#document-configuration)
 
-#### Compiled stylesheet
+### Compiled stylesheet
 Our style-loader, css-loader and postcss-loader solve this!
 
 ```scss
@@ -480,6 +480,6 @@ export default SomeComponent() {
 
 You can consider [classnames](https://www.npmjs.com/package/classnames) module to activate or inactivate some class.
 
-#### Inline stylesheet
+### Inline stylesheet
 * [Offical Inline CSS](https://facebook.github.io/react/tips/inline-styles.html)
 * [React InlineCSS Component](https://github.com/RickWong/react-inline-css)
