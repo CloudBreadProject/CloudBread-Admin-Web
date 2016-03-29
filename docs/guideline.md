@@ -16,16 +16,22 @@ You can bypass this situation through editing `DEV_PORT` variable.
 Default resolve path is `./src`.
 So you can ref some files with relative path even if the file depth is too deep.
 
-### Entry files
-* Server entry file: `./src/server.jsx`.
-* Client entry file: `./src/client.jsx`.
-* HTML page template: `./src/components/Html/Html.jsx` (actually it's not webpack's configuration)
+### Loaders
+[About webpack loader](http://webpack.github.io/docs/using-loaders.html)
+> Loaders are transformations that are applied on a resource file of your app. They are functions (running in node.js) that take the source of a resource file as the parameter and return the new source.
+>
+> For example, you can use loaders to tell webpack to load CoffeeScript or JSX.
 
-Entry file means start point of the part.
-You can add more the entry to fill your desire.
-If you want to include bootstrap or jQuery or provide some scripts and meta,
-edit HTML page template.
-But never work layout in HTML page template.
+This react package uses below loaders:
+
+* [babel-loader](https://github.com/babel/babel-loader)
+* [json-loader](https://github.com/webpack/json-loader)
+* [style-loader](https://github.com/webpack/style-loader)
+* [css-loader](https://github.com/webpack/css-loader)
+* [postcss-loader](https://github.com/postcss/postcss-loader)
+* [raw-loader](https://github.com/webpack/raw-loader)
+* [url-loader](https://github.com/webpack/url-loader)
+* [file-loader](https://github.com/webpack/url-loader)
 
 ### Environment Variables
 ```js
@@ -45,6 +51,46 @@ if (process.env.NODE_ENV === 'development') {
 
 console.log(__PORT__); // server port
 ```
+
+## BabelJS Configurations
+> [Babel](http://babeljs.io/) is a JavaScript compiler.
+> Use next generation JavaScript, today.
+> [check out the Babel Handbook!](https://github.com/thejameskyle/babel-handbook)
+
+This react package uses
+[ES2015 preset](http://babeljs.io/docs/plugins/preset-es2015/) +
+[React preset(JSX)](http://babeljs.io/docs/plugins/preset-react/) +
+[Stage 0](http://babeljs.io/docs/plugins/preset-stage-0/) +
+[Stage 1](http://babeljs.io/docs/plugins/preset-stage-1/) +
+[Stage 2](http://babeljs.io/docs/plugins/preset-stage-2/) +
+[Stage 3](http://babeljs.io/docs/plugins/preset-stage-3/)
+
+Checkout `./package.json` and `./tools/config.js` to modify babel configurations.
+
+## Entry Point
+Entry file means start point of the part.
+You can add more the entry to fill your desire.
+
+### Server
+* Server entry file: `./src/server.jsx`.
+* Static folder: `./src/public`
+* HTML page template: `./src/components/Html/Html.jsx`
+
+Our HTTP server is implemented by [Express](http://expressjs.com/).
+You can integrate other HTTP server frameworks such as
+[Koa](https://www.npmjs.com/package/koa) and
+[Hapi](https://www.npmjs.com/package/hapi), etc...
+Place all your public static files to static folder.
+
+#### Add 3rd-party framework
+If you want to add venders (such as jQuery, Bootstrap, etc...) to your document,
+edit HTML page template and place your venders to static folder.
+[React Helmet](#document-configuration) is also good solution.
+
+**Be careful** It can make your application very dirty, I don't recommend.
+
+### Client
+* Client entry file: `./src/client.jsx`.
 
 ## Core Utility
 I brought some useful utility placed `./src/core`.
@@ -160,6 +206,8 @@ There are three folders to manage react components.
 * `./src/containers`: page components
 * `./src/layouts`: layout components
 
+### Trouble Shooting Tool
+
 ### Document Configuration
 If you need one of among below:
 
@@ -175,6 +223,57 @@ Routes entry file is at `./src/routes/routes.jsx`.
 To modify routes, you need to read [react-router reference](https://github.com/reactjs/react-router/tree/master/docs)
 
 ### React Component
+
+I recommend you to compose your react component this way.
+
+* Navigation
+  * Navigation.jsx(or can be es6 and js, etc...)
+  * Navigation.scss
+  * package.json
+
+```js
+import React from 'react';
+import styles from './Navigation.scss';
+
+function Navigation() {
+  return (
+    <div className={styles.Container}>
+      <ul className={styles.Navigation}>
+        <li>nav item</li>
+        <li>nav item</li>
+        <li>nav item</li>
+      </ul>
+    </div>
+  );
+}
+
+export default Navigation;
+```
+
+```css
+.Container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+}
+
+.Navigation {
+  display: block;
+
+  > li {
+    display: inline-block;
+  }
+}
+```
+
+```json
+{
+  "private": true,
+  "main": "./Navigation.jsx"
+}
+```
+
+Curious at css flow? read [this](#css-guideline)
 
 #### Pure Component (Stateless Component)
 ```js
@@ -334,3 +433,52 @@ Then server will render components after dispatching someAction.
 It's important to synchro client and server.
 The server will provide `__SYNC_DATA` global variable to javascript.
 Redux initializes with `__SYNC_DATA` and everything is good.
+
+## CSS Guideline
+
+You can insert CSS through three ways.
+
+### Public stylesheet
+Place your stylesheet to `./src/public` folder and reference stylesheet
+through [React Helmet](#document-configuration)
+
+### Compiled stylesheet
+Our style-loader, css-loader and postcss-loader solve this!
+
+```scss
+/* ./src/components/SomeComponent/SomeComponent.scss */
+
+/* you can use postcss */
+$color: #fff;
+$width: calc(1000px - 20px);
+
+.SomeClass {
+  display: flex;
+  color: $color;
+  width: $width;
+
+  .NestedClass {
+    color: Container from "styles/container"; /* See postcss documents */
+  }
+}
+```
+
+```js
+// ./src/components/SomeComponent/SomeComponent.js
+import React from 'react';
+import styles from './SomeComponent.scss';
+
+export default SomeComponent() {
+  return (
+    <div className={styles.SomeClass}>
+      Some Component!
+    </div>
+  );
+}
+```
+
+You can consider [classnames](https://www.npmjs.com/package/classnames) module to activate or inactivate some class.
+
+### Inline stylesheet
+[Read this](https://facebook.github.io/react/tips/inline-styles.html)
+[React InlineCSS Component](https://github.com/RickWong/react-inline-css)
