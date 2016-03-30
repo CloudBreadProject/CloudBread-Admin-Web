@@ -7,6 +7,9 @@ import Header from 'components/Header';
 import Helmet from 'react-helmet';
 import Loading from 'components/Loading';
 
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
+
 function mapStateToProps({ display }) {
   return {
     isLoading: display.isLoading,
@@ -14,6 +17,10 @@ function mapStateToProps({ display }) {
 }
 
 export function App({ children, isLoading }) {
+  const muiTheme = getMuiTheme({
+    userAgent: navigator.userAgent,
+  });
+
   return (
     <div className={styles.App}>
       <Helmet
@@ -28,10 +35,20 @@ export function App({ children, isLoading }) {
             href: '/favicon.ico',
           },
         ]}
+        meta={[
+          {
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1', // eslint-disable-line max-len
+          },
+        ]}
       />
-      <Header />
-      {children}
-      <Loading show={isLoading} />
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div>
+          <Header />
+          {children}
+          <Loading show={isLoading} />
+        </div>
+      </MuiThemeProvider>
     </div>
   );
 }

@@ -1,4 +1,11 @@
 @import 'normalize.css';
 
+/**
+ * @fix normalize@4.0.0 with material-ui style collision
+ */
+span[type="button"] {
+  appearance: none;
+}
+
 :local .App {
 }
