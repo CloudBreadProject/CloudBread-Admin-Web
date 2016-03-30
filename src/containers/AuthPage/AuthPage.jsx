@@ -2,21 +2,19 @@ import React, { Component, PropTypes } from 'react';
 
 import styles from './AuthPage.scss';
 
+import Helmet from 'react-helmet';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Checkbox from 'material-ui/lib/checkbox';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { authenticate } from 'actions/user';
 import {
   showSnackbarMessage,
   showLoading,
   hideLoading,
 } from 'actions/display';
-
-import { setTitle } from 'lib/context';
 
 function mapStateToProps({ user }) {
   return {
@@ -51,11 +49,7 @@ export class AuthPage extends Component {
   constructor() {
     super();
     this.handleClickAuthorize = this.handleClickAuthorize.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);
-  }
-
-  componentWillMount() {
-    setTitle('Inspector Authentication');
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -74,13 +68,14 @@ export class AuthPage extends Component {
     const { isAuthenticating } = this.props;
     return (
       <div>
+        <Helmet title="CloudBread Inspector" />
         <h1>CloudBread Inspector</h1>
         <TextField
           hintText="Identifier"
           disabled={isAuthenticating}
           fullWidth
           ref="identifierInput"
-          onEnterKeyDown={this.handleEnter}
+          onKeyDown={this.handleKeyDown}
         />
         <TextField
           hintText="Password"
@@ -88,7 +83,7 @@ export class AuthPage extends Component {
           fullWidth
           type="password"
           ref="passwordInput"
-          onEnterKeyDown={this.handleEnter}
+          onKeyDown={this.handleKeyDown}
         />
         <p
           style={{
@@ -118,9 +113,11 @@ export class AuthPage extends Component {
     );
   }
 
-  handleEnter() {
-    if (this.refs.identifierInput.getValue() && this.refs.passwordInput.getValue()) {
-      this.authorize();
+  handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      if (this.refs.identifierInput.getValue() && this.refs.passwordInput.getValue()) {
+        this.authorize();
+      }
     }
   }
 

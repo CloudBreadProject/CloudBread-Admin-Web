@@ -3,10 +3,11 @@ import styles from './App.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { hideSnackbarMessage } from 'actions/display';
 
 import Snackbar from 'material-ui/lib/snackbar';
+
+import Helmet from 'react-helmet';
 import Loading from 'components/Loading';
 
 function mapStateToProps({ display }) {
@@ -21,7 +22,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-class App extends Component {
+export class App extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     snackbarOpen: PropTypes.bool,
@@ -54,6 +55,19 @@ class App extends Component {
       <div
         className={styles.App}
       >
+        <Helmet
+          link={[
+            {
+              rel: 'stylesheet',
+              media: 'all',
+              href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
+            }, {
+              rel: 'icon',
+              type: 'image/x-icon',
+              href: '/favicon.ico',
+            },
+          ]}
+        />
         {children}
         <Snackbar
           open={snackbarOpen}

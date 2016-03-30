@@ -24,12 +24,26 @@ import Search from 'material-ui/lib/svg-icons/action/search';
 import Logo from 'public/logo.png';
 
 function mapStateToProps({ editor, finder, display }) {
+  const {
+    isFinding,
+    searchFields,
+    resourceId,
+
+    search, field,
+    toDate, fromDate,
+    sort,
+  } = finder;
+
   return {
     isEditingResource: editor.isEditing,
-    isFindingResource: finder.isFinding,
+    isFindingResource: isFinding,
     isLoading: display.isLoading,
-    searchFields: finder.searchFields,
-    resourceId: finder.resourceId,
+    searchFields,
+    resourceId,
+
+    search, field,
+    toDate, fromDate,
+    sort,
   };
 }
 
@@ -47,18 +61,30 @@ class InspectorHeader extends Component {
   };
 
   static propTypes = {
+    // user's typing delay time
+    typeDelay: PropTypes.number,
     signout: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
+
+    // resource status
     isEditingResource: PropTypes.bool,
     isFindingResource: PropTypes.bool,
     isLoading: PropTypes.bool,
     searchFields: PropTypes.array,
     resourceId: PropTypes.string,
     loadResources: PropTypes.func,
+
+    // search relate props
+    search: PropTypes.string,
+    field: PropTypes.string,
+    sort: PropTypes.string,
+    toDate: PropTypes.string,
+    fromDate: PropTypes.string,
   };
 
   static defaultProps = {
     searchFields: [],
+    typeDelay: 400,
   };
 
   constructor() {
@@ -73,43 +99,36 @@ class InspectorHeader extends Component {
     this.handleChangeFromDate = this.handleChangeFromDate.bind(this);
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleChangeSearchField = this.handleChangeSearchField.bind(this);
-    this.handleChangeLocation = this.handleChangeLocation.bind(this);
+    this.handleChangeSearchWord = this.handleChangeSearchWord.bind(this);
+    this.handleDoneTypingSearchWord = this.handleDoneTypingSearchWord.bind(this);
   }
 
-  componentDidMount() {
-    this.context.router.listen(this.handleChangeLocation);
+  async componentWillMount() {
+    // sync search UI with props
+    const {
+      search, field,
+      toDate, fromDate,
+      sort,
+      searchFields,
+    } = this.props;
+    await this.setState({
+      search,
+      searchField: field ? searchFields.indexOf(field) + 1 : 1,
+      toDate: toDate ? new Date(toDate) : undefined,
+      fromDate: fromDate ? new Date(fromDate) : undefined,
+      sort: (sort || '').split('desc').length === 1 ? 1 : 2,
+    });
   }
 
   async componentWillReceiveProps(nextProps) {
     const {
       isFindingResource,
       isEditingResource,
-      searchFields,
     } = nextProps;
 
-    const { searchField, needToUpdateNewResource } = this.state || {};
-    const query = queryToObject(window.location.href);
-    const {
-      search,
-      sort,
-      toDate, fromDate,
-    } = query;
-    this.setState({
-      search,
-      searchField: searchFields.indexOf(searchField) + 1,
-      sort: sort === 'desc' ? 2 : 1,
-      toDate: toDate ? new Date(toDate) : undefined,
-      fromDate: fromDate ? new Date(fromDate) : undefined,
+    await this.setState({
       isActivated: isFindingResource || isEditingResource,
     });
-    this.forceUpdate();
-    if (needToUpdateNewResource) {
-      await this.reloadResources();
-    }
-  }
-
-  handleChangeLocation(event, tt) {
-    console.log('fwefew', event, tt);
   }
 
   render() {
@@ -189,16 +208,15 @@ class InspectorHeader extends Component {
   }
 
   renderContent() {
-    const {
-      isFindingResource,
-      searchFields,
-    } = this.props;
-    const {
-      searchField,
-      sort,
-      toDate, fromDate,
-    } = this.state || {};
+    const { isFindingResource } = this.props;
+
     if (isFindingResource) {
+      const { searchFields } = this.props;
+      const {
+        searchField,
+        sort,
+        toDate, fromDate,
+      } = this.state || {};
       return (
         <div className={styles.Finder}>
           <div className={styles.FinderSearch}>
@@ -232,6 +250,7 @@ class InspectorHeader extends Component {
                 hintStyle={{
                   color: 'rgba(255, 255, 255, 0.4)',
                 }}
+                onChange={this.handleChangeSearchWord}
               />
             </div>
           </div>
@@ -273,44 +292,86 @@ class InspectorHeader extends Component {
         </div>
       );
     }
-    return '';
+    return null;
   }
 
   renderSearchFields(field, key) {
     return <MenuItem key={key} value={key + 1} primaryText={field} />;
   }
 
-  handleChangeToDate(event, date) {
-    this.changePath({
-      query: {
-        toDate: new Date(date).toISOString(),
-      },
+  async handleChangeToDate(event, date) {
+    const toDate = new Date(date);
+    await this.setState({
+      toDate,
     });
+    this.changeLocation({
+      toDate: toDate.toISOString(),
+    });
+    await this.reloadResources();
   }
 
-  handleChangeFromDate(event, date) {
-    this.changePath({
-      query: {
-        fromDate: new Date(date).toISOString(),
-      },
+  async handleChangeFromDate(event, date) {
+    const fromDate = new Date(date);
+    await this.setState({
+      fromDate: new Date(date),
     });
+    this.changeLocation({
+      fromDate: fromDate.toISOString(),
+    });
+    await this.reloadResources();
   }
 
-  handleChangeSearchField(event, value) {
+  async handleChangeSearchField(event, value) {
     const { searchFields } = this.props;
-    this.changePath({
-      query: {
-        field: searchFields[value],
-      },
+    await this.setState({
+      searchField: value + 1,
+    });
+    this.changeLocation({
+      field: searchFields[value],
+    });
+    const { search } = this.state || {};
+    if (search) {
+      await this.reloadResources();
+    }
+  }
+
+  async handleChangeSearchWord(event) {
+    const { typingSearchWord } = this.state || {};
+    if (typingSearchWord) {
+      clearTimeout(typingSearchWord);
+    }
+    const value = event.target.value;
+    await this.setState({
+      typingSearchWord: setTimeout(() => {
+        this.handleDoneTypingSearchWord(value);
+      }, this.props.typeDelay),
     });
   }
 
-  handleChangeSort(event, value) {
-    this.changePath({
-      query: {
-        sort: value === 0 ? 'asc' : 'desc',
-      },
+  async handleDoneTypingSearchWord(search) {
+    await this.setState({
+      search,
     });
+    const { searchField } = this.state || {};
+    if (!searchField) {
+      await this.setState({
+        searchField: 1,
+      });
+    }
+    this.changeLocation({
+      search,
+    });
+    await this.reloadResources();
+  }
+
+  async handleChangeSort(event, value) {
+    await this.setState({
+      sort: value + 1,
+    });
+    this.changeLocation({
+      sort: value === 1 ? 'desc' : 'asc',
+    });
+    await this.reloadResources();
   }
 
   handleClickSignOut() {
@@ -325,41 +386,32 @@ class InspectorHeader extends Component {
     this.context.router.goBack();
   }
 
-  async changePath({ query }) {
-    const _query = {
-      ...queryToObject(window.location.search),
-      ...query,
-    };
-    this.setState({
-      needToUpdateNewResource: true,
-    });
-    await this.reloadResources();
-    this.context.router.push({
-      pathname: window.location.pathname,
-      query: _query,
-    });
-  }
-
   async reloadResources() {
-    const { resourceId } = this.props;
+    const { resourceId, searchFields } = this.props;
     const {
-      field, search,
+      searchField, search,
       toDate, fromDate,
       sort,
     } = this.state || {};
     await this.props.loadResources({
       resourceId,
-      field, search,
-      toDate, fromDate,
-      sort: sort === 'desc' ? 2 : 1,
-    });
-    this.setState({
-      needToUpdateNewResource: false,
+      field: searchField ? searchFields[searchField - 1] : null, search,
+      toDate: toDate ? toDate.toISOString() : null,
+      fromDate: fromDate ? fromDate.toISOString() : null,
+      sort: sort === 2 ? 'CreatedAt desc' : 'CreatedAt asc',
     });
   }
 
-  syncLocation() {
-
+  // append query string to url
+  changeLocation(query) {
+    const _query = {
+      ...queryToObject(window.location.search),
+      ...query,
+    };
+    this.context.router.replace({
+      pathname: window.location.pathname,
+      query: _query,
+    });
   }
 }
 

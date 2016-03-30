@@ -1,8 +1,9 @@
-import fetch from 'lib/fetch';
+import fetch from 'core/fetch';
+
 import {
   LOAD_PAGE_LOADING,
-  LOAD_PAGE_ERROR,
   LOAD_PAGE_SUCCESS,
+  LOAD_PAGE_ERROR,
   UNLOAD_PAGE,
 } from 'constants/page';
 

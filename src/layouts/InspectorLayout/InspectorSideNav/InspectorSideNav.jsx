@@ -3,10 +3,6 @@ import styles from './InspectorSideNav.scss';
 
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
-import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import People from 'material-ui/lib/svg-icons/social/people';
 import DataUsage from 'material-ui/lib/svg-icons/device/data-usage';
 import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
@@ -42,13 +38,6 @@ class InspectorSideNav extends Component {
       <div className={styles.InspectorSideNav}>
         <List>
           {topNavs.map(this.renderListItem)}
-          <ListItem
-            primaryText="Notice"
-            leftIcon={<ContentSend />}
-          />
-          <ListItem primaryText="Event" leftIcon={<ActionGrade />} />
-          <ListItem primaryText="Gift" leftIcon={<ContentDrafts />} />
-          <ListItem primaryText="Activity" leftIcon={<ContentInbox />} />
         </List>
         <Divider />
         <List>

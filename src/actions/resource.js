@@ -1,6 +1,6 @@
-import fetch from 'lib/fetch';
+import fetch from 'core/fetch';
 import * as models from 'models';
-import { canUseDOM } from 'lib/env';
+import { canUseDOM } from 'core/env';
 import {
   FIND_RESOURCES_REQUEST,
   FIND_RESOURCES_SUCCESS,
@@ -23,6 +23,8 @@ import {
 
 export function loadResources({
   resourceId, // target resource
+
+  // search relate props
   fromDate, toDate, // resource date range
   field, search, // field and word to search resource
   sort, // sorting
@@ -30,20 +32,6 @@ export function loadResources({
 }) {
   return async dispatch => {
     try {
-      const model = models[resourceId];
-      const showFields = [];
-      model.showFields.forEach(showField => {
-        showFields.push(model.schema[showField]);
-      });
-      const {
-        title,
-        description,
-        primaryKey,
-        searchFields,
-      } = model;
-      dispatch({
-        type: FIND_RESOURCES_REQUEST,
-      });
       let $filter = '';
       const $orderBy = sort || 'CreatedAt desc';
       const $skip = skip || 0;
@@ -63,11 +51,30 @@ export function loadResources({
       if (search && field) {
         addCondition(`${field} eq '${search}'`);
       }
-      let query = `orderby=${$orderBy}&$skip=${$skip}&$top=${$top}`;
+      let query = `$orderby=${$orderBy}&$skip=${$skip}&$top=${$top}`;
       if ($filter) {
         query += `&$filter=${$filter}`;
       }
+      dispatch({
+        type: FIND_RESOURCES_REQUEST,
+        payload: {
+          field, search,
+          fromDate, toDate,
+          sort,
+        },
+      });
       const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&${query}`);
+      const model = models[resourceId];
+      const showFields = [];
+      model.showFields.forEach(showField => {
+        showFields.push(model.schema[showField]);
+      });
+      const {
+        title,
+        description,
+        primaryKey,
+        searchFields,
+      } = model;
       dispatch({
         type: FIND_RESOURCES_SUCCESS,
         payload: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fetch from 'lib/fetch';
+import fetch from 'core/fetch';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -16,7 +16,7 @@ class AnalystPage extends Component {
         BI Tool Bone layouts
         <RaisedButton label="HTTP Request" onClick={this.handleClickRequest} primary />
         <pre>{responseContent}</pre>
-        <p>뭐를 설명해?</p>
+        <p>뭐를 설명해? fwefewfwwfefweff fwefewiofwefnewoi </p>
         <p>wefewfewfwewfewfewfwefew</p>
       </div>
     );

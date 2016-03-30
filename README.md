@@ -1,123 +1,33 @@
 # React Universal Starter Kit
 
 [![Build Status](https://travis-ci.org/Beingbook/react-universal-starter-kit.svg?branch=master)](https://travis-ci.org/Beingbook/react-universal-starter-kit)
-[![Dependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit.svg?style=flat-square)](https://david-dm.org/Beingbook/react-universal-starter-kit)
-[![devDependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit/dev-status.svg?style=flat-square)](https://david-dm.org/Beingbook/react-universal-starter-kit#info=devDependencies)
+[![Dependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit.svg)](https://david-dm.org/Beingbook/react-universal-starter-kit)
+[![devDependency Status](https://david-dm.org/Beingbook/react-universal-starter-kit/dev-status.svg)](https://david-dm.org/Beingbook/react-universal-starter-kit#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/Beingbook/react-universal-starter-kit/badges/gpa.svg)](https://codeclimate.com/github/Beingbook/react-universal-starter-kit)
 [![Issue Count](https://codeclimate.com/github/Beingbook/react-universal-starter-kit/badges/issue_count.svg)](https://codeclimate.com/github/Beingbook/react-universal-starter-kit)
 
-Quick start react package. See [this live](http://react-universe.herokuapp.com/)
+Quick start package for [React](https://facebook.github.io/react/) Universal(Isomorphic) Application.
 
-## Features
+## Stacks
 
-* Babel 6, ES2015 + ES7
-* Webpack, development and production
-* React 0.14.x, react-router
-* HMR, reloading page through
-* Karma, Mocha test
-* Airbnb config eslint
-* Sass like css loaders
-* MaterialUI to provide better UI
+* [Webpack](https://webpack.github.io/) compiles your application with useful loaders which makes your code very flexiable.
+* [BabelJS](http://babeljs.io/) enables you to write ES2015 + ES7 spec javascript (as a loader)
+* [React 0.14.x](https://facebook.github.io/react/) for better UI.
+* [Redux](http://redux.js.org/) and [react-redux-router](https://github.com/reactjs/react-router-redux) allow your application to become huge.
+* [GraphQL](http://graphql.org) provides data as client desired.
+* [HMR](https://webpack.github.io/docs/hot-module-replacement.html) for better debugging
+* [Karma](https://karma-runner.github.io/0.13/index.html) and [Mocha](https://github.com/mochajs/mocha) to test
+* [Eslint](http://eslint.org/) with AirBnB config makes your javascript code very clean.
+* [PostCSS](https://github.com/postcss/postcss) brings future CSS.
+* [MaterialUI](http://www.material-ui.com/) supplies Google Material-UI as react components.
 
-## Installation
+## References
 
-```sh
-git clone https://github.com/Beingbook/react-universal-starter-kit.git
-cd react-universal-starter-kit
-npm i # alias to install
-```
+* [Get Started](./docs/getting-started.md)
+* [Development Guideline](./docs/guideline.md)
+* [Directory map](./docs/directory-map.md)
+* [Backlog](./docs/backlog.md)
 
-### Requirements
+## Demo
 
-Node.js 4.x or 5.x
-
-## Usage
-
-### Custom Scripts
-
-#### Development
-
-```sh
-npm start
-npm start -- --port=8080 # if you want to change the port
-```
-
-It will open a browser window.
-In development environment, [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) could be happened.
-Don't worry. FOUC is not in production environment.
-Never use this command for production directly because this command will be executed via `babel-node` which makes performance slower.
-To serve production application, you have to deploy or build it and execute `npm start` in the build folder.
-
-#### Build
-
-```sh
-npm run build
-```
-
-It will build package for production.
-
-#### Lint
-
-```sh
-npm run lint
-```
-
-It will eslint this package.
-
-#### CSS Comb
-
-```sh
-npm run csscomb
-```
-
-Make your css code beautiful.
-
-#### Deployment
-
-You should edit `./tools/tasks/deploy.js` file before use this command.
-
-```sh
-npm run deploy
-```
-
-Basically this script deploys this package on git repository after build.
-GitHub, Heroku, Azure, AWS, AppEngine doesn't matter, perhaps.
-
-### Directory Map
-
-Run `tree -L 2 -I 'node_modules|build|.git|.DS_Store' -A -a` then you will see below:
-
-```sh
-.                   # Root
-├── .csscomb.json   # css comb configurations
-├── .editorconfig   # common editor configurations
-├── .eslintrc.json  # eslint configurations
-├── .gitignore
-├── LICENSE.txt
-├── README.md
-├── karma.config.js # Karma test configurations
-├── package.json    # dependency list
-├── src             # application source code
-│ ├── api           # api end point
-│ ├── assets        # static files
-│ ├── client.jsx    # client entry
-│ ├── components    # react components such as Header, Loading, etc.
-│ ├── config.js     # configuration such as api
-│ ├── containers    # containers such as HomePage, ContentPage, etc.
-│ ├── layouts       # layout such as commonLayout or ChannelLayout, etc.
-│ ├── lib           # common library, utilities such as DOM, fetch, etc.
-│ ├── reducers      # Redux reducers, actions and constants
-│ ├── public        # static files to serve through http or https
-│ ├── redux         # redux store and middlewares
-│ ├── routes        # route configurations
-│ ├── server.jsx    # server entry
-│ └── styles        # css codes
-├── tests           # unit tests
-│ └── layouts       # layout tests
-└── tools           # build and deployment tools
-    ├── .eslintrc.json
-    ├── config.js   # webpack configurations
-    ├── lib
-    ├── run.js
-    └── tasks       # build, deploy, serve, etc...
-```
+See **[this live](http://react-universe.herokuapp.com/)**

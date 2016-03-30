@@ -1,17 +1,29 @@
 const initialState = {
-  resourceId: '',
+  // loaded resources
   resources: [],
-  showFields: [],
-  primaryKey: '',
-  searchFields: [],
-  showResources: 20,
   allArticles: 0,
+  showResources: 20,
+
+  // finder status
   isRequesting: false,
   isLoaded: false,
   isFinding: false,
   errorMessage: '',
+
+  // resource schema
+  resourceId: '',
   title: '',
   description: '',
+  showFields: [],
+  primaryKey: '',
+  searchFields: [],
+
+  // search
+  search: '',
+  field: '',
+  sort: '',
+  fromDate: '',
+  toDate: '',
 };
 
 import {
@@ -25,20 +37,36 @@ import {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case FIND_RESOURCES_REQUEST:
+    case FIND_RESOURCES_REQUEST: {
+      const {
+        fromDate, toDate,
+        search, field,
+        sort,
+      } = action.payload || {};
       return {
         ...state,
+        // load status
         isRequesting: true,
-        resources: [],
+        isLoaded: false,
         allArticles: 0,
+        resources: [],
+
+        // resource schema
         title: '',
         description: '',
         primaryKey: '',
         resourceId: '',
         showFields: [],
-        isLoaded: false,
+
+        // search relate props
         searchFields: [],
+        search: search || '',
+        field: field || '',
+        sort: sort || '',
+        toDate: toDate || '',
+        fromDate: fromDate || '',
       };
+    }
     case FIND_RESOURCES_SUCCESS: {
       const {
         resourceId,

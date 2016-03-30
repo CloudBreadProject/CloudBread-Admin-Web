@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-import { setTitle } from 'lib/context';
+import Helmet from 'react-helmet';
+
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
 
 class HomePage extends Component {
   componentDidMount() {
-    setTitle('CloudBread Inspector');
   }
 
   render() {
     return (
       <div>
+        <Helmet title="CloudBread Inspector" />
         Inspector Main
+        <List>
+          <ListItem primaryText="test" />
+        </List>
       </div>
     );
   }

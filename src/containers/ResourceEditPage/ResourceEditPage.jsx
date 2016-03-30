@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { setTitle } from 'lib/context';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +16,7 @@ import {
   showSnackbarMessage,
 } from 'actions/display';
 
+import Helmet from 'react-helmet';
 import Divider from 'material-ui/lib/divider';
 import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
@@ -84,10 +84,6 @@ class ResourceViewPage extends Component {
     this.handleToggleSwitchBound = {};
   }
 
-  componentWillMount() {
-    setTitle('CloudBread Inspector');
-  }
-
   async componentDidMount() {
     const {
       params,
@@ -130,6 +126,7 @@ class ResourceViewPage extends Component {
     }
     return (
       <div>
+        <Helmet title="Resource Editor" />
         <div
           style={{
             maxWidth: '640px',

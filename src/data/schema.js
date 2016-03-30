@@ -1,9 +1,9 @@
 import {
   Schema,
   ObjectType,
-} from 'schema/lib';
+} from 'data/types';
 
-import page from 'schema/queries/page';
+import page from 'data/queries/page';
 
 const schema = new Schema({
   query: new ObjectType({
