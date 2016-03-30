@@ -10,6 +10,9 @@ import Snackbar from 'material-ui/lib/snackbar';
 import Helmet from 'react-helmet';
 import Loading from 'components/Loading';
 
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
+
 function mapStateToProps({ display }) {
   return {
     ...display,
@@ -51,6 +54,9 @@ export class App extends Component {
       snackbarActionHandler,
       isLoading,
     } = this.props;
+    const muiTheme = getMuiTheme({
+      userAgent: navigator.userAgent,
+    });
     return (
       <div
         className={styles.App}
@@ -68,7 +74,9 @@ export class App extends Component {
             },
           ]}
         />
-        {children}
+      <MuiThemeProvider muiTheme={muiTheme}>
+          {children}
+        </MuiThemeProvider>
         <Snackbar
           open={snackbarOpen}
           message={snackbarMessage}

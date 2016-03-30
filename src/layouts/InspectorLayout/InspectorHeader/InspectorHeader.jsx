@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './InspectorHeader.scss';
 import cx from 'classnames';
-import { queryToObject } from 'lib/util';
+import { queryToObject } from 'core/util';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -210,89 +210,105 @@ class InspectorHeader extends Component {
   renderContent() {
     const { isFindingResource } = this.props;
 
-    if (isFindingResource) {
-      const { searchFields } = this.props;
-      const {
-        searchField,
-        sort,
-        toDate, fromDate,
-      } = this.state || {};
-      return (
-        <div className={styles.Finder}>
-          <div className={styles.FinderSearch}>
-            <div className={styles.FinderSearchIcon}>
-              <Search color="#ffffff" />
-            </div>
-            <div className={styles.FinderSearchField}>
-              <SelectField
-                value={searchField || 1}
-                labelStyle={{
-                  color: '#fff',
-                }}
-                style={{
-                  width: '100%',
-                }}
-                onChange={this.handleChangeSearchField}
-              >
-                {searchFields.map(this.renderSearchFields)}
-              </SelectField>
-            </div>
-            <div className={styles.FinderSearchInput}>
-              <TextField
-                fullWidth
-                hintText="Search"
-                inputStyle={{
-                  color: '#ffffff',
-                }}
-                underlineFocusStyle={{
-                  borderColor: '#ffffff',
-                }}
-                hintStyle={{
-                  color: 'rgba(255, 255, 255, 0.4)',
-                }}
-                onChange={this.handleChangeSearchWord}
-              />
-            </div>
+    const { searchFields } = this.props;
+    const {
+      searchField,
+      sort,
+      toDate, fromDate,
+    } = this.state || {};
+    const finderNode = (
+      <div
+        className={styles.Finder}
+        style={{
+          display: isFindingResource ? 'flex' : 'none',
+        }}
+      >
+        <div className={styles.FinderSearch}>
+          <div className={styles.FinderSearchIcon}>
+            <Search color="#ffffff" />
           </div>
-          <div className={styles.FinderSort}>
+          <div className={styles.FinderSearchField}>
             <SelectField
-              value={sort || 1}
+              value={searchField || 1}
               labelStyle={{
                 color: '#fff',
               }}
               style={{
-                width: 'auto',
+                width: '100%',
               }}
-              onChange={this.handleChangeSort}
+              onChange={this.handleChangeSearchField}
             >
-              <MenuItem value={1} primaryText="Ascending order" />
-              <MenuItem value={2} primaryText="Descending order" />
+              {searchFields.map(this.renderSearchFields)}
             </SelectField>
           </div>
-          <div className={styles.FinderDateFilter}>
-            <DatePicker
-              hintText="From"
+          <div className={styles.FinderSearchInput}>
+            <TextField
+              fullWidth
+              hintText="Search"
               inputStyle={{
                 color: '#ffffff',
               }}
-              onChange={this.handleChangeFromDate}
-              value={fromDate}
-              maxDate={toDate}
-            />
-            <DatePicker
-              hintText="To"
-              inputStyle={{
-                color: '#ffffff',
+              underlineFocusStyle={{
+                borderColor: '#ffffff',
               }}
-              onChange={this.handleChangeToDate}
-              value={toDate}
-              minDate={fromDate}
+              hintStyle={{
+                color: 'rgba(255, 255, 255, 0.4)',
+              }}
+              onChange={this.handleChangeSearchWord}
             />
           </div>
         </div>
-      );
-    }
-    return null;
+        <div className={styles.FinderSort}>
+          <SelectField
+            value={sort || 1}
+            labelStyle={{
+              color: '#fff',
+            }}
+            style={{
+              width: 'auto',
+            }}
+            onChange={this.handleChangeSort}
+          >
+            <MenuItem value={1} primaryText="Ascending order" />
+            <MenuItem value={2} primaryText="Descending order" />
+          </SelectField>
+        </div>
+        <div className={styles.FinderDateFilter}>
+          <DatePicker
+            hintText="From"
+            inputStyle={{
+              color: '#ffffff',
+            }}
+            onChange={this.handleChangeFromDate}
+            value={fromDate}
+            maxDate={toDate}
+          />
+          <DatePicker
+            hintText="To"
+            inputStyle={{
+              color: '#ffffff',
+            }}
+            onChange={this.handleChangeToDate}
+            value={toDate}
+            minDate={fromDate}
+          />
+        </div>
+      </div>
+    );
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flex: 1,
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
+        {finderNode}
+      </div>
+    );
   }
 
   renderSearchFields(field, key) {

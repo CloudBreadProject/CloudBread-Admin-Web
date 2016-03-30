@@ -53,17 +53,20 @@ app.get('*', (req, res) => {
       } else if (renderProps) {
         // set navigator through request to match css
         initDOM(req);
-        // pre-fetch components
+
+        // pre-fetch components'
         await fetchComponent(store.dispatch, renderProps.components, {
           ...renderProps.params,
           ...req.query,
         });
+
         // render app
         const content = renderToString((
           <Provider store={store}>
             <RouterContext {...renderProps} />
           </Provider>
         ));
+
         // serve app with HTML document type
         res.status(200).send(
           `<!doctype html>` + // eslint-disable-line
