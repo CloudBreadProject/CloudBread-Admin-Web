@@ -45,12 +45,13 @@ app.get('*', (req, res) => {
   // match route
   match({ history, routes, location: req.url }, async (error, redirectLocation, renderProps) => {
     try {
-      if (error) {
-        // error occurs
-        res.status(500).send(error.message);
-      } else if (redirectLocation) {
-        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
+      if (error) throw error;
+
+      if (redirectLocation) {
+        return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+      }
+
+      if (renderProps) {
         // set navigator through request to match css
         initDOM(req);
 
@@ -68,7 +69,7 @@ app.get('*', (req, res) => {
         ));
 
         // serve app with HTML document type
-        res.status(200).send(
+        return res.status(200).send(
           `<!doctype html>` + // eslint-disable-line
           renderToStaticMarkup((
             <Html
@@ -79,13 +80,13 @@ app.get('*', (req, res) => {
             </Html>
           ))
         );
-      } else {
-        // route not found
-        res.status(404).send('Not found');
       }
+
+      // route not found
+      return res.status(404).send('Not found');
     } catch (err) {
-      console.log(err);
-      res.status(500).send('server error');
+      console.log(pe.render(err));
+      return res.status(500).send('Server error');
     }
   });
 });

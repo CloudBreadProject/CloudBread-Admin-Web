@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from './App.scss';
+import styles from './AppLayout.scss';
 
 import { connect } from 'react-redux';
 
@@ -16,13 +16,13 @@ function mapStateToProps({ display }) {
   };
 }
 
-export function App({ children, isLoading }) {
+export function AppLayout({ children, isLoading }) {
   const muiTheme = getMuiTheme({
     userAgent: navigator.userAgent,
   });
 
   return (
-    <div className={styles.App}>
+    <div className={styles.AppLayout}>
       <Helmet
         link={[
           {
@@ -53,9 +53,9 @@ export function App({ children, isLoading }) {
   );
 }
 
-App.propTypes = {
+AppLayout.propTypes = {
   children: PropTypes.object,
   isLoading: PropTypes.bool,
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(AppLayout);

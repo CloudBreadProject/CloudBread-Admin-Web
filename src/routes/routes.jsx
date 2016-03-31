@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from 'layouts/App';
-import HomePage from 'containers/HomePage';
-import ContentPage from 'containers/ContentPage';
+import AppLayout from 'components/AppLayout';
+import HomePage from 'components/HomePage';
+import ContentPage from 'components/ContentPage';
 
 const routeContainer = (
-  <Route path="/" component={App}>
+  <Route path="/" component={AppLayout}>
     <IndexRoute component={HomePage} />
     <Route path="page/:pageId" component={ContentPage} />
   </Route>
