@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 import { resolve } from 'path';
 import express from 'express';
+import PrettyError from 'pretty-error';
 
 // render components
 import React from 'react';
@@ -12,10 +13,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
 import routes from 'routes';
-import PrettyError from 'pretty-error';
 import Html from 'components/Html';
 import { initDOM, setStore } from 'core/context';
 import assets from './assets.json';
+import { setApiEndpoint } from 'actions/fetcher';
 
 // serve static public assets
 const ROOT = resolve(__dirname, '.');
@@ -35,11 +36,13 @@ if (__DEV__) {
 app.use('/api', require('api').default);
 
 // serve client
-app.get('*', (req, res) => {
+app.get('*', async (req, res) => {
   // prepare virtual environments to render
   const memoryHistory = createMemoryHistory(req.path);
   const store = createStore(memoryHistory, reducer);
   const history = syncHistoryWithStore(memoryHistory, store);
+  const { API_ENDPOINT } = process.env;
+  await store.dispatch(setApiEndpoint((!!API_ENDPOINT ? API_ENDPOINT : `http://localhost:${__PORT__}/api/`)));
   setStore(store);
 
   // match route

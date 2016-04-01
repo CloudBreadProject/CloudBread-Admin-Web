@@ -4,6 +4,8 @@ import schema from 'data';
 
 const router = Router();
 
+router.use(require('cors')());
+
 // bind graphql
 router.use('/graphql', graphqlHTTP({
   schema,
