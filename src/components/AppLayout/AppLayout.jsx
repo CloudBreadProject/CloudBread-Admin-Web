@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import styles from './App.scss';
+import React, { PropTypes, Component } from 'react';
+import styles from './AppLayout.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,7 +25,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export class App extends Component {
+export class AppLayout extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     snackbarOpen: PropTypes.bool,
@@ -74,7 +74,7 @@ export class App extends Component {
             },
           ]}
         />
-      <MuiThemeProvider muiTheme={muiTheme}>
+        <MuiThemeProvider muiTheme={muiTheme}>
           {children}
         </MuiThemeProvider>
         <Snackbar
@@ -95,4 +95,4 @@ export class App extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(AppLayout);

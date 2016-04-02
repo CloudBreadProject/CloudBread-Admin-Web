@@ -1,8 +1,8 @@
 import React from 'react';
 import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
-import AuthLayout from 'layouts/AuthLayout';
-import AuthPage from 'containers/AuthPage';
+import AuthLayout from 'components/AuthLayout';
+import AuthPage from 'components/AuthPage';
 
 const AuthRoute = (
   <Route path="/auth" component={AuthLayout}>

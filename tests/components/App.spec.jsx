@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { App } from 'layouts/App';
+import { AppLayout } from 'components/AppLayout';
 
 describe('<App />', () => {
   it('renders as a <div>', () => {
     const wrapper = shallow(
-      <App />
+      <AppLayout />
     );
     expect(wrapper.type()).to.equal('div');
   });
@@ -13,9 +13,9 @@ describe('<App />', () => {
   it('renders children when passed in', () => {
     const children = <div className="unique" />;
     const wrapper = shallow(
-      <App>
+      <AppLayout>
         {children}
-      </App>
+      </AppLayout>
     );
     expect(wrapper.contains(children)).to.equal(true);
   });

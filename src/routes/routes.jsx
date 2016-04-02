@@ -3,18 +3,18 @@ import React from 'react';
 import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
 
-import App from 'layouts/App';
-import InspectorLayout from 'layouts/InspectorLayout';
-import HomePage from 'containers/HomePage';
-import ContentPage from 'containers/ContentPage';
-import ResourceFindPage from 'containers/ResourceFindPage';
-import ResourceEditPage from 'containers/ResourceEditPage';
-import AnalystPage from 'containers/AnalystPage';
+import AppLayout from 'components/AppLayout';
+import InspectorLayout from 'components/InspectorLayout';
+import HomePage from 'components/HomePage';
+import ContentPage from 'components/ContentPage';
+import ResourceFindPage from 'components/ResourceFindPage';
+import ResourceEditPage from 'components/ResourceEditPage';
+import AnalystPage from 'components/AnalystPage';
 
 import AuthRoute from 'routes/AuthRoute';
 
 const routeContainer = (
-  <Route component={App}>
+  <Route component={AppLayout}>
     <Route path="/" component={InspectorLayout}>
       <IndexRoute component={HomePage} />
       <Route path="finder/:resourceId" component={ResourceFindPage} />

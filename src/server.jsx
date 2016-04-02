@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 import { resolve } from 'path';
 import express from 'express';
+import PrettyError from 'pretty-error';
 
 // render components
 import React from 'react';
@@ -12,10 +13,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from 'redux/createStore';
 import reducer from 'redux/reducer';
 import routes from 'routes';
-import PrettyError from 'pretty-error';
 import Html from 'components/Html';
 import { initDOM, setStore } from 'core/context';
 import assets from './assets.json';
+import { setApiEndpoint } from 'actions/fetcher';
 
 // serve static public assets
 const ROOT = resolve(__dirname, '.');
@@ -35,22 +36,25 @@ if (__DEV__) {
 app.use('/api', require('api').default);
 
 // serve client
-app.get('*', (req, res) => {
+app.get('*', async (req, res) => {
   // prepare virtual environments to render
   const memoryHistory = createMemoryHistory(req.path);
   const store = createStore(memoryHistory, reducer);
   const history = syncHistoryWithStore(memoryHistory, store);
+  const { API_ENDPOINT } = process.env;
+  await store.dispatch(setApiEndpoint((!!API_ENDPOINT ? API_ENDPOINT : `http://localhost:${__PORT__}/api/`)));
   setStore(store);
 
   // match route
   match({ history, routes, location: req.url }, async (error, redirectLocation, renderProps) => {
     try {
-      if (error) {
-        // error occurs
-        res.status(500).send(error.message);
-      } else if (redirectLocation) {
-        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
+      if (error) throw error;
+
+      if (redirectLocation) {
+        return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+      }
+
+      if (renderProps) {
         // set navigator through request to match css
         initDOM(req);
 
@@ -68,7 +72,7 @@ app.get('*', (req, res) => {
         ));
 
         // serve app with HTML document type
-        res.status(200).send(
+        return res.status(200).send(
           `<!doctype html>` + // eslint-disable-line
           renderToStaticMarkup((
             <Html
@@ -79,13 +83,13 @@ app.get('*', (req, res) => {
             </Html>
           ))
         );
-      } else {
-        // route not found
-        res.status(404).send('Not found');
       }
+
+      // route not found
+      return res.status(404).send('Not found');
     } catch (err) {
-      console.log(err);
-      res.status(500).send('server error');
+      console.log(pe.render(err));
+      return res.status(500).send('Server error');
     }
   });
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 
-class HomePage extends Component {
+export class HomePage extends Component {
   componentDidMount() {
   }
 
