@@ -12,7 +12,7 @@ import reducer from 'redux/reducer';
 injectTapEventPlugin();
 
 const appContainer = document.getElementById('app');
-const store = createStore(browserHistory, reducer, window.__SYNC_DATA);
+const store = createStore(browserHistory, reducer);
 const history = syncHistoryWithStore(browserHistory, store);
 setStore(store);
 

@@ -5,23 +5,18 @@ import { queryToObject } from 'core/util';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signout } from 'actions/user';
 import { showSnackbarMessage } from 'actions/display';
 import { loadResources } from 'actions/resource';
 
 import Link from 'react-router/lib/Link';
 
-import IconButton from 'material-ui/lib/icon-button';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
 import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
-import ExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import Search from 'material-ui/lib/svg-icons/action/search';
-
-import Logo from 'public/logo.png';
 
 function mapStateToProps({ editor, finder, display }) {
   const {
@@ -49,7 +44,6 @@ function mapStateToProps({ editor, finder, display }) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    signout,
     showSnackbarMessage,
     loadResources,
   }, dispatch);
@@ -63,7 +57,6 @@ class InspectorHeader extends Component {
   static propTypes = {
     // user's typing delay time
     typeDelay: PropTypes.number,
-    signout: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
 
     // resource status
@@ -93,7 +86,6 @@ class InspectorHeader extends Component {
     this.renderRightNav = this.renderRightNav.bind(this);
     this.renderContent = this.renderContent.bind(this);
 
-    this.handleClickSignOut = this.handleClickSignOut.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
     this.handleChangeToDate = this.handleChangeToDate.bind(this);
     this.handleChangeFromDate = this.handleChangeFromDate.bind(this);
@@ -187,23 +179,14 @@ class InspectorHeader extends Component {
     }
     return (
       <Link to="/" className={styles.Title}>
-        <img src={Logo} className={styles.Logo} />
         Inspector
       </Link>
     );
   }
 
   renderRightNav() {
-    const iconProperty = {
-      color: '#fff',
-    };
     return (
-      <IconButton
-        tooltip="Sign out"
-        onClick={this.handleClickSignOut}
-      >
-        <ExitToApp {...iconProperty} />
-      </IconButton>
+      <div />
     );
   }
 
@@ -388,14 +371,6 @@ class InspectorHeader extends Component {
       sort: value === 1 ? 'desc' : 'asc',
     });
     await this.reloadResources();
-  }
-
-  handleClickSignOut() {
-    this.props.signout();
-    this.context.router.push('/auth');
-    this.props.showSnackbarMessage({
-      snackbarMessage: 'Successfully signed out',
-    });
   }
 
   handleClickBack() {

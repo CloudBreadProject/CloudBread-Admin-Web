@@ -1,44 +1,52 @@
-import browserSync from 'browser-sync';
 import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import { webpackServer, webpackClient, stats, DEV_PORT } from '../config';
+import {
+  webpackClient,
+  stats,
+  buildPath,
+  DEV_PORT,
+  DEV_HOST,
+  DEV_HOSTNAME,
+  DEV_SERVER,
+} from '../config';
+import brwoserSync from 'browser-sync';
+
 import run from '../lib/run';
-import serve from './serve';
 import clean from './clean';
 import copy from './copy';
 
 function _dev() {
   return new Promise((resolve, reject) => {
-    const webpackPackage = [webpackClient, webpackServer];
-    const bundler = webpack(webpackPackage);
-    const clientBundle = webpack(webpackClient);
+    const compiler = webpack(webpackClient);
 
-    const devMiddleware = webpackDevMiddleware(clientBundle, {
+    const server = new WebpackDevServer(compiler, {
+      contentBase: buildPath,
+      hot: true,
       publicPath: '/',
       stats,
     });
 
-    const hotMiddleware = webpackHotMiddleware(clientBundle);
+    compiler.run(err => {
+      try {
+        if (err) throw err;
+        server.listen(DEV_PORT, DEV_HOSTNAME, err2 => {
+          if (err2) throw reject(err2);
 
-    let runCount = 0;
+          console.log(`Webpack develment server is listening at ${DEV_SERVER}`);
 
-    bundler.watch({
-      aggregateTimeout: 200,
-    }, async (err, result) => { // eslint-disable-line consistent-return
-      if (err) {
-        return reject(err);
-      }
-      console.log(result.toString(stats));
-      if (++runCount === webpackPackage.length) {
-        await run(serve);
-        const bs = browserSync.create();
-        bs.init({
-          proxy: {
-            target: `localhost:${DEV_PORT}`,
-            middleware: [devMiddleware, hotMiddleware],
-          },
-        }, resolve);
+          const bs = brwoserSync.create();
+          bs.init({
+            proxy: {
+              target: DEV_HOST,
+              middleware: [
+                webpackHotMiddleware(compiler),
+              ],
+            },
+          }, resolve);
+        });
+      } catch (exception) {
+        reject(exception);
       }
     });
   });

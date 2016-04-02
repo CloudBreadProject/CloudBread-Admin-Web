@@ -9,9 +9,8 @@ import { showSnackbarMessage } from 'actions/display';
 import InspectorHeader from './InspectorHeader';
 import InspectorSideNav from './InspectorSideNav';
 
-function mapStateToProps({ user }) {
+function mapStateToProps() {
   return {
-    isAuthenticated: user.isAuthenticated,
   };
 }
 
@@ -28,24 +27,13 @@ class InspectorLayout extends Component {
 
   static propTypes = {
     children: PropTypes.node,
-    isAuthenticated: PropTypes.bool,
     showSnackbarMessage: PropTypes.func,
   };
 
-  componentDidMount() {
-    if (!this.props.isAuthenticated) {
-      this.context.router.push('/auth');
-      this.props.showSnackbarMessage({
-        snackbarMessage: 'You should be authorized to use inspector',
-      });
-    }
-  }
+  componentDidMount() {}
 
   render() {
-    const { children, isAuthenticated } = this.props;
-    if (!isAuthenticated) {
-      return <p>You did not authenticated</p>;
-    }
+    const { children } = this.props;
     return (
       <div className={styles.InspectorLayout}>
         <InspectorHeader />

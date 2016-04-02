@@ -1,7 +1,5 @@
 import ncp from 'ncp';
-import replace from 'replace';
 import watch from '../lib/watch';
-import mkdir from '../lib/mkdir';
 import { all } from 'bluebird';
 import { DEBUG, ROOT } from '../config';
 
@@ -15,29 +13,15 @@ async function carryFile(file) {
   const relPath = `.${file.replace(ROOT, '')}`;
   const carryPath = relPath.replace('./src', './build');
   await ncpAsync(relPath, carryPath);
-  console.log(`${relPath} copied to ${carryPath}`);
 }
 
 async function copy() {
-  await mkdir('build/public');
-  await mkdir('build/assets');
-
   await all([
-    ncpAsync('./src/public', './build/public'),
-    ncpAsync('./src/assets', './build/assets'),
-    ncpAsync('./package.json', './build/package.json'),
+    ncpAsync('./src/index.html', './build/index.html'),
   ]);
 
-  replace({
-    regex: '"start".*',
-    replacement: '"start": "node server.js",',
-    paths: ['build/package.json'],
-    recursive: false,
-    silent: false,
-  });
-
   if (DEBUG) {
-    const watcher = await watch(['./src/public/**/*', './src/assets/**/*']);
+    const watcher = await watch(['./src/index.html', './build/index.html']);
     watcher.on('changed', carryFile);
     watcher.on('added', carryFile);
   }

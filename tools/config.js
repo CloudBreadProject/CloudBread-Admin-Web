@@ -1,12 +1,10 @@
 import webpack from 'webpack';
-import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import postcssImport from 'postcss-import';
 import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import { merge } from 'lodash';
 import { resolve } from 'path';
-import fs from 'fs';
 import { argv } from 'yargs';
 
 export const DEBUG = !process.argv.includes('--release');
@@ -14,10 +12,12 @@ export const VERBOSE = process.argv.includes('--verbose');
 export const WATCH = process.argv.includes('--watch');
 
 export const DEV_PORT = argv.port || 5000;
+export const DEV_HOSTNAME = 'localhost';
+export const DEV_HOST = `${DEV_HOSTNAME}:${DEV_PORT}`;
+export const DEV_SERVER = `http://${DEV_HOST}`;
 
 export const ROOT = resolve(__dirname, '../');
 export const buildPath = `${ROOT}/build`;
-export const buildStaticPath = `${buildPath}/public`;
 export const srcPath = `${ROOT}/src`;
 export const modulePath = `${ROOT}/node_modules`;
 export const AUTOPREFIXER_BROWSERS = [
@@ -129,23 +129,23 @@ export const webpackCommonPlugins = [
 export const webpackClient = merge({}, webpackCommon, {
   entry: {
     app: [
-      ...(DEBUG ? ['webpack-hot-middleware/client'] : []),
+      ...(DEBUG ? [
+        `webpack-dev-server/client?${DEV_SERVER}`,
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
+      ] : []),
       'babel-polyfill',
       `${srcPath}/client.jsx`,
     ],
   },
   target: 'web',
   output: {
-    path: buildStaticPath,
-    filename: DEBUG ? '[name].js?[hash]' : '[name].[hash].js',
+    path: buildPath,
+    filename: '[name].js',
   },
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
   plugins: [
     ...webpackCommonPlugins,
-    new AssetsPlugin({
-      path: buildPath,
-      filename: 'assets.json',
-    }),
     ...(DEBUG ? [
       // development
       new webpack.HotModuleReplacementPlugin(),
@@ -180,49 +180,5 @@ if (DEBUG) {
           }],
         }],
       ],
-    });
-}
-
-export const webpackServer = merge({}, webpackCommon, {
-  entry: {
-    server: [
-      'babel-polyfill',
-      `${srcPath}/server.jsx`,
-    ],
-  },
-  output: {
-    path: buildPath,
-    filename: '[name].js',
-    libraryTarget: 'commonjs2',
-  },
-  devtool: 'source-map',
-  target: 'node',
-  node: {
-    console: false,
-    global: false,
-    process: false,
-    Buffer: false,
-    __filename: false,
-    __dirname: false,
-  },
-  externals: [
-    /^\.\/assets\.json$/,
-    fs.readdirSync(modulePath).filter(x => x !== '.bin'),
-  ],
-  plugins: [
-    ...webpackCommonPlugins,
-    new webpack.BannerPlugin(
-      'require(\'source-map-support\').install();',
-      { raw: true, entryOnly: false }
-    ),
-  ],
-});
-
-if (DEBUG) {
-  webpackServer.module.loaders
-    .filter(x => x.loaders && x.loaders[0] === 'style-loader')
-    .forEach(x => {
-      x.loaders.shift();
-      x.loaders[0] = x.loaders[0].replace(/css-loader?/, 'css-loader/locals?'); // eslint-disable-line
     });
 }

@@ -1,5 +1,5 @@
 import superagent from 'superagent';
-import { getStore } from 'core/context';
+import { API_ENDPOINT } from 'config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
@@ -8,8 +8,7 @@ function formatUrl(path) {
     return path;
   }
   const adjustedPath = path[0] !== '/' ? `/${path}` : path;
-  const { apiEndpoint } = getStore().getState().fetcher;
-  return apiEndpoint + adjustedPath;
+  return `${API_ENDPOINT}/${adjustedPath}`;
 }
 
 class ApiFetcher {
