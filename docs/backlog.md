@@ -1,10 +1,9 @@
 # Backlog
 
-## Migrate Webpack 2 from Webpack 1
-Webpack 2 is currently in beta.
-It will minimize your bundle size.
+## React 0.15.x
+React's next generation is coming.
+There can be needed changes.
+As soon as possible, I will reflect newest React after releasing.
 
-## Better NPM Runner
-Node.js supports Windows and Unix.
-It is awesome but sometimes terrible because window and unix shell are absolutely different.
-[better-npm-run](https://www.npmjs.com/package/better-npm-run) solved it and I will apply.
+## Migrate Webpack 2 from Webpack 1
+Webpack 2 is currently in beta. It will minimize your bundle size.
