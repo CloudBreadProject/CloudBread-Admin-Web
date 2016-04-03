@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux';
 
 import { showSnackbarMessage } from 'actions/display';
 
-import InspectorHeader from './InspectorHeader';
-import InspectorSideNav from './InspectorSideNav';
+import InspectorHeader from 'components/InspectorHeader';
+import InspectorSideNav from 'components/InspectorSideNav';
 
 function mapStateToProps() {
   return {
