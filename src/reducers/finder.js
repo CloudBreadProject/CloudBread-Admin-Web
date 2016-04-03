@@ -5,9 +5,10 @@ const initialState = {
   showResources: 20,
 
   // finder status
-  isRequesting: false,
+  isRequesting: false, // http req
   isLoaded: false,
   isFinding: false,
+  failedToLoad: false,
   errorMessage: '',
 
   // resource schema
@@ -50,6 +51,7 @@ export default function reducer(state = initialState, action = {}) {
         isLoaded: false,
         allArticles: 0,
         resources: [],
+        failedToLoad: false,
 
         // resource schema
         title: '',
@@ -99,6 +101,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isRequesting: false,
         errorMessage: 'Error occured',
+        failedToLoad: true,
       };
     }
     case DELETE_RESOURCE_SUCCESS: {

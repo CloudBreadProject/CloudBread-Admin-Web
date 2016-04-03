@@ -68,6 +68,7 @@ class ResourceFindPage extends Component {
     startFindingResource: PropTypes.func,
     stopFindingResource: PropTypes.func,
     timezone: PropTypes.string,
+    failedToLoad: PropTypes.bool,
   };
 
   constructor() {
@@ -95,9 +96,13 @@ class ResourceFindPage extends Component {
       description,
       allArticles,
       isLoaded,
+      failedToLoad,
     } = this.props;
+    if (failedToLoad) {
+      return <div>Failed to load resources.</div>;
+    }
     if (!isLoaded) {
-      return <p>Loading resource ...</p>;
+      return <div>Loading resources ...</div>;
     }
     return (
       <div className={styles.ResourceFindPage}>

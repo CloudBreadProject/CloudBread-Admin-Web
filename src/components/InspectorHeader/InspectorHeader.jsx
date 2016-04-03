@@ -30,15 +30,20 @@ function mapStateToProps({ editor, finder, display }) {
   } = finder;
 
   return {
-    isEditingResource: editor.isEditing,
-    isFindingResource: isFinding,
-    isLoading: display.isLoading,
+    // finder
     searchFields,
     resourceId,
+    isEditingResource: editor.isEditing,
+    isFindingResource: isFinding,
+    isFinderLoaded: finder.isLoaded,
 
+    // finder search
     search, field,
     toDate, fromDate,
     sort,
+
+    // loading display
+    isLoading: display.isLoading,
   };
 }
 
@@ -66,6 +71,7 @@ class InspectorHeader extends Component {
     searchFields: PropTypes.array,
     resourceId: PropTypes.string,
     loadResources: PropTypes.func,
+    isFinderLoaded: PropTypes.bool,
 
     // search relate props
     search: PropTypes.string,
@@ -191,7 +197,7 @@ class InspectorHeader extends Component {
   }
 
   renderContent() {
-    const { isFindingResource } = this.props;
+    const { isFindingResource, isFinderLoaded } = this.props;
 
     const { searchFields } = this.props;
     const {
@@ -203,7 +209,7 @@ class InspectorHeader extends Component {
       <div
         className={styles.Finder}
         style={{
-          display: isFindingResource ? 'flex' : 'none',
+          display: isFindingResource && isFinderLoaded ? 'flex' : 'none',
         }}
       >
         <div className={styles.FinderSearch}>
