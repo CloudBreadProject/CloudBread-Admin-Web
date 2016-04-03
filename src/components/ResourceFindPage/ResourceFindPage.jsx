@@ -97,6 +97,7 @@ class ResourceFindPage extends Component {
       allArticles,
       isLoaded,
       failedToLoad,
+      resources,
     } = this.props;
     if (failedToLoad) {
       return <div>Failed to load resources.</div>;
@@ -104,26 +105,34 @@ class ResourceFindPage extends Component {
     if (!isLoaded) {
       return <div>Loading resources ...</div>;
     }
+    let tableNode = '';
+    if (resources.length) {
+      tableNode = (
+        <div>
+          <Divider />
+          <Table
+            selectable={false}
+            onCellClick={this.handleClickResourceItem}
+          >
+            <TableHeader displaySelectAll={false} enableSelectAll={false} adjustForCheckbox={false}>
+              <TableRow>
+                {this.renderHeaderCells()}
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {this.renderBodyCells()}
+            </TableBody>
+          </Table>
+          <Divider />
+        </div>
+      );
+    }
     return (
       <div className={styles.ResourceFindPage}>
         <h1>{title}</h1>
         <p>{description}</p>
         <p>Total Articles: {allArticles}</p>
-        <Divider />
-        <Table
-          selectable={false}
-          onCellClick={this.handleClickResourceItem}
-        >
-          <TableHeader displaySelectAll={false} enableSelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              {this.renderHeaderCells()}
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {this.renderBodyCells()}
-          </TableBody>
-        </Table>
-        <Divider />
+        {tableNode}
       </div>
     );
   }

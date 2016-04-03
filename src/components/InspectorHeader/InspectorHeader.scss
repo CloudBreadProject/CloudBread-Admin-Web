@@ -76,7 +76,7 @@
 }
 
 .FinderSearch {
-  flex: 3;
+  flex: 2;
   display: flex;
   padding: 0 5px;
 }
@@ -99,16 +99,19 @@
 .FinderDateFilter {
   flex: 1;
   display: flex;
-  max-width: 200px;
 
   > div {
     flex: 1;
-    margin-right: 10px;
+    margin-right: 2px;
     overflow: hidden;
+    display: flex;
   }
+}
+
+.DatePicker {
+  flex: 1;
 }
 
 .FinderSort {
   padding: 0 5px;
-  flex: 1;
 }

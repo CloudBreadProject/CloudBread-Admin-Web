@@ -11,12 +11,14 @@ import { loadResources } from 'actions/resource';
 import Link from 'react-router/lib/Link';
 
 import FlatButton from 'material-ui/lib/flat-button';
+import IconButton from 'material-ui/lib/icon-button';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
 import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import Search from 'material-ui/lib/svg-icons/action/search';
+import Clear from 'material-ui/lib/svg-icons/content/clear';
 
 function mapStateToProps({ editor, finder, display }) {
   const {
@@ -99,6 +101,8 @@ class InspectorHeader extends Component {
     this.handleChangeSearchField = this.handleChangeSearchField.bind(this);
     this.handleChangeSearchWord = this.handleChangeSearchWord.bind(this);
     this.handleDoneTypingSearchWord = this.handleDoneTypingSearchWord.bind(this);
+    this.handleTapClearToDate = this.handleTapClearToDate.bind(this);
+    this.handleTapClearFromDate = this.handleTapClearFromDate.bind(this);
   }
 
   async componentWillMount() {
@@ -225,6 +229,7 @@ class InspectorHeader extends Component {
               style={{
                 width: '100%',
               }}
+              autoWidth
               onChange={this.handleChangeSearchField}
             >
               {searchFields.map(this.renderSearchFields)}
@@ -256,6 +261,7 @@ class InspectorHeader extends Component {
             style={{
               width: 'auto',
             }}
+            autoWidth
             onChange={this.handleChangeSort}
           >
             <MenuItem value={1} primaryText="Ascending order" />
@@ -263,24 +269,64 @@ class InspectorHeader extends Component {
           </SelectField>
         </div>
         <div className={styles.FinderDateFilter}>
-          <DatePicker
-            hintText="From"
-            inputStyle={{
-              color: '#ffffff',
-            }}
-            onChange={this.handleChangeFromDate}
-            value={fromDate}
-            maxDate={toDate}
-          />
-          <DatePicker
-            hintText="To"
-            inputStyle={{
-              color: '#ffffff',
-            }}
-            onChange={this.handleChangeToDate}
-            value={toDate}
-            minDate={fromDate}
-          />
+          <div>
+            <DatePicker
+              hintText="From"
+              inputStyle={{
+                color: '#ffffff',
+                width: 'auto',
+              }}
+              textFieldStyle={{
+                width: '90px',
+              }}
+              onChange={this.handleChangeFromDate}
+              value={fromDate}
+              maxDate={toDate}
+              className={styles.DatePicker}
+              autoWidth
+            />
+            <IconButton
+              style={{
+                border: '0px',
+                padding: '0px',
+                width: '36px',
+                height: '36px',
+                margin: 'auto',
+                opacity: !!fromDate ? 1 : 0,
+              }}
+              onTouchTap={this.handleTapClearFromDate}
+            >
+              <Clear color="#fff" />
+            </IconButton>
+          </div>
+          <div>
+            <DatePicker
+              hintText="To"
+              inputStyle={{
+                color: '#ffffff',
+              }}
+              textFieldStyle={{
+                width: '90px',
+              }}
+              onChange={this.handleChangeToDate}
+              value={toDate}
+              minDate={fromDate}
+              className={styles.DatePicker}
+            />
+            <IconButton
+              style={{
+                border: '0px',
+                padding: '0px',
+                width: '36px',
+                height: '36px',
+                margin: 'auto',
+                opacity: !!toDate ? 1 : 0,
+              }}
+              onTouchTap={this.handleTapClearToDate}
+            >
+              <Clear color="#fff" />
+            </IconButton>
+          </div>
         </div>
       </div>
     );
@@ -375,6 +421,26 @@ class InspectorHeader extends Component {
     });
     this.changeLocation({
       sort: value === 1 ? 'desc' : 'asc',
+    });
+    await this.reloadResources();
+  }
+
+  async handleTapClearToDate() {
+    await this.setState({
+      toDate: undefined,
+    });
+    this.changeLocation({
+      toDate: null,
+    });
+    await this.reloadResources();
+  }
+
+  async handleTapClearFromDate() {
+    await this.setState({
+      fromDate: undefined,
+    });
+    this.changeLocation({
+      fromDate: null,
     });
     await this.reloadResources();
   }

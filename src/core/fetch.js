@@ -8,7 +8,7 @@ function formatUrl(path) {
     return path;
   }
   const adjustedPath = path[0] !== '/' ? `/${path}` : path;
-  return `${API_ENDPOINT}/${adjustedPath}`;
+  return `${API_ENDPOINT}${adjustedPath}`;
 }
 
 class ApiFetcher {
