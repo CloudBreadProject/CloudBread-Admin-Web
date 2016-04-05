@@ -43,35 +43,41 @@ export default function reducer(state = initialState, action = {}) {
         fromDate, toDate,
         search, field,
         sort,
+
+        resourceId,
       } = action.payload || {};
       return {
         ...state,
-        // load status
         isRequesting: true,
-        isLoaded: false,
-        allArticles: 0,
-        resources: [],
-        failedToLoad: false,
+        ...(resourceId === state.resourceId ? {
+          // same resource
+        } : {
+          // different resource
+          // load status
+          isLoaded: false,
+          allArticles: 0,
+          resources: [],
+          failedToLoad: false,
 
-        // resource schema
-        title: '',
-        description: '',
-        primaryKey: '',
-        resourceId: '',
-        showFields: [],
+          // resource schema
+          title: '',
+          description: '',
+          primaryKey: '',
+          resourceId,
+          showFields: [],
 
-        // search relate props
-        searchFields: [],
-        search: search || '',
-        field: field || '',
-        sort: sort || '',
-        toDate: toDate || '',
-        fromDate: fromDate || '',
+          // search relate props
+          searchFields: [],
+          search: search || '',
+          field: field || '',
+          sort: sort || '',
+          toDate: toDate || '',
+          fromDate: fromDate || '',
+        }),
       };
     }
     case FIND_RESOURCES_SUCCESS: {
       const {
-        resourceId,
         showFields,
         resources,
         allArticles,
@@ -83,12 +89,14 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isRequesting: false,
-        resources,
+        resources: [
+          ...state.resources,
+          ...resources,
+        ],
         allArticles: parseInt(allArticles, 10),
         title,
         description,
         primaryKey,
-        resourceId,
         showFields,
         searchFields,
         isLoaded: true,

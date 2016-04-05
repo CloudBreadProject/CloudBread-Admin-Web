@@ -70,6 +70,8 @@
 }
 
 .Finder {
+  composes: FadeIn from "styles/Animation.scss";
+
   margin: auto 0;
   display: flex;
   width: 100%;

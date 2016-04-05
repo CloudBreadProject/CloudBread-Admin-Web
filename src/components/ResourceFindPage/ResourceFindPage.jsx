@@ -69,11 +69,18 @@ class ResourceFindPage extends Component {
     stopFindingResource: PropTypes.func,
     timezone: PropTypes.string,
     failedToLoad: PropTypes.bool,
+    fromDate: PropTypes.string,
+    toDate: PropTypes.string,
+    search: PropTypes.string,
+    field: PropTypes.string,
+    sort: PropTypes.string,
   };
 
   constructor() {
     super();
     this.handleClickResourceItem = this.handleClickResourceItem.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleNeedMoreContent = this.handleNeedMoreContent.bind(this);
   }
 
   async componentDidMount() {
@@ -84,10 +91,36 @@ class ResourceFindPage extends Component {
       this.props.hideLoading();
     }
     this.props.startFindingResource();
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
     this.props.stopFindingResource();
+  }
+
+  handleScroll() {
+    if (window.scrollY + screen.height > document.body.offsetHeight) {
+      this.handleNeedMoreContent();
+    }
+  }
+
+  handleNeedMoreContent() {
+    const {
+      fromDate, toDate, // resource date range
+      field, search, // field and word to search resource
+      sort, // sorting
+      resources,
+      resourceId,
+    } = this.props;
+    this.props.loadResources({
+      fromDate, toDate,
+      field, search,
+      sort,
+      skip: resources.length,
+      limit: 20,
+      resourceId,
+    });
   }
 
   render() {

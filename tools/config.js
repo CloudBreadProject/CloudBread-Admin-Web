@@ -164,6 +164,7 @@ export const webpackClient = merge({}, webpackCommon, {
 });
 
 if (DEBUG) {
+  // displays pretty errors when occurs
   webpackClient.module.loaders
     .filter(x => x.loader === 'babel-loader')
     .forEach(x => x.query = { // eslint-disable-line

@@ -61,6 +61,7 @@ export function loadResources({
           field, search,
           fromDate, toDate,
           sort,
+          resourceId,
         },
       });
       const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&${query}`);
@@ -80,7 +81,6 @@ export function loadResources({
         payload: {
           allArticles: res.body['odata.count'],
           resources: res.body.value,
-          resourceId,
           showFields,
           primaryKey,
           title,
