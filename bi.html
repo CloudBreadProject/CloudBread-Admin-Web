@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
@@ -17,14 +17,14 @@
   <div id="DARPU_div"></div>
 </body>
 <script>
-  var host = "http://dw-apiapp-dev-01.azurewebsites.net/";
+  var host = "/";
   var DAU_list = new Array();
   var DARPU_list = new Array();
   //DAU Data
   $(document).ready(function() {
     $.ajax({
       type: "GET",
-      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&orderby=Fields%20desc",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
       dataType: "text",
       error: function() {
         alert('Not found!');
@@ -66,7 +66,7 @@
     //DARPU Data
     $.ajax({
       type: "GET",
-      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&orderby=Fields%20desc",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
       dataType: "text",
       error: function() {
         alert('Not found!');
