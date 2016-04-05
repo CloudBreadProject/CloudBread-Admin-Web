@@ -38,23 +38,29 @@
       var value = pars['value'];
 
       var field_fst = value[0]['Fields'];
-      var count_max = value[0]['CountNum'];
+      var count_max = Number(value[0]['CountNum']);
 
       for (; i < value.length; i++) {
         if (field_fst != value[i]['Fields']) {
+          console.log("loop");
           var dataset = {
             'Field': field_fst,
             'Count': count_max
           };
           DAU_list.push(dataset);
           field_fst = value[i]['Fields'];
-          count_max = value[i]['CountNum'];
+          count_max = Number(value[i]['CountNum']);
         } else {
-          if (count_max < value[i]['CountNum']) {
-            count_max = value[i]['CountNum'];
+          if (count_max < Number(value[i]['CountNum'])) {
+            count_max = Number(value[i]['CountNum']);
           }
         }
       }
+      var dataset = {
+        'Field': field_fst,
+        'Count': count_max
+      };
+      DAU_list.push(dataset);
     });
 
     //DARPU Data
@@ -74,7 +80,7 @@
       var value = pars['value'];
 
       var field_fst = value[0]['Fields'];
-      var count_max = value[0]['CountNum'];
+      var count_max = Number(value[0]['CountNum']);
 
       for (; i < value.length; i++) {
         if (field_fst != value[i]['Fields']) {
@@ -84,13 +90,18 @@
           };
           DARPU_list.push(dataset);
           field_fst = value[i]['Fields'];
-          count_max = value[i]['CountNum'];
+          count_max = Number(value[i]['CountNum']);
         } else {
-          if (count_max < value[i]['CountNum']) {
-            count_max = value[i]['CountNum'];
+          if (count_max < Number(value[i]['CountNum'])) {
+            count_max = Number(value[i]['CountNum']);
           }
         }
       }
+      var dataset = {
+        'Field': field_fst,
+        'Count': count_max
+      };
+      DARPU_list.push(dataset);
     });
 
     google.charts.load('current', {
