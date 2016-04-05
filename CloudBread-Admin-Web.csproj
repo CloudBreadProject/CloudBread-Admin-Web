@@ -185,7 +185,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.js" />
+    <Content Include="bi.html" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -196,6 +199,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -209,6 +213,7 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="LICENSE" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +325,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\dw-apiapp-dev-01 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dw02-cb-admin-web-api-app - Web Deploy.pubxml" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
