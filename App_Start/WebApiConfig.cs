@@ -38,6 +38,9 @@ namespace CloudBread_Admin_Web
 
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
+            /// added for global error detail description by default
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

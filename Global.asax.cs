@@ -15,6 +15,17 @@ namespace CloudBread_Admin_Web
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// Request filter for /inspector admin view information
+        /// This function check the URL and rewrite the inspector path
+        void Application_BeginRequest(object sender, EventArgs e)
+        {
+            string fullOrigionalpath = Request.Url.ToString();
+            if (fullOrigionalpath.Contains("/inspector"))
+            {
+                Context.RewritePath("/index.html");
+            }
+        }
+
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -32,6 +43,8 @@ namespace CloudBread_Admin_Web
                     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
                     tableClient.DefaultRequestOptions.RetryPolicy = retryPolicy;
                     var cloudTable = tableClient.GetTableReference("CloudBreadAdminLog");
+                    cloudTable.CreateIfNotExists();
+                    cloudTable = tableClient.GetTableReference("CloudBreadAdminErrorLog");
                     cloudTable.CreateIfNotExists();
 
                     /// this queue is used for CloudBread queue method admin log saving
