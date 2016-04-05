@@ -29,6 +29,8 @@ export function loadResources({
   field, search, // field and word to search resource
   sort, // sorting
   skip, limit, // paging
+
+  needClear,
 }) {
   return async dispatch => {
     try {
@@ -62,6 +64,7 @@ export function loadResources({
           fromDate, toDate,
           sort,
           resourceId,
+          needClear,
         },
       });
       const res = await fetch.get(`/${resourceId}?$inlinecount=allpages&${query}`);

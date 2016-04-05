@@ -462,6 +462,7 @@ class InspectorHeader extends Component {
       toDate: toDate ? toDate.toISOString() : null,
       fromDate: fromDate ? fromDate.toISOString() : null,
       sort: sort === 2 ? 'CreatedAt desc' : 'CreatedAt asc',
+      needClear: true,
     });
   }
 

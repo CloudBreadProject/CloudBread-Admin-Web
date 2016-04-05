@@ -45,12 +45,14 @@ export default function reducer(state = initialState, action = {}) {
         sort,
 
         resourceId,
+        needClear,
       } = action.payload || {};
       return {
         ...state,
         isRequesting: true,
         ...(resourceId === state.resourceId ? {
           // same resource
+          resources: needClear ? [] : state.resources,
         } : {
           // different resource
           // load status
