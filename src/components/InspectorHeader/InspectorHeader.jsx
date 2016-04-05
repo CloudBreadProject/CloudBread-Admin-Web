@@ -166,7 +166,7 @@ class InspectorHeader extends Component {
     } = this.props;
     if (isEditingResource) {
       return (
-        <div>
+        <div className={styles.BtnBack}>
           <FlatButton
             icon={<ArrowBack />}
             label="Back"

@@ -105,7 +105,7 @@ class ResourceFindPage extends Component {
     }
   }
 
-  handleNeedMoreContent() {
+  async handleNeedMoreContent() {
     const {
       fromDate, toDate, // resource date range
       field, search, // field and word to search resource
@@ -113,7 +113,8 @@ class ResourceFindPage extends Component {
       resources,
       resourceId,
     } = this.props;
-    this.props.loadResources({
+    this.props.showLoading();
+    await this.props.loadResources({
       fromDate, toDate,
       field, search,
       sort,
@@ -121,6 +122,7 @@ class ResourceFindPage extends Component {
       limit: 20,
       resourceId,
     });
+    this.props.hideLoading();
   }
 
   render() {

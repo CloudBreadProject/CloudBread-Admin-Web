@@ -117,3 +117,7 @@
 .FinderSort {
   padding: 0 5px;
 }
+
+.BtnBack {
+  composes: FadeIn from "styles/Animation.scss";
+}

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './ResourceEditPage.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -125,7 +126,7 @@ class ResourceViewPage extends Component {
       return <p>Loading target resource...</p>;
     }
     return (
-      <div>
+      <div className={styles.ResourceEditPage}>
         <Helmet title="Resource Editor" />
         <div
           style={{
