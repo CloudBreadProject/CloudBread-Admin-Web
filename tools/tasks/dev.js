@@ -25,6 +25,9 @@ function _dev() {
       hot: true,
       publicPath: '/',
       stats,
+      historyApiFallback: {
+        index: '/',
+      },
     });
 
     compiler.run(err => {
