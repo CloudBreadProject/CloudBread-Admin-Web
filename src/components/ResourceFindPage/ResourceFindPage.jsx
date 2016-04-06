@@ -100,9 +100,14 @@ class ResourceFindPage extends Component {
   }
 
   handleScroll() {
-    if (window.scrollY + screen.height > document.body.offsetHeight) {
+    if (
+      window.scrollY + screen.height > document.body.offsetHeight
+      &&
+      window.scrollY >= this.lastScrollY
+    ) {
       this.handleNeedMoreContent();
     }
+    this.lastScrollY = window.scrollY;
   }
 
   async handleNeedMoreContent() {
