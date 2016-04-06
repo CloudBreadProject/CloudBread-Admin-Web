@@ -254,7 +254,7 @@ class InspectorHeader extends Component {
         </div>
         <div className={styles.FinderSort}>
           <SelectField
-            value={sort || 1}
+            value={sort || 2}
             labelStyle={{
               color: '#fff',
             }}
@@ -420,7 +420,7 @@ class InspectorHeader extends Component {
       sort: value + 1,
     });
     this.changeLocation({
-      sort: value === 1 ? 'desc' : 'asc',
+      sort: value === 1 ? 'CreatedAt desc' : 'CreatedAt asc',
     });
     await this.reloadResources();
   }

@@ -35,7 +35,7 @@ export function loadResources({
   return async dispatch => {
     try {
       let $filter = '';
-      const $orderBy = sort || 'CreatedAt desc';
+      const $orderBy = sort || 'CreatedAt asc';
       const $skip = skip || 0;
       const $top = limit || 30;
       function addCondition(condition) { // eslint-disable-line no-inner-declarations

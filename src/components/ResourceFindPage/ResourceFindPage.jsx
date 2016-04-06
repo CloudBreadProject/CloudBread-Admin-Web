@@ -100,10 +100,13 @@ class ResourceFindPage extends Component {
   }
 
   handleScroll() {
+    const { isRequesting } = this.props;
     if (
       window.scrollY + screen.height > document.body.offsetHeight
       &&
       window.scrollY >= this.lastScrollY
+      &&
+      !isRequesting
     ) {
       this.handleNeedMoreContent();
     }
