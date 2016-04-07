@@ -248,5 +248,11 @@
     chart.draw(HAU_data, HAU_options);
   }
 
+  $(window).resize(function() {
+    drawStacked();
+    drawLineGraph();
+    drawHAU();
+  });
+
 </script>
 </html>
