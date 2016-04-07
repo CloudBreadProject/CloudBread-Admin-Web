@@ -248,7 +248,7 @@ class ResourceViewPage extends Component {
           ref={field.name}
           floatingLabelText={field.name}
           hintText={field.description}
-          defaultValue={resource[name]}
+          defaultValue={resource[field.name]}
           disabled={field.readonly || isRequesting}
           onBlur={this.handleChangeInputBound[field.name]}
           fullWidth

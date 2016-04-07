@@ -1,7 +1,8 @@
 .InspectorSideNav {
   position: fixed;
   left: 0; top: 56px; bottom: 0;
-  width: 260px;
+  width: 280px;
+  overflow: auto;
   border-right: 1px solid #eee;
   background: #fff;
   z-index: 1000;
