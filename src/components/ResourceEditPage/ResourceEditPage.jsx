@@ -67,6 +67,7 @@ class ResourceViewPage extends Component {
     deleteResource: PropTypes.func,
     params: PropTypes.object,
     schema: PropTypes.object,
+    schemaArray: PropTypes.array,
     fieldGroup: PropTypes.array,
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
@@ -121,9 +122,16 @@ class ResourceViewPage extends Component {
       isLoaded,
       identifier,
       resourceId,
+      schemaArray,
     } = this.props;
     if (!isLoaded) {
       return <p>Loading target resource...</p>;
+    }
+    let tableNode;
+    if (fieldGroup.length) {
+      tableNode = fieldGroup.map(this.renderGroup);
+    } else {
+      tableNode = schemaArray.map(this.renderField);
     }
     return (
       <div className={styles.ResourceEditPage}>
@@ -149,7 +157,7 @@ class ResourceViewPage extends Component {
             </h1>
             <Divider />
           </div>
-          {fieldGroup.map(this.renderGroup)}
+          {tableNode}
         </div>
         <FloatingActionButton
           secondary
@@ -214,7 +222,7 @@ class ResourceViewPage extends Component {
 
   renderField(name, key) {
     const { resource, isRequesting, schema } = this.props;
-    const field = schema[name];
+    const field = typeof(name) === 'string' ? schema[name] : name;
     let result;
     if (field.boolean) {
       result = (

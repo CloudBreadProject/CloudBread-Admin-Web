@@ -44,6 +44,7 @@ export default function reducer(state = initialState, action = {}) {
         resource,
         fieldGroup,
         schema,
+        schemaArray,
         identifier,
         resourceId,
       } = action.payload;
@@ -55,6 +56,7 @@ export default function reducer(state = initialState, action = {}) {
         resource,
         fieldGroup,
         schema,
+        schemaArray,
         isLoaded: true,
       };
     }

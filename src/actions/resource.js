@@ -108,6 +108,7 @@ export function loadResource({ identifier, resourceId }) {
       const model = models[resourceId];
       const {
         schema,
+        schemaArray,
         fieldGroup,
       } = model;
       dispatch({
@@ -122,6 +123,7 @@ export function loadResource({ identifier, resourceId }) {
           resourceId,
           fieldGroup,
           schema,
+          schemaArray,
         },
       });
     } catch (error) {

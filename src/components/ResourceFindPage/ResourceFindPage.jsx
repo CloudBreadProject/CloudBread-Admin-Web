@@ -87,7 +87,10 @@ class ResourceFindPage extends Component {
     const { params, resourceId, isLoaded } = this.props;
     if (!(params.resourceId === resourceId && isLoaded)) {
       this.props.showLoading();
-      await this.props.loadResources(params);
+      await this.props.loadResources({
+        ...params,
+        needClear: true,
+      });
       this.props.hideLoading();
     }
     this.props.startFindingResource();
@@ -97,6 +100,18 @@ class ResourceFindPage extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
     this.props.stopFindingResource();
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    const { params, resourceId } = nextProps;
+    if (params.resourceId !== resourceId) {
+      this.props.showLoading();
+      await this.props.loadResources({
+        ...params,
+        needClear: true,
+      });
+      this.props.hideLoading();
+    }
   }
 
   handleScroll() {

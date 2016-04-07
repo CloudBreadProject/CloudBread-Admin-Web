@@ -4,9 +4,50 @@ import styles from './InspectorSideNav.scss';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import People from 'material-ui/lib/svg-icons/social/people';
-import DataUsage from 'material-ui/lib/svg-icons/device/data-usage';
+import VerifiedUser from 'material-ui/lib/svg-icons/action/verified-user';
+import GiftCard from 'material-ui/lib/svg-icons/action/card-giftcard';
+import CardMembership from 'material-ui/lib/svg-icons/action/card-membership';
+import EventSeat from 'material-ui/lib/svg-icons/action/event-seat';
+import Event from 'material-ui/lib/svg-icons/action/event';
+import Storage from 'material-ui/lib/svg-icons/device/storage';
+import ViewList from 'material-ui/lib/svg-icons/action/view-list';
+import Block from 'material-ui/lib/svg-icons/content/block';
+import Info from 'material-ui/lib/svg-icons/action/info';
+import InfoOutline from 'material-ui/lib/svg-icons/action/info-outline';
+import Shop from 'material-ui/lib/svg-icons/action/shop';
+import PlaylistCheck from 'material-ui/lib/svg-icons/av/playlist-add-check';
+import EventNote from 'material-ui/lib/svg-icons/notification/event-note';
 import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
 import Divider from 'material-ui/lib/divider';
+
+import pluralize from 'pluralize';
+
+const topNavs = [];
+
+function addNav(resourceId, icon, isPlural = true) {
+  topNavs.push({
+    primaryText: resourceId,
+    to: `/finder/${(isPlural ? pluralize(resourceId) : resourceId)}`,
+    leftIcon: icon,
+  });
+}
+
+pluralize.addPluralRule(/fo$/i, 'foes');
+
+addNav('Member', <People />);
+addNav('AdminMember', <VerifiedUser />);
+addNav('Coupon', <GiftCard />);
+addNav('CouponMember', <CardMembership />);
+addNav('GameEventMember', <EventSeat />);
+addNav('GameEvents', <Event />);
+addNav('GiftDepository', <Storage />);
+addNav('ItemList', <ViewList />);
+addNav('MemberAccountBlockLog', <Block />);
+addNav('MemberGameInfo', <Info />);
+addNav('MemberGameInfoStage', <InfoOutline />);
+addNav('MemberItemPurchase', <Shop />);
+addNav('MemberItem', <PlaylistCheck />);
+addNav('Notice', <EventNote />);
 
 class InspectorSideNav extends Component {
   static contextTypes = {
@@ -23,17 +64,6 @@ class InspectorSideNav extends Component {
   }
 
   render() {
-    const topNavs = [
-      {
-        primaryText: 'Member',
-        to: '/finder/Members',
-        leftIcon: <People />,
-      }, {
-        primaryText: 'Monitor',
-        to: '/analyst',
-        leftIcon: <DataUsage />,
-      },
-    ];
     return (
       <div className={styles.InspectorSideNav}>
         <List>
