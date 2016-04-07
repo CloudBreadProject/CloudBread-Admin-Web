@@ -27,9 +27,10 @@
       url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
       dataType: "text",
       error: function() {
-        alert('Not found!');
+        alert('Host not found! Please check the host name.');
       },
       success: function(data) {
+        console.log(data);
         //anything
       }
     }).done(function(data) {
@@ -69,7 +70,7 @@
       url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
       dataType: "text",
       error: function() {
-        alert('Not found!');
+        //handled error
       },
       success: function(data) {
         //anything
