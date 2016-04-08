@@ -13,6 +13,7 @@ using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
 using CloudBreadAdminWebAuth;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -97,6 +98,17 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Log Message
+            logMsg = new Logging.CBLoggers
+            {
+                memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal),
+                Level = "INFO",
+                Logger = "Members-PUT",
+                Message = JsonConvert.SerializeObject(patch)
+            };
+
+            Logging.RunLog(logMsg);
+
             return Updated(members);
         }
 
@@ -125,6 +137,17 @@ namespace CloudBread_Admin_Web.Controllers
                     throw;
                 }
             }
+
+            // Log Message
+            logMsg = new Logging.CBLoggers
+            {
+                memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal),
+                Level = "INFO",
+                Logger = "Members-POST",
+                Message = JsonConvert.SerializeObject(members)
+            };
+
+            Logging.RunLog(logMsg);
 
             return Created(members);
         }
@@ -164,6 +187,17 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Log Message
+            logMsg = new Logging.CBLoggers
+            {
+                memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal),
+                Level = "INFO",
+                Logger = "Members-PATCH",
+                Message = JsonConvert.SerializeObject(patch)
+            };
+
+            Logging.RunLog(logMsg);
+
             return Updated(members);
         }
 
@@ -178,6 +212,17 @@ namespace CloudBread_Admin_Web.Controllers
 
             db.Members.Remove(members);
             db.SaveChanges();
+
+            // Log Message
+            logMsg = new Logging.CBLoggers
+            {
+                memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal),
+                Level = "INFO",
+                Logger = "Members-DELETE",
+                Message = key
+            };
+
+            Logging.RunLog(logMsg);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
