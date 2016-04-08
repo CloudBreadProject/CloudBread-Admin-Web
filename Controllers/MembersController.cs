@@ -11,6 +11,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +29,21 @@ namespace CloudBread_Admin_Web.Controllers
     public class MembersController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
         // GET: odata/Members
         [EnableQuery]
         public IQueryable<Members> GetMembers()
         {
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Members-get";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+            
             return db.Members;
         }
 
@@ -39,6 +51,15 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<Members> GetMembers([FromODataUri] string key)
         {
+            logMsg = new Logging.CBLoggers
+            {
+                memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal),
+                Level = "INFO",
+                Logger = "Members-GetbyID",
+                Message = this.Request.RequestUri.PathAndQuery.ToString()
+            };
+            Logging.RunLog(logMsg);
+
             return SingleResult.Create(db.Members.Where(members => members.MemberID == key));
         }
 
