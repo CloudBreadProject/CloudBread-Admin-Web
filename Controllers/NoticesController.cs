@@ -11,6 +11,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +29,21 @@ namespace CloudBread_Admin_Web.Controllers
     public class NoticesController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
         // GET: odata/Notices
         [EnableQuery]
         public IQueryable<Notices> GetNotices()
         {
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-GET";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return db.Notices;
         }
 
@@ -39,6 +51,15 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<Notices> GetNotices([FromODataUri] string key)
         {
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-GETbyID";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return SingleResult.Create(db.Notices.Where(notices => notices.NoticeID == key));
         }
 
@@ -75,6 +96,15 @@ namespace CloudBread_Admin_Web.Controllers
                     throw;
                 }
             }
+
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-PUT";
+            logMsg.Message = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
 
             return Updated(notices);
         }
