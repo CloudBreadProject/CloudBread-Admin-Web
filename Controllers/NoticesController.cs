@@ -135,6 +135,15 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-POST";
+            logMsg.Message = JsonConvert.SerializeObject(notices);
+            Logging.RunLog(logMsg);
+
             return Created(notices);
         }
 
@@ -173,6 +182,15 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-PATCH";
+            logMsg.Message = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
+
             return Updated(notices);
         }
 
@@ -187,6 +205,15 @@ namespace CloudBread_Admin_Web.Controllers
 
             db.Notices.Remove(notices);
             db.SaveChanges();
+
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "Notices-DELETE";
+            logMsg.Message = key;
+            Logging.RunLog(logMsg);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
