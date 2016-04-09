@@ -11,6 +11,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -49,6 +50,16 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<MemberItems> GetMemberItems([FromODataUri] string key)
         {
+
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-GETbyID";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return SingleResult.Create(db.MemberItems.Where(memberItems => memberItems.MemberItemID == key));
         }
 
@@ -86,6 +97,15 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-PUT";
+            logMsg.Message = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
+
             return Updated(memberItems);
         }
 
@@ -114,6 +134,15 @@ namespace CloudBread_Admin_Web.Controllers
                     throw;
                 }
             }
+
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-POST";
+            logMsg.Message = JsonConvert.SerializeObject(memberItems);
+            Logging.RunLog(logMsg);
 
             return Created(memberItems);
         }
@@ -153,6 +182,15 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-PATCH";
+            logMsg.Message = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
+
             return Updated(memberItems);
         }
 
@@ -167,6 +205,15 @@ namespace CloudBread_Admin_Web.Controllers
 
             db.MemberItems.Remove(memberItems);
             db.SaveChanges();
+
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-DELETE";
+            logMsg.Message = key;
+            Logging.RunLog(logMsg);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
