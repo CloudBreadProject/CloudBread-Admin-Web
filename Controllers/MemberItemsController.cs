@@ -27,11 +27,21 @@ namespace CloudBread_Admin_Web.Controllers
     public class MemberItemsController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
         // GET: odata/MemberItems
         [EnableQuery]
         public IQueryable<MemberItems> GetMemberItems()
         {
+            // Get the sid of the current user
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "MemberItems-GET";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return db.MemberItems;
         }
 
