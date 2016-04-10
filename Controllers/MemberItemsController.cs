@@ -12,6 +12,8 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
 using Newtonsoft.Json;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
 
 namespace CloudBread_Admin_Web.Controllers
 {
