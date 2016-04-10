@@ -11,6 +11,9 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +30,20 @@ namespace CloudBread_Admin_Web.Controllers
     public class AdminMembersController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
         // GET: odata/AdminMembers
         [EnableQuery]
         public IQueryable<AdminMembers> GetAdminMembers()
         {
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-GET";
+            logMsg.memberID = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return db.AdminMembers;
         }
 
@@ -39,6 +51,14 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<AdminMembers> GetAdminMembers([FromODataUri] string key)
         {
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-GETbyID";
+            logMsg.memberID = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMsg);
+
             return SingleResult.Create(db.AdminMembers.Where(adminMembers => adminMembers.AdminMemberID == key));
         }
 
@@ -76,6 +96,14 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-PUT";
+            logMsg.memberID = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
+
             return Updated(adminMembers);
         }
 
@@ -104,6 +132,14 @@ namespace CloudBread_Admin_Web.Controllers
                     throw;
                 }
             }
+
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-POST";
+            logMsg.memberID = JsonConvert.SerializeObject(adminMembers);
+            Logging.RunLog(logMsg);
 
             return Created(adminMembers);
         }
@@ -143,6 +179,14 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-PATCH";
+            logMsg.memberID = JsonConvert.SerializeObject(patch);
+            Logging.RunLog(logMsg);
+
             return Updated(adminMembers);
         }
 
@@ -157,6 +201,14 @@ namespace CloudBread_Admin_Web.Controllers
 
             db.AdminMembers.Remove(adminMembers);
             db.SaveChanges();
+
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-DELETE";
+            logMsg.memberID = key;
+            Logging.RunLog(logMsg);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
