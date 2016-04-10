@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
+
 namespace CloudBread_Admin_Web.Controllers
 {
     public class ValuesController : ApiController
@@ -18,7 +21,14 @@ namespace CloudBread_Admin_Web.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            return "value";
+            //string sid = "";
+
+            //var x = this.User as ClaimsPrincipal;
+            //ClaimsPrincipal pClaim = new ClaimsPrincipal();
+            //string Country = ClaimTypes..ToString();
+            //string Country = pClaim.FindFirst(ClaimTypes.GroupSid).Value.ToString();
+            //sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+            return "1";
         }
 
         // POST api/values

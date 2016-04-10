@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-//using Microsoft.Azure.Mobile.Server.Config;
 using System.Security.Claims;
 
 namespace CloudBreadAdminWebAuth
@@ -15,11 +13,9 @@ namespace CloudBreadAdminWebAuth
     public class CBAuth
     {
         /*
-        * @brief Before setup the authentication provider in Azure Portal MobileApp, return passed memberID for dev and test purpose. \n
-        * @param pMemberID
-        * @param pClaim object
+        * @brief Before setup the authentication provider in Azure Portal, return passed memberID for dev and test purpose. \n
+        * @param pMemberID, pClaim object
         */
-        
         public static string getMemberID(string pMemberID, ClaimsPrincipal pClaim)
         {
             string sid;
@@ -45,19 +41,25 @@ namespace CloudBreadAdminWebAuth
             }
 
             return sid;
-
         }
 
+        /*
+        * @brief Before setup the authentication provider in Azure Portal and debug mode, return dummy id for dev and test purpose. \n
+        * @param pClaim object
+        */
         public static string getMemberID(ClaimsPrincipal pClaim)
         {
             string sid;
 
             try
             {
+#if DEBUG
+                sid = "dummy@dummy.com";
+#else
                 /// authentication provider set up
                 /// return Name from claim object
                 sid = pClaim.FindFirst(ClaimTypes.Name).Value;
-
+#endif
             }
             catch (Exception)
             {
@@ -66,7 +68,6 @@ namespace CloudBreadAdminWebAuth
             }
 
             return sid;
-
         }
     }
 }

@@ -80,40 +80,42 @@ namespace CloudBread_Admin_Web
                     message.memberID = "";      /// in case of non-member triggered job
                 }
 
-                /// critical error case, save in database CloudBreadErrorLog
+                /// critical error case, save in ATS CloudBreadErrorLog 
                 if (message.Level.ToUpper() == "ERROR")
                 {
                     try
                     {
-                        string strQuery = string.Format("insert into dbo.CloudBreadErrorLog(memberid, jobID, [Thread], [Level], [Logger], [Message], [Exception]) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
-                               message.memberID,
-                               message.jobID,
-                               message.Thread,
-                               message.Level,
-                               message.Logger,
-                               message.Message,
-                               message.Exception
-                               );
-
-                        /// Database connection retry policy
-                        RetryPolicy retryPolicy = new RetryPolicy<SqlAzureTransientErrorDetectionStrategy>(globalVal.conRetryCount, TimeSpan.FromSeconds(globalVal.conRetryFromSeconds));
-                        SqlConnection connection = new SqlConnection(globalVal.DBConnectionString);
+                        /// Save error log on Azure Table Storage
                         {
-                            connection.OpenWithRetry(retryPolicy);
-                            SqlCommand command = new SqlCommand(strQuery, connection);
-                            int rowcount = command.ExecuteNonQueryWithRetry(retryPolicy);
-                            connection.Close();
+                            /// Azure Table Storage connection retry policy
+                            var tableStorageRetryPolicy = new ExponentialRetry(TimeSpan.FromSeconds(2), 10);
+                            CloudStorageAccount storageAccountT = CloudStorageAccount.Parse(globalVal.StorageConnectionString);
+                            CloudTableClient tableClient = storageAccountT.CreateCloudTableClient();
+                            tableClient.DefaultRequestOptions.RetryPolicy = tableStorageRetryPolicy;
+                            CloudTable table = tableClient.GetTableReference("CloudBreadErrorLog");
+                            CBATSMessageEntity Message = new CBATSMessageEntity(message.memberID, Guid.NewGuid().ToString());
+                            Message.jobID = message.jobID;
+                            Message.Date = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ");
+                            //Message.Date = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
+                            Message.Thread = message.Thread;
+                            Message.Level = message.Level;
+                            Message.Logger = message.Logger;
+                            Message.Message = message.Message;
+                            Message.Exception = message.Exception;
+                            TableOperation insertOperation = TableOperation.Insert(Message);
+                            table.Execute(insertOperation);
                         }
                     }
                     catch (Exception)
                     {
-                        /// Catch fail to log on database. Most case database connection or login fail issue.
+                        /// Catch fail to log on database. Most case database connection or login fail issue.  
                         throw;
                     }
-
                 }
                 else
                 {
+
+
                     /// Regarding to web.config logger settting, save logs on specific storage
                     try
                     {
@@ -122,14 +124,14 @@ namespace CloudBread_Admin_Web
                             case "SQL":
                                 /// Save log on SQL
                                 string strQuery = string.Format("insert into dbo.CloudBreadAdminLog(memberid, jobID, [Thread], [Level], [Logger], [Message], [Exception]) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
-                                   message.memberID,
-                                   message.jobID,
-                                   message.Thread,
-                                   message.Level,
-                                   message.Logger,
-                                   message.Message,
-                                   message.Exception
-                                   );
+                                    message.memberID,
+                                    message.jobID,
+                                    message.Thread,
+                                    message.Level,
+                                    message.Logger,
+                                    message.Message,
+                                    message.Exception
+                                    );
 
                                 /// Database connection retry policy
                                 RetryPolicy retryPolicy = new RetryPolicy<SqlAzureTransientErrorDetectionStrategy>(globalVal.conRetryCount, TimeSpan.FromSeconds(globalVal.conRetryFromSeconds));
@@ -153,7 +155,7 @@ namespace CloudBread_Admin_Web
                                     CloudTable table = tableClient.GetTableReference("CloudBreadAdminLog");
                                     CBATSMessageEntity Message = new CBATSMessageEntity(message.memberID, Guid.NewGuid().ToString());       //memberid를 파티션키로 쓴다.
                                     Message.jobID = message.jobID;
-                                    Message.Date = DateTimeOffset.UtcNow.ToString();
+                                    Message.Date = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ");
                                     Message.Thread = message.Thread;
                                     Message.Level = message.Level;
                                     Message.Logger = message.Logger;
@@ -164,27 +166,28 @@ namespace CloudBread_Admin_Web
                                     break;
                                 }
 
-                            case "AQS":
-                                /// Save log on Azure Queue Storage
-                                {
-                                    /// Azure Queue Storage connection retry policy
-                                    var queueStorageRetryPolicy = new ExponentialRetry(TimeSpan.FromSeconds(2), 10);
-                                    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(globalVal.StorageConnectionString);
-                                    CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-                                    queueClient.DefaultRequestOptions.RetryPolicy = queueStorageRetryPolicy;
-                                    CloudQueue queue = queueClient.GetQueueReference("messagestoadminlog");      /// must be lower case
-                                    CBATSMessageEntity Message = new CBATSMessageEntity(message.memberID, Guid.NewGuid().ToString());
-                                    Message.jobID = message.jobID;
-                                    Message.Date = DateTimeOffset.UtcNow.ToString();
-                                    Message.Thread = message.Thread;
-                                    Message.Level = message.Level;
-                                    Message.Logger = message.Logger;
-                                    Message.Message = message.Message;
-                                    Message.Exception = message.Exception;
-                                    CloudQueueMessage Qmessage = new CloudQueueMessage(JsonConvert.SerializeObject(Message));
-                                    queue.AddMessage(Qmessage);
-                                    break;
-                                }
+                            /// AQS does not need CloudBread-Admin-Web
+                            //case "AQS":
+                            //    /// Save log on Azure Queue Storage
+                            //    {
+                            //        /// Azure Queue Storage connection retry policy
+                            //        var queueStorageRetryPolicy = new ExponentialRetry(TimeSpan.FromSeconds(2), 10);
+                            //        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(globalVal.StorageConnectionString);
+                            //        CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+                            //        queueClient.DefaultRequestOptions.RetryPolicy = queueStorageRetryPolicy;
+                            //        CloudQueue queue = queueClient.GetQueueReference("messagestoadminlog");      /// must be lower case
+                            //        CBATSMessageEntity Message = new CBATSMessageEntity(message.memberID, Guid.NewGuid().ToString());
+                            //        Message.jobID = message.jobID;
+                            //        Message.Date = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ");
+                            //        Message.Thread = message.Thread;
+                            //        Message.Level = message.Level;
+                            //        Message.Logger = message.Logger;
+                            //        Message.Message = message.Message;
+                            //        Message.Exception = message.Exception;
+                            //        CloudQueueMessage Qmessage = new CloudQueueMessage(JsonConvert.SerializeObject(Message));
+                            //        queue.AddMessage(Qmessage);
+                            //        break;
+                            //    }
 
                             /// redis does not need CloudBread-Admin-Web
                             //case "redis":
@@ -193,7 +196,7 @@ namespace CloudBread_Admin_Web
                             //    {
                             //        string redisKey = "";
                             //        string redisVal = "";
-                            //        message.Date = DateTimeOffset.UtcNow.ToString();
+                            //        message.Date = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ");
                             //        redisKey = DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmm") + ":" + message.memberID + ":" + message.Logger + ":" + Guid.NewGuid().ToString();   // guid - too long key size
                             //        redisVal = JsonConvert.SerializeObject(message);
                             //        CBRedis.saveRedisLog(redisKey, redisVal, globalVal.CloudBreadGameLogExpTimeDays);
@@ -216,9 +219,7 @@ namespace CloudBread_Admin_Web
                     }
                 }
             }
-            return true;
+                return true;
         }
-
-
     }
 }
