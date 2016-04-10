@@ -11,6 +11,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -28,10 +30,24 @@ namespace CloudBread_Admin_Web.Controllers
     {
         private CBEntities db = new CBEntities();
 
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
+        enum Loggers { GET, GETbyIID, PUT, POST, PATCH, DELETE};
+        const string LogStr = "CouponMembers-";
+
+        private void RunLog(Loggers logger, string message, string level = "INFO")
+        {
+            logMsg.memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+            logMsg.Level = level;
+            logMsg.Logger = logger.ToString();
+            logMsg.Message = message;
+            Logging.RunLog(logMsg);
+        }
+
         // GET: odata/CouponMembers
         [EnableQuery]
         public IQueryable<CouponMember> GetCouponMembers()
         {
+            
             return db.CouponMember;
         }
 
