@@ -45,6 +45,7 @@ namespace CloudBread_Admin_Web.Controllers
             logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
             Logging.RunLog(logMsg);
 
+
             return db.Notices;
         }
 
