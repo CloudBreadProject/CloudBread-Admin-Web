@@ -32,17 +32,16 @@ namespace CloudBread_Admin_Web.Controllers
         private CBEntities db = new CBEntities();
         Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
+        const string controllerName = "AdminMembers";
+
         // GET: odata/AdminMembers
         [EnableQuery]
         public IQueryable<AdminMembers> GetAdminMembers()
         {
-            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
-
-            logMsg.memberID = sid;
-            logMsg.Level = "INFO";
-            logMsg.Logger = "AdminMembers-GET";
-            logMsg.memberID = this.Request.RequestUri.PathAndQuery.ToString();
+            CBLoggerBuilder.Build(ref logMsg, this.User as ClaimsPrincipal, controllerName, 
+                CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GET, this.Request.RequestUri.PathAndQuery.ToString());
             Logging.RunLog(logMsg);
+
 
             return db.AdminMembers;
         }
