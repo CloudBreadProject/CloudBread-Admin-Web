@@ -36,6 +36,8 @@ namespace CloudBread_Admin_Web
         */
         public class CBLoggers
         {
+            public enum LoggerMessages { GET, GETbyID, PUT, POST, PATCH, DELETE };
+
             public string memberID { get; set; }
             public string jobID { get; set; }       /// Used in Scheduled job 
             public string Date { get; set; }
