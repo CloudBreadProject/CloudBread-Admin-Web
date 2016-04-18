@@ -13,6 +13,7 @@ using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
 using CloudBreadAdminWebAuth;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -31,7 +32,7 @@ namespace CloudBread_Admin_Web.Controllers
         private CBEntities db = new CBEntities();
 
         Logging.CBLoggers logMsg = new Logging.CBLoggers();
-        enum Loggers { GET, GETbyIID, PUT, POST, PATCH, DELETE};
+        enum Loggers { GET, GETbyID, PUT, POST, PATCH, DELETE};
         const string LogStr = "CouponMembers-";
 
         private void RunLog(Loggers logger, string message, string level = "INFO")
@@ -47,7 +48,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public IQueryable<CouponMember> GetCouponMembers()
         {
-            
+            RunLog(Loggers.GET, this.Request.RequestUri.PathAndQuery.ToString());   
             return db.CouponMember;
         }
 
@@ -55,6 +56,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<CouponMember> GetCouponMember([FromODataUri] string key)
         {
+            RunLog(Loggers.GETbyID, this.Request.RequestUri.PathAndQuery.ToString());
             return SingleResult.Create(db.CouponMember.Where(couponMember => couponMember.CouponMemberID == key));
         }
 
@@ -92,6 +94,8 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            RunLog(Loggers.PUT, Newtonsoft.Json.JsonConvert.SerializeObject(patch));
+
             return Updated(couponMember);
         }
 
@@ -121,6 +125,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            RunLog(Loggers.POST, JsonConvert.SerializeObject(couponMember));
             return Created(couponMember);
         }
 
