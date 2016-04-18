@@ -11,6 +11,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +29,22 @@ namespace CloudBread_Admin_Web.Controllers
     public class CloudBreadErrorLogsController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMessage = new Logging.CBLoggers(); // add log object
 
         // GET: odata/CloudBreadErrorLogs
         [EnableQuery]
         public IQueryable<CloudBreadErrorLog> GetCloudBreadErrorLogs()
         {
+
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            // admin access log
+            logMessage.memberID = sid;
+            logMessage.Level = "INFO";
+            logMessage.Logger = "CBErrorLogs-Get";
+            logMessage.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMessage);
+
             return db.CloudBreadErrorLog;
         }
 
