@@ -11,6 +11,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using CloudBreadAdminWebAuth;
+using System.Security.Claims;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +29,21 @@ namespace CloudBread_Admin_Web.Controllers
     public class GameEventMembersController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggers logMessage = new Logging.CBLoggers(); // add log object
+        const string Tag = "GameEventMembers";
 
         // GET: odata/GameEventMembers
         [EnableQuery]
         public IQueryable<GameEventMember> GetGameEventMembers()
         {
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMessage.memberID = sid;
+            logMessage.Level = "INFO";
+            logMessage.Logger = "GameEventMembers-" + Logging.CBLoggers.LoggerMessages.GET;
+            logMessage.Message = this.Request.RequestUri.PathAndQuery.ToString();
+            Logging.RunLog(logMessage);
+
             return db.GameEventMember;
         }
 
@@ -39,6 +51,12 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<GameEventMember> GetGameEventMember([FromODataUri] string key)
         {
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            logMessage.memberID = sid;
+            logMessage.Level = "INFO";
+            //logMessage.Logger = Stirng
+
             return SingleResult.Create(db.GameEventMember.Where(gameEventMember => gameEventMember.GameEventMemberID == key));
         }
 
