@@ -25,17 +25,17 @@ namespace CloudBread_Admin_Web
             return logMessage;
         }
 
-        private string controllerTag;
+        private string _controllerTag;
 
         public CBLoggerBuilder(string controllerTag)
         {
-            this.controllerTag = controllerTag;
+            this._controllerTag = controllerTag;
         }
 
         public Logging.CBLoggers build(ODataController controller, LevelType level, LoggerType type, string message = null)
         {
             string sid = CBAuth.getMemberID(controller.User as ClaimsPrincipal);
-            string logger = controllerTag + "-" + type.ToString();
+            string logger = _controllerTag + "-" + type.ToString();
 
             if (message == null)
             {
