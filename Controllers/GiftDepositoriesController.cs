@@ -28,13 +28,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class GiftDepositoriesController : ODataController
     {
         private CBEntities db = new CBEntities();
-        CBLoggerBuilder logBuider = new CBLoggerBuilder("GiftDepositories");
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("GiftDepositories");
 
         // GET: odata/GiftDepositories
         [EnableQuery]
         public IQueryable<GiftDepositories> GetGiftDepositories()
         {
-            Logging.RunLog(logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GET));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.GiftDepositories;
         }
 
@@ -42,7 +42,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<GiftDepositories> GetGiftDepositories([FromODataUri] string key)
         {
-            Logging.RunLog(logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GETbyIID));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.GiftDepositories.Where(giftDepositories => giftDepositories.GiftDepositoryID == key));
         }
 
@@ -80,7 +80,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.CBLoggers logMsg = logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch));
+            Logging.CBLoggers logMsg = logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch));
             Logging.RunLog(logMsg);
             return Updated(giftDepositories);
         }
@@ -111,7 +111,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.CBLoggers logMsg = logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(giftDepositories));
+            Logging.CBLoggers logMsg = logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(giftDepositories));
             Logging.RunLog(logMsg);
             return Created(giftDepositories);
         }
@@ -151,7 +151,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.CBLoggers logMsg = logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch));
+            Logging.CBLoggers logMsg = logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch));
             Logging.RunLog(logMsg);
             return Updated(giftDepositories);
         }
@@ -168,7 +168,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.GiftDepositories.Remove(giftDepositories);
             db.SaveChanges();
 
-            Logging.CBLoggers logMsg = logBuider.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.PATCH, key);
+            Logging.CBLoggers logMsg = logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, key);
             Logging.RunLog(logMsg);
             return StatusCode(HttpStatusCode.NoContent);
         }
