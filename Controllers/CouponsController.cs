@@ -11,6 +11,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +28,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class CouponsController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("Coupons");
 
         // GET: odata/Coupons
         [EnableQuery]
         public IQueryable<Coupon> GetCoupons()
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.Coupon;
         }
 
@@ -39,6 +42,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<Coupon> GetCoupon([FromODataUri] string key)
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.Coupon.Where(coupon => coupon.CouponID == key));
         }
 
@@ -76,6 +80,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
             return Updated(coupon);
         }
 
@@ -104,6 +109,11 @@ namespace CloudBread_Admin_Web.Controllers
                     throw;
                 }
             }
+
+            Logging.RunLog(logBuilder.build(this, 
+                Logging.CBLoggerBuilder.LevelType.INFO, 
+                Logging.CBLoggerBuilder.LoggerType.POST, 
+                 JsonConvert.SerializeObject(coupon)));
 
             return Created(coupon);
         }
@@ -143,6 +153,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
             return Updated(coupon);
         }
 
@@ -158,6 +169,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.Coupon.Remove(coupon);
             db.SaveChanges();
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.DELETE, key));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
