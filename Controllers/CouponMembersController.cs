@@ -30,25 +30,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class CouponMembersController : ODataController
     {
         private CBEntities db = new CBEntities();
-
-        Logging.CBLoggers logMsg = new Logging.CBLoggers();
-        enum Loggers { GET, GETbyID, PUT, POST, PATCH, DELETE};
-        const string LogStr = "CouponMembers-";
-
-        private void RunLog(Loggers logger, string message, string level = "INFO")
-        {
-            logMsg.memberID = CBAuth.getMemberID(this.User as ClaimsPrincipal);
-            logMsg.Level = level;
-            logMsg.Logger = logger.ToString();
-            logMsg.Message = message;
-            Logging.RunLog(logMsg);
-        }
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("CouponMembers");
 
         // GET: odata/CouponMembers
         [EnableQuery]
         public IQueryable<CouponMember> GetCouponMembers()
         {
-            RunLog(Loggers.GET, this.Request.RequestUri.PathAndQuery.ToString());   
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET)));
             return db.CouponMember;
         }
 
@@ -56,7 +44,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<CouponMember> GetCouponMember([FromODataUri] string key)
         {
-            RunLog(Loggers.GETbyID, this.Request.RequestUri.PathAndQuery.ToString());
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.CouponMember.Where(couponMember => couponMember.CouponMemberID == key));
         }
 
@@ -94,8 +82,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            RunLog(Loggers.PUT, Newtonsoft.Json.JsonConvert.SerializeObject(patch));
-
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
             return Updated(couponMember);
         }
 
@@ -125,7 +112,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            RunLog(Loggers.POST, JsonConvert.SerializeObject(couponMember));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(couponMember)));
             return Created(couponMember);
         }
 
@@ -164,6 +151,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
             return Updated(couponMember);
         }
 
@@ -179,6 +167,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.CouponMember.Remove(couponMember);
             db.SaveChanges();
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.DELETE, key));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
