@@ -11,6 +11,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,11 +28,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class CloudBreadLogsController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("CloudBreadLogsController");
 
         // GET: odata/CloudBreadLogs
         [EnableQuery]
         public IQueryable<CloudBreadLog> GetCloudBreadLogs()
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.CloudBreadLog;
         }
 
@@ -39,6 +42,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<CloudBreadLog> GetCloudBreadLog([FromODataUri] int key)
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.CloudBreadLog.Where(cloudBreadLog => cloudBreadLog.Id == key));
         }
 
@@ -76,6 +80,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
             return Updated(cloudBreadLog);
         }
 
@@ -90,6 +95,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.CloudBreadLog.Add(cloudBreadLog);
             db.SaveChanges();
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(cloudBreadLog)));
             return Created(cloudBreadLog);
         }
 
@@ -128,6 +134,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
             return Updated(cloudBreadLog);
         }
 
@@ -143,6 +150,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.CloudBreadLog.Remove(cloudBreadLog);
             db.SaveChanges();
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.DELETE, key.ToString()));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
