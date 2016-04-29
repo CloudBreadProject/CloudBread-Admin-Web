@@ -30,13 +30,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class GameEventMembersController : ODataController
     {
         private CBEntities db = new CBEntities();
-        CBLoggerBuilder logBuilder = new CBLoggerBuilder("GameEventMembers");
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("GameEventMembers");
 
         // GET: odata/GameEventMembers
         [EnableQuery]
         public IQueryable<GameEventMember> GetGameEventMembers()
         {
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GET));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.GameEventMember;
         }
 
@@ -44,7 +44,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<GameEventMember> GetGameEventMember([FromODataUri] string key)
         {
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GETbyIID));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.GameEventMember.Where(gameEventMember => gameEventMember.GameEventMemberID == key));
         }
 
@@ -82,7 +82,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
             return Updated(gameEventMember);
         }
 
@@ -112,7 +112,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(gameEventMember)));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(gameEventMember)));
             return Created(gameEventMember);
         }
 
@@ -151,7 +151,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
             return Updated(gameEventMember);
         }
 
@@ -167,7 +167,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.GameEventMember.Remove(gameEventMember);
             db.SaveChanges();
 
-            Logging.RunLog(logBuilder.build(this, CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.DELETE, key));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.DELETE, key));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
