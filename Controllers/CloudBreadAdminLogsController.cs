@@ -29,7 +29,7 @@ namespace CloudBread_Admin_Web.Controllers
     public class CloudBreadAdminLogsController : ODataController
     {
         private CBEntities db = new CBEntities();
-        Logging.CBLoggers logMsg = Logging.CBLoggers();
+        Logging.CBLoggers logMsg = new Logging.CBLoggers();
 
         // GET: odata/CloudBreadAdminLogs
         [EnableQuery]
