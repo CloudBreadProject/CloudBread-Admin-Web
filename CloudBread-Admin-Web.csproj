@@ -224,7 +224,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CBAuth.cs" />
     <Compile Include="CBLogger.cs" />
-    <Compile Include="CBLoggerBuilder.cs" />
     <Compile Include="CloudBreadAdminLog.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
