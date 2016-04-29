@@ -38,11 +38,15 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public IQueryable<AdminMembers> GetAdminMembers()
         {
-            CBLoggerBuilder.Build(ref logMsg, this.User as ClaimsPrincipal, controllerName, 
-                CBLoggerBuilder.LevelType.INFO, CBLoggerBuilder.LoggerType.GET, this.Request.RequestUri.PathAndQuery.ToString());
+            // Get the sid of the current user.
+            string sid = CBAuth.getMemberID(this.User as ClaimsPrincipal);
+
+            /// admin access log
+            logMsg.memberID = sid;
+            logMsg.Level = "INFO";
+            logMsg.Logger = "AdminMembers-Get";
+            logMsg.Message = this.Request.RequestUri.PathAndQuery.ToString();
             Logging.RunLog(logMsg);
-
-
             return db.AdminMembers;
         }
 
