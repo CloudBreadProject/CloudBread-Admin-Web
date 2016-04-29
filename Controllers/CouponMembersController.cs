@@ -36,7 +36,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public IQueryable<CouponMember> GetCouponMembers()
         {
-            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET)));
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.CouponMember;
         }
 

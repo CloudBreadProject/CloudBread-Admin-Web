@@ -27,6 +27,7 @@ namespace CloudBread_Admin_Web.Controllers
     public class MemberGameInfoStagesController : ODataController
     {
         private CBEntities db = new CBEntities();
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("MemberGameInfoStages");
 
         // GET: odata/MemberGameInfoStages
         [EnableQuery]
