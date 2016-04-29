@@ -27,6 +27,7 @@ namespace CloudBread_Admin_Web.Controllers
     public class GameEventsController : ODataController
     {
         private CBEntities db = new CBEntities();
+        CBLoggerBuilder logBuilder = new CBLoggerBuilder("GameEventsController");
 
         // GET: odata/GameEvents
         [EnableQuery]
