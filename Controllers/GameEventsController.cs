@@ -11,6 +11,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using CloudBread_Admin_Web;
+using Newtonsoft.Json;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -27,12 +28,13 @@ namespace CloudBread_Admin_Web.Controllers
     public class GameEventsController : ODataController
     {
         private CBEntities db = new CBEntities();
-        CBLoggerBuilder logBuilder = new CBLoggerBuilder("GameEventsController");
+        Logging.CBLoggerBuilder logBuilder = new Logging.CBLoggerBuilder("GameEventsController");
 
         // GET: odata/GameEvents
         [EnableQuery]
         public IQueryable<GameEvents> GetGameEvents()
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GET));
             return db.GameEvents;
         }
 
@@ -40,6 +42,7 @@ namespace CloudBread_Admin_Web.Controllers
         [EnableQuery]
         public SingleResult<GameEvents> GetGameEvents([FromODataUri] string key)
         {
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.GETbyIID));
             return SingleResult.Create(db.GameEvents.Where(gameEvents => gameEvents.GameEventID == key));
         }
 
@@ -77,6 +80,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PUT, JsonConvert.SerializeObject(patch)));
             return Updated(gameEvents);
         }
 
@@ -106,6 +110,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.POST, JsonConvert.SerializeObject(gameEvents)));
             return Created(gameEvents);
         }
 
@@ -144,6 +149,7 @@ namespace CloudBread_Admin_Web.Controllers
                 }
             }
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.PATCH, JsonConvert.SerializeObject(patch)));
             return Updated(gameEvents);
         }
 
@@ -159,6 +165,7 @@ namespace CloudBread_Admin_Web.Controllers
             db.GameEvents.Remove(gameEvents);
             db.SaveChanges();
 
+            Logging.RunLog(logBuilder.build(this, Logging.CBLoggerBuilder.LevelType.INFO, Logging.CBLoggerBuilder.LoggerType.DELETE, key));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
