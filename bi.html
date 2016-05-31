@@ -230,7 +230,8 @@ var JsonRequest = JSON.stringify(requestVal);
     headers: {
       "Authorization": "+p7cRK/GQeCrV2aTdvA1AoynX1xMOiM6XERYOZJavVM6oC1mQM8seleThUoNliHCgkgQHYFgfHEt1ccNy3qeOw==",
       "Content-Length": requestVal.length,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
     },
     error: function() {
       alert('Host not found! Please check the host name.');
