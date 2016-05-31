@@ -231,7 +231,10 @@ var JsonRequest = JSON.stringify(requestVal);
       "Authorization": "+p7cRK/GQeCrV2aTdvA1AoynX1xMOiM6XERYOZJavVM6oC1mQM8seleThUoNliHCgkgQHYFgfHEt1ccNy3qeOw==",
       "Content-Length": requestVal.length,
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Max-Age": "3600",
+      "Access-Control-Allow-Headers": "x-requested-with",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE"
     },
     error: function() {
       alert('Host not found! Please check the host name.');
