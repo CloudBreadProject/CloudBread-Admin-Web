@@ -314,6 +314,8 @@ var JsonRequest = JSON.stringify(requestVal);
       'Count': count_max
     };
     DAU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDAUGraph);
+    $("#graph_loading").empty();
   });
 
   //DARPU Data
@@ -355,6 +357,8 @@ var JsonRequest = JSON.stringify(requestVal);
       'Count': count_max
     };
     DARPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDARPUGraph);
+    $("#graph_loading").empty();
   });
 
   //HAU Data
@@ -396,9 +400,11 @@ var JsonRequest = JSON.stringify(requestVal);
       'Count': count_max
     };
     DARPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawHAUGraph);
+    $("#graph_loading").empty();
   });
 
-  function drawStacked() {
+  function drawDAUGraph() {
     var DAU_data = new google.visualization.DataTable();
     DAU_data.addColumn('string', 'Time of Day');
     DAU_data.addColumn('number', '재방문 유저');
@@ -428,9 +434,7 @@ var JsonRequest = JSON.stringify(requestVal);
     chart.draw(DAU_data, DAU_options);
   }
 
-  google.charts.setOnLoadCallback(drawLineGraph);
-
-  function drawLineGraph() {
+  function drawDARPUGraph() {
     var DARPU_data = new google.visualization.DataTable();
     DARPU_data.addColumn('string', 'Time of Day');
     DARPU_data.addColumn('number', '수입 ($)');
@@ -458,9 +462,7 @@ var JsonRequest = JSON.stringify(requestVal);
     chart.draw(DARPU_data, DARPU_options);
   }
 
-  google.charts.setOnLoadCallback(drawHAU);
-
-  function drawHAU() {
+  function drawHAUGraph() {
     var HAU_data = new google.visualization.DataTable();
     HAU_data.addColumn('string', 'Time of Day');
     HAU_data.addColumn('number', '재방문 유저');
@@ -491,9 +493,9 @@ var JsonRequest = JSON.stringify(requestVal);
   }
 
   $(window).resize(function() {
-    drawStacked();
-    drawLineGraph();
-    drawHAU();
+    drawDAUGraph();
+    drawDARPUGraph();
+    drawHAUGraph();
   });
 
 </script>
