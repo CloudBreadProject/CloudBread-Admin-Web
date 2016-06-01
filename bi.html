@@ -224,23 +224,14 @@ $("#registerBtn").click(function() {
 }
 var JsonRequest = JSON.stringify(requestVal);
   $.ajax({
-    url: "https://ussouthcentral.services.azureml.net/workspaces/902e0e2e69104035bee1bd2eefaff9d6/services/a715b1e8bc6f4e75a7090e7fc52832af/execute?api-version=2.0&details=true",
+    url: "api/values",
     type: "POST",
     data: JsonRequest,
-    headers: {
-      "Authorization": "+p7cRK/GQeCrV2aTdvA1AoynX1xMOiM6XERYOZJavVM6oC1mQM8seleThUoNliHCgkgQHYFgfHEt1ccNy3qeOw==",
-      "Content-Length": requestVal.length,
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Max-Age": "3600",
-      "Access-Control-Allow-Headers": "x-requested-with",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE"
-    },
     error: function() {
       alert('Host not found! Please check the host name.');
     },
-    success: function(response) {
-      alert('response: ' + response)
+    success: function() {
+      alert('Success');
     }
   }).done(function (data) {
     console.log("Response");
