@@ -107,6 +107,26 @@ a:visited {
     padding-top: 10px;
     padding-left: 280px;
 }
+#loading {
+  display:inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation:spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform" rotate(360deg);
+  }
+}
 
 </style>
 <body>
@@ -137,6 +157,10 @@ a:visited {
     </div>
 
     <div id="content">
+      <div id="graph_loading" style="text-align:center;">
+        Loading...<br>
+        <div id="loading">●</div>
+      </div>
       <div id="DAU_div"></div>
       <div id="DARPU_div"></div>
       <div id="HAU_div"></div>
@@ -144,6 +168,7 @@ a:visited {
         <input id='sname'/>
         <input id='lat' />
         <button id="registerBtn">Submit</button>
+        <div id="submit_loading" style="text-align:center;"></div>
       </div>
     </div>
 
@@ -158,13 +183,10 @@ a:visited {
 <!-- Azure ML script -->
 <script>
 $("#registerBtn").click(function() {
-  /*
-  var sname = $("#sname").val();
-  var lat = $("#lat").val();
-
-  var request = new Object();
-  request.inputs
-  */
+  $("#submit_loading").append('<br>' +
+    'Loading...<br>' +
+    '<div id="loading">●</div>'
+  );
   var requestVal = {
   "Inputs": {
     "input1": {
@@ -231,18 +253,21 @@ var JsonRequest = JSON.stringify(requestVal);
     data: '=' + JsonRequest,
     error: function() {
       alert('Fail...');
-    },
-    success: function() {
-      alert('Success');
+      $("#submit_loading").empty();
     }
   }).done(function (data) {
     console.log("Response");
     console.log(data);
+    $("#submit_loading").empty();
   });
-
 }); // click()
 </script>
+
 <script>
+  google.charts.load('current', {
+    packages: ['corechart', 'line']
+  });
+
   var host = "/";
   var DAU_list = new Array();
   var DARPU_list = new Array();
@@ -372,12 +397,6 @@ var JsonRequest = JSON.stringify(requestVal);
     };
     DARPU_list.push(dataset);
   });
-
-
-  google.charts.load('current', {
-    packages: ['corechart', 'line']
-  });
-  google.charts.setOnLoadCallback(drawStacked);
 
   function drawStacked() {
     var DAU_data = new google.visualization.DataTable();
