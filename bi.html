@@ -222,13 +222,15 @@ $("#registerBtn").click(function() {
     "New column names": "test"
   }
 }
+var host = "http://localhost:2529/"
 var JsonRequest = JSON.stringify(requestVal);
   $.ajax({
-    url: "api/values",
+    url: host + "api/values",
     type: "POST",
-    data: JsonRequest,
+    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+    data: '=' + JsonRequest,
     error: function() {
-      alert('Host not found! Please check the host name.');
+      alert('Fail...');
     },
     success: function() {
       alert('Success');
