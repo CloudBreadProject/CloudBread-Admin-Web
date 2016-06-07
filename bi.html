@@ -303,6 +303,11 @@ $("#registerBtn").click(function() {
     });
   });
 
+  promise_mem(true).catch(function () {
+    alert('Do not exist this Member!');
+    $("#submit_loading").empty();
+  });
+
   Promise.all([promise_giftFrom, promise_giftTo, promise_cash, promise_mem
     , promise_level]).then(function() {
       var requestVal = {
