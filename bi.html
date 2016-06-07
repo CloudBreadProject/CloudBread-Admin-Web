@@ -75,7 +75,7 @@ $("#registerBtn").click(function() {
     'Loading...<br>' +
     '<div id="loading">●</div>'
   );
-  var host = "/";
+  var host = "https://cb2-admin-demo.azurewebsites.net/";
   var memberID = document.getElementById("memberID").value;
   var promise_mem = new Promise(function (resolve, reject) {
     $.ajax({
@@ -88,7 +88,8 @@ $("#registerBtn").click(function() {
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
-
+        console.log(value[0]);
+        console.log(value[1]);
         Nickname = value[0]['Name1'];
         EmailConfirm = value[0]['EmailConfirmedYN'];
         Recommender = value[0]['Recommender']?'Y':'N';
@@ -180,7 +181,7 @@ $("#registerBtn").click(function() {
   });
 
   Promise.all([promise_giftFrom, promise_giftTo, promise_cash, promise_mem
-    , promise_level, promise_coupon]).then(function() {
+    , promise_level]).then(function() {
       var requestVal = {
       "Inputs": {
         "input1": {
