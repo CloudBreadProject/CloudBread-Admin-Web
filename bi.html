@@ -204,7 +204,7 @@ $("#registerBtn").click(function() {
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
-        if(value == null) {
+        if(value.length == "0") {
           alert('Do not exist this Member!');
           $("#submit_loading").empty();
           reject(Error("Fail"));
