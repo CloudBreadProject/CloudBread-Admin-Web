@@ -187,55 +187,54 @@ $("#registerBtn").click(function() {
     'Loading...<br>' +
     '<div id="loading">●</div>'
   );
+  var test = "Killing";
   var requestVal = {
   "Inputs": {
     "input1": {
       "ColumnNames": [
-        "A11",
-        "6",
-        "A34",
-        "A43",
-        "1169",
-        "A65",
-        "A75",
-        "4",
-        "A93",
-        "A101",
-        "4 (2)",
-        "A121",
-        "67",
-        "A143",
-        "A152",
-        "2",
-        "A173",
-        "1",
-        "A192",
-        "A201",
-        "1 (2)"
+        "Nickname",
+        "Gender",
+        "Login",
+        "CashDate",
+        "JoinDate",
+        "Cash",
+        "Level",
+        "Country",
+        "Coupon",
+        "Device",
+        "Accumulate",
+        "RareItem",
+        "EmailConfirm",
+        "Recommender",
+        "Bestitem1",
+        "Bestitem2",
+        "Bestitem3",
+        "GiftTo",
+        "GiftFrom",
+        "Leave"
       ],
       "Values": [
         [
-          "A12",
-          "48",
-          "A32",
-          "A43",
-          "5951",
-          "A61",
-          "A73",
-          "2",
-          "A92",
-          "A101",
-          "2",
-          "A121",
-          "67",
-          "A143",
-          "A152",
-          "1",
-          "A173",
-          "1",
-          "A192",
-          "A201",
-          "2"
+          test,
+          "M",
+          "Facebook",
+          "20160401",
+          "20160103",
+          "100",
+          "222",
+          "Kor",
+          "Y",
+          "Android",
+          "200",
+          "27",
+          "Y",
+          "Y",
+          "Y",
+          "N",
+          "Y",
+          "133",
+          "201",
+          "1"
         ]
       ]
     }
@@ -260,6 +259,17 @@ var JsonRequest = JSON.stringify(requestVal);
     console.log(data);
     $("#submit_loading").empty();
   });
+  $.ajax({
+    type: "GET",
+    url: "https://cb2-demo.azurewebsites.net/" + "odata/Members?$filter=MemberID%20eq%20'aaa'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      console.log(nothing)
+    },
+    success: function(data) {
+      console.log(data);
+    }
+  })
 }); // click()
 </script>
 
