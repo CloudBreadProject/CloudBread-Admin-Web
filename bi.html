@@ -261,7 +261,7 @@ var JsonRequest = JSON.stringify(requestVal);
   });
   $.ajax({
     type: "GET",
-    url: "https://cb2-admin-demo.azurewebsites.net/" + "odata/Members?$filter=MemberID%20eq%20'aaa'&$orderby=Fields%20asc",
+    url: "https://cb2-admin-demo.azurewebsites.net/" + "odata/Members?$filter=MemberID%20eq%20'aaa'",
     dataType: "text",
     error: function() {
       console.log(nothing)
