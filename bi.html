@@ -75,7 +75,7 @@ $("#registerBtn").click(function() {
     'Loading...<br>' +
     '<div id="loading">●</div>'
   );
-  var host = "https://cb2-admin-demo.azurewebsites.net/";
+  var host = "/";
   var memberID = document.getElementById("memberID").value;
   var promise_mem = new Promise(function (resolve, reject) {
     $.ajax({
@@ -96,14 +96,14 @@ $("#registerBtn").click(function() {
         Device = value[0]['sCol2'];
         Country = value[0]['sCol3'];
         Login = value[0]['sCol4'];
-        RareItem = value[0]['sCol5'];
+        RareItem = parseInt(value[0]['sCol5']);
         Bestitem1 = value[0]['sCol6'];
         Bestitem2 = value[0]['sCol7'];
         Bestitem3 = value[0]['sCol8'];
         Coupon = value[0]['sCol9'];
-        JoinDate = value[0]['CreatedAt'].substring(0,4)
+        JoinDate = parseInt(value[0]['CreatedAt'].substring(0,4)
          + value[0]['CreatedAt'].substring(5,7)
-         + value[0]['CreatedAt'].substring(8,10);
+         + value[0]['CreatedAt'].substring(8,10));
         resolve("Complete");
       }
     });
@@ -141,12 +141,12 @@ $("#registerBtn").click(function() {
         var size = value.length - 1;
         Accumulate = 0;
 
-        Cash = value[size]['PurchasePrice'];
-        CashDate = value[size]['PurchaseDT'].substring(0,4)
+        Cash = parseInt(value[size]['PurchasePrice']);
+        CashDate = parseInt(value[size]['PurchaseDT'].substring(0,4)
          + value[size]['PurchaseDT'].substring(5,7)
-         + value[size]['PurchaseDT'].substring(8,10);
+         + value[size]['PurchaseDT'].substring(8,10));
 
-        for(var i = 0; i < size; i++) {
+        for(var i = 0; i <= size; i++) {
           Accumulate += parseInt(value[i]['PurchasePrice']);
         }
         resolve("Complete");
@@ -165,7 +165,7 @@ $("#registerBtn").click(function() {
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
-        GiftTo = value.length;
+        GiftTo = parseInt(value.length);
         resolve("Complete");
       }
     });
@@ -182,7 +182,7 @@ $("#registerBtn").click(function() {
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
-        GiftTo = value.length;
+        GiftFrom = parseInt(value.length);
         resolve("Complete");
       }
     });
@@ -245,8 +245,7 @@ $("#registerBtn").click(function() {
         "New column names": "Leave"
       }
     }
-    /*
-    var host = "/";
+
     var JsonRequest = JSON.stringify(requestVal);
       $.ajax({
         url: host + "api/values",
@@ -262,8 +261,6 @@ $("#registerBtn").click(function() {
         console.log(data);
         $("#submit_loading").empty();
       });
-      */
-    console.log(requestVal);
   });
 }); // click()
 </script>
