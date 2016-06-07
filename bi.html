@@ -12,7 +12,8 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <link href="css/style.css" rel="stylesheet">
-  
+  <script src="script/Overview.js"></script>
+
 </head>
 <body>
   <div id="wrap">
@@ -50,8 +51,7 @@
       <div id="DARPU_div"></div>
       <div id="HAU_div"></div>
       <div style="margin-left:100px;">
-        <input id='sname'/>
-        <input id='lat' />
+        <input id='memberID'/>
         <button id="registerBtn">Submit</button>
         <div id="submit_loading" style="text-align:center;"></div>
       </div>
@@ -67,94 +67,209 @@
 
 <!-- Azure ML script -->
 <script>
+// ML columns
+var Nickname, Gender, Login, CashDate, JoinDate, Cash, Level, Country, Coupon, Device, Accumulate, RareItem;
+var EmailConfirm, Recommender, Bestitem1, Bestitem2, Bestitem3, GiftTo, GiftFrom;
 $("#registerBtn").click(function() {
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
     '<div id="loading">●</div>'
   );
-  var test = "Killing";
-  var requestVal = {
-  "Inputs": {
-    "input1": {
-      "ColumnNames": [
-        "Nickname",
-        "Gender",
-        "Login",
-        "CashDate",
-        "JoinDate",
-        "Cash",
-        "Level",
-        "Country",
-        "Coupon",
-        "Device",
-        "Accumulate",
-        "RareItem",
-        "EmailConfirm",
-        "Recommender",
-        "Bestitem1",
-        "Bestitem2",
-        "Bestitem3",
-        "GiftTo",
-        "GiftFrom",
-        "Leave"
-      ],
-      "Values": [
-        [
-          test,
-          "M",
-          "Facebook",
-          "20160401",
-          "20160103",
-          "100",
-          "222",
-          "Kor",
-          "Y",
-          "Android",
-          "200",
-          "27",
-          "Y",
-          "Y",
-          "Y",
-          "N",
-          "Y",
-          "133",
-          "201",
-          "1"
-        ]
-      ]
-    }
-  },
-  "GlobalParameters": {
-    "New column names": "test"
-  }
-}
-var host = "/";
-var JsonRequest = JSON.stringify(requestVal);
-  $.ajax({
-    url: host + "api/values",
-    type: "POST",
-    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-    data: '=' + JsonRequest,
-    error: function() {
-      alert('Fail...');
-      $("#submit_loading").empty();
-    }
-  }).done(function (data) {
-    console.log("Response");
-    console.log(data);
-    $("#submit_loading").empty();
+  var host = "/";
+  var memberID = document.getElementById("memberID").value;
+  var promise_mem = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/Members?$filter=MemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+
+        Nickname = value[0]['Name1'];
+        EmailConfirm = value[0]['EmailConfirmedYN'];
+        Recommender = value[0]['Recommender']?'Y':'N';
+        Gender = value[0]['sCol1'];
+        Device = value[0]['sCol2'];
+        Country = value[0]['sCol3'];
+        Login = value[0]['sCol4'];
+        RareItem = value[0]['sCol5'];
+        Bestitem1 = value[0]['sCol6'];
+        Bestitem2 = value[0]['sCol7'];
+        Bestitem3 = value[0]['sCol8'];
+        JoinDate = value[0]['CreatedAt'].substring(0,4)
+         + value[size]['PurchaseDT'].substring(5,7)
+         + value[size]['PurchaseDT'].substring(8,10);
+      }
+    });
   });
-  $.ajax({
-    type: "GET",
-    url: "https://cb2-admin-demo.azurewebsites.net/" + "odata/Members?$filter=MemberID%20eq%20'aaa'",
-    dataType: "text",
-    error: function() {
-      console.log(nothing)
-    },
-    success: function(data) {
-      console.log(data);
+  var promise_coupon = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/CouponMember?$filter=MemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        Coupon = value[0]['CouponID']? 'Y':'N';
+      }
+    });
+  });
+  var promise_level = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/MemberGameInfoes?$filter=MemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+
+        Level = value[0]['Level'];
+      }
+    });
+  });
+  var promise_cash = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/MemberItemPurchases?$filter=MemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        var size = value.length;
+        Accumulate = 0;
+
+        Cash = value[size]['PurchasePrice'];
+        CashDate = value[size]['PurchaseDT'].substring(0,4)
+         + value[size]['PurchaseDT'].substring(5,7)
+         + value[size]['PurchaseDT'].substring(8,10);
+
+        for(var i = 0; i < size; i++) {
+          Accumulate += parseInt(value[i]['PurchasePrice']);
+        }
+      }
+    });
+  });
+  var promise_giftTo = new Pormise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/GiftDepositories?$filter=FromMemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        GiftTo = value.length;
+      }
+    });
+  });
+  var promise_giftFrom = new Pormise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/GiftDepositories?$filter=ToMemberID%20eq%20'" + memberID + "'",
+      dataType: "text",
+      error: function() {
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        GiftTo = value.length;
+      }
+    });
+  });
+
+  Promise.all([promise_giftFrom, promise_giftTo, promise_cash, promise_mem
+    , promise_level, promise_coupon]).then(function() {
+      var requestVal = {
+      "Inputs": {
+        "input1": {
+          "ColumnNames": [
+            "Nickname",
+            "Gender",
+            "Login",
+            "CashDate",
+            "JoinDate",
+            "Cash",
+            "Level",
+            "Country",
+            "Coupon",
+            "Device",
+            "Accumulate",
+            "RareItem",
+            "EmailConfirm",
+            "Recommender",
+            "Bestitem1",
+            "Bestitem2",
+            "Bestitem3",
+            "GiftTo",
+            "GiftFrom",
+            "Leave"
+          ],
+          "Values": [
+            [
+              Nickname,
+              Gender,
+              Login,
+              CashDate,
+              JoinDate,
+              Cash,
+              Level,
+              Country,
+              Coupon,
+              Device,
+              Accumulate,
+              RareItem,
+              EmailConfirm,
+              Recommender,
+              Bestitem1,
+              Bestitem2,
+              Bestitem3,
+              GiftTo,
+              GiftFrom,
+              "1"
+            ]
+          ]
+        }
+      },
+      "GlobalParameters": {
+        "New column names": "Leave"
+      }
     }
-  })
+    /*
+    var host = "/";
+    var JsonRequest = JSON.stringify(requestVal);
+      $.ajax({
+        url: host + "api/values",
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        data: '=' + JsonRequest,
+        error: function() {
+          alert('Fail...');
+          $("#submit_loading").empty();
+        }
+      }).done(function (data) {
+        console.log("Response");
+        console.log(data);
+        $("#submit_loading").empty();
+      });
+      */
+    console.log(requestVal);
+  });
 }); // click()
 </script>
 
