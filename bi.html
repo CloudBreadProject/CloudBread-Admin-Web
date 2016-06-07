@@ -83,6 +83,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/Members?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
+        reject(Error("Fail"));
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
@@ -103,6 +104,7 @@ $("#registerBtn").click(function() {
         JoinDate = value[0]['CreatedAt'].substring(0,4)
          + value[0]['CreatedAt'].substring(5,7)
          + value[0]['CreatedAt'].substring(8,10);
+        resolve("Complete");
       }
     });
   });
@@ -112,6 +114,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/MemberGameInfoes?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
+        reject(Error("Fail"));
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
@@ -119,6 +122,7 @@ $("#registerBtn").click(function() {
         var value = pars['value'];
 
         Level = value[0]['Level'];
+        resolve("Complete");
       }
     });
   });
@@ -128,6 +132,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/MemberItemPurchases?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
+        reject(Error("Fail"));
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
@@ -144,6 +149,7 @@ $("#registerBtn").click(function() {
         for(var i = 0; i < size; i++) {
           Accumulate += parseInt(value[i]['PurchasePrice']);
         }
+        resolve("Complete");
       }
     });
   });
@@ -153,12 +159,14 @@ $("#registerBtn").click(function() {
       url: host + "odata/GiftDepositories?$filter=FromMemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
+        reject(Error("Fail"));
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
         GiftTo = value.length;
+        resolve("Complete");
       }
     });
   });
@@ -168,12 +176,14 @@ $("#registerBtn").click(function() {
       url: host + "odata/GiftDepositories?$filter=ToMemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
+        reject(Error("Fail"));
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
         var pars = JSON.parse(data);
         var value = pars['value'];
         GiftTo = value.length;
+        resolve("Complete");
       }
     });
   });
