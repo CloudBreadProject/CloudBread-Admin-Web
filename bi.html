@@ -222,10 +222,10 @@ $("#registerBtn").click(function() {
         resolve("Complete");
       }
     });
-  }).catch(
+  }).catch( function() {
     alert('Do not exist this Member!');
     $("#submit_loading").empty();
-  );
+  });
   var promise_level = new Promise(function (resolve, reject) {
     $.ajax({
       type: "GET",
