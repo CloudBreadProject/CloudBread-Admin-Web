@@ -87,9 +87,9 @@ $("#registerBtn").click(function() {
       },
       success: function(data) {
         var pars = JSON.parse(data);
+        console.log(data);
         var value = pars['value'];
-        console.log(value[0]);
-        console.log(value[1]);
+        console.log(value);
         Nickname = value[0]['Name1'];
         EmailConfirm = value[0]['EmailConfirmedYN'];
         Recommender = value[0]['Recommender']?'Y':'N';
