@@ -382,10 +382,10 @@ $("#registerBtn").click(function() {
         console.log(data);
         var pars = JSON.parse(data);
         var value = pars['Results']['output1']['value']['Values'];
-        var arr_size = parseInt(value[0].length) - 1;
-        var result = parseInt(value[0][arr_size]);
+        var arr_size = parseFloat(value[0].length) - 1;
+        var result = parseFloat(value[0][arr_size]);
 
-        result *= 100;
+        result *= 100.0;
         $("#submit_loading").empty();
         $("probab").empty();
         $("probab").append("이탈 확률 : " + result) + " %";
