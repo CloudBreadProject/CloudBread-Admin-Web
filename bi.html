@@ -169,6 +169,7 @@ a:visited {
         <input id='memberID'/>
         <button id="registerBtn">Submit</button>
         <div id="submit_loading" style="text-align:center;"></div>
+        <div id="probab" style="text-align:center;"></div>
       </div>
     </div>
 
@@ -378,9 +379,16 @@ $("#registerBtn").click(function() {
           $("#submit_loading").empty();
         }
       }).done(function (data) {
-        console.log("Response");
         console.log(data);
+        var pars = JSON.parse(data);
+        var value = pars['Results']['output1']['value']['Values'];
+        var arr_size = parseInt(value[0].length) - 1;
+        var result = parseInt(value[0][arr_size]);
+
+        result *= 100;
         $("#submit_loading").empty();
+        $("probab").empty();
+        $("probab").append("이탈 확률 : " + result) + " %";
       });
   });
 }); // click()
@@ -623,3 +631,17 @@ $("#registerBtn").click(function() {
 
 </script>
 </html>
+
+{
+  "Results":{
+    "output1":{
+      "type":"table",
+      "value":{
+        "ColumnNames":["Nickname","Gender","Login","CashDate","JoinDate","Cash","Level","Country","Coupon","Device","Accumulate","RareItem","EmailConfirm","Recommender","Bestitem1","Bestitem2","Bestitem3","GiftTo","GiftFrom","Leave","Scored Labels","Scored Probabilities"],
+        "ColumnTypes":["String","String","String","Int32","Int32","Int32","Int32","String","String","String","Int32","Int32","String","String","String","String","String","Int32","Int32","Int32","Int32","Double"],
+        "Values":[["Killing","M","Facebook","20160608","19000101","100","201","Kor","Y","Android","300","48","Y","N","Y","N","Y","17","4","1","0","0.0321988128125668"],
+          ["Killing","M","Facebook","20160608","19000101","100","201","Kor","Y","Android","300","48","Y","N","Y","N","Y","17","4","1","0","0.0321988128125668"]]
+      }
+    }
+  }
+}
