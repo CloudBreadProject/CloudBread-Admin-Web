@@ -19,7 +19,7 @@ function callDAU() {
   DAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%10desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
@@ -33,7 +33,7 @@ function callDAU() {
     var max = (value.length != 10) ? value.length-1 : 9
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "DAU" Data anything');
       return;
     }
 
@@ -54,7 +54,7 @@ function callDPA() {
   DPA_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%10desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
@@ -68,7 +68,7 @@ function callDPA() {
     var max = (value.length != 10) ? value.length-1 : 9
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "DPA" Data anything');
       return;
     }
 
@@ -89,7 +89,7 @@ function callWAU() {
   WAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%5desc",
+    url: host + "odata/StatsDatas?$top=5&$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20desc",
     dataType: "text",
   }).done(function(data) {
     var pars = JSON.parse(data);
@@ -97,7 +97,7 @@ function callWAU() {
     var max = (value.length != 5) ? value.length-1 : 4
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "WAU" Data anything');
       return;
     }
 
@@ -118,7 +118,7 @@ function callMAU() {
   MAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%2desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20desc",
     dataType: "text",
   }).done(function(data) {
     var pars = JSON.parse(data);
@@ -126,7 +126,7 @@ function callMAU() {
     var max = (value.length != 2) ? value.length-1 : 1
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "MAU" Data anything');
       return;
     }
 

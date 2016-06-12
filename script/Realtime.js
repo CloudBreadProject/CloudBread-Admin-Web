@@ -4,7 +4,7 @@ var HAU_list = new Array();
 function callHAU() {
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%15desc",
+    url: host + "odata/StatsDatas?$top=15&$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -19,7 +19,7 @@ function callHAU() {
     var max = (value.length != 15) ? value.length-1 : 14
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "HAU" Data anything');
       return;
     }
 

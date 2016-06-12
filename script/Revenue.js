@@ -15,7 +15,7 @@ function callDARPU() {
   DARPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%10desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -29,7 +29,7 @@ function callDARPU() {
     var max = (value.length != 10) ? value.length-1 : 9
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "DARPU" Data anything');
       return;
     }
 
@@ -50,7 +50,7 @@ function callDPU() {
   DPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%10desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -64,7 +64,7 @@ function callDPU() {
     var max = (value.length != 10) ? value.length-1 : 9
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "DPU" Data anything');
       return;
     }
 
@@ -85,7 +85,7 @@ function callFPU() {
   FPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%10desc",
+    url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -99,7 +99,7 @@ function callFPU() {
     var max = (value.length != 10) ? value.length-1 : 9
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "FPU" Data anything');
       return;
     }
 
@@ -120,7 +120,7 @@ function callWPU() {
   WPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%5desc",
+    url: host + "odata/StatsDatas?$top=5&$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -129,27 +129,22 @@ function callWPU() {
       //anything
     }
   }).done(function(data) {
-    $.ajax({
-      type: "GET",
-      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%5desc",
-      dataType: "text",
-    }).done(function(data) {
-      var pars = JSON.parse(data);
-      var value = pars['value'];
-      var max = (value.length != 5) ? value.length-1 : 4
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+    var max = (value.length != 5) ? value.length-1 : 4
 
-      if(value.length == 0) {
-        alert('Not exist Data anything');
-        return;
-      }
+    if(value.length == 0) {
+      alert('Not exist "WAU" Data anything');
+      return;
+    }
 
-      for (var i = max; i >= 0; i--) {
-        var dataset = {
-          'Field': value[i]['Fields'],
-          'Count': Number(value[i]['CountNum'])
-        };
-        WPU_list.push(dataset);
-      }
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      WPU_list.push(dataset);
+    }
     google.charts.setOnLoadCallback(drawWPUGraph);
     $("#graph_loading").empty();
   });
@@ -160,7 +155,7 @@ function callMPU() {
   MPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%2desc",
+    url: host + "odata/StatsDatas?$top=2&$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%20desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -174,7 +169,7 @@ function callMPU() {
     var max = (value.length != 2) ? value.length-1 : 1
 
     if(value.length == 0) {
-      alert('Not exist Data anything');
+      alert('Not exist "MPU" Data anything');
       return;
     }
 

@@ -6,7 +6,7 @@ function callDormant() {
   var pro_Dormant15 = new Promise(function (resolve, reject) {
     $.ajax({
       type: "GET",
-      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant15'&$orderby=Fields%10desc",
+      url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'Dormant15'&$orderby=Fields%20desc",
       dataType: "text",
       error: function() {
         reject();
@@ -22,7 +22,7 @@ function callDormant() {
       var max = (value.length != 10) ? value.length-1 : 9
 
       if(value.length == 0) {
-        alert('Not exist Data anything');
+        alert('Not exist "Dormant15" Data anything');
         return;
       }
 
@@ -42,7 +42,7 @@ function callDormant() {
     Dormant30_list = [];
     $.ajax({
       type: "GET",
-      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant30'&$orderby=Fields%10desc",
+      url: host + "odata/StatsDatas?$top=10&$filter=CategoryName%20eq%20'Dormant30'&$orderby=Fields%20desc",
       dataType: "text",
       error: function() {
         reject();
@@ -57,7 +57,7 @@ function callDormant() {
       var max = (value.length != 10) ? value.length-1 : 9
 
       if(value.length == 0) {
-        alert('Not exist Data anything');
+        alert('Not exist "Dormant30" Data anything');
         return;
       }
 
