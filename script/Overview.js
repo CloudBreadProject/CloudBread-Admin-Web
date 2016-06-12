@@ -330,13 +330,12 @@ function drawMAUGraph() {
 }
 
 $(window).resize(function() {
-  console.log($("#Graph1").find("#DAU_div"));
-  if($("#Graph1").find("#DAU_div")) {
+  if(document.getElementById('DAU_div')) {
     drawDAUGraph();
     drawWAUGraph();
     drawMAUGraph();
   }
-  else if($("#Graph1").find("#DPA_div")) {
+  else if(document.getElementById('DPA_div')) {
     drawDPAGraph();
   }
 });

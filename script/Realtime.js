@@ -1,43 +1,45 @@
 var HAU_list = new Array();
 
 //HAU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      HAU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callHAU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  HAU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawHAUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        HAU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    HAU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawHAUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 function drawHAUGraph() {
   var HAU_data = new google.visualization.DataTable();
@@ -64,11 +66,20 @@ function drawHAUGraph() {
     },
     backgroundColor: '#FFF'
   };
-
+  $('.graph').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'HAU(시간별 활동 유저수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="HAU_div"></div>'
+  );
   var chart = new google.visualization.ColumnChart(document.getElementById('HAU_div'));
   chart.draw(HAU_data, HAU_options);
 }
 
 $(window).resize(function() {
-  drawHAUGraph();
+  if(document.getElementById('HAU_div')) {
+    drawHAUGraph();
+  }
 });

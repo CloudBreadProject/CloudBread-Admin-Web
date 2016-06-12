@@ -1,92 +1,94 @@
 var Dormant15_list = new Array();
 var Dormant30_list = new Array();
 
-//Dormant15 Data
-var pro_dormant15 = new Promise(function (resolve, reject) {
-  $.ajax({
-    type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant15'&$orderby=Fields%20asc",
-    dataType: "text",
-    error: function() {
-      reject(Error("Fail"));
-      //handled error
-    },
-    success: function(data) {
-      //anything
-    }
-  }).done(function(data) {
-    var i = 1;
-    var pars = JSON.parse(data);
-    var value = pars['value'];
-
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-
-    for (; i < value.length; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        Dormant15_list.push(dataset);
-        field_fst = value[i]['Fields'];
+function callDormant() {
+  //Dormant15 Data
+  var pro_Dormant15 = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant15'&$orderby=Fields%20asc",
+      dataType: "text",
+      error: function() {
+        reject();
+        //handled error
+      },
+      success: function(data) {
+        //anything
       }
-      count_max = Number(value[i]['CountNum']);
-    }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    Dormant15_list.push(dataset);
-    resolve("Complete");
-  });
-});
+    }).done(function(data) {
+      var i = 1;
+      var pars = JSON.parse(data);
+      var value = pars['value'];
 
-//Dormant30 Data
-var pro_dormant30 = new Promise(function (resolve, reject) {
-  $.ajax({
-    type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant30'&$orderby=Fields%20asc",
-    dataType: "text",
-    error: function() {
-      reject(Error("Fail"));
-      //handled error
-    },
-    success: function(data) {
-      //anything
-    }
-  }).done(function(data) {
-    var i = 1;
-    var pars = JSON.parse(data);
-    var value = pars['value'];
+      var field_fst = value[0]['Fields'];
+      var count_max = Number(value[0]['CountNum']);
 
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-
-    for (; i < value.length; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        Dormant30_list.push(dataset);
-        field_fst = value[i]['Fields'];
+      for (; i < value.length; i++) {
+        if (field_fst != value[i]['Fields']) {
+          var dataset = {
+            'Field': field_fst,
+            'Count': count_max
+          };
+          Dormant15_list.push(dataset);
+          field_fst = value[i]['Fields'];
+        }
+        count_max = Number(value[i]['CountNum']);
       }
-      count_max = Number(value[i]['CountNum']);
-    }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    Dormant30_list.push(dataset);
-    resolve("Complete");
+      var dataset = {
+        'Field': field_fst,
+        'Count': count_max
+      };
+      Dormant15_list.push(dataset);
+      resolve("Complete");
+    });
   });
-});
 
-Promise.all([pro_Dormant15, pro_Dormant30]).then(function() {
-  google.charts.setOnLoadCallback(drawDormantGraph);
-  $("#graph_loading").empty();
-});
+  //Dormant30 Data
+  var pro_Dormant30 = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant30'&$orderby=Fields%20asc",
+      dataType: "text",
+      error: function() {
+        reject();
+        //handled error
+      },
+      success: function(data) {
+        //anything
+      }
+    }).done(function(data) {
+      var i = 1;
+      var pars = JSON.parse(data);
+      var value = pars['value'];
+
+      var field_fst = value[0]['Fields'];
+      var count_max = Number(value[0]['CountNum']);
+
+      for (; i < value.length; i++) {
+        if (field_fst != value[i]['Fields']) {
+          var dataset = {
+            'Field': field_fst,
+            'Count': count_max
+          };
+          Dormant30_list.push(dataset);
+          field_fst = value[i]['Fields'];
+        }
+        count_max = Number(value[i]['CountNum']);
+      }
+      var dataset = {
+        'Field': field_fst,
+        'Count': count_max
+      };
+      Dormant30_list.push(dataset);
+      resolve("Complete");
+    });
+  });
+
+  Promise.all([pro_Dormant15, pro_Dormant30]).then(function() {
+    google.charts.setOnLoadCallback(drawDormantGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 function drawDormantGraph() {
   var Dormant_data = new google.visualization.DataTable();
@@ -114,11 +116,20 @@ function drawDormantGraph() {
     },
     backgroundColor: '#FFF'
   };
-
+  $('.graph').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'Dormant(휴면유저)' +
+      '</div>' +
+    '</div>' +
+    '<div id="Dormant_div"></div>'
+  );
   var chart = new google.visualization.ColumnChart(document.getElementById('Dormant_div'));
   chart.draw(Dormant_data, Dormant_options);
 }
 
 $(window).resize(function() {
-  drawDormantGraph();
+  if(document.getElementById('Dormant_div')) {
+    drawDormantGraph();
+  }
 });

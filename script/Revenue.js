@@ -4,200 +4,216 @@ var FPU_list = new Array();
 var WPU_list = new Array();
 var MPU_list = new Array();
 
+function callPU() {
+  callDPU();
+  callWPU();
+  callMPU();
+}
+
 //DARPU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      DARPU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callDARPU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  DARPU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawDARPUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        DARPU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    DARPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDARPUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //DPU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      DPU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callDPU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  DPU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawDPUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        DPU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    DPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDPUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //FPU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      FPU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callFPU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  FPU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawFPUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        FPU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    FPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawFPUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //WPU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      WPU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callWPU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  WPU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawWPUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        WPU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    WPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawWPUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //MPU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    //handled error
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      MPU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callMPU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      //handled error
+    },
+    success: function(data) {
+      //anything
     }
-    count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  MPU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawMPUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        MPU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+      count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    MPU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawMPUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 function drawDARPUGraph() {
   var DARPU_data = new google.visualization.DataTable();
@@ -224,6 +240,14 @@ function drawDARPUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('.graph').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'DARPU(일일 유저 한명당 일 평균 매출)' +
+      '</div>' +
+    '</div>' +
+    '<div id="DARPU_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('DARPU_div'));
   chart.draw(DARPU_data, DARPU_options);
 }
@@ -253,6 +277,14 @@ function drawDPUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('#Graph1').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'DPU(일일 결제수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="DPU_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('DPU_div'));
   chart.draw(DPU_data, DPU_options);
 }
@@ -282,6 +314,14 @@ function drawFPUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('.graph').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'FPU(최초결제 유저수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="FPU_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('FPU_div'));
   chart.draw(FPU_data, FPU_options);
 }
@@ -311,6 +351,14 @@ function drawWPUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('#Graph2').empty();
+  $('#Graph2').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'WPU(주간 결제수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="WPU_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('WPU_div'));
   chart.draw(WPU_data, WPU_options);
 }
@@ -340,14 +388,28 @@ function drawMPUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('#Graph3').empty();
+  $('#Graph3').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'MPU(월간 결제수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="MPU_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('MPU_div'));
   chart.draw(MPU_data, MPU_options);
 }
 
 $(window).resize(function() {
-  drawDARPUGraph();
-  drawDPUGraph();
-  drawFPUGraph();
-  drawWPUGraph();
-  drawMPUGraph();
+  if(document.getElementById('DARPU_div')) {
+    drawDARPUGraph();
+  }
+  else if(document.getElementById('DPU_div')) {
+    drawDPUGraph();
+    drawWPUGraph();
+    drawMPUGraph();
+  }
+  else if(document.getElementById('FPU_div')) {
+    drawFPUGraph();
+  }
 });
