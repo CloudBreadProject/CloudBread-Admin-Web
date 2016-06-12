@@ -19,7 +19,7 @@ function callDAU() {
   DAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%10desc",
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
@@ -28,35 +28,22 @@ function callDAU() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 10) ? value.length-1 : 9
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        DAU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      DAU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    DAU_list.push(dataset);
     google.charts.setOnLoadCallback(drawDAUGraph);
     $("#graph_loading").empty();
   });
@@ -67,7 +54,7 @@ function callDPA() {
   DPA_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%10desc",
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
@@ -76,35 +63,22 @@ function callDPA() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 10) ? value.length-1 : 9
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        DPA_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      DPA_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    DPA_list.push(dataset);
     google.charts.setOnLoadCallback(drawDPAGraph);
     $("#graph_loading").empty();
   });
@@ -115,38 +89,25 @@ function callWAU() {
   WAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%5desc",
     dataType: "text",
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 5) ? value.length-1 : 4
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        WAU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      WAU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    WAU_list.push(dataset);
     google.charts.setOnLoadCallback(drawWAUGraph);
     $("#graph_loading").empty();
   });
@@ -157,38 +118,25 @@ function callMAU() {
   MAU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%2desc",
     dataType: "text",
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 2) ? value.length-1 : 1
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        MAU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      MAU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    MAU_list.push(dataset);
     google.charts.setOnLoadCallback(drawMAUGraph);
     $("#graph_loading").empty();
   });

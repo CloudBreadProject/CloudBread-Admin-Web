@@ -4,7 +4,7 @@ var HAU_list = new Array();
 function callHAU() {
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%15desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -14,35 +14,22 @@ function callHAU() {
     }
   }).done(function(data) {
     HAU_list = [];
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 15) ? value.length-1 : 14
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 15) ? 15 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        HAU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      HAU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    HAU_list.push(dataset);
     google.charts.setOnLoadCallback(drawHAUGraph);
     $("#graph_loading").empty();
   });

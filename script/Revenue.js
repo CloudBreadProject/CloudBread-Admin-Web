@@ -15,7 +15,7 @@ function callDARPU() {
   DARPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%10desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -24,35 +24,22 @@ function callDARPU() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 10) ? value.length-1 : 9
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        DARPU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      DARPU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    DARPU_list.push(dataset);
     google.charts.setOnLoadCallback(drawDARPUGraph);
     $("#graph_loading").empty();
   });
@@ -63,7 +50,7 @@ function callDPU() {
   DPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%10desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -72,29 +59,22 @@ function callDPU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
     var pars = JSON.parse(data);
     var value = pars['value'];
+    var max = (value.length != 10) ? value.length-1 : 9
 
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-
-    for (; i < value.length; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        DPU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-      count_max = Number(value[i]['CountNum']);
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    DPU_list.push(dataset);
+
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      DPU_list.push(dataset);
+    }
     google.charts.setOnLoadCallback(drawDPUGraph);
     $("#graph_loading").empty();
   });
@@ -105,7 +85,7 @@ function callFPU() {
   FPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%10desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -114,35 +94,22 @@ function callFPU() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 10) ? value.length-1 : 9
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        FPU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      FPU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    FPU_list.push(dataset);
     google.charts.setOnLoadCallback(drawFPUGraph);
     $("#graph_loading").empty();
   });
@@ -153,7 +120,7 @@ function callWPU() {
   WPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%5desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -162,35 +129,27 @@ function callWPU() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
-    var pars = JSON.parse(data);
-    var value = pars['value'];
-    var data_num_gap = value.length;
-    if(value.length == 0) {
-      alert('Not exist Data anything');
-      return;
-    }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
+    $.ajax({
+      type: "GET",
+      url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%5desc",
+      dataType: "text",
+    }).done(function(data) {
+      var pars = JSON.parse(data);
+      var value = pars['value'];
+      var max = (value.length != 5) ? value.length-1 : 4
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
+      if(value.length == 0) {
+        alert('Not exist Data anything');
+        return;
+      }
+
+      for (var i = max; i >= 0; i--) {
         var dataset = {
-          'Field': field_fst,
-          'Count': count_max
+          'Field': value[i]['Fields'],
+          'Count': Number(value[i]['CountNum'])
         };
         WPU_list.push(dataset);
-        field_fst = value[i]['Fields'];
       }
-        count_max = Number(value[i]['CountNum']);
-    }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    WPU_list.push(dataset);
     google.charts.setOnLoadCallback(drawWPUGraph);
     $("#graph_loading").empty();
   });
@@ -201,7 +160,7 @@ function callMPU() {
   MPU_list = [];
   $.ajax({
     type: "GET",
-    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%20asc",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%2desc",
     dataType: "text",
     error: function() {
       //handled error
@@ -210,35 +169,22 @@ function callMPU() {
       //anything
     }
   }).done(function(data) {
-    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-    var data_num_gap = value.length;
+    var max = (value.length != 2) ? value.length-1 : 1
+
     if(value.length == 0) {
       alert('Not exist Data anything');
       return;
     }
-    var field_fst = value[0]['Fields'];
-    var count_max = Number(value[0]['CountNum']);
-    max = (value.length > 10) ? 10 : value.length;
-    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (var i = data_num_gap; i < max; i++) {
-      if (field_fst != value[i]['Fields']) {
-        var dataset = {
-          'Field': field_fst,
-          'Count': count_max
-        };
-        MPU_list.push(dataset);
-        field_fst = value[i]['Fields'];
-      }
-        count_max = Number(value[i]['CountNum']);
+    for (var i = max; i >= 0; i--) {
+      var dataset = {
+        'Field': value[i]['Fields'],
+        'Count': Number(value[i]['CountNum'])
+      };
+      MPU_list.push(dataset);
     }
-    var dataset = {
-      'Field': field_fst,
-      'Count': count_max
-    };
-    MPU_list.push(dataset);
     google.charts.setOnLoadCallback(drawMPUGraph);
     $("#graph_loading").empty();
   });
