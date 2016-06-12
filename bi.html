@@ -16,7 +16,7 @@
   <script type="text/javascript" src="./script/Retention.js"></script>
   <script type="text/javascript" src="./script/Realtime.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
@@ -31,16 +31,16 @@
         <nav id="menu">
           <ul id="menu-nav" class="mainMenu">
             <li class="interval">
-              <a class="underbar" href="#">기본 지표 </a>
+              <a class="underbar" href="#">기본지표 </a>
               <ul class="subMenu" id="idSub">
-                <li class="sub"><a href="#" style="padding-top:12px;">AU </a></li>
-                <li class="sub"><a href="#" style="padding-top:12px;">매출액 </a></li>
+                <li class="sub"><a href="#" onclick="callDAU()" style="padding-top:12px;">AU </a></li>
+                <li class="sub"><a href="#" onclick="callDPA()" style="padding-top:12px;">매출액 </a></li>
                 <li class="sub"><a href="#" style="padding-top:12px;">설치수 </a></li>
                 <li class="sub"><a href="#" style="padding-top:12px;">평균 게임플레이 시간 </a></li>
               </ul>
             </li>
             <li class="interval">
-              <a class="underbar" href="#">인앱 매출 </a>
+              <a class="underbar" href="#">인앱매출 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-227px;">
                 <li class="sub"><a href="#" style="padding-top:12px;">AU3 </a></li>
                 <li class="sub"><a href="#" style="padding-top:12px;">AU4 </a></li>
@@ -53,6 +53,13 @@
                 <li class="sub"><a href="#" style="padding-top:12px;">AU4 </a></li>
               </ul>
             </li>
+            <li class="interval">
+              <a class="underbar" id="ML" href="#">머신러닝 </a>
+              <ul class="subMenu" id="idSub" style="margin-left:-681px">
+                <li class="sub"><a href="#" style="padding-top:12px;">AU3 </a></li>
+                <li class="sub"><a href="#" style="padding-top:12px;">AU4 </a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
         <div class="navi_bg" style="display: none;"></div>
@@ -60,20 +67,17 @@
     </div>
 
     <div id="content">
-      <div id="graph_loading" style="text-align:center;">
+      <div id="graph_loading" style="text-align:center; margin-top:100px;">
         Loading...<br>
         <div id="loading">●</div>
       </div>
-      <div class="graph">
-        <div class="graph_main">
-          <div style="margin-top:27px; margin-left:29px;">
-            AU(활성 유저수)
-          </div>
-        </div>
-        <div id="DAU_div"></div>
+      <div class="graph" id="Graph1">
       </div>
-      <div id="DARPU_div"></div>
-      <div id="HAU_div"></div>
+      <div class="graph" id="Graph2">
+      </div>
+      <div class="graph" id="Graph3">
+      </div>
+
       <div style="margin-left:100px;">
         <input id='memberID'/>
         <button id="registerBtn">Submit</button>
@@ -334,6 +338,13 @@ $("#registerBtn").click(function() {
       });
   });
 }); // click()
+</script>
+
+<script>
+//ready
+$(function() {
+  callAU();
+});
 </script>
 
 </html>

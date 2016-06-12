@@ -8,161 +8,175 @@ var DPA_list = new Array();
 var WAU_list = new Array();
 var MAU_list = new Array();
 
+function callAU() {
+  callDAU();
+  callWAU();
+  callMAU();
+}
+
 //DAU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    alert('Host not found! Please check the host name.');
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      DAU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callDAU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      alert('Host not found! Please check the host name.');
+    },
+    success: function(data) {
+      //anything
     }
-      count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  DAU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawDAUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        DAU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+        count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    DAU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDAUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //DPA Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    alert('Host not found! Please check the host name.');
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      DPA_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callDPA() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      alert('Host not found! Please check the host name.');
+    },
+    success: function(data) {
+      //anything
     }
-      count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  DPA_list.push(dataset);
-  google.charts.setOnLoadCallback(drawDPAGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        DPA_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+        count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    DPA_list.push(dataset);
+    google.charts.setOnLoadCallback(drawDPAGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //WAU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    alert('Host not found! Please check the host name.');
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      WAU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callWAU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      alert('Host not found! Please check the host name.');
+    },
+    success: function(data) {
+      //anything
     }
-      count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  WAU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawWAUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        WAU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+        count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    WAU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawWAUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 //MAU Data
-$.ajax({
-  type: "GET",
-  url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20asc",
-  dataType: "text",
-  error: function() {
-    alert('Host not found! Please check the host name.');
-  },
-  success: function(data) {
-    //anything
-  }
-}).done(function(data) {
-  var i = 1;
-  var pars = JSON.parse(data);
-  var value = pars['value'];
-
-  var field_fst = value[0]['Fields'];
-  var count_max = Number(value[0]['CountNum']);
-
-  for (; i < value.length; i++) {
-    if (field_fst != value[i]['Fields']) {
-      var dataset = {
-        'Field': field_fst,
-        'Count': count_max
-      };
-      MAU_list.push(dataset);
-      field_fst = value[i]['Fields'];
+function callMAU() {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20asc",
+    dataType: "text",
+    error: function() {
+      alert('Host not found! Please check the host name.');
+    },
+    success: function(data) {
+      //anything
     }
-      count_max = Number(value[i]['CountNum']);
-  }
-  var dataset = {
-    'Field': field_fst,
-    'Count': count_max
-  };
-  MAU_list.push(dataset);
-  google.charts.setOnLoadCallback(drawMAUGraph);
-  $("#graph_loading").empty();
-});
+  }).done(function(data) {
+    var i = 1;
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    var field_fst = value[0]['Fields'];
+    var count_max = Number(value[0]['CountNum']);
+
+    for (; i < value.length; i++) {
+      if (field_fst != value[i]['Fields']) {
+        var dataset = {
+          'Field': field_fst,
+          'Count': count_max
+        };
+        MAU_list.push(dataset);
+        field_fst = value[i]['Fields'];
+      }
+        count_max = Number(value[i]['CountNum']);
+    }
+    var dataset = {
+      'Field': field_fst,
+      'Count': count_max
+    };
+    MAU_list.push(dataset);
+    google.charts.setOnLoadCallback(drawMAUGraph);
+    $("#graph_loading").empty();
+  });
+}
 
 function drawDAUGraph() {
   var DAU_data = new google.visualization.DataTable();
@@ -192,6 +206,14 @@ function drawDAUGraph() {
     legend: {position: 'top', maxLines: 1, alignment: 'end'}
   };
 
+  $('#Graph1').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'DAU(일일 활성 유저수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="DAU_div"></div>'
+  );
   var chart = new google.visualization.ColumnChart(document.getElementById('DAU_div'));
   chart.draw(DAU_data, DAU_options);
 }
@@ -221,6 +243,14 @@ function drawDPAGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('.graph').empty();
+  $('#Graph1').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'DPA(일일 매출액)' +
+      '</div>' +
+    '</div>' +
+    '<div id="DPA_div"></div>'
+  );
   var chart = new google.visualization.LineChart(document.getElementById('DPA_div'));
   chart.draw(DPA_data, DPA_options);
 }
@@ -250,6 +280,14 @@ function drawWAUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('#Graph2').empty();
+  $('#Graph2').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'WAU(주간 활성 유저수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="WAU_div"></div>'
+  );
   var chart = new google.visualization.ColumnChart(document.getElementById('WAU_div'));
   chart.draw(WAU_data, WAU_options);
 }
@@ -279,13 +317,26 @@ function drawMAUGraph() {
     },
     backgroundColor: '#FFF'
   };
+  $('#Graph3').empty();
+  $('#Graph3').append('<div class="graph_main">' +
+      '<div style="margin-top:27px; margin-left:29px;">' +
+        'MAU(월간 활성 유저수)' +
+      '</div>' +
+    '</div>' +
+    '<div id="MAU_div"></div>'
+  );
   var chart = new google.visualization.ColumnChart(document.getElementById('MAU_div'));
   chart.draw(MAU_data, MAU_options);
 }
 
 $(window).resize(function() {
-  drawDAUGraph();
-  drawDPAGraph();
-  drawWAUGraph();
-  drawMAUGraph();
+  console.log($("#Graph1").find("#DAU_div"));
+  if($("#Graph1").find("#DAU_div")) {
+    drawDAUGraph();
+    drawWAUGraph();
+    drawMAUGraph();
+  }
+  else if($("#Graph1").find("#DPA_div")) {
+    drawDPAGraph();
+  }
 });

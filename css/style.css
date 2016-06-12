@@ -16,6 +16,11 @@ a {
 a:visited {
   text-decoration: none;
 }
+li {
+  margin:0px;
+  padding:0px;
+  list-style:none;
+}
 #wrap {
   min-width:1100px;
   position: relative;
@@ -65,7 +70,7 @@ nav#menu #menu-nav {
 nav#menu #menu-nav ul {
   margin:0;
   padding:0;
-  list-style-type:none;
+  list-style:none;
   text-align:left;
 }
 nav#menu #menu-nav ul>li {
@@ -118,7 +123,7 @@ nav#menu #menu-nav li a:hover {
 }
 .underbar:hover {
   color:#111;
-  background: url(./img/hr.png) no-repeat;
+  background: url(../img/hr.png) no-repeat;
   background-position: bottom;
 }
 .navi_bg {
@@ -126,7 +131,7 @@ nav#menu #menu-nav li a:hover {
     top: 75px;
     width: 100%;
     height: 75px;
-    background-color: rgba(250, 250, 250, 1);
+    background-color: rgba(250, 250, 250, 0.5);
     z-index:100;
 }
 #content {
