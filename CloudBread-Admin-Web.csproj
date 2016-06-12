@@ -195,6 +195,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="bi.html" />
+    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="img\hr.png" />
     <Content Include="index.html" />
@@ -208,6 +209,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="script\Overview.js" />
+    <Content Include="script\Realtime.js" />
+    <Content Include="script\Retention.js" />
+    <Content Include="script\Revenue.js" />
     <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
