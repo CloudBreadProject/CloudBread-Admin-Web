@@ -24,14 +24,20 @@ function callDARPU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -40,7 +46,7 @@ function callDARPU() {
         DARPU_list.push(dataset);
         field_fst = value[i]['Fields'];
       }
-      count_max = Number(value[i]['CountNum']);
+        count_max = Number(value[i]['CountNum']);
     }
     var dataset = {
       'Field': field_fst,
@@ -108,14 +114,20 @@ function callFPU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -124,7 +136,7 @@ function callFPU() {
         FPU_list.push(dataset);
         field_fst = value[i]['Fields'];
       }
-      count_max = Number(value[i]['CountNum']);
+        count_max = Number(value[i]['CountNum']);
     }
     var dataset = {
       'Field': field_fst,
@@ -150,14 +162,20 @@ function callWPU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -166,7 +184,7 @@ function callWPU() {
         WPU_list.push(dataset);
         field_fst = value[i]['Fields'];
       }
-      count_max = Number(value[i]['CountNum']);
+        count_max = Number(value[i]['CountNum']);
     }
     var dataset = {
       'Field': field_fst,
@@ -192,14 +210,20 @@ function callMPU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -208,7 +232,7 @@ function callMPU() {
         MPU_list.push(dataset);
         field_fst = value[i]['Fields'];
       }
-      count_max = Number(value[i]['CountNum']);
+        count_max = Number(value[i]['CountNum']);
     }
     var dataset = {
       'Field': field_fst,

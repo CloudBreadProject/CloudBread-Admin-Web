@@ -28,14 +28,20 @@ function callDAU() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -70,14 +76,20 @@ function callDPA() {
       //anything
     }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -105,21 +117,21 @@ function callWAU() {
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20asc",
     dataType: "text",
-    error: function() {
-      alert('Host not found! Please check the host name.');
-    },
-    success: function(data) {
-      //anything
-    }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
@@ -147,21 +159,21 @@ function callMAU() {
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20asc",
     dataType: "text",
-    error: function() {
-      alert('Host not found! Please check the host name.');
-    },
-    success: function(data) {
-      //anything
-    }
   }).done(function(data) {
-    var i = 1;
+    var max = 0;
     var pars = JSON.parse(data);
     var value = pars['value'];
-
+    var data_num_gap = value.length;
+    if(value.length == 0) {
+      alert('Not exist Data anything');
+      return;
+    }
     var field_fst = value[0]['Fields'];
     var count_max = Number(value[0]['CountNum']);
+    max = (value.length > 10) ? 10 : value.length;
+    data_num_gap = ((data_num_gap - max) > 0) ? (data_num_gap - max) : 0;
 
-    for (; i < value.length; i++) {
+    for (var i = data_num_gap; i < max; i++) {
       if (field_fst != value[i]['Fields']) {
         var dataset = {
           'Field': field_fst,
