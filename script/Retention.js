@@ -16,6 +16,7 @@ function callDormant() {
         //anything
       }
     }).done(function(data) {
+      Dormant15_list = [];
       var i = 1;
       var pars = JSON.parse(data);
       var value = pars['value'];
@@ -45,6 +46,7 @@ function callDormant() {
 
   //Dormant30 Data
   var pro_Dormant30 = new Promise(function (resolve, reject) {
+    Dormant30_list = [];
     $.ajax({
       type: "GET",
       url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'Dormant30'&$orderby=Fields%20asc",

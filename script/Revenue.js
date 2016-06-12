@@ -12,6 +12,7 @@ function callPU() {
 
 //DARPU Data
 function callDARPU() {
+  DARPU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DARPU'&$orderby=Fields%20asc",
@@ -53,6 +54,7 @@ function callDARPU() {
 
 //DPU Data
 function callDPU() {
+  DPU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPU'&$orderby=Fields%20asc",
@@ -94,6 +96,7 @@ function callDPU() {
 
 //FPU Data
 function callFPU() {
+  FPU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'FPU'&$orderby=Fields%20asc",
@@ -135,6 +138,7 @@ function callFPU() {
 
 //WPU Data
 function callWPU() {
+  WPU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WPU'&$orderby=Fields%20asc",
@@ -176,6 +180,7 @@ function callWPU() {
 
 //MPU Data
 function callMPU() {
+  MPU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MPU'&$orderby=Fields%20asc",

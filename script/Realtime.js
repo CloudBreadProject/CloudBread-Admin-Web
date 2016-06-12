@@ -13,6 +13,7 @@ function callHAU() {
       //anything
     }
   }).done(function(data) {
+    HAU_list = [];
     var i = 1;
     var pars = JSON.parse(data);
     var value = pars['value'];

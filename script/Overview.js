@@ -16,6 +16,7 @@ function callAU() {
 
 //DAU Data
 function callDAU() {
+  DAU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DAU'&$orderby=Fields%20asc",
@@ -57,6 +58,7 @@ function callDAU() {
 
 //DPA Data
 function callDPA() {
+  DPA_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'DPA'&$orderby=Fields%20asc",
@@ -98,6 +100,7 @@ function callDPA() {
 
 //WAU Data
 function callWAU() {
+  WAU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'WAU'&$orderby=Fields%20asc",
@@ -139,6 +142,7 @@ function callWAU() {
 
 //MAU Data
 function callMAU() {
+  MAU_list = [];
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$filter=CategoryName%20eq%20'MAU'&$orderby=Fields%20asc",
