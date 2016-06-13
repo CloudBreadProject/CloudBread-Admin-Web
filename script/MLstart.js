@@ -24,8 +24,9 @@ var pro_members = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value);
-      for(var i = 0; i < col_name.length; i++) {
-        Members[i] = col_name[0][i];
+      for(var name in col_name) {
+        Members.push(name);
+        console.log(name);
       }
       resolve("Complete");
     }
@@ -44,8 +45,8 @@ var pro_gift = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value);
-      for(var i = 0; i < col_name.length; i++) {
-        Gift[i] = col_name[i];
+      for(var name in col_name) {
+        Gift.push(name);
       }
       resolve("Complete");
     }
@@ -64,8 +65,8 @@ var pro_game = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value);
-      for(var i = 0; i < col_name.length; i++) {
-        Game[i] = col_name[i];
+      for(var name in col_name) {
+        Game.push(name);
       }
       resolve("Complete");
     }
@@ -84,14 +85,16 @@ var pro_purchase = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value);
-      for(var i = 0; i < col_name.length; i++) {
-        Purchase[i] = col_name[i];
+      for(var name in col_name) {
+        Purchase.push(name);
       }
       resolve("Complete");
     }
   });
 });
 function makeCheckbtn(arr, str) {
+  console.log(arr);
+  console.log(str);
   $("#MLstart").append('<br><br>' + str + '<br>');
   for(var str_arr in arr) {
     $("#MLstart").append('<input type="checkbox" id="' + str_arr + '">' +
