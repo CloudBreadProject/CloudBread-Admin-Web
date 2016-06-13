@@ -130,10 +130,10 @@ Promise.all([pro_members, pro_gift, pro_game, pro_purchase]).then(function() {
   makeCheckbtn(Gift, 'Gift Table');
   makeCheckbtn(Game, 'GameInfo Table');
   makeCheckbtn(Purchase, 'Purchase Table');
-  $("#MLstart").append('<br><button id="makeCSV">Make CSV file</button>');
+  $("#MLstart").append('<br><button onclick="makeCSV()">Make CSV file</button>');
 });
 
-$("#makeCSV").click(function () {
+function makeCSV() {
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
     '<div id="loading">●</div>'
@@ -290,5 +290,4 @@ $("#makeCSV").click(function () {
     link.click();
     $("$submit_loading").empty();
   });
-
-});
+}
