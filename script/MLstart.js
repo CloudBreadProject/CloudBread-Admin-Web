@@ -25,28 +25,13 @@ var pro_members = new Promise(function (resolve, reject) {
   });
 });
 
-function makeCheckbtn(arr, str) {
-  $("#SelectCol").append('<br><br>' + str + '<br>');
-  for(var i = 0; i < arr.length; i++) {
-    $("#SelectCol").append('<input type="checkbox" id="' + arr[i] + '">' +
-      '<label for="' + arr[i] + '">' + arr[i] + '</label>');
-  }
-}
-function checkBtn(sel_arr, all_arr) {
-  for(var i = 0; i < all_arr.length; i++) {
-    if ($('#' + all_arr[i]).is(":checked")) {
-      sel_arr.push(all_arr[i]);
-    }
-  }
-}
-function inputContent() {
-  for(var i = 0; i < Selmem.length; i++) {
-    content_csv[0][len] = Selmem[i];
-  }
-}
 Promise.all([pro_members]).then(function() {
   $("#submit_loading").empty();
-  makeCheckbtn(Members, 'Member Table');
+  $("#SelectCol").append('<br><br>Member Table<br>');
+  for(var i = 0; i < Members.length; i++) {
+    $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
+      '<label for="' + Members[i] + '">' + Members[i] + '</label>');
+  }
   $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
 });
 
@@ -56,7 +41,9 @@ function makeCSV() {
     '<div id="loading">●</div>'
   );
   checkBtn(Selmem, Members);
-  inputContent();
+  for(var i = 0; i < Selmem.length; i++) {
+    content_csv[0][i] = Selmem[i];
+  }
 
   var pro_mem_list = new Promise(function (resolve, reject) {
     $.ajax({
