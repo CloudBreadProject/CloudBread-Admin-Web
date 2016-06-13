@@ -158,7 +158,8 @@ function makeCSV() {
         var value = pars['value'];
 
         for(var i = 0; i < value.length; i++) {
-          for(var j = 0; j < Selmem[j].length; j++) {
+          content_csv[i+1] = [];
+          for(var j = 0; j < Selmem.length; j++) {
             content_csv[i+1][j] = value[i][Selmem[j]];
           }
         }
@@ -180,7 +181,8 @@ function makeCSV() {
         var value = pars['value'];
 
         for(var i = 0; i < value.length; i++) {
-          for(var j = 0; j < Selgift[j].length; j++) {
+          content_csv[i+1] = [];
+          for(var j = 0; j < Selgift.length; j++) {
             content_csv[i+1][j] = value[i][Selgift[j]];
           }
         }
@@ -202,7 +204,8 @@ function makeCSV() {
         var value = pars['value'];
 
         for(var i = 0; i < value.length; i++) {
-          for(var j = 0; j < Selgame[j].length; j++) {
+          content_csv[i+1] = [];
+          for(var j = 0; j < Selgame.length; j++) {
             content_csv[i+1][j] = value[i][Selgame[j]];
           }
         }
@@ -224,7 +227,8 @@ function makeCSV() {
         var value = pars['value'];
 
         for(var i = 0; i < value.length; i++) {
-          for(var j = 0; j < Selpur[j].length; j++) {
+          content_csv[i+1] = [];
+          for(var j = 0; j < Selpur.length; j++) {
             content_csv[i+1][j] = value[i][Selpur[j]];
           }
         }
