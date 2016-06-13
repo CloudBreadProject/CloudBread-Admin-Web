@@ -93,34 +93,34 @@ var pro_purchase = new Promise(function (resolve, reject) {
 });
 function makeCheckbtn(arr, str) {
   $("#MLstart").append('<br><br>' + str + '<br>');
-  for(var str_arr in arr) {
-    $("#MLstart").append('<input type="checkbox" id="' + str_arr + '">' +
-      '<label for="' + str_arr + '">' + str_arr + '</label>');
+  for(var i = 0; i < arr.length; i++) {
+    $("#MLstart").append('<input type="checkbox" id="' + arr[i] + '">' +
+      '<label for="' + arr[i] + '">' + arr[i] + '</label>');
   }
 }
 function checkBtn(sel_arr, all_arr) {
-  for(var str in all_arr) {
-    if ($('#' + str).is(":checked")) {
-      sel_arr.push(str);
+  for(var i = 0; i < all_arr.length; i++) {
+    if ($('#' + all_arr[i]).is(":checked")) {
+      sel_arr.push(all_arr[i]);
     }
   }
 }
 function inputContent() {
   var len = 0;
-  for(var str in Selmem) {
-    content_csv[0][len] = str;
+  for(var i = 0; i < Selmem.length; i++) {
+    content_csv[0][len] = Selmem[i];
     len++;
   }
-  for(var str in Selgift) {
-    content_csv[0][len] = str;
+  for(var i = 0; i < Selgift.length; i++) {
+    content_csv[0][len] = Selgift[i];
     len++;
   }
-  for(var str in Selgame) {
-    content_csv[0][len] = str;
+  for(var i = 0; i < Selgame.length; i++) {
+    content_csv[0][len] = Selgame[i];
     len++;
   }
-  for(var str in Selpur) {
-    content_csv[0][len] = str;
+  for(var i = 0; i < Selpur.length; i++) {
+    content_csv[0][len] = Selpur[i];
     len++;
   }
 }
