@@ -24,9 +24,8 @@ var pro_members = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var name in col_name) {
-        Members.push(name);
-        console.log(name);
+      for(var i = 0; col_name.length; i++) {
+        Members[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -45,8 +44,8 @@ var pro_gift = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var name in col_name) {
-        Gift.push(name);
+      for(var i = 0; col_name.length; i++) {
+        Gift[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -65,8 +64,8 @@ var pro_game = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var name in col_name) {
-        Game.push(name);
+      for(var i = 0; col_name.length; i++) {
+        Game[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -83,22 +82,16 @@ var pro_purchase = new Promise(function (resolve, reject) {
     },
     success: function(data) {
       var pars = JSON.parse(data);
-      console.log(pars);
       var value = pars['value'];
-      console.log(value);
       var col_name = Object.keys(value[0]);
-      console.log(Object.keys(value));
-      console.log(Object.keys(value[0]));
-      for(var name in col_name) {
-        Purchase.push(name);
+      for(var i = 0; col_name.length; i++) {
+        Purchase[i] = col_name[i];
       }
       resolve("Complete");
     }
   });
 });
 function makeCheckbtn(arr, str) {
-  console.log(arr);
-  console.log(str);
   $("#MLstart").append('<br><br>' + str + '<br>');
   for(var str_arr in arr) {
     $("#MLstart").append('<input type="checkbox" id="' + str_arr + '">' +
