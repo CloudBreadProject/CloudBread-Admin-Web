@@ -8,7 +8,7 @@ var Selgift = new Array();
 var Selgame = new Array();
 var Selpur = new Array();
 
-var content_csv = new Array();
+var content_csv = [[]];
 
 var host = '/';
 var pro_members = new Promise(function (resolve, reject) {
@@ -92,9 +92,9 @@ var pro_purchase = new Promise(function (resolve, reject) {
   });
 });
 function makeCheckbtn(arr, str) {
-  $("#MLstart").append('<br><br>' + str + '<br>');
+  $("#SelectCol").append('<br><br>' + str + '<br>');
   for(var i = 0; i < arr.length; i++) {
-    $("#MLstart").append('<input type="checkbox" id="' + arr[i] + '">' +
+    $("#SelectCol").append('<input type="checkbox" id="' + arr[i] + '">' +
       '<label for="' + arr[i] + '">' + arr[i] + '</label>');
   }
 }
@@ -130,7 +130,7 @@ Promise.all([pro_members, pro_gift, pro_game, pro_purchase]).then(function() {
   makeCheckbtn(Gift, 'Gift Table');
   makeCheckbtn(Game, 'GameInfo Table');
   makeCheckbtn(Purchase, 'Purchase Table');
-  $("#MLstart").append('<br><button onclick="makeCSV()">Make CSV file</button>');
+  $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
 });
 
 function makeCSV() {
