@@ -23,8 +23,9 @@ var pro_members = new Promise(function (resolve, reject) {
     success: function(data) {
       var pars = JSON.parse(data);
       var value = pars['value'];
-      for(var i = 0; i < value[0].length; i++) {
-        Members[i] = value[0][i];
+      var col_name = Object.keys(value);
+      for(var i = 0; i < col_name.length; i++) {
+        Members[i] = col_name[0][i];
       }
       resolve("Complete");
     }
@@ -42,8 +43,9 @@ var pro_gift = new Promise(function (resolve, reject) {
     success: function(data) {
       var pars = JSON.parse(data);
       var value = pars['value'];
-      for(var i = 0; i < value[0].length; i++) {
-        Gift[i] = value[0][i];
+      var col_name = Object.keys(value);
+      for(var i = 0; i < col_name.length; i++) {
+        Gift[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -61,8 +63,9 @@ var pro_game = new Promise(function (resolve, reject) {
     success: function(data) {
       var pars = JSON.parse(data);
       var value = pars['value'];
-      for(var i = 0; i < value[0].length; i++) {
-        Game[i] = value[0][i];
+      var col_name = Object.keys(value);
+      for(var i = 0; i < col_name.length; i++) {
+        Game[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -80,8 +83,9 @@ var pro_purchase = new Promise(function (resolve, reject) {
     success: function(data) {
       var pars = JSON.parse(data);
       var value = pars['value'];
-      for(var i = 0; i < value[0].length; i++) {
-        Purchase[i] = value[0][i];
+      var col_name = Object.keys(value);
+      for(var i = 0; i < col_name.length; i++) {
+        Purchase[i] = col_name[i];
       }
       resolve("Complete");
     }
@@ -122,7 +126,6 @@ function inputContent() {
 }
 Promise.all([pro_members, pro_gift, pro_game, pro_purchase]).then(function() {
   $("#submit_loading").empty();
-  $("#MLstart").append('Member Table<br>');
   makeCheckbtn(Members, 'Member Table');
   makeCheckbtn(Gift, 'Gift Table');
   makeCheckbtn(Game, 'GameInfo Table');
