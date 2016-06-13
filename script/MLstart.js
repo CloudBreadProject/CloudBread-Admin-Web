@@ -83,8 +83,12 @@ var pro_purchase = new Promise(function (resolve, reject) {
     },
     success: function(data) {
       var pars = JSON.parse(data);
+      console.log(pars);
       var value = pars['value'];
+      console.log(value);
       var col_name = Object.keys(value[0]);
+      console.log(Object.keys(value));
+      console.log(Object.keys(value[0]));
       for(var name in col_name) {
         Purchase.push(name);
       }
