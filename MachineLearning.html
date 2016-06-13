@@ -11,10 +11,7 @@
   <!--Load the AJAX API-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <script type="text/javascript" src="./script/Overview.js"></script>
-  <script type="text/javascript" src="./script/Revenue.js"></script>
-  <script type="text/javascript" src="./script/Retention.js"></script>
-  <script type="text/javascript" src="./script/Realtime.js"></script>
+  <script type="text/javascript" src="./script/MLstart.js"></script>
   <script type="text/javascript" src="./script/Effect.js"></script>
 
   <link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -34,31 +31,31 @@
             <li class="interval">
               <a class="underbar" href="#">기본지표 </a>
               <ul class="subMenu" id="idSub">
-                <li class="sub"><a href="#" onclick="callAU()" style="padding-top:12px;">활동 유저수 </a></li>
-                <li class="sub"><a href="#" onclick="callDPA()" style="padding-top:12px;">매출액 </a></li>
-                <li class="sub"><a href="#" onclick="callHAU()" style="padding-top:12px;">시간별 활동 유저수 </a></li>
-                <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">평균 게임플레이 시간 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">활동 유저수 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">매출액 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">시간별 활동 유저수 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">평균 게임플레이 시간 </a></li>
               </ul>
             </li>
             <li class="interval">
               <a class="underbar" href="#">인앱매출 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-227px;">
-                <li class="sub"><a href="#" onclick="callDARPU()" style="padding-top:12px;">평균 매출 </a></li>
-                <li class="sub"><a href="#" onclick="callPU()" style="padding-top:12px;">구매 유저수 </a></li>
-                <li class="sub"><a href="#" onclick="callFPU()" style="padding-top:12px;">최초 구매 유저수 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">평균 매출 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">구매 유저수 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">최초 구매 유저수 </a></li>
               </ul>
             </li>
             <li class="interval">
               <a class="underbar" href="#">리텐션 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-444px;">
-                <li class="sub"><a href="#" onclick="callDormant()" style="padding-top:12px;">휴면유저 </a></li>
-                <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">복귀유저 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">휴면유저 </a></li>
+                <li class="sub"><a href="/bi.html" style="padding-top:12px;">복귀유저 </a></li>
               </ul>
             </li>
             <li class="interval">
-              <a class="underbar" id="ML" href="./MachineLearning.html">머신러닝 </a>
+              <a class="underbar" id="ML" href="#">머신러닝 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-661px">
-                <li class="sub"><a href="/MachineLearning.html" style="padding-top:12px;">ML 시작하기</a></li>
+                <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">ML 시작하기</a></li>
                 <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">이탈률 계산</a></li>
               </ul>
             </li>
@@ -69,23 +66,17 @@
     </div>
 
     <div id="content">
-      <div id="graph_loading" style="text-align:center; margin-top:100px;">
-        Loading...<br>
-        <div id="loading">●</div>
+      <div id="MLstart" style="margin-top: 150px;">
       </div>
-      <div class="graph" id="Graph1">
+      <div id="predict" style="margin-top: 150px;">
+        <div style="margin-left:100px;">
+          <input id='memberID'/>
+          <button id="registerBtn">Submit</button>
+          <div id="submit_loading" style="text-align:center;"></div>
+          <div id="probab" style="text-align:center;"></div>
+        </div>
       </div>
-      <div class="graph" id="Graph2">
-      </div>
-      <div class="graph" id="Graph3">
-      </div>
-
-      <div style="margin-left:100px;">
-        <input id='memberID'/>
-        <button id="registerBtn">Submit</button>
-        <div id="submit_loading" style="text-align:center;"></div>
-        <div id="probab" style="text-align:center;"></div>
-      </div>
+      <div id="submit_loading"></div>
     </div>
 
   </div>
@@ -302,13 +293,6 @@ $("#registerBtn").click(function() {
       });
   });
 }); // click()
-</script>
-
-<script>
-//ready
-$(function() {
-  callAU();
-});
 </script>
 
 </html>

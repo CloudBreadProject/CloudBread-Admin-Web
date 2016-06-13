@@ -199,6 +199,7 @@
     <Content Include="Global.asax" />
     <Content Include="img\hr.png" />
     <Content Include="index.html" />
+    <Content Include="MachineLearning.html" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -209,6 +210,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="script\Effect.js" />
+    <Content Include="script\MLstart.js" />
     <Content Include="script\Overview.js" />
     <Content Include="script\Realtime.js" />
     <Content Include="script\Retention.js" />
