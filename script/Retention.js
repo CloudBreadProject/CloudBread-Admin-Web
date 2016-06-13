@@ -85,11 +85,11 @@ function drawDormantGraph() {
   Dormant_data.addColumn('number', '15일 휴면유저');
 
   for (i = 0; i < Dormant15_list.length; i++) {
-    var hour = Dormant15_list[i]['Field'].substring(8, 10);
-    var day = Dormant15_list[i]['Field'].substring(6, 8);
+    var mon = DAU_list[i]['Field'].substring(4, 6);
+    var day = DAU_list[i]['Field'].substring(6, 8);
     Dormant_data.addRows([
       [{
-        v: day + "." + hour
+        v: mon + "/" + day
       }, Number(Dormant30_list[i]['Count']), Number(Dormant15_list[i]['Count'])]
     ]);
   }
@@ -112,7 +112,7 @@ function drawDormantGraph() {
     '</div>' +
     '<div id="Dormant_div"></div>'
   );
-  var chart = new google.visualization.ColumnChart(document.getElementById('Dormant_div'));
+  var chart = new google.visualization.AreaChart(document.getElementById('Dormant_div'));
   chart.draw(Dormant_data, Dormant_options);
 }
 
