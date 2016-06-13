@@ -24,7 +24,7 @@ var pro_members = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var i = 0; col_name.length; i++) {
+      for(var i = 0; i < col_name.length; i++) {
         Members[i] = col_name[i];
       }
       resolve("Complete");
@@ -44,7 +44,7 @@ var pro_gift = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var i = 0; col_name.length; i++) {
+      for(var i = 0; i < col_name.length; i++) {
         Gift[i] = col_name[i];
       }
       resolve("Complete");
@@ -64,7 +64,7 @@ var pro_game = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var i = 0; col_name.length; i++) {
+      for(var i = 0; i < col_name.length; i++) {
         Game[i] = col_name[i];
       }
       resolve("Complete");
@@ -84,7 +84,7 @@ var pro_purchase = new Promise(function (resolve, reject) {
       var pars = JSON.parse(data);
       var value = pars['value'];
       var col_name = Object.keys(value[0]);
-      for(var i = 0; col_name.length; i++) {
+      for(var i = 0; i < col_name.length; i++) {
         Purchase[i] = col_name[i];
       }
       resolve("Complete");
