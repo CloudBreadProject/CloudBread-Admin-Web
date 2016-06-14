@@ -114,9 +114,9 @@ function makeCSV() {
     var data, link, filename;
     var csvData = [];
     var tempObj;
-    for(var i = 1; content_csv.length; i++) {
+    for(var i = 1; i < content_csv.length; i++) {
       tempObj = {};
-      for(var j = 0; content_csv[0].length; j++) {
+      for(var j = 0; j < content_csv[0].length; j++) {
         tempObj[content_csv[0][j]] = content_csv[i][j];
       }
       csvData[i].push(tempObj);
