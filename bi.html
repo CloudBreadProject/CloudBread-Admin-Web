@@ -44,7 +44,7 @@
         <nav id="menu">
           <ul id="menu-nav" class="mainMenu">
             <li class="interval">
-              <a class="underbar" href="#/">기본지표 </a>
+              <a class="underbar" href="#/" onclick="callAU()">기본지표 </a>
               <ul class="subMenu" id="idSub">
                 <li class="sub"><a href="#/Overview/AU" onclick="callAU()" style="padding-top:12px;">활동 유저수 </a></li>
                 <li class="sub"><a href="#/Overview/DPA" onclick="callDPA()" style="padding-top:12px;">매출액 </a></li>
@@ -53,7 +53,7 @@
               </ul>
             </li>
             <li class="interval">
-              <a class="underbar" href="#/Revenue/DARPU">인앱매출 </a>
+              <a class="underbar" href="#/Revenue/DARPU" onclick="callDARPU()">인앱매출 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-227px;">
                 <li class="sub"><a href="#/Revenue/DARPU" onclick="callDARPU()" style="padding-top:12px;">평균 매출 </a></li>
                 <li class="sub"><a href="#/Revenue/PU" onclick="callPU()" style="padding-top:12px;">구매 유저수 </a></li>
@@ -61,14 +61,14 @@
               </ul>
             </li>
             <li class="interval">
-              <a class="underbar" href="#/Retention/Dormant">리텐션 </a>
+              <a class="underbar" href="#/Retention/Dormant" onclick="callDormant()">리텐션 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-444px;">
                 <li class="sub"><a href="#/Retention/Dormant" onclick="callDormant()" style="padding-top:12px;">휴면유저 </a></li>
                 <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">복귀유저 </a></li>
               </ul>
             </li>
             <li class="interval">
-              <a class="underbar" id="ML" href="#/ML/start">머신러닝 </a>
+              <a class="underbar" id="ML" href="#/ML/start" onclick="getDBData()">머신러닝 </a>
               <ul class="subMenu" id="idSub" style="margin-left:-661px">
                 <li class="sub"><a href="#/ML/start" onclick="getDBData()" style="padding-top:12px;">ML 시작하기</a></li>
                 <li class="sub"><a href="#/ML/predict" style="padding-top:12px;">이탈률 계산</a></li>

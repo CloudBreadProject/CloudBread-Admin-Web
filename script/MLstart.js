@@ -119,7 +119,7 @@ function makeCSV() {
       for(var j = 0; j < content_csv[0].length; j++) {
         tempObj[content_csv[0][j]] = content_csv[i][j];
       }
-      csvData[i].push(tempObj);
+      csvData.push(tempObj);
     }
 
     // convert csv format
