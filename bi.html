@@ -30,100 +30,65 @@
 
   <!--Load the Customed css-->
   <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/font.css">
 </head>
 
 <body>
   <div id="wrap">
     <div id="header" class="subheader">
       <div id="topmenu">
-        <div id="logo">
-          <a href="/">
-            <img src=""/>
-          </a>
+        <div id="menu_back">
         </div>
-        <nav id="menu">
-          <ul id="menu-nav" class="mainMenu">
+        <div id="menu">
+          <ul id="nav" class="mainMenu">
             <li class="interval">
-              <a class="underbar" href="#/" onclick="callAU()">기본지표 </a>
+              <a class="underbar" href="#/" onclick="callAU()" style="margin-left:160px;">기본지표 </a>
               <ul class="subMenu" id="idSub">
-                <li class="sub"><a href="#/Overview/AU" onclick="callAU()" style="padding-top:12px;">활동 유저수 </a></li>
-                <li class="sub"><a href="#/Overview/DPA" onclick="callDPA()" style="padding-top:12px;">매출액 </a></li>
-                <li class="sub"><a href="#/Realtime/HAU" onclick="callHAU()" style="padding-top:12px;">시간별 활동 유저수 </a></li>
-                <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">평균 게임플레이 시간 </a></li>
+                <li class="sub"><a href="#/Overview/AU" onclick="callAU()" style="margin-left:120px;">활동 유저수 </a></li>
+                <li class="sub"><a href="#/Overview/DPA" onclick="callDPA()">매출액 </a></li>
+                <li class="sub"><a href="#/Realtime/HAU" onclick="callHAU()">시간별 활동 유저수 </a></li>
+                <li class="sub"><a href="#" onclick="yet()">평균 게임플레이 시간 </a></li>
               </ul>
             </li>
             <li class="interval">
               <a class="underbar" href="#/Revenue/DARPU" onclick="callDARPU()">인앱매출 </a>
-              <ul class="subMenu" id="idSub" style="margin-left:-227px;">
-                <li class="sub"><a href="#/Revenue/DARPU" onclick="callDARPU()" style="padding-top:12px;">평균 매출 </a></li>
-                <li class="sub"><a href="#/Revenue/PU" onclick="callPU()" style="padding-top:12px;">구매 유저수 </a></li>
-                <li class="sub"><a href="#/Revenue/FPU" onclick="callFPU()" style="padding-top:12px;">최초 구매 유저수 </a></li>
+              <ul class="subMenu" id="idSub">
+                <li class="sub"><a href="#/Revenue/DARPU" onclick="callDARPU()" style="margin-left:120px;">평균 매출 </a></li>
+                <li class="sub"><a href="#/Revenue/PU" onclick="callPU()">구매 유저수 </a></li>
+                <li class="sub"><a href="#/Revenue/FPU" onclick="callFPU()">최초 구매 유저수 </a></li>
               </ul>
             </li>
             <li class="interval">
               <a class="underbar" href="#/Retention/Dormant" onclick="callDormant()">리텐션 </a>
-              <ul class="subMenu" id="idSub" style="margin-left:-444px;">
-                <li class="sub"><a href="#/Retention/Dormant" onclick="callDormant()" style="padding-top:12px;">휴면유저 </a></li>
-                <li class="sub"><a href="#" onclick="yet()" style="padding-top:12px;">복귀유저 </a></li>
+              <ul class="subMenu" id="idSub">
+                <li class="sub"><a href="#/Retention/Dormant" onclick="callDormant()" style="margin-left:120px;">휴면유저 </a></li>
+                <li class="sub"><a href="#" onclick="yet()">복귀유저 </a></li>
               </ul>
             </li>
             <li class="interval">
               <a class="underbar" id="ML" href="#/ML/start" onclick="getDBData()">머신러닝 </a>
-              <ul class="subMenu" id="idSub" style="margin-left:-661px">
-                <li class="sub"><a href="#/ML/start" onclick="getDBData()" style="padding-top:12px;">ML 시작하기</a></li>
-                <li class="sub"><a href="#/ML/predict" style="padding-top:12px;">이탈률 계산</a></li>
+              <ul class="subMenu" id="idSub">
+                <li class="sub"><a href="#/ML/start" onclick="getDBData()" style="margin-left:120px;">ML 시작하기</a></li>
+                <li class="sub"><a href="#/ML/predict">이탈률 계산</a></li>
               </ul>
             </li>
           </ul>
-        </nav>
+        </div>
         <div class="navi_bg" style="display: none;"></div>
       </div>
     </div>
-    <div id="content" style="margin-top:200px;" ng-view>
+    <div id="content" ng-view>
     </div>
   </div>
 </body>
-<script>
-var closeTimer = null;
-var counterTimer = 300;
-var noClose = 0;
-var colNum = 0;
-  $(".subMenu").hide();
-  $(".mainMenu>li").hover(function() {
-    if(colNum == 0) {
-      $(".navi_bg").slideDown(200);
-      colNum++;
-    }
-    $(".subMenu").hide();
-    $(this).find(".subMenu").stop().slideDown(400);
-    mcancelclosetime();
-  },function() {
-    mclosetime();
-  });
-// Turn On Close Timer
-function mclosetime() {
-    closeTimer = window.setTimeout(mclose, counterTimer);
-}
-// Cancel Close Timer
-function mcancelclosetime() {
-    if(closeTimer) {
-        window.clearTimeout(closeTimer);
-        closeTimer = null;
-    }
-}
-// Close Showed Layer
-function mclose() {
-  $(".mainMenu>li").find(".subMenu").slideUp(250);
-  $(".navi_bg").slideUp(200);
-  colNum = 0;
-}
-</script>
-
 <script>
 //ready
 $(function() {
   callAU();
 });
+function yet() {
+  alert('Develop soon!')
+}
 </script>
 
 </html>

@@ -121,7 +121,7 @@ function makeCSV() {
       }
       csvData.push(tempObj);
     }
-
+    $("$submit_loading").empty();
     // convert csv format
     var csv = convertArrayToCSV({data: csvData});
     filename = 'user_data.csv';
@@ -135,6 +135,5 @@ function makeCSV() {
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
     link.click();
-    $("$submit_loading").empty();
   });
 }

@@ -195,6 +195,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="bi.html" />
+    <Content Include="css\font.css" />
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="img\hr.png" />
