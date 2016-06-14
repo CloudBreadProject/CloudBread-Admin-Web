@@ -37,6 +37,15 @@ function getDBData() {
     $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
   });
 }
+
+function checkBtn(sel_arr, all_arr) {
+  for(var i = 0; i < all_arr.length; i++) {
+    if ($('#' + all_arr[i]).is(":checked")) {
+      sel_arr.push(all_arr[i]);
+    }
+  }
+}
+
 function makeCSV() {
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
