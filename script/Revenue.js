@@ -210,14 +210,7 @@ function drawDARPUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('.graph').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'DARPU(일일 유저 한명당 일 평균 매출)' +
-      '</div>' +
-    '</div>' +
-    '<div id="DARPU_div"></div>'
-  );
+
   var chart = new google.visualization.LineChart(document.getElementById('DARPU_div'));
   chart.draw(DARPU_data, DARPU_options);
 }
@@ -247,14 +240,7 @@ function drawDPUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('#Graph1').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'DPU(일일 결제수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="DPU_div"></div>'
-  );
+
   var chart = new google.visualization.LineChart(document.getElementById('DPU_div'));
   chart.draw(DPU_data, DPU_options);
 }
@@ -284,14 +270,7 @@ function drawFPUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('.graph').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'FPU(최초결제 유저수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="FPU_div"></div>'
-  );
+
   var chart = new google.visualization.LineChart(document.getElementById('FPU_div'));
   chart.draw(FPU_data, FPU_options);
 }
@@ -321,14 +300,7 @@ function drawWPUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('#Graph2').empty();
-  $('#Graph2').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'WPU(주간 결제수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="WPU_div"></div>'
-  );
+
   var chart = new google.visualization.LineChart(document.getElementById('WPU_div'));
   chart.draw(WPU_data, WPU_options);
 }
@@ -358,14 +330,7 @@ function drawMPUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('#Graph3').empty();
-  $('#Graph3').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'MPU(월간 결제수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="MPU_div"></div>'
-  );
+
   var chart = new google.visualization.LineChart(document.getElementById('MPU_div'));
   chart.draw(MPU_data, MPU_options);
 }

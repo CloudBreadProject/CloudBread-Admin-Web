@@ -60,14 +60,7 @@ function drawHAUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('.graph').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'HAU(시간별 활동 유저수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="HAU_div"></div>'
-  );
+  
   var chart = new google.visualization.ColumnChart(document.getElementById('HAU_div'));
   chart.draw(HAU_data, HAU_options);
 }

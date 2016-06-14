@@ -170,14 +170,6 @@ function drawDAUGraph() {
     legend: {position: 'top', maxLines: 1, alignment: 'end'}
   };
 
-  $('#Graph1').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'DAU(일일 활성 유저수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="DAU_div"></div>'
-  );
   var chart = new google.visualization.ColumnChart(document.getElementById('DAU_div'));
   chart.draw(DAU_data, DAU_options);
 }
@@ -207,14 +199,7 @@ function drawDPAGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('.graph').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'DPA(일일 매출액)' +
-      '</div>' +
-    '</div>' +
-    '<div id="DPA_div"></div>'
-  );
+  
   var chart = new google.visualization.LineChart(document.getElementById('DPA_div'));
   chart.draw(DPA_data, DPA_options);
 }
@@ -244,14 +229,7 @@ function drawWAUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('#Graph2').empty();
-  $('#Graph2').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'WAU(주간 활성 유저수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="WAU_div"></div>'
-  );
+
   var chart = new google.visualization.ColumnChart(document.getElementById('WAU_div'));
   chart.draw(WAU_data, WAU_options);
 }
@@ -281,14 +259,7 @@ function drawMAUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('#Graph3').empty();
-  $('#Graph3').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'MAU(월간 활성 유저수)' +
-      '</div>' +
-    '</div>' +
-    '<div id="MAU_div"></div>'
-  );
+
   var chart = new google.visualization.ColumnChart(document.getElementById('MAU_div'));
   chart.draw(MAU_data, MAU_options);
 }

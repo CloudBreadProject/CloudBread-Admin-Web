@@ -104,14 +104,7 @@ function drawDormantGraph() {
     },
     backgroundColor: '#FFF'
   };
-  $('.graph').empty();
-  $('#Graph1').append('<div class="graph_main">' +
-      '<div style="margin-top:27px; margin-left:29px;">' +
-        'Dormant(휴면유저)' +
-      '</div>' +
-    '</div>' +
-    '<div id="Dormant_div"></div>'
-  );
+
   var chart = new google.visualization.AreaChart(document.getElementById('Dormant_div'));
   chart.draw(Dormant_data, Dormant_options);
 }

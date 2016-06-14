@@ -4,37 +4,39 @@ var Selmem = new Array();
 var content_csv = [[]];
 
 var host = '/';
-var pro_members = new Promise(function (resolve, reject) {
-  $.ajax({
-    type: "GET",
-    url: host + "odata/Members?$top=1",
-    dataType: "text",
-    error: function() {
-      reject("Fail");
-      alert('Host not found! Please check the host name.');
-    },
-    success: function(data) {
-      var pars = JSON.parse(data);
-      var value = pars['value'];
-      var col_name = Object.keys(value[0]);
-      for(var i = 0; i < col_name.length; i++) {
-        Members[i] = col_name[i];
+
+function getDBData() {
+  var pro_members = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/Members?$top=1",
+      dataType: "text",
+      error: function() {
+        reject("Fail");
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        var col_name = Object.keys(value[0]);
+        for(var i = 0; i < col_name.length; i++) {
+          Members[i] = col_name[i];
+        }
+        resolve("Complete");
       }
-      resolve("Complete");
-    }
+    });
   });
-});
 
-Promise.all([pro_members]).then(function() {
-  $("#submit_loading").empty();
-  $("#SelectCol").append('<br><br>Member Table<br>');
-  for(var i = 0; i < Members.length; i++) {
-    $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
-      '<label for="' + Members[i] + '">' + Members[i] + '</label>');
-  }
-  $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
-});
-
+  Promise.all([pro_members]).then(function() {
+    $("#submit_loading").empty();
+    $("#SelectCol").append('<br><br>Member Table<br>');
+    for(var i = 0; i < Members.length; i++) {
+      $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
+        '<label for="' + Members[i] + '">' + Members[i] + '</label>');
+    }
+    $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
+  });
+}
 function makeCSV() {
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
