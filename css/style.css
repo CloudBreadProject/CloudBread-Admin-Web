@@ -75,7 +75,7 @@ ul#nav li a {
   width: 129px;
 }
 /* Applies the active state */
-ul#nav .current a, ul#nav li:hover > a  {
+ul#nav li.active a, ul#nav li:hover > a  {
   color: #fff;
   background: #4C5ACC;
   background: url(../img/hr.png) no-repeat;
@@ -86,7 +86,7 @@ ul#nav ul {
   display: none;
 }
 /* When the first level menu item is hovered, the child menu appears */
-ul#nav li:hover > ul {
+ul#nav li.active > ul, ul#nav li:hover > ul {
   position: absolute;
   display: block;
   width: 10000px;
@@ -94,7 +94,7 @@ ul#nav li:hover > ul {
   margin: 75px 0 0 0;
   background: #FAFAFA;
 }
-ul#nav li:hover > ul li a {
+ul#nav li.active > ul li a, ul#nav li:hover > ul li a {
   float: left;
   font-size: 19px;
   line-height: 75px;
@@ -104,9 +104,17 @@ ul#nav li:hover > ul li a {
   width: 170px;
   text-align:left;
 }
-ul#nav li:hover > ul li a:hover {
+ul#nav li.active > ul li.subactive a, ul#nav li:hover > ul li a:hover {
   color: #4C5ACC;
   text-shadow: none;
+}
+ul#nav li.active > ul li.subactive a, ul#nav li.active > ul li a,
+ul#nav li.active > ul {
+  z-index: 300;
+}
+ul#nav li:hover > ul li a:hover, ul#nav li:hover > ul li a,
+ul#nav li:hover > ul {
+  z-index: 320;
 }
 #content {
   padding-top: 200px;

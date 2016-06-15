@@ -2,6 +2,10 @@ var Dormant15_list = new Array();
 var Dormant30_list = new Array();
 
 function callDormant() {
+  $('ul#nav li').removeClass('active');
+  $('#main3').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub31').addClass('subactive');
   //Dormant15 Data
   var pro_Dormant15 = new Promise(function (resolve, reject) {
     $.ajax({

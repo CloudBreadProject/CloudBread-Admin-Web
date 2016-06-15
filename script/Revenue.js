@@ -5,6 +5,10 @@ var WPU_list = new Array();
 var MPU_list = new Array();
 
 function callPU() {
+  $('ul#nav li').removeClass('active');
+  $('#main2').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub22').addClass('subactive');
   callDPU();
   callWPU();
   callMPU();
@@ -12,6 +16,10 @@ function callPU() {
 
 //DARPU Data
 function callDARPU() {
+  $('ul#nav li').removeClass('active');
+  $('#main2').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub21').addClass('subactive');
   DARPU_list = [];
   $.ajax({
     type: "GET",
@@ -82,6 +90,10 @@ function callDPU() {
 
 //FPU Data
 function callFPU() {
+  $('ul#nav li').removeClass('active');
+  $('#main2').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub23').addClass('subactive');
   FPU_list = [];
   $.ajax({
     type: "GET",

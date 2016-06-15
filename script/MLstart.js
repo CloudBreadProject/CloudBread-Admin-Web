@@ -6,6 +6,10 @@ var content_csv = [[]];
 var host = '/';
 
 function getDBData() {
+  $('ul#nav li').removeClass('active');
+  $('#main4').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub41').addClass('subactive');
   var pro_members = new Promise(function (resolve, reject) {
     $.ajax({
       type: "GET",
@@ -30,7 +34,7 @@ function getDBData() {
   Promise.all([pro_members]).then(function() {
     $("#first_loading").empty();
     $("#SelectCol").empty();
-    
+
     for(var i = 0; i < Members.length; i++) {
       $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
         '<label for="' + Members[i] + '" class="btn">' + Members[i] + '</label>');
@@ -123,7 +127,7 @@ function makeCSV() {
       }
       csvData.push(tempObj);
     }
-    $("$submit_loading").empty();
+    $("#submit_loading").empty();
     // convert csv format
     var csv = convertArrayToCSV({data: csvData});
     filename = 'user_data.csv';

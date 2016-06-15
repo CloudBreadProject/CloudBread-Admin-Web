@@ -2,6 +2,10 @@ var HAU_list = new Array();
 
 //HAU Data
 function callHAU() {
+  $('ul#nav li').removeClass('active');
+  $('#main1').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub13').addClass('subactive');
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$top=15&$filter=CategoryName%20eq%20'HAU'&$orderby=Fields%20desc",
@@ -60,7 +64,7 @@ function drawHAUGraph() {
     },
     backgroundColor: '#FFF'
   };
-  
+
   var chart = new google.visualization.ColumnChart(document.getElementById('HAU_div'));
   chart.draw(HAU_data, HAU_options);
 }

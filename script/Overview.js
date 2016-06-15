@@ -9,6 +9,10 @@ var WAU_list = new Array();
 var MAU_list = new Array();
 
 function callAU() {
+  $('ul#nav li').removeClass('active');
+  $('#main1').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub11').addClass('subactive');
   callDAU();
   callWAU();
   callMAU();
@@ -51,6 +55,10 @@ function callDAU() {
 
 //DPA Data
 function callDPA() {
+  $('ul#nav li').removeClass('active');
+  $('#main1').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub12').addClass('subactive');
   DPA_list = [];
   $.ajax({
     type: "GET",

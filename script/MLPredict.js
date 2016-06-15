@@ -208,3 +208,9 @@ $("#registerBtn").click(function() {
       });
   });
 }); // click()
+function MLPredict() {
+  $('ul#nav li').removeClass('active');
+  $('#main4').addClass('active');
+  $('ul#nav li.active > ul li').removeClass('subactive');
+  $('#sub42').addClass('subactive');
+}
