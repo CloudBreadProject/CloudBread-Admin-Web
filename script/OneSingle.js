@@ -4,52 +4,42 @@ module.config(function($routeProvider){
   $routeProvider
        .when('/', {
          templateUrl : 'templates/Overview/DAU.html',
-         template : ' ',
          controller : 'MainController'
        })
        .when('/Overview/AU', {
          templateUrl : 'templates/Overview/DAU.html',
-         template : ' ',
          controller : 'AUController'
        })
        .when('/Overview/DPA', {
          templateUrl : 'templates/Overview/DPA.html',
-         template : ' ',
          controller : 'DPAController'
        })
        .when('/Realtime/HAU', {
          templateUrl : 'templates/Realtime/HAU.html',
-         template : ' ',
          controller : 'HAUController'
        })
        .when('/Revenue/DARPU', {
          templateUrl : 'templates/Revenue/DARPU.html',
-         template : ' ',
          controller : 'DARPUController'
        })
        .when('/Revenue/PU', {
          templateUrl : 'templates/Revenue/DPU.html',
-         template : ' ',
          controller : 'PUController'
        })
        .when('/Revenue/FPU', {
          templateUrl : 'templates/Revenue/FPU.html',
-         template : ' ',
          controller : 'FPUController'
        })
        .when('/Retention/Dormant', {
          templateUrl : 'templates/Retention/Dormant.html',
-         template : ' ',
          controller : 'DormantController'
        })
        .when('/ML/start', {
          templateUrl : 'templates/MachineLearning/MLstart.html',
-         template : ' ',
          controller : 'startController'
        })
        .when('/ML/predict', {
          templateUrl : 'templates/MachineLearning/MLPredict.html',
-         template : ' ',
          controller : 'predictController'
        });
 });
