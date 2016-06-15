@@ -28,13 +28,13 @@ function getDBData() {
   });
 
   Promise.all([pro_members]).then(function() {
-    $("#submit_loading").empty();
-    $("#SelectCol").append('<br><br>Member Table<br>');
+    $("#first_loading").empty();
     for(var i = 0; i < Members.length; i++) {
       $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
         '<label for="' + Members[i] + '">' + Members[i] + '</label>');
     }
-    $("#SelectCol").append('<br><button onclick="makeCSV()">Make CSV file</button>');
+    $("#SelectCol").append('<br><button id="submitML" onclick="makeCSV()">' +
+    '<span>Make CSV file</span></button>');
   });
 }
 

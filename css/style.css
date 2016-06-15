@@ -109,9 +109,8 @@ ul#nav li:hover > ul li a:hover {
   text-shadow: none;
 }
 #content {
-  padding-top: 145px;
-  height: 100%;
-  padding-bottom: 200px;
+  padding-top: 200px;
+  --height: 100%;
   background-color: #FFF;
 }
 .graph {
@@ -147,90 +146,87 @@ ul#nav li:hover > ul li a:hover {
   animation:spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }
-.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip:rect(0,0,0,0);
-  border: 0
+fieldset {
+  margin: 8px 30px;
+  border: 2px solid silver;
+  padding: 8px;
+  padding-bottom: 30px;
+  border-radius: 4px;
 }
-.checks input[type="checkbox"] + label {
+legend{
+  padding: 10px 10px;
+  font-size:23px;
+  font-weight: 700px;
+  color: #4C5ACC;
+}
+input[type=checkbox]{
+  display:none;
+}
+input[type=checkbox] + label.btn{
+  padding: 5px 10px;
+  margin: 5px 10px;
+  display: inline-block;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  background: #FFF;
+  border: solid 1px #2C48BA;
+  color: #111;
+  box-shadow: 0 4px #2C48BA;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type=checkbox] + label.btn:hover{
+  box-shadow: 0 2px #2C48BA;
+  color: #F00000;
+  top: 2px;
+}
+input[type=checkbox]:checked + label.btn{
+  box-shadow: 0 0 #2C48BA;
+  color: #FF0000;
+  top: 4px;
+}
+button#submitML {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4C5ACC;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 5px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  margin-top: 20px;
+}
+button#submitML span {
+  cursor: pointer;
   display: inline-block;
   position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  transition: 0.5s;
 }
-.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
-  content: ' ';
-  display: inline-block;
-  width: 21px;  /* 체크박스의 너비를 지정 */
-  height: 21px;  /* 체크박스의 높이를 지정 */
-  line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */
-  margin: -2px 8px 0 0;
-  text-align: center;
-  vertical-align: middle;
-  background: #fafafa;
-  border: 1px solid #cacece;
-  border-radius : 3px;
-  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-}
-.checks input[type="checkbox"] + label:active:before,
-.checks input[type="checkbox"]:checked + label:active:before {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-}
-.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */
-  content: '\2714';  /* 체크표시 유니코드 사용 */
-  color: #99a1a7;
-  text-shadow: 1px 1px #fff;
-  background: #e9ecee;
-  border-color: #adb8c0;
-  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-}
-.checks.etrans input[type="checkbox"] + label {
-  padding-left: 30px;
-}
-.checks.etrans input[type="checkbox"] + label:before {
+button#submitML span:after {
+  content: '>>';
   position: absolute;
-  left: 0;
+  opacity: 0;
   top: 0;
-  margin-top: 0;
-  opacity: .6;
-  box-shadow: none;
-  border-color: #6cc0e5;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
+  right: -15px;
+  transition: 0.5s;
 }
-.checks.etrans input[type="checkbox"]:checked + label:before {
-  position: absolute;
-  content: "";
-  width: 10px;
-  top: -5px;
-  left: 5px;
-  border-radius: 0;
-  opacity:1;
-  background: transparent;
-  border-color:transparent #6cc0e5 #6cc0e5 transparent;
-  border-top-color:transparent;
-  border-left-color:transparent;
-  -ms-transform:rotate(45deg);
-  -webkit-transform:rotate(45deg);
-  transform:rotate(45deg);
+button#submitML:hover span {
+  padding-right: 25px;
+  shadow:2px;
 }
-.no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before {
-  /*content:"\2713";*/
-  content: "\2714";
-  top: 0;
-  left: 0;
-  width: 21px;
-  line-height: 21px;
-  color: #6cc0e5;
-  text-align: center;
-  border: 1px solid #6cc0e5;
+button#submitML:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 @keyframes spin {
   to {
