@@ -199,7 +199,7 @@ function drawDPAGraph() {
     },
     backgroundColor: '#FFF'
   };
-  
+
   var chart = new google.visualization.LineChart(document.getElementById('DPA_div'));
   chart.draw(DPA_data, DPA_options);
 }

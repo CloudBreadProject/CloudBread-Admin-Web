@@ -82,7 +82,7 @@ ul#nav .current a, ul#nav li:hover > a  {
   background-position: bottom;
 }
 /* The submenu list hidden by default */
-ul#nav  ul {
+ul#nav ul {
   display: none;
 }
 /* When the first level menu item is hovered, the child menu appears */

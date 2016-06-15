@@ -29,9 +29,11 @@ function getDBData() {
 
   Promise.all([pro_members]).then(function() {
     $("#first_loading").empty();
+    $("#SelectCol").empty();
+    
     for(var i = 0; i < Members.length; i++) {
       $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
-        '<label for="' + Members[i] + '">' + Members[i] + '</label>');
+        '<label for="' + Members[i] + '" class="btn">' + Members[i] + '</label>');
     }
     $("#SelectCol").append('<br><button id="submitML" onclick="makeCSV()">' +
     '<span>Make CSV file</span></button>');
