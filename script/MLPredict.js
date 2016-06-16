@@ -1,7 +1,7 @@
 // ML columns
 var Nickname, Gender, Login, CashDate, JoinDate, Cash, Level, Country, Coupon, Device, Accumulate, RareItem;
 var EmailConfirm, Recommender, Bestitem1, Bestitem2, Bestitem3, GiftTo, GiftFrom;
-$("#registerBtn").click(function() {
+function leaver() {
   $("#probab").empty();
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
@@ -15,7 +15,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/Members?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
-        reject(Error("Fail"));
+        reject("Fail");
         alert('Host not found! Please check the host name.');
       },
       success: function(data) {
@@ -52,8 +52,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/MemberGameInfoes?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
-        reject(Error("Fail"));
-        alert('Host not found! Please check the host name.');
+        reject("Fail");
       },
       success: function(data) {
         var pars = JSON.parse(data);
@@ -70,8 +69,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/MemberItemPurchases?$filter=MemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
-        reject(Error("Fail"));
-        alert('Host not found! Please check the host name.');
+        reject("Fail");
       },
       success: function(data) {
         var pars = JSON.parse(data);
@@ -97,8 +95,7 @@ $("#registerBtn").click(function() {
       url: host + "odata/GiftDepositories?$filter=FromMemberID%20eq%20'" + memberID + "'",
       dataType: "text",
       error: function() {
-        reject(Error("Fail"));
-        alert('Host not found! Please check the host name.');
+        reject("Fail");
       },
       success: function(data) {
         var pars = JSON.parse(data);
@@ -207,10 +204,12 @@ $("#registerBtn").click(function() {
         $("#probab").append("이탈 확률 : " + result + " %");
       });
   });
-}); // click()
+}
 function MLPredict() {
   $('ul#nav li').removeClass('active');
   $('#main4').addClass('active');
   $('ul#nav li.active > ul li').removeClass('subactive');
   $('#sub42').addClass('subactive');
+  $('#preSubmit').append('<input id="memberID"></input>' +
+    '<button onclick="leaver()">Submit</button>');
 }
