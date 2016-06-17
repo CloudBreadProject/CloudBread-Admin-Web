@@ -243,6 +243,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminMembersController.cs" />
+    <Compile Include="Controllers\CBRequestMLController.cs" />
     <Compile Include="Controllers\CloudBreadAdminLogsController.cs" />
     <Compile Include="Controllers\CloudBreadErrorLogsController.cs" />
     <Compile Include="Controllers\CloudBreadLogsController.cs" />
