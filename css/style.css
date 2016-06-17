@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  font-style: normal;
+  font-size: 12px;
+  font-family: NanumBarunGothic, sans-serif;
+  letter-spacing: -0.2px;
+}
+a {
+  color: #444;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:visited {
+  text-decoration: none;
+}
+li {
+  margin:0px;
+  padding:0px;
+  list-style:none;
+}
+#wrap {
+  min-width:1100px;
+  position: relative;
+  margin: 0 auto;
+  height: auto;
+  min-height: 100%;
+  padding: 0;
+}
+.menu-nav {
+  width: 100%;
+    background: #4C5ACC;
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: 22px 0 0 0;
+}
+#menu_back {
+  width: 100%;
+  z-index: 100;
+  background: #4C5ACC;
+  position:fixed;
+}
+#menu {
+  width: 10000px;
+  height: 75px;
+  position:fixed;
+  background: #4C5ACC;
+  clear: both;
+  font-family: 'Noto Sans KR';
+  z-index: 200;
+}
+ul#nav {
+  float: left;
+  width: 10000px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #4C5ACC;
+}
+ul#nav li {
+  display: inline;
+}
+/* Nothing effect 'a' */
+ul#nav li a {
+  float: left;
+  font-size: 21px;
+  color: #FFFFFF;
+  line-height: 75px;
+  text-decoration: none;
+  margin: 0px 40px;
+  text-align: center;
+  width: 129px;
+}
+/* Applies the active state */
+ul#nav li.active a, ul#nav li:hover > a  {
+  color: #fff;
+  background: #4C5ACC;
+  background: url(../img/hr.png) no-repeat;
+  background-position: bottom;
+}
+/* The submenu list hidden by default */
+ul#nav ul {
+  display: none;
+}
+/* When the first level menu item is hovered, the child menu appears */
+ul#nav li.active > ul, ul#nav li:hover > ul {
+  position: absolute;
+  display: block;
+  width: 10000px;
+  height: 75px;
+  margin: 75px 0 0 0;
+  background: #FAFAFA;
+}
+ul#nav li.active > ul li a, ul#nav li:hover > ul li a {
+  float: left;
+  font-size: 19px;
+  line-height: 75px;
+  color: #88898B;
+  margin: 0;
+  background: #FAFAFA;
+  width: 170px;
+  text-align:left;
+}
+ul#nav li.active > ul li.subactive a, ul#nav li:hover > ul li a:hover {
+  color: #4C5ACC;
+  text-shadow: none;
+}
+ul#nav li.active > ul li.subactive a, ul#nav li.active > ul li a,
+ul#nav li.active > ul {
+  z-index: 300;
+}
+ul#nav li:hover > ul li a:hover, ul#nav li:hover > ul li a,
+ul#nav li:hover > ul {
+  z-index: 320;
+}
+#content {
+  padding-top: 175px;
+  background-color: #FFF;
+}
+.graph {
+  padding: 0px 160px;
+  position:relative;
+  vertical-align:text-bottom;
+}
+.graph_main {
+  height:75px;
+  background-color: #FAFAFA;
+  border-left: 5px solid #4C5ACC;
+  border-top: 1px solid #E6E6E6;
+  border-right: 1px solid #E6E6E6;
+  font-size: 18px;
+  color: #4C5ACC;
+  line-height: 21px;
+}
+#DAU_div, #WAU_div, #MAU_div, #DPA_div, #DARPU_div,
+#DPU_div, #WPU_div, #MPU_div, #FPU_div, #Dormant_div {
+  border: 1px solid #E6E6E6;
+  border-top: 0px;
+  padding: 53px 23px;
+}
+#loading {
+  display:inline-block;
+  margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #DDD;
+  color: #4C5ACC;
+  border-radius: 50%;
+  border-top-color: #4C5ACC;
+  animation:spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+fieldset {
+  margin: 0px 160px;
+  border: 1px solid #E6E6E6;
+  padding: 8px;
+  padding-bottom: 30px;
+  border-radius: 4px;
+}
+legend{
+  padding: 10px 10px;
+  font-size:23px;
+  font-weight: 700px;
+  color: #4C5ACC;
+}
+input[type=checkbox]{
+  display:none;
+}
+input[type=checkbox] + label.btn{
+  padding: 5px 10px;
+  margin: 5px 10px;
+  display: inline-block;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  background: #FFF;
+  border: solid 1px #2C48BA;
+  color: #111;
+  box-shadow: 0 4px #2C48BA;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type=checkbox] + label.btn:hover{
+  box-shadow: 0 2px #2C48BA;
+  color: #F00000;
+  top: 2px;
+}
+input[type=checkbox]:checked + label.btn{
+  box-shadow: 0 0 #2C48BA;
+  color: #FF0000;
+  top: 4px;
+}
+button#submitML {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4C5ACC;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 5px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  margin-top: 20px;
+}
+button#submitML span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+button#submitML span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+button#submitML:hover span {
+  padding-right: 25px;
+  shadow:2px;
+}
+button#submitML:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
