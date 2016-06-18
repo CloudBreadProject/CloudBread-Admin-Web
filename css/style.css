@@ -117,11 +117,10 @@ ul#nav li:hover > ul {
   z-index: 320;
 }
 #content {
-  padding-top: 175px;
+  padding-top: 175px 160px 0px 160px;
   background-color: #FFF;
 }
 .graph {
-  padding: 0px 160px;
   position:relative;
   vertical-align:text-bottom;
 }
@@ -136,7 +135,8 @@ ul#nav li:hover > ul {
   line-height: 21px;
 }
 #DAU_div, #WAU_div, #MAU_div, #DPA_div, #DARPU_div,
-#DPU_div, #WPU_div, #MPU_div, #FPU_div, #Dormant_div {
+#DPU_div, #WPU_div, #MPU_div, #FPU_div, #Dormant_div,
+#SelectCol {
   border: 1px solid #E6E6E6;
   border-top: 0px;
   padding: 53px 23px;
@@ -154,11 +154,11 @@ ul#nav li:hover > ul {
   -webkit-animation: spin 1s ease-in-out infinite;
 }
 fieldset {
-  margin: 0px 160px;
   border: 1px solid #E6E6E6;
   padding: 8px;
   padding-bottom: 30px;
   border-radius: 4px;
+  margin: 30px 0px;
 }
 legend{
   padding: 10px 10px;

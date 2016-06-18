@@ -89,8 +89,8 @@ function drawDormantGraph() {
   Dormant_data.addColumn('number', '15일 휴면유저');
 
   for (i = 0; i < Dormant15_list.length; i++) {
-    var mon = DAU_list[i]['Field'].substring(4, 6);
-    var day = DAU_list[i]['Field'].substring(6, 8);
+    var mon = Dormant15_list[i]['Field'].substring(4, 6);
+    var day = Dormant15_list[i]['Field'].substring(6, 8);
     Dormant_data.addRows([
       [{
         v: mon + "/" + day
