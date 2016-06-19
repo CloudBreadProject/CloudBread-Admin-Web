@@ -5,7 +5,7 @@ body {
   color: #333;
   font-style: normal;
   font-size: 12px;
-  font-family: NanumBarunGothic, sans-serif;
+  font-family: 'Noto Sans KR';
   letter-spacing: -0.2px;
 }
 a {
@@ -49,7 +49,6 @@ li {
   position:fixed;
   background: #4C5ACC;
   clear: both;
-  font-family: 'Noto Sans KR';
   z-index: 200;
 }
 ul#nav {
