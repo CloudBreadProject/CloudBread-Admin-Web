@@ -116,7 +116,7 @@ ul#nav li:hover > ul {
   z-index: 320;
 }
 #content {
-  padding-top: 175px 160px 0px 160px;
+  padding: 175px 160px 0px 160px;
   background-color: #FFF;
 }
 .graph {
@@ -129,6 +129,7 @@ ul#nav li:hover > ul {
   border-left: 5px solid #4C5ACC;
   border-top: 1px solid #E6E6E6;
   border-right: 1px solid #E6E6E6;
+  margin-top: 40px;
   font-size: 18px;
   color: #4C5ACC;
   line-height: 21px;
