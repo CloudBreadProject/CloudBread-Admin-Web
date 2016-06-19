@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using CloudBreadAdminWebAuth;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace CloudBread_Admin_Web.Controllers
 {
@@ -66,18 +67,16 @@ namespace CloudBread_Admin_Web.Controllers
         {
             using (var client = new HttpClient())
             {
-                const string apiKey = "FyK4LAz1mY5VGi7BNF1mfGmK7Rdn4SnyTmUXqERD6ZrACPF6uvhLbe8YnhcLyvjl2SbHssIvXzHDiRdfUjHkMQ==";
+                string apiKey = ConfigurationManager.AppSettings["CloudBreadMLKey"];
+
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                string uri = "https://ussouthcentral.services.azureml.net/workspaces/902e0e2e69104035bee1bd2eefaff9d6/services/0d08ec30708f45f88d4990f784a0fd6b/execute?api-version=2.0&details=true";
-                //string uri = "http://requestb.in/136gjiu1";
+                string uri = ConfigurationManager.AppSettings["CloudBreadMLKey"];
+
                 client.BaseAddress = new Uri(uri);
-                //client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/902e0e2e69104035bee1bd2eefaff9d6/services/a715b1e8bc6f4e75a7090e7fc52832af/execute?api-version=2.0&details=true");
-
+                
                 var pObj = JsonConvert.DeserializeObject(value);
-
-                //client.DefaultRequestHeaders.Add("Bearer", apiKey);
-
+                
                 HttpResponseMessage response = client.PostAsJsonAsync<object>(uri, pObj).Result;
 
                 if (response.IsSuccessStatusCode)
