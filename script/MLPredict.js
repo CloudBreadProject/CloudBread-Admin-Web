@@ -247,7 +247,9 @@ function makeButton() {
       $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
         '<label for="' + Members[i] + '" class="btn">' + Members[i] + '</label>');
     }
-    $("#SelectCol").append('<br><input id="memberID"></input>');
+    $("#SelectCol").append('<br><div style="margin-top:20px; margin-left:5px;' +
+      'color:#4C5ACC; font-size:16px;">예측할 사용자 입력</div>' +
+      '<input id="memberID"></input>');
     $("#SelectCol").append('<br><button id="submitML" onclick="leaver()">' +
       '<span>Predict </span></button>');
   });
