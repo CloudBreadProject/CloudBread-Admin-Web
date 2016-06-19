@@ -140,6 +140,9 @@ ul#nav li:hover > ul {
   border-top: 0px;
   padding: 53px 23px;
 }
+#memberID {
+  margin-top: 10px;
+}
 #loading {
   display:inline-block;
   margin-bottom: 20px;

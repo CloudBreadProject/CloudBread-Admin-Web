@@ -1,13 +1,16 @@
 // ML columns
 var Nickname, Gender, Login, CashDate, JoinDate, Cash, Level, Country, Coupon, Device, Accumulate, RareItem;
 var EmailConfirm, Recommender, Bestitem1, Bestitem2, Bestitem3, GiftTo, GiftFrom;
+var host = "/";
+
+var Members = new Array();
+
 function leaver() {
   $("#probab").empty();
   $("#submit_loading").append('<br>' +
     'Loading...<br>' +
     '<div id="loading">●</div>'
   );
-  var host = "/";
   var memberID = document.getElementById("memberID").value;
   var promise_mem = new Promise(function (resolve, reject) {
     $.ajax({
@@ -205,11 +208,55 @@ function leaver() {
       });
   });
 }
+
 function MLPredict() {
   $('ul#nav li').removeClass('active');
   $('#main4').addClass('active');
   $('ul#nav li.active > ul li').removeClass('subactive');
   $('#sub42').addClass('subactive');
-  $('#preSubmit').append('<input id="memberID"></input>' +
-    '<button onclick="leaver()">Submit</button>');
+  makeButton();
+}
+
+function makeButton() {
+  var pro_members = new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "GET",
+      url: host + "odata/Members?$top=1",
+      dataType: "text",
+      error: function() {
+        reject("Fail");
+        alert('Host not found! Please check the host name.');
+      },
+      success: function(data) {
+        var pars = JSON.parse(data);
+        var value = pars['value'];
+        var col_name = Object.keys(value[0]);
+        for(var i = 0; i < col_name.length; i++) {
+          Members[i] = col_name[i];
+        }
+        resolve("Complete");
+      }
+    });
+  });
+
+  Promise.all([pro_members]).then(function() {
+    $("#first_loading").empty();
+    $("#SelectCol").empty();
+
+    for(var i = 0; i < Members.length; i++) {
+      $("#SelectCol").append('<input type="checkbox" id="' + Members[i] + '">' +
+        '<label for="' + Members[i] + '" class="btn">' + Members[i] + '</label>');
+    }
+    $("#SelectCol").append('<br><input id="memberID"></input>');
+    $("#SelectCol").append('<br><button id="submitML" onclick="leaver()">' +
+      '<span>Predict </span></button>');
+  });
+}
+
+function checkBtn(sel_arr, all_arr) {
+  for(var i = 0; i < all_arr.length; i++) {
+    if ($('#' + all_arr[i]).is(":checked")) {
+      sel_arr.push(all_arr[i]);
+    }
+  }
 }
