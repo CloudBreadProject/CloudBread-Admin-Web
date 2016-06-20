@@ -253,7 +253,7 @@ function drawDPUGraph() {
     backgroundColor: '#FFF'
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('DPU_div'));
+  var chart = new google.visualization.ColumnChart(document.getElementById('DPU_div'));
   chart.draw(DPU_data, DPU_options);
 }
 
@@ -283,7 +283,7 @@ function drawFPUGraph() {
     backgroundColor: '#FFF'
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('FPU_div'));
+  var chart = new google.visualization.ColumnChart(document.getElementById('FPU_div'));
   chart.draw(FPU_data, FPU_options);
 }
 
@@ -313,7 +313,7 @@ function drawWPUGraph() {
     backgroundColor: '#FFF'
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('WPU_div'));
+  var chart = new google.visualization.ColumnChart(document.getElementById('WPU_div'));
   chart.draw(WPU_data, WPU_options);
 }
 

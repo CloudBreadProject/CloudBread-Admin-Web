@@ -9,7 +9,7 @@
 
   <!--Load the AJAX API-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
   <!--Load the google icon API-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -294,7 +294,7 @@ function drawBPIGraph() {
     legend: {position: 'top', maxLines: 1, alignment: 'end'}
   };
 
-  var chart = new google.visualization.ColumnChart(document.getElementById('BPI_div'));
+  var chart = new google.visualization.BarChart(document.getElementById('BPI_div'));
   chart.draw(BPI_data, BPI_options);
 
 }
