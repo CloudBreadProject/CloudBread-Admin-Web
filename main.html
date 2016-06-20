@@ -149,6 +149,7 @@ var pro_BPI1 = new Promise(function (resolve, reject) {
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
+      reject();
     },
     success: function(data) {
       //anything
@@ -168,6 +169,7 @@ var pro_BPI1 = new Promise(function (resolve, reject) {
       'Count': Number(value[0]['CountNum'])
     };
     BPItem1.push(dataset);
+    resolve("Complete");
   });
 });
 
@@ -182,7 +184,7 @@ var pro_BPI2 = new Promise(function (resolve, reject) {
 
     if(value.length == 0) {
       alert('Not exist "BPI2" Data anything');
-      return;
+      reject();
     }
 
     var dataset = {
@@ -191,6 +193,7 @@ var pro_BPI2 = new Promise(function (resolve, reject) {
       'Count': Number(value[0]['CountNum'])
     };
     BPItem2.push(dataset);
+    resolve("Complete");
   });
 });
 
@@ -205,7 +208,7 @@ var pro_BPI3 = new Promise(function (resolve, reject) {
 
     if(value.length == 0) {
       alert('Not exist "BPI3" Data anything');
-      return;
+      reject();
     }
 
     var dataset = {
@@ -214,6 +217,7 @@ var pro_BPI3 = new Promise(function (resolve, reject) {
       'Count': Number(value[0]['CountNum'])
     };
     BPItem3.push(dataset);
+    resolve("Complete");
   });
 });
 
