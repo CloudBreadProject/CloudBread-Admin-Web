@@ -163,9 +163,9 @@ function callBPI() {
     }
 
     var dataset = {
-      'Field': value[i]['Fields'],
-      'Item' : value[i]['Groups'],
-      'Count': Number(value[i]['CountNum'])
+      'Field': value[0]['Fields'],
+      'Item' : value[0]['Groups'],
+      'Count': Number(value[0]['CountNum'])
     };
     BPI_list.push(dataset);
 
@@ -183,9 +183,9 @@ function callBPI() {
       }
 
       var dataset = {
-        'Field': value[i]['Fields'],
-        'Item' : value[i]['Groups'],
-        'Count': Number(value[i]['CountNum'])
+        'Field': value[0]['Fields'],
+        'Item' : value[0]['Groups'],
+        'Count': Number(value[0]['CountNum'])
       };
       BPI_list.push(dataset);
 
@@ -203,9 +203,9 @@ function callBPI() {
         }
 
         var dataset = {
-          'Field': value[i]['Fields'],
-          'Item' : value[i]['Groups'],
-          'Count': Number(value[i]['CountNum'])
+          'Field': value[0]['Fields'],
+          'Item' : value[0]['Groups'],
+          'Count': Number(value[0]['CountNum'])
         };
         BPI_list.push(dataset);
 
