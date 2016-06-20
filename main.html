@@ -97,7 +97,7 @@
 </body>
 <!--main page bi graph js-->
 <script>
-google.charts.load('current', {packages: ['corechart']});
+google.charts.load('current', {packages: ['corechart', 'table']});
 
 var host = "/";
 var DAU_list = new Array();
@@ -114,7 +114,6 @@ function callDAU() {
     dataType: "text",
     error: function() {
       alert('Host not found! Please check the host name.');
-      google.charts.setOnLoadCallback(drawDAUTable);
     },
     success: function(data) {
       //anything
@@ -137,12 +136,9 @@ function callDAU() {
       DAU_list.push(dataset);
     }
     google.charts.setOnLoadCallback(drawDAUGraph);
+    google.charts.setOnLoadCallback(drawDAUTable);
     $("#graph_loading").empty();
   });
-}
-
-function callDAUTable() {
-  google.charts.setOnLoadCallback(drawDAUTable);
 }
 
 function callBPI() {
@@ -214,15 +210,11 @@ function callBPI() {
         BPI_list.push(dataset);
 
         google.charts.setOnLoadCallback(drawBPIGraph);
-        callBPITable();
+        google.charts.setOnLoadCallback(drawBPITable);
         $("#graph_loading").empty();
       });
     });
   });
-}
-
-function callBPITable() {
-  google.charts.setOnLoadCallback(drawBPITable);
 }
 
 function drawDAUGraph() {
@@ -268,7 +260,7 @@ function drawDAUTable() {
     var day = DAU_list[i]['Field'].substring(6, 8);
 
     DAU_table.setCell(i, 0, mon + '/' + day);
-    DAU_table.setCell(i, 1, DAU_list[i]['CountNum']);
+    DAU_table.setCell(i, 1, DAU_list[i]['Count']);
     DAU_table.setCell(i, 2, 1);
   }
 
@@ -282,9 +274,9 @@ function drawBPIGraph() {
   BPI_data.addColumn('number', 'Amount');
 
   for (i = 0; i < BPI_list.length; i++) {
-    BPI_data.addRows(
-      [BPI_list[i]['Groups'], Number(BPI_list[i]['CountNum'])]
-    );
+    BPI_data.addRows([
+      [BPI_list[i]['Groups'], Number(BPI_list[i]['Count'])]
+    ]);
   }
   var mon = BPI_list[i]['Field'].substring(4, 6);
   var day = BPI_list[i]['Field'].substring(6, 8);
@@ -317,7 +309,7 @@ function drawBPITable() {
   for(var i = 0; i < 3; i++) {
     BPI_table.setCell(i, 0, mon + '/' + day);
     BPI_table.setCell(i, 1, DAU_list[i]['Groups']);
-    BPI_table.setCell(i, 2, DAU_list[i]['CountNum']);
+    BPI_table.setCell(i, 2, DAU_list[i]['Count']);
   }
 
   var table = new google.visualization.Table(document.getElementById('BPI_table_div'));
