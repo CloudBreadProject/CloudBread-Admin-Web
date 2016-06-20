@@ -315,5 +315,9 @@ function drawBPITable() {
   var table = new google.visualization.Table(document.getElementById('BPI_table_div'));
   table.draw(BPI_table, {showRowNumber: false, width: '90%', height: '150px'});
 }
+$(window).resize(function() {
+  drawDAUGraph();
+  drawBPIGraph();
+});
 </script>
 </html>
