@@ -273,13 +273,13 @@ function drawBPIGraph() {
   BPI_data.addColumn('string', 'ItemName');
   BPI_data.addColumn('number', 'Amount');
 
-  for (i = 0; i < BPI_list.length; i++) {
+  for (var i = 0; i < BPI_list.length; i++) {
     BPI_data.addRows([
       [BPI_list[i]['Groups'], Number(BPI_list[i]['Count'])]
     ]);
   }
-  var mon = BPI_list[i]['Field'].substring(4, 6);
-  var day = BPI_list[i]['Field'].substring(6, 8);
+  var mon = BPI_list[0]['Field'].substring(4, 6);
+  var day = BPI_list[0]['Field'].substring(6, 8);
   var BPI_options = {
     title: 'BPI 주간 아이템 순위 (' + mon + '/' + day + ')',
     isStacked: true,
