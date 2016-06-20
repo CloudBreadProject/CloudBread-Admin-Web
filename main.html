@@ -99,7 +99,6 @@
 <script>
 google.charts.load('current', {packages: ['corechart']});
 
-google.load('visualization', '1.1', {'packages':['table']});
 var host = "/";
 var DAU_list = new Array();
 var BPI_list = new Array();
@@ -138,10 +137,14 @@ function callDAU() {
       DAU_list.push(dataset);
     }
     google.charts.setOnLoadCallback(drawDAUGraph);
-    google.charts.setOnLoadCallback(drawDAUTable);
     $("#graph_loading").empty();
   });
 }
+
+function callDAUTable() {
+  google.charts.setOnLoadCallback(drawDAUTable);
+}
+
 function callBPI() {
   BPI_list = [];
   $.ajax({
@@ -211,11 +214,15 @@ function callBPI() {
         BPI_list.push(dataset);
 
         google.charts.setOnLoadCallback(drawBPIGraph);
-        google.charts.setOnLoadCallback(drawBPITable);
+        callBPITable();
         $("#graph_loading").empty();
       });
     });
   });
+}
+
+function callBPITable() {
+  google.charts.setOnLoadCallback(drawBPITable);
 }
 
 function drawDAUGraph() {
