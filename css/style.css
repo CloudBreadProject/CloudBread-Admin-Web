@@ -116,7 +116,7 @@ ul#nav li:hover > ul {
   z-index: 320;
 }
 #content {
-  padding: 175px 160px 0px 160px;
+  padding: 150px 160px 0px 160px;
   background-color: #FFF;
 }
 .graph {
@@ -143,7 +143,10 @@ ul#nav li:hover > ul {
 }
 #memberID {
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 10px;
+}
+#descriptML {
+  margin-left: 10px;
 }
 #loading {
   display:inline-block;
