@@ -91,7 +91,7 @@
         </div>
       </div>
       <div id="BPI_div" style="text-align:center;"></div>
-      <div id="BPI_table_div"></div>
+      <div id="BPI_table_div" style="text-align:center;"></div>
     </div>
   </div>
 </body>
@@ -102,7 +102,7 @@ google.charts.load('current', {packages: ['corechart', 'table']});
 var host = "/";
 var DAU_list = new Array();
 var BPI_list = new Array();
-var BPItem1 = [], BPItem2 = [], BPItem3 = [];
+var BPItem1 = {}, BPItem2 = {}, BPItem3 = {};
 
 $(function() {
   callDAU();
@@ -168,7 +168,7 @@ var pro_BPI1 = new Promise(function (resolve, reject) {
       'Item' : value[0]['Groups'],
       'Count': Number(value[0]['CountNum'])
     };
-    BPItem1.push(dataset);
+    BPItem1 = dataset;
     resolve("Complete");
   });
 });
@@ -192,7 +192,7 @@ var pro_BPI2 = new Promise(function (resolve, reject) {
       'Item' : value[0]['Groups'],
       'Count': Number(value[0]['CountNum'])
     };
-    BPItem2.push(dataset);
+    BPItem2 = dataset;
     resolve("Complete");
   });
 });
@@ -216,7 +216,7 @@ var pro_BPI3 = new Promise(function (resolve, reject) {
       'Item' : value[0]['Groups'],
       'Count': Number(value[0]['CountNum'])
     };
-    BPItem3.push(dataset);
+    BPItem3 = dataset;
     resolve("Complete");
   });
 });
@@ -288,7 +288,7 @@ function drawBPIGraph() {
 
   for (var i = 0; i < BPI_list.length; i++) {
     BPI_data.addRows([
-      [BPI_list[i]['Groups'], Number(BPI_list[i]['Count'])]
+      [BPI_list[i]['Item'], Number(BPI_list[i]['Count'])]
     ]);
   }
   var mon = BPI_list[0]['Field'].substring(4, 6);
@@ -297,10 +297,10 @@ function drawBPIGraph() {
     title: 'BPI 주간 아이템 순위 (' + mon + '/' + day + ')',
     isStacked: true,
     hAxis: {
-      title: 'Date'
+      title: 'The number'
     },
     vAxis: {
-      title: 'BPI (개수)'
+      title: 'Item'
     },
     backgroundColor: '#fafafa',
     legend: {position: 'top', maxLines: 1, alignment: 'end'}
@@ -308,7 +308,6 @@ function drawBPIGraph() {
 
   var chart = new google.visualization.BarChart(document.getElementById('BPI_div'));
   chart.draw(BPI_data, BPI_options);
-
 }
 
 function drawBPITable() {
@@ -317,11 +316,11 @@ function drawBPITable() {
   BPI_table.addColumn('string', 'BestItem');
   BPI_table.addColumn('number', 'Full Time');
   BPI_table.addRows(3);
-  var mon = DAU_list[i]['Field'].substring(4, 6);
-  var day = DAU_list[i]['Field'].substring(6, 8);
+  var mon = BPI_list[0]['Field'].substring(4, 6);
+  var day = BPI_list[0]['Field'].substring(6, 8);
   for(var i = 0; i < 3; i++) {
     BPI_table.setCell(i, 0, mon + '/' + day);
-    BPI_table.setCell(i, 1, BPI_list[i]['Groups']);
+    BPI_table.setCell(i, 1, BPI_list[i]['Item']);
     BPI_table.setCell(i, 2, BPI_list[i]['Count']);
   }
 
