@@ -102,9 +102,10 @@ google.charts.load('current', {packages: ['corechart', 'table']});
 var host = "/";
 var DAU_list = new Array();
 var BPI_list = new Array();
+var BPItem1 = [], BPItem2 = [], BPItem3 = [];
+
 $(function() {
   callDAU();
-  callBPI();
 })
 function callDAU() {
   DAU_list = [];
@@ -141,8 +142,7 @@ function callDAU() {
   });
 }
 
-function callBPI() {
-  BPI_list = [];
+var pro_BPI1 = new Promise(function (resolve, reject) {
   $.ajax({
     type: "GET",
     url: host + "odata/StatsDatas?$top=1&$filter=CategoryName%20eq%20'BPI1'&$orderby=Fields%20desc",
@@ -167,55 +167,55 @@ function callBPI() {
       'Item' : value[0]['Groups'],
       'Count': Number(value[0]['CountNum'])
     };
-    BPI_list.push(dataset);
-
-    $.ajax({
-      type: "GET",
-      url: host + "odata/StatsDatas?$top=1&$filter=CategoryName%20eq%20'BPI2'&$orderby=Fields%20desc",
-      dataType: "text"
-    }).done(function(data) {
-      var pars = JSON.parse(data);
-      var value = pars['value'];
-
-      if(value.length == 0) {
-        alert('Not exist "BPI2" Data anything');
-        return;
-      }
-
-      var dataset = {
-        'Field': value[0]['Fields'],
-        'Item' : value[0]['Groups'],
-        'Count': Number(value[0]['CountNum'])
-      };
-      BPI_list.push(dataset);
-
-      $.ajax({
-        type: "GET",
-        url: host + "odata/StatsDatas?$top=1&$filter=CategoryName%20eq%20'BPI3'&$orderby=Fields%20desc",
-        dataType: "text"
-      }).done(function(data) {
-        var pars = JSON.parse(data);
-        var value = pars['value'];
-
-        if(value.length == 0) {
-          alert('Not exist "BPI3" Data anything');
-          return;
-        }
-
-        var dataset = {
-          'Field': value[0]['Fields'],
-          'Item' : value[0]['Groups'],
-          'Count': Number(value[0]['CountNum'])
-        };
-        BPI_list.push(dataset);
-
-        google.charts.setOnLoadCallback(drawBPIGraph);
-        google.charts.setOnLoadCallback(drawBPITable);
-        $("#graph_loading").empty();
-      });
-    });
+    BPItem1.push(dataset);
   });
-}
+});
+
+var pro_BPI2 = new Promise(function (resolve, reject) {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$top=1&$filter=CategoryName%20eq%20'BPI2'&$orderby=Fields%20desc",
+    dataType: "text"
+  }).done(function(data) {
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    if(value.length == 0) {
+      alert('Not exist "BPI2" Data anything');
+      return;
+    }
+
+    var dataset = {
+      'Field': value[0]['Fields'],
+      'Item' : value[0]['Groups'],
+      'Count': Number(value[0]['CountNum'])
+    };
+    BPItem2.push(dataset);
+  });
+});
+
+var pro_BPI3 = new Promise(function (resolve, reject) {
+  $.ajax({
+    type: "GET",
+    url: host + "odata/StatsDatas?$top=1&$filter=CategoryName%20eq%20'BPI3'&$orderby=Fields%20desc",
+    dataType: "text"
+  }).done(function(data) {
+    var pars = JSON.parse(data);
+    var value = pars['value'];
+
+    if(value.length == 0) {
+      alert('Not exist "BPI3" Data anything');
+      return;
+    }
+
+    var dataset = {
+      'Field': value[0]['Fields'],
+      'Item' : value[0]['Groups'],
+      'Count': Number(value[0]['CountNum'])
+    };
+    BPItem3.push(dataset);
+  });
+});
 
 function drawDAUGraph() {
   var DAU_data = new google.visualization.DataTable();
@@ -268,6 +268,16 @@ function drawDAUTable() {
   table.draw(DAU_table, {showRowNumber: false, width: '90%', height: '150px'});
 }
 
+Promise.all([pro_BPI1, pro_BPI2, pro_BPI3]).then(function() {
+  BPI_list.push(BPItem1);
+  BPI_list.push(BPItem2);
+  BPI_list.push(BPItem3);
+  google.charts.setOnLoadCallback(drawBPIGraph);
+  google.charts.setOnLoadCallback(drawBPITable);
+  $("#graph_loading").empty();
+});
+}
+
 function drawBPIGraph() {
   var BPI_data = new google.visualization.DataTable();
   BPI_data.addColumn('string', 'ItemName');
@@ -308,8 +318,8 @@ function drawBPITable() {
   var day = DAU_list[i]['Field'].substring(6, 8);
   for(var i = 0; i < 3; i++) {
     BPI_table.setCell(i, 0, mon + '/' + day);
-    BPI_table.setCell(i, 1, DAU_list[i]['Groups']);
-    BPI_table.setCell(i, 2, DAU_list[i]['Count']);
+    BPI_table.setCell(i, 1, BPI_list[i]['Groups']);
+    BPI_table.setCell(i, 2, BPI_list[i]['Count']);
   }
 
   var table = new google.visualization.Table(document.getElementById('BPI_table_div'));
