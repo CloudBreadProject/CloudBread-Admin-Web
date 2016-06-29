@@ -18,7 +18,6 @@ import Shop from 'material-ui/lib/svg-icons/action/shop';
 import PlaylistCheck from 'material-ui/lib/svg-icons/av/playlist-add-check';
 import EventNote from 'material-ui/lib/svg-icons/notification/event-note';
 import CloudQueue from 'material-ui/lib/svg-icons/file/cloud-queue';
-import InsertChart from 'material-ui/lib/svg-icons/editor/insert-chart';
 import Divider from 'material-ui/lib/divider';
 
 import pluralize from 'pluralize';
@@ -73,7 +72,7 @@ class InspectorSideNav extends Component {
         <Divider />
         <List>
           <ListItem primaryText="CloudBread" rightIcon={<CloudQueue />} href="http://aka.ms/cbp" target="_blank" />
-          <ListItem primaryText="BI Tool" rightIcon={<InsertChart />} href="/bi.html" target="_blank" />
+          <ListItem primaryText="BI Tool" rightIcon={<CloudQueue />} onTouchTap={this.handleTouchListItem('/bi')} />
         </List>
       </div>
     );

@@ -17,12 +17,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 setStore(store);
 
 function run() {
-  render(
-    (
-      <Provider store={store}>
-        <Router history={history} routes={routes} />
-      </Provider>
-    ),
+  render((
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>
+  ),
     appContainer
   );
 }

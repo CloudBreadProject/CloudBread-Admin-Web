@@ -10,7 +10,7 @@ export default function createStore(history, reducers) {
   let finalCreateStore;
   if (__DEV__ && canUseDOM) {
     finalCreateStore = compose(
-      applyMiddleware(...middlewares, require('redux-logger')()),
+      applyMiddleware(...middlewares, require('redux-logger')()), // eslint-disable-line
       typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f,
     )(_createStore);
   } else {

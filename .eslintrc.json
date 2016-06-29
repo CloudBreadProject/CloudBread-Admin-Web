@@ -21,6 +21,10 @@
         "capIsNewExceptions": ["Router"]
       }
     ],
-    "react/sort-comp": 0
+    "react/sort-comp": 0,
+    "import/no-unresolved": 0,
+    "no-underscore-dangle": 0,
+    "no-restricted-syntax": 0,
+    "spaced-comment": 0
   }
 }

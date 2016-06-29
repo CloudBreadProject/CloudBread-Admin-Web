@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './HomePage.scss';
 import Helmet from 'react-helmet';
 
 export class HomePage extends Component {
@@ -7,9 +8,12 @@ export class HomePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.HomePage}>
         <Helmet title="CloudBread Inspector" />
-        Inspector Main
+        <iframe
+          src="/main.html"
+          frameBorder={0}
+        />
       </div>
     );
   }
