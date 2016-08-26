@@ -19,6 +19,15 @@ import {
   START_FIND_RESOURCE,
   STOP_FIND_RESOURCE,
   EDIT_RESOURCE,
+  CREATE_RESOURCE_FORM_REQUEST,
+  CREATE_RESOURCE_FORM_SUCCESS,
+  CREATE_RESOURCE_FORM_ERROR,
+  INSERT_RESOURCE,
+  CREATE_RESOURCE_REQUEST,
+  CREATE_RESOURCE_SUCCESS,
+  CREATE_RESOURCE_ERROR,
+  START_CREATE_RESOURCE,
+  STOP_CREATE_RESOURCE,
 } from 'constants/resource';
 
 export function loadResources({
@@ -31,7 +40,7 @@ export function loadResources({
   skip, limit, // paging
 
   needClear,
-}) {
+  }) {
   return async dispatch => {
     try {
       let $filter = '';
@@ -78,7 +87,7 @@ export function loadResources({
         description,
         primaryKey,
         searchFields,
-      } = model;
+        } = model;
       dispatch({
         type: FIND_RESOURCES_SUCCESS,
         payload: {
@@ -110,7 +119,7 @@ export function loadResource({ identifier, resourceId }) {
         schema,
         schemaArray,
         fieldGroup,
-      } = model;
+        } = model;
       dispatch({
         type: FIND_RESOURCE_ONE_REQUEST,
       });
@@ -153,6 +162,10 @@ export function updateResource({ resourceId, identifier, resource }) {
       dispatch({
         type: UPDATE_RESOURCE_REQUEST,
       });
+      console.log('======================================');
+      console.log('resource');
+      console.log(resource);
+      console.log('======================================');
       await fetch.patch(`/${resourceId}('${identifier}')`, {
         data: resource,
       });
@@ -244,5 +257,121 @@ export function stopFindingResource() {
   }
   return {
     type: STOP_FIND_RESOURCE,
+  };
+}
+
+export function startCreatingResource() {
+  if (canUseDOM) {
+    return async dispatch => {
+      dispatch({
+        type: START_CREATE_RESOURCE,
+      });
+    };
+  }
+  return {
+    type: START_CREATE_RESOURCE,
+  };
+}
+
+export function stopCreatingResource() {
+  if (canUseDOM) {
+    return async dispatch => {
+      dispatch({
+        type: STOP_CREATE_RESOURCE,
+      });
+    };
+  }
+  return {
+    type: STOP_CREATE_RESOURCE,
+  };
+}
+
+
+export function loadCreateResourceForm({ resourceId }) {
+  return async dispatch => {
+    try {
+      const model = models[resourceId];
+      const {
+        schema,
+        schemaArray,
+        fieldGroup,
+        } = model;
+      dispatch({
+        type: CREATE_RESOURCE_FORM_REQUEST,
+      });
+      let resource = {};
+      for (const key in schema) {
+        if(schema[key].boolean) {
+          resource[key] = "N";
+        } else {
+          resource[key] = "";
+        }
+      }
+      dispatch({
+        type: CREATE_RESOURCE_FORM_SUCCESS,
+        payload: {
+          resource,
+          resourceId,
+          fieldGroup,
+          schema,
+          schemaArray,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: CREATE_RESOURCE_FORM_ERROR,
+        payload: {
+          error,
+        },
+      });
+    }
+  };
+}
+
+export function insertResource({ field, value }) {
+  return {
+    type: INSERT_RESOURCE,
+    payload: {
+      field,
+      value,
+    },
+  };
+}
+
+export function createResource({ resourceId, resource }) {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: CREATE_RESOURCE_REQUEST,
+      });
+      console.log('======================================');
+      console.log('resource');
+      console.log(resource);
+      console.log('======================================');
+      //TODO need update
+      delete resource.CreatedAt;
+      delete resource.UpdatedAt;
+      delete resource.DataFromRegionDT;
+      delete resource.NoticeDurationFrom;
+      delete resource.NoticeDurationTo;
+      delete resource.OrderNumber;
+      await fetch.post(`/${resourceId}`, {
+        data: resource,
+      });
+      dispatch({
+        type: CREATE_RESOURCE_SUCCESS,
+      });
+    } catch (error) {
+      console.log('======================================');
+      console.log('error');
+      console.log(error);
+      console.log('======================================');
+      dispatch({
+        type: CREATE_RESOURCE_ERROR,
+        payload: {
+          error,
+        },
+      });
+    }
   };
 }

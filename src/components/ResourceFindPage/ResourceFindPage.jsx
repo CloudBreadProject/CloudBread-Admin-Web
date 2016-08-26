@@ -22,6 +22,8 @@ import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 import Divider from 'material-ui/lib/divider';
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
 function mapStateToProps({ finder, display }) {
   return {
@@ -81,6 +83,7 @@ class ResourceFindPage extends Component {
     this.handleClickResourceItem = this.handleClickResourceItem.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleNeedMoreContent = this.handleNeedMoreContent.bind(this);
+    this.handleClickContentAdd = this.handleClickContentAdd.bind(this);
   }
 
   async componentDidMount() {
@@ -135,7 +138,7 @@ class ResourceFindPage extends Component {
       sort, // sorting
       resources,
       resourceId,
-    } = this.props;
+      } = this.props;
     this.props.showLoading();
     await this.props.loadResources({
       fromDate, toDate,
@@ -156,7 +159,7 @@ class ResourceFindPage extends Component {
       isLoaded,
       failedToLoad,
       resources,
-    } = this.props;
+      } = this.props;
     if (failedToLoad) {
       return <div>Failed to load resources.</div>;
     }
@@ -181,6 +184,17 @@ class ResourceFindPage extends Component {
               {this.renderBodyCells()}
             </TableBody>
           </Table>
+          <FloatingActionButton
+            backgroundColor="#673AB7"
+            style={{
+              position: 'fixed',
+              right: '24px',
+              bottom: '24px',
+            }}
+            onClick={this.handleClickContentAdd}
+          >
+            <ContentAdd />
+          </FloatingActionButton>
           <Divider />
         </div>
       );
@@ -237,6 +251,11 @@ class ResourceFindPage extends Component {
     const resource = resources[row];
     const identifier = resource[primaryKey];
     this.context.router.push(`/editor/${resourceId}/${identifier}`);
+  }
+
+  handleClickContentAdd() {
+    const { resourceId } = this.props;
+    this.context.router.push(`/creator/${resourceId}`);
   }
 }
 

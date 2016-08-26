@@ -15,7 +15,7 @@ const Notices = new Resource({
 	'NoticeCategory1',
 	'TargetGroup',
 	'TargetOS',
-	'Title',
+	'title',
 	'NoticeDurationFrom',
 	'NoticeDurationTo',
 	'OrderNumber',
@@ -29,15 +29,13 @@ const Notices = new Resource({
 	'NoticeID',
 	'NoticeCategory1',
 	'TargetGroup',
-	'Title',
+	'title',
   ],
   fieldGroup: [
-    
+
   ],
   schema: {
-	NoticeID: {
-		readonly,
-	},
+	NoticeID: {},
 	NoticeCategory1: {},
 	NoticeCategory2: {},
 	NoticeCategory3: {},
@@ -45,8 +43,8 @@ const Notices = new Resource({
 	TargetOS: {},
 	TargetDevice: {},
 	NoticeImageLink: {},
-	Title: {},
-	Content: {},
+	title: {},
+	content: {},
 	sCol1: {},
 	sCol2: {},
 	sCol3: {},

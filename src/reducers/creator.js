@@ -1,57 +1,50 @@
 import {
-  FIND_RESOURCE_ONE_REQUEST,
-  FIND_RESOURCE_ONE_SUCCESS,
-  FIND_RESOURCE_ONE_ERROR,
-  UPDATE_RESOURCE_REQUEST,
-  UPDATE_RESOURCE_SUCCESS,
-  UPDATE_RESOURCE_ERROR,
-  DELETE_RESOURCE_REQUEST,
-  DELETE_RESOURCE_SUCCESS,
-  DELETE_RESOURCE_ERROR,
-  START_EDIT_RESOURCE,
-  STOP_EDIT_RESOURCE,
-  EDIT_RESOURCE,
+  CREATE_RESOURCE_FORM_REQUEST,
+  CREATE_RESOURCE_FORM_SUCCESS,
+  CREATE_RESOURCE_FORM_ERROR,
+  INSERT_RESOURCE,
+  CREATE_RESOURCE_REQUEST,
+  CREATE_RESOURCE_SUCCESS,
+  CREATE_RESOURCE_ERROR,
+  START_CREATE_RESOURCE,
+  STOP_CREATE_RESOURCE,
 } from 'constants/resource';
 
 const initialState = {
   resource: null,
   resourceId: '',
-  identifier: '',
   isRequesting: false,
   isLoaded: false,
   schema: null,
   fieldGroup: null,
   errorMessage: '',
-  isEditing: false,
+  isCreating: false,
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case FIND_RESOURCE_ONE_REQUEST:
+    case CREATE_RESOURCE_FORM_REQUEST: {
       return {
         ...state,
         isRequesting: true,
         errorMessage: '',
-        identifier: null,
         resourceId: null,
-        resource: null,
         fieldGroup: null,
         schema: null,
         isLoaded: false,
       };
-    case FIND_RESOURCE_ONE_SUCCESS: {
+    }
+    case CREATE_RESOURCE_FORM_SUCCESS: {
       const {
         resource,
         fieldGroup,
         schema,
         schemaArray,
-        identifier,
         resourceId,
-      } = action.payload;
+        } = action.payload;
       return {
         ...state,
         isRequesting: false,
-        identifier,
         resourceId,
         resource,
         fieldGroup,
@@ -60,7 +53,7 @@ export default function reducer(state = initialState, action = {}) {
         isLoaded: true,
       };
     }
-    case FIND_RESOURCE_ONE_ERROR: {
+    case CREATE_RESOURCE_FORM_ERROR: {
       const { error } = action.payload;
       console.log(error); // eslint-disable-line
       return {
@@ -68,11 +61,11 @@ export default function reducer(state = initialState, action = {}) {
         errorMessage: 'Error occurs',
       };
     }
-    case EDIT_RESOURCE: {
+    case INSERT_RESOURCE: {
       const {
         field,
         value,
-      } = action.payload;
+        } = action.payload;
       const { resource } = state;
       resource[field] = value;
       return {
@@ -80,17 +73,17 @@ export default function reducer(state = initialState, action = {}) {
         resource,
       };
     }
-    case UPDATE_RESOURCE_REQUEST:
+    case CREATE_RESOURCE_REQUEST:
       return {
         ...state,
         isRequesting: true,
       };
-    case UPDATE_RESOURCE_SUCCESS:
+    case CREATE_RESOURCE_SUCCESS:
       return {
         ...state,
         isRequesting: false,
       };
-    case UPDATE_RESOURCE_ERROR:
+    case CREATE_RESOURCE_ERROR:
       if (__DEV__) {
         const { error } = action.payload;
         console.log(error); // eslint-disable-line
@@ -99,37 +92,18 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isRequesting: false,
-        errorMessage: 'Error occurs in during update',
+        errorMessage: 'Error occurs in during create',
       };
-    case DELETE_RESOURCE_REQUEST:
+    case START_CREATE_RESOURCE: {
       return {
         ...state,
-        isRequesting: true,
-      };
-    case DELETE_RESOURCE_SUCCESS:
-      return {
-        ...state,
-        isRequesting: false,
-      };
-    case DELETE_RESOURCE_ERROR:
-      if (__DEV__) {
-        console.log(error); // eslint-disable-line
-      }
-      return {
-        ...state,
-        isRequesting: false,
-        errorMessage: 'Error occurs in during delete',
-      };
-    case START_EDIT_RESOURCE: {
-      return {
-        ...state,
-        isEditing: true,
+        isCreating: true,
       };
     }
-    case STOP_EDIT_RESOURCE: {
+    case STOP_CREATE_RESOURCE: {
       return {
         ...state,
-        isEditing: false,
+        isCreating: false,
       };
     }
     default:
