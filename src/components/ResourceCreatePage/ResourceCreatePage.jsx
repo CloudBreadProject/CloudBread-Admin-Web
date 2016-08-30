@@ -212,7 +212,7 @@ class ResourceCreateViewPage extends Component {
             }}
           >
             <Toggle
-              defaultToggled={resource[field.name] === 'Y'}
+              defaultToggled={false}
               label={field.name}
               labelPosition="left"
               disabled={field.readonly || isRequesting}
@@ -227,7 +227,6 @@ class ResourceCreateViewPage extends Component {
           ref={field.name}
           floatingLabelText={field.name}
           hintText={field.description}
-          defaultValue={resource[field.name]}
           disabled={field.readonly || isRequesting}
           onBlur={this.handleChangeInputBound[field.name]}
           fullWidth

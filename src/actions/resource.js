@@ -162,10 +162,6 @@ export function updateResource({ resourceId, identifier, resource }) {
       dispatch({
         type: UPDATE_RESOURCE_REQUEST,
       });
-      console.log('======================================');
-      console.log('resource');
-      console.log(resource);
-      console.log('======================================');
       await fetch.patch(`/${resourceId}('${identifier}')`, {
         data: resource,
       });
