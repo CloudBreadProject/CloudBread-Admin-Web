@@ -9,11 +9,14 @@ export class Resource {
     this.resourceId = resource.resourceId;
     this.showFields = resource.showFields;
     this.schema = resource.schema;
+    this.createSchema = resource.createSchema;
     this.title = resource.title;
     this.description = resource.description;
     this.primaryKey = resource.primaryKey;
     this.fieldGroup = resource.fieldGroup;
+    this.createFieldGroup = resource.createFieldGroup;
     this.schemaArray = [];
+    this.createSchemaArray = [];
     this.searchFields = resource.searchFields;
 
     for (const key in this.schema) {
@@ -21,6 +24,14 @@ export class Resource {
         const field = this.schema[key];
         field.name = key;
         this.schemaArray.push(field);
+      }
+    }
+
+    for (const key in this.createSchema) {
+      if (typeof(this.createSchema[key]) === 'object') {
+        const field = this.createSchema[key];
+        field.name = key;
+        this.createSchemaArray.push(field);
       }
     }
   }

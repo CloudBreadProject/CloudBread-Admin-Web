@@ -28,9 +28,8 @@ const AdminMember = new Resource({
     'Name1',
 
   ],
-  fieldGroup: [
-
-  ],
+  fieldGroup: [],
+  createFieldGroup: [],
   schema: {
     AdminMemberID: {
       description: 'AdminMember identifier',
@@ -81,6 +80,47 @@ const AdminMember = new Resource({
       readonly,
     },
     DataFromRegionDT: {
+      readonly,
+    },
+  },
+  createSchema: {
+    AdminMemberID: {
+      description: 'AdminMember identifier',
+    },
+    AdminMemberPWD: {
+      description: 'AdminMember password',
+    },
+    AdminMemberEmail: {
+      description: 'AdminMember email address',
+    },
+    IDCreateAdminMember: {},
+    AdminGroup: {},
+    TimeZoneID: {},
+    PINumber: {},
+    Name1: {},
+    Name2: {},
+    Name3: {},
+    DOB: {},
+    LastIPaddress: {},
+    LastLoginDT: {},
+    LastLogoutDT: {},
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    DeleteYN: {
+      boolean,
+    },
+    HideYN: {
+      boolean,
+    },
+    DataFromRegion: {
       readonly,
     },
   },

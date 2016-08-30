@@ -61,9 +61,9 @@ class ResourceCreateViewPage extends Component {
     insertResource: PropTypes.func,
     createResource: PropTypes.func,
     params: PropTypes.object,
-    schema: PropTypes.object,
-    schemaArray: PropTypes.array,
-    fieldGroup: PropTypes.array,
+    createSchema: PropTypes.object,
+    createSchemaArray: PropTypes.array,
+    createFieldGroup: PropTypes.array,
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
@@ -89,9 +89,9 @@ class ResourceCreateViewPage extends Component {
     await this.props.loadCreateResourceForm(params);
     this.props.hideLoading();
     // cache callback funcs for editing
-    const { schema } = this.props;
-    for (const key in schema) { // eslint-disable-line
-      const field = schema[key];
+    const { createSchema } = this.props;
+    for (const key in createSchema) { // eslint-disable-line
+      const field = createSchema[key];
       if (field.boolean) {
         this.handleToggleSwitchBound[field.name] = this.handleToggleSwitch(field.name);
       } else {
@@ -108,19 +108,19 @@ class ResourceCreateViewPage extends Component {
 
   render() {
     const {
-      fieldGroup,
+      createFieldGroup,
       isLoaded,
       resourceId,
-      schemaArray,
+      createSchemaArray,
       } = this.props;
     if (!isLoaded) {
       return <p>Loading target resource...</p>;
     }
     let tableNode;
-    if (fieldGroup.length) {
-      tableNode = fieldGroup.map(this.renderGroup);
+    if (createFieldGroup.length) {
+      tableNode = createFieldGroup.map(this.renderGroup);
     } else {
-      tableNode = schemaArray.map(this.renderField);
+      tableNode = createSchemaArray.map(this.renderField);
     }
     return (
       <div className={styles.ResourceCreatePage}>
@@ -200,8 +200,8 @@ class ResourceCreateViewPage extends Component {
   }
 
   renderField(name, key) {
-    const { resource, isRequesting, schema } = this.props;
-    const field = typeof(name) === 'string' ? schema[name] : name;
+    const { resource, isRequesting, createSchema } = this.props;
+    const field = typeof(name) === 'string' ? createSchema[name] : name;
     let result;
     if (field.boolean) {
       result = (
@@ -212,7 +212,7 @@ class ResourceCreateViewPage extends Component {
             }}
           >
             <Toggle
-              defaultToggled={'N'}
+              defaultToggled={resource[field.name] === 'Y'}
               label={field.name}
               labelPosition="left"
               disabled={field.readonly || isRequesting}
@@ -227,6 +227,7 @@ class ResourceCreateViewPage extends Component {
           ref={field.name}
           floatingLabelText={field.name}
           hintText={field.description}
+          defaultValue={resource[field.name]}
           disabled={field.readonly || isRequesting}
           onBlur={this.handleChangeInputBound[field.name]}
           fullWidth
@@ -261,7 +262,7 @@ class ResourceCreateViewPage extends Component {
       this.props.showSnackbarMessage({
         snackbarMessage: 'Failed to create',
       });
-    }d
+    }
     this.props.hideLoading();
   }
 

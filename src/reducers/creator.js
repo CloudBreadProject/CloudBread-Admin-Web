@@ -15,7 +15,7 @@ const initialState = {
   resourceId: '',
   isRequesting: false,
   isLoaded: false,
-  schema: null,
+  createSchema: null,
   fieldGroup: null,
   errorMessage: '',
   isCreating: false,
@@ -30,16 +30,16 @@ export default function reducer(state = initialState, action = {}) {
         errorMessage: '',
         resourceId: null,
         fieldGroup: null,
-        schema: null,
+        createSchema: null,
         isLoaded: false,
       };
     }
     case CREATE_RESOURCE_FORM_SUCCESS: {
       const {
         resource,
-        fieldGroup,
-        schema,
-        schemaArray,
+        createFieldGroup,
+        createSchema,
+        createSchemaArray,
         resourceId,
         } = action.payload;
       return {
@@ -47,9 +47,9 @@ export default function reducer(state = initialState, action = {}) {
         isRequesting: false,
         resourceId,
         resource,
-        fieldGroup,
-        schema,
-        schemaArray,
+        createFieldGroup,
+        createSchema,
+        createSchemaArray,
         isLoaded: true,
       };
     }

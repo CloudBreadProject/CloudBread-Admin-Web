@@ -186,6 +186,145 @@ const Members = new Resource({
       readonly,
     },
   },
+  createFieldGroup: [
+    {
+      name: 'Credentials',
+      description: 'can identifier user',
+      fields: [
+        'MemberID',
+        'MemberPWD',
+      ],
+    }, {
+      name: 'Email',
+      description: 'can confirm user',
+      fields: [
+        'EmailAddress',
+        'EmailConfirmedYN',
+      ],
+    }, {
+      name: 'Privates',
+      description: 'can save personal information',
+      fields: [
+        'PhoneNumber1',
+        'PhoneNumber2',
+        'Name1',
+        'Name2',
+        'Name3',
+      ],
+    }, {
+      name: 'Access',
+      fields: [
+        'LastDeviceID',
+        'LastIPaddress',
+        'LastLoginDT',
+        'LastLogoutDT',
+        'LastMACAddress',
+      ],
+    }, {
+      name: 'Block',
+      fields: [
+        'AccountBlockEndDT',
+        'AccountBlockYN',
+      ],
+    }, {
+      name: '3rd Party Authentication',
+      fields: [
+        '3rdAuthID',
+        '3rdAuthProvider',
+        '3rdAuthParam',
+      ],
+    }, {
+      name: 'Push Notification',
+      fields: [
+        'PushNotificationID',
+        'PushNotificationGroup',
+        'PushNotificationProvider',
+      ],
+    }, {
+      name: 'Extra Data',
+      fields: [
+        'sCol1', 'sCol2', 'sCol3',
+        'sCol4', 'sCol5', 'sCol6',
+        'sCol7', 'sCol8', 'sCol9',
+        'sCol10',
+      ],
+    }, {
+      name: 'Date and Time',
+      fields: [
+        'TimeZoneID',
+        'DataFromRegion',
+      ],
+    }, {
+      name: 'Current Status',
+      fields: [
+        'AnonymousYN',
+        'HideYN',
+        'DeleteYN',
+      ],
+    },
+  ],
+  createSchema: {
+    MemberID: {
+      description: 'User identifier',
+    },
+    MemberPWD: {
+      description: 'User password',
+    },
+    EmailAddress: {
+      description: 'User email address',
+    },
+    EmailConfirmedYN: {
+      description: 'Is User confirmed via email?',
+      boolean,
+    },
+    PhoneNumber1: {},
+    PhoneNumber2: {},
+    PINumber: {},
+    Name1: {},
+    Name2: {},
+    Name3: {},
+    DOB: {},
+    RecommenderID: {},
+    MemberGroup: {},
+    LastDeviceID: {},
+    LastIPaddress: {},
+    LastLoginDT: {},
+    LastLogoutDT: {},
+    LastMACAddress: {},
+    AccountBlockYN: {
+      boolean,
+    },
+    AccountBlockEndDT: {},
+    AnonymousYN: {
+      boolean,
+    },
+    '3rdAuthProvider': {},
+    '3rdAuthID': {},
+    '3rdAuthParam': {},
+    PushNotificationID: {},
+    PushNotificationProvider: {},
+    PushNotificationGroup: {},
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    TimeZoneID: {},
+    HideYN: {
+      boolean,
+    },
+    DeleteYN: {
+      boolean,
+    },
+    DataFromRegion: {
+      readonly,
+    },
+  },
 });
 
 export default Members;

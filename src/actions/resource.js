@@ -292,16 +292,16 @@ export function loadCreateResourceForm({ resourceId }) {
     try {
       const model = models[resourceId];
       const {
-        schema,
-        schemaArray,
-        fieldGroup,
+        createSchema,
+        createSchemaArray,
+        createFieldGroup,
         } = model;
       dispatch({
         type: CREATE_RESOURCE_FORM_REQUEST,
       });
       let resource = {};
-      for (const key in schema) {
-        if(schema[key].boolean) {
+      for (const key in createSchema) {
+        if(createSchema[key].boolean) {
           resource[key] = "N";
         } else {
           resource[key] = "";
@@ -312,9 +312,9 @@ export function loadCreateResourceForm({ resourceId }) {
         payload: {
           resource,
           resourceId,
-          fieldGroup,
-          schema,
-          schemaArray,
+          createFieldGroup,
+          createSchema,
+          createSchemaArray,
         },
       });
     } catch (error) {
@@ -348,13 +348,6 @@ export function createResource({ resourceId, resource }) {
       console.log('resource');
       console.log(resource);
       console.log('======================================');
-      //TODO need update
-      delete resource.CreatedAt;
-      delete resource.UpdatedAt;
-      delete resource.DataFromRegionDT;
-      delete resource.NoticeDurationFrom;
-      delete resource.NoticeDurationTo;
-      delete resource.OrderNumber;
       await fetch.post(`/${resourceId}`, {
         data: resource,
       });
