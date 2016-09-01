@@ -29,7 +29,7 @@ const Members = new Resource({
     'EmailAddress',
     'Name1',
     'LastDeviceID',
-    '3rdAuthID',
+    'C3rdAuthID',
     'PushNotificationID',
   ],
   fieldGroup: [
@@ -75,9 +75,9 @@ const Members = new Resource({
     }, {
       name: '3rd Party Authentication',
       fields: [
-        '3rdAuthID',
-        '3rdAuthProvider',
-        '3rdAuthParam',
+        'C3rdAuthID',
+        'C3rdAuthProvider',
+        'C3rdAuthParam',
       ],
     }, {
       name: 'Push Notification',
@@ -148,9 +148,9 @@ const Members = new Resource({
     AnonymousYN: {
       boolean,
     },
-    '3rdAuthProvider': {},
-    '3rdAuthID': {},
-    '3rdAuthParam': {},
+    'C3rdAuthProvider': {},
+    'C3rdAuthID': {},
+    'C3rdAuthParam': {},
     PushNotificationID: {},
     PushNotificationProvider: {},
     PushNotificationGroup: {},
@@ -229,9 +229,9 @@ const Members = new Resource({
     }, {
       name: '3rd Party Authentication',
       fields: [
-        '3rdAuthID',
-        '3rdAuthProvider',
-        '3rdAuthParam',
+        'C3rdAuthID',
+        'C3rdAuthProvider',
+        'C3rdAuthParam',
       ],
     }, {
       name: 'Push Notification',
@@ -298,9 +298,9 @@ const Members = new Resource({
     AnonymousYN: {
       boolean,
     },
-    '3rdAuthProvider': {},
-    '3rdAuthID': {},
-    '3rdAuthParam': {},
+    'C3rdAuthProvider': {},
+    'C3rdAuthID': {},
+    'C3rdAuthParam': {},
     PushNotificationID: {},
     PushNotificationProvider: {},
     PushNotificationGroup: {},
