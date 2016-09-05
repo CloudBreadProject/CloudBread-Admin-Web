@@ -20,7 +20,7 @@ import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import Search from 'material-ui/lib/svg-icons/action/search';
 import Clear from 'material-ui/lib/svg-icons/content/clear';
 
-function mapStateToProps({ editor, finder, display }) {
+function mapStateToProps({ editor, finder, creator, display }) {
   const {
     isFinding,
     searchFields,
@@ -29,7 +29,7 @@ function mapStateToProps({ editor, finder, display }) {
     search, field,
     toDate, fromDate,
     sort,
-  } = finder;
+    } = finder;
 
   return {
     // finder
@@ -37,6 +37,7 @@ function mapStateToProps({ editor, finder, display }) {
     resourceId,
     isEditingResource: editor.isEditing,
     isFindingResource: isFinding,
+    isCreatingResource: creator.isCreating,
     isFinderLoaded: finder.isLoaded,
 
     // finder search
@@ -69,6 +70,7 @@ class InspectorHeader extends Component {
     // resource status
     isEditingResource: PropTypes.bool,
     isFindingResource: PropTypes.bool,
+    isCreatingResource: PropTypes.bool,
     isLoading: PropTypes.bool,
     searchFields: PropTypes.array,
     resourceId: PropTypes.string,
@@ -112,7 +114,7 @@ class InspectorHeader extends Component {
       toDate, fromDate,
       sort,
       searchFields,
-    } = this.props;
+      } = this.props;
     await this.setState({
       search,
       searchField: field ? searchFields.indexOf(field) + 1 : 1,
@@ -126,17 +128,18 @@ class InspectorHeader extends Component {
     const {
       isFindingResource,
       isEditingResource,
-    } = nextProps;
+      isCreatingResource,
+      } = nextProps;
 
     await this.setState({
-      isActivated: isFindingResource || isEditingResource,
+      isActivated: isFindingResource || isEditingResource || isCreatingResource,
     });
   }
 
   render() {
     const {
       isActivated,
-    } = this.state || {};
+      } = this.state || {};
     return (
       <div
         className={cx({
@@ -163,8 +166,9 @@ class InspectorHeader extends Component {
     const {
       isLoading,
       isEditingResource,
-    } = this.props;
-    if (isEditingResource) {
+      isCreatingResource,
+      } = this.props;
+    if (isEditingResource || isCreatingResource) {
       return (
         <div className={styles.BtnBack}>
           <FlatButton
@@ -208,7 +212,7 @@ class InspectorHeader extends Component {
       searchField,
       sort,
       toDate, fromDate,
-    } = this.state || {};
+      } = this.state || {};
     const finderNode = (
       <div
         className={styles.Finder}
@@ -455,7 +459,7 @@ class InspectorHeader extends Component {
       searchField, search,
       toDate, fromDate,
       sort,
-    } = this.state || {};
+      } = this.state || {};
     await this.props.loadResources({
       resourceId,
       field: searchField ? searchFields[searchField - 1] : null, search,

@@ -27,9 +27,8 @@ const MemberItems = new Resource({
     'MemberID',
     'ItemListID',
   ],
-  fieldGroup: [
-
-  ],
+  fieldGroup: [],
+  createFieldGroup: [],
   schema: {
     MemberItemID: {
       readonly,
@@ -68,7 +67,32 @@ const MemberItems = new Resource({
     DataFromRegionDT: {
       readonly,
     },
-
+  },
+  createSchema: {
+    MemberItemID: {},
+    MemberID: {},
+    ItemListID: {},
+    ItemCount: {},
+    ItemStatus: {},
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    HideYN: {
+      boolean,
+    },
+    DeleteYN: {
+      boolean,
+    },
+    DataFromRegion: {
+      readonly,
+    },
   },
 });
 

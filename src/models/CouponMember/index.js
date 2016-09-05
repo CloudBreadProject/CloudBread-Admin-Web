@@ -11,63 +11,86 @@ const CouponMember = new Resource({
   title: 'CouponMember',
   description: 'Collection of CouponMember data',
   showFields: [
-	'CouponMemberID',
-	'CouponID',
-	'MemberID',
-	// 'HideYN',
-	// 'DeleteYN',
-	'CreatedAt',
-	// 'UpdatedAt',
+    'CouponMemberID',
+    'CouponID',
+    'MemberID',
+    // 'HideYN',
+    // 'DeleteYN',
+    'CreatedAt',
+    // 'UpdatedAt',
   ],
   primaryKey: 'CouponMemberID',
   searchFields: [
-	'CouponMemberID',
-	'CouponID',
-	'MemberID',
+    'CouponMemberID',
+    'CouponID',
+    'MemberID',
   ],
-  fieldGroup: [
-    
-  ],
+  fieldGroup: [],
+  createFieldGroup: [],
   schema: {
-	CouponMemberID: {
-		readonly,
-	},
-	CouponID: {
-		readonly,
-	},
-	MemberID: {
-		readonly,
-	},
-	sCol1: {},
-	sCol2: {},
-	sCol3: {},
-	sCol4: {},
-	sCol5: {},
-	sCol6: {},
-	sCol7: {},
-	sCol8: {},
-	sCol9: {},
-	sCol10: {},
-	HideYN: {
-		boolean,
-	},
-	DeleteYN: {
-		boolean,
-	},
-	CreatedAt: {
-		readonly,
-		sortable,
-		datetime,
-	},
-	UpdatedAt: {
-		readonly,
-	},
-	DataFromRegion: {
-		readonly,
-	},
-	DataFromRegionDT: {
-		readonly,
-	},
+    CouponMemberID: {
+      readonly,
+    },
+    CouponID: {
+      readonly,
+    },
+    MemberID: {
+      readonly,
+    },
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    HideYN: {
+      boolean,
+    },
+    DeleteYN: {
+      boolean,
+    },
+    CreatedAt: {
+      readonly,
+      sortable,
+      datetime,
+    },
+    UpdatedAt: {
+      readonly,
+    },
+    DataFromRegion: {
+      readonly,
+    },
+    DataFromRegionDT: {
+      readonly,
+    },
+  },
+  createSchema: {
+    CouponMemberID: {},
+    CouponID: {},
+    MemberID: {},
+    sCol1: {},
+    sCol2: {},
+    sCol3: {},
+    sCol4: {},
+    sCol5: {},
+    sCol6: {},
+    sCol7: {},
+    sCol8: {},
+    sCol9: {},
+    sCol10: {},
+    HideYN: {
+      boolean,
+    },
+    DeleteYN: {
+      boolean,
+    },
+    DataFromRegion: {
+      readonly,
+    },
   },
 });
 

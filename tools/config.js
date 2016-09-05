@@ -4,7 +4,7 @@ import postcssImport from 'postcss-import';
 import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import { merge } from 'lodash';
-import { resolve } from 'path';
+import { resolve, join } from 'path';
 import { argv } from 'yargs';
 
 export const DEBUG = !process.argv.includes('--release');
@@ -16,7 +16,8 @@ export const DEV_HOSTNAME = 'localhost';
 export const DEV_HOST = `${DEV_HOSTNAME}:${DEV_PORT}`;
 export const DEV_SERVER = `http://${DEV_HOST}`;
 
-export const ROOT = resolve(__dirname, '../');
+export const ROOT = resolve(__dirname, '../');  // Mac, Linux
+//export const ROOT = join(__dirname, '../');  // Windows
 export const buildPath = `${ROOT}/build`;
 export const srcPath = `${ROOT}/src`;
 export const modulePath = `${ROOT}/node_modules`;
@@ -82,7 +83,7 @@ export const webpackCommon = {
         } : {
           loader: ExtractTextPlugin.extract(
             'style-loader',
-            'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader', // eslint-disable-line
+            'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader' // eslint-disable-line
           ),
         }),
       }, {

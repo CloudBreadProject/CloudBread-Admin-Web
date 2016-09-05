@@ -9,6 +9,7 @@ import HomePage from 'components/HomePage';
 import BIToolPage from 'components/BIToolPage';
 import ResourceFindPage from 'components/ResourceFindPage';
 import ResourceEditPage from 'components/ResourceEditPage';
+import ResourceCreatePage from 'components/ResourceCreatePage';
 
 const routeContainer = (
   <Route component={AppLayout}>
@@ -16,7 +17,7 @@ const routeContainer = (
       <IndexRoute component={HomePage} />
       <Route path="bi" component={BIToolPage} />
       <Route path="finder/:resourceId" component={ResourceFindPage} />
-      <Route path="editor/:resourceId" component={ResourceEditPage} />
+      <Route path="creator/:resourceId" component={ResourceCreatePage} />
       <Route path="editor/:resourceId/:identifier" component={ResourceEditPage} />
     </Route>
   </Route>

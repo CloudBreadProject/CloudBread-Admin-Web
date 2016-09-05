@@ -1,15 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './ResourceEditPage.scss';
+import styles from './ResourceCreatePage.scss';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  loadResource,
-  editResource,
-  updateResource,
-  deleteResource,
-  startEditingResource,
-  stopEditingResource,
+  loadCreateResourceForm,
+  insertResource,
+  createResource,
+  startCreatingResource,
+  stopCreatingResource,
 } from 'actions/resource';
 import {
   showLoading,
@@ -23,32 +22,30 @@ import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 import Paper from 'material-ui/lib/paper';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
-import ModeEdit from 'material-ui/lib/svg-icons/editor/mode-edit';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
-function mapStateToProps({ editor }) {
+function mapStateToProps({ creator }) {
   return {
-    ...editor,
+    ...creator,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    loadResource,
-    editResource,
-    updateResource,
-    deleteResource,
+    loadCreateResourceForm,
+    insertResource,
+    createResource,
     showLoading,
     hideLoading,
     showSnackbarMessage,
-    startEditingResource,
-    stopEditingResource,
+    startCreatingResource,
+    stopCreatingResource,
   }, dispatch);
 }
 
-class ResourceViewPage extends Component {
+class ResourceCreateViewPage extends Component {
   static needs = [
-    loadResource,
+    loadCreateResourceForm,
   ];
 
   static contextTypes = {
@@ -60,82 +57,74 @@ class ResourceViewPage extends Component {
     isRequesting: PropTypes.bool,
     isLoaded: PropTypes.bool,
     resourceId: PropTypes.string,
-    identifier: PropTypes.string,
-    loadResource: PropTypes.func,
-    editResource: PropTypes.func,
-    updateResource: PropTypes.func,
-    deleteResource: PropTypes.func,
+    loadCreateResourceForm: PropTypes.func,
+    insertResource: PropTypes.func,
+    createResource: PropTypes.func,
     params: PropTypes.object,
-    schema: PropTypes.object,
-    schemaArray: PropTypes.array,
-    fieldGroup: PropTypes.array,
+    createSchema: PropTypes.object,
+    createSchemaArray: PropTypes.array,
+    createFieldGroup: PropTypes.array,
     showLoading: PropTypes.func,
     hideLoading: PropTypes.func,
     showSnackbarMessage: PropTypes.func,
-    startEditingResource: PropTypes.func,
-    stopEditingResource: PropTypes.func,
+    startCreatingResource: PropTypes.func,
+    stopCreatingResource: PropTypes.func,
   };
 
   constructor() {
     super();
     this.renderField = this.renderField.bind(this);
     this.renderGroup = this.renderGroup.bind(this);
-    this.handleClickModeEdit = this.handleClickModeEdit.bind(this);
-    this.handleClickActionDelete = this.handleClickActionDelete.bind(this);
+    this.handleClickContentAdd = this.handleClickContentAdd.bind(this);
     this.handleChangeInputBound = {};
     this.handleToggleSwitchBound = {};
   }
 
   async componentDidMount() {
     const {
-      params,
-      resourceId,
-      identifier,
+      params
       } = this.props;
-    // load resource if different resource
-    if (resourceId !== params.resourceId || identifier !== params.identifier) {
-      this.props.showLoading();
-      await this.props.loadResource(params);
-      this.props.hideLoading();
-    }
+    // cache callback funcs for creating
+    this.props.showLoading();
+    await this.props.loadCreateResourceForm(params);
+    this.props.hideLoading();
     // cache callback funcs for editing
-    const { schema } = this.props;
-    for (const key in schema) { // eslint-disable-line
-      const field = schema[key];
+    const { createSchema } = this.props;
+    for (const key in createSchema) { // eslint-disable-line
+      const field = createSchema[key];
       if (field.boolean) {
         this.handleToggleSwitchBound[field.name] = this.handleToggleSwitch(field.name);
       } else {
         this.handleChangeInputBound[field.name] = this.handleChangeInput(field.name);
       }
     }
-    this.props.startEditingResource();
+    this.props.startCreatingResource();
     this.forceUpdate();
   }
 
   componentWillUnmount() {
-    this.props.stopEditingResource();
+    this.props.stopCreatingResource();
   }
 
   render() {
     const {
-      fieldGroup,
+      createFieldGroup,
       isLoaded,
-      identifier,
       resourceId,
-      schemaArray,
+      createSchemaArray,
       } = this.props;
     if (!isLoaded) {
       return <p>Loading target resource...</p>;
     }
     let tableNode;
-    if (fieldGroup.length) {
-      tableNode = fieldGroup.map(this.renderGroup);
+    if (createFieldGroup.length) {
+      tableNode = createFieldGroup.map(this.renderGroup);
     } else {
-      tableNode = schemaArray.map(this.renderField);
+      tableNode = createSchemaArray.map(this.renderField);
     }
     return (
-      <div className={styles.ResourceEditPage}>
-        <Helmet title="Resource Editor" />
+      <div className={styles.ResourceCreatePage}>
+        <Helmet title="Resource Creator" />
         <div
           style={{
             maxWidth: '640px',
@@ -153,32 +142,22 @@ class ResourceViewPage extends Component {
                 fontWeight: 400,
               }}
             >
-              {identifier} of {resourceId}
+              Create {resourceId}
             </h1>
             <Divider />
           </div>
           {tableNode}
         </div>
         <FloatingActionButton
-          secondary
-          style={{
-            position: 'fixed',
-            right: '24px',
-            bottom: '94px',
-          }}
-          onClick={this.handleClickModeEdit}
-        >
-          <ModeEdit />
-        </FloatingActionButton>
-        <FloatingActionButton
+          backgroundColor="#673AB7"
           style={{
             position: 'fixed',
             right: '24px',
             bottom: '24px',
           }}
-          onClick={this.handleClickActionDelete}
+          onClick={this.handleClickContentAdd}
         >
-          <ActionDelete />
+          <ContentAdd />
         </FloatingActionButton>
       </div>
     );
@@ -221,8 +200,8 @@ class ResourceViewPage extends Component {
   }
 
   renderField(name, key) {
-    const { resource, isRequesting, schema } = this.props;
-    const field = typeof(name) === 'string' ? schema[name] : name;
+    const { resource, isRequesting, createSchema } = this.props;
+    const field = typeof(name) === 'string' ? createSchema[name] : name;
     let result;
     if (field.boolean) {
       result = (
@@ -233,7 +212,7 @@ class ResourceViewPage extends Component {
             }}
           >
             <Toggle
-              defaultToggled={resource[field.name] === 'Y'}
+              defaultToggled={false}
               label={field.name}
               labelPosition="left"
               disabled={field.readonly || isRequesting}
@@ -248,7 +227,6 @@ class ResourceViewPage extends Component {
           ref={field.name}
           floatingLabelText={field.name}
           hintText={field.description}
-          defaultValue={resource[field.name]}
           disabled={field.readonly || isRequesting}
           onBlur={this.handleChangeInputBound[field.name]}
           fullWidth
@@ -264,44 +242,24 @@ class ResourceViewPage extends Component {
     );
   }
 
-  async handleClickModeEdit() {
+  async handleClickContentAdd() {
     this.props.showLoading();
     try {
       const params = this.props.params;
       const resource = this.props.resource;
-      const { identifier, resourceId } = params;
-      await this.props.updateResource({
+      const { resourceId } = params;
+      await this.props.createResource({
         resource,
-        identifier,
         resourceId,
       });
       this.props.showSnackbarMessage({
-        snackbarMessage: 'Succeed to update',
+        snackbarMessage: 'Succeed to create',
       });
+      //TODO list로 돌아갔을때 resource 업데이트되어야함.
+      this.context.router.push(`/finder/${resourceId}`);
     } catch (error) {
       this.props.showSnackbarMessage({
-        snackbarMessage: 'Failed to update',
-      });
-    }
-    this.props.hideLoading();
-  }
-
-  async handleClickActionDelete() {
-    this.props.showLoading();
-    try {
-      const params = this.props.params;
-      const { identifier, resourceId } = params;
-      await this.props.deleteResource({
-        identifier,
-        resourceId,
-      });
-      this.props.showSnackbarMessage({
-        snackbarMessage: 'Succeed to delete',
-      });
-      this.context.router.goBack();
-    } catch (error) {
-      this.props.showSnackbarMessage({
-        snackbarMessage: 'Failed to delete',
+        snackbarMessage: 'Failed to create',
       });
     }
     this.props.hideLoading();
@@ -309,7 +267,7 @@ class ResourceViewPage extends Component {
 
   handleChangeInput(field) {
     return (event) => {
-      this.props.editResource({
+      this.props.insertResource({
         field,
         value: event.target.value,
       });
@@ -319,7 +277,7 @@ class ResourceViewPage extends Component {
   handleToggleSwitch(field) {
     return () => {
       const resource = this.props.resource;
-      this.props.editResource({
+      this.props.insertResource({
         field,
         value: resource[field] === 'Y' ? 'N' : 'Y',
       });
@@ -327,4 +285,4 @@ class ResourceViewPage extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResourceViewPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceCreateViewPage);
