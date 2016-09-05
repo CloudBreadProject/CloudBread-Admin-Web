@@ -16,8 +16,8 @@ export const DEV_HOSTNAME = 'localhost';
 export const DEV_HOST = `${DEV_HOSTNAME}:${DEV_PORT}`;
 export const DEV_SERVER = `http://${DEV_HOST}`;
 
-//export const ROOT = resolve(__dirname, '../');  // Mac, Linux
-export const ROOT = join(__dirname, '../');  // Windows
+export const ROOT = resolve(__dirname, '../');  // Mac, Linux
+//export const ROOT = join(__dirname, '../');  // Windows
 export const buildPath = `${ROOT}/build`;
 export const srcPath = `${ROOT}/src`;
 export const modulePath = `${ROOT}/node_modules`;

@@ -340,10 +340,6 @@ export function createResource({ resourceId, resource }) {
       dispatch({
         type: CREATE_RESOURCE_REQUEST,
       });
-      console.log('======================================');
-      console.log('resource');
-      console.log(resource);
-      console.log('======================================');
       await fetch.post(`/${resourceId}`, {
         data: resource,
       });
@@ -351,10 +347,6 @@ export function createResource({ resourceId, resource }) {
         type: CREATE_RESOURCE_SUCCESS,
       });
     } catch (error) {
-      console.log('======================================');
-      console.log('error');
-      console.log(error);
-      console.log('======================================');
       dispatch({
         type: CREATE_RESOURCE_ERROR,
         payload: {
