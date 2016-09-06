@@ -1,7 +1,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/473n4mokuoy2095c?svg=true)](https://ci.appveyor.com/project/CloudBreadPaPa/cloudbread-admin-web)
 
 ## CloudBread-Admin-Web 은
-CloudBread 게임 서버 엔진 프로젝트의 운영자(GM)의 역할을 수행할 수 있는 **관리자 페이지**입니다.
+CloudBread 게임 서버 엔진 프로젝트를 통한 게임 운영자(GM)의 역할을 수행할 수 있는 **관리자 페이지**입니다.
 
 ###관리자 페이지에 대해
 - HTTP RESTful API 기반 게임 서버 엔진의 관리를 위한 CRUD 기능 제공
