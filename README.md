@@ -6,12 +6,13 @@ CloudBread 게임 서버 엔진 프로젝트를 통한 게임 운영자(GM)의 �
 ###관리자 페이지에 대해
 - HTTP RESTful API 기반 게임 서버 엔진의 관리를 위한 CRUD 기능 제공
 - 100여개 이상의 *게임 비즈니스 로직*에 대한 관리자 기능 제공
+- 데모 -[https://cb2-admin-demo.azurewebsites.net/](https://cb2-admin-demo.azurewebsites.net/)
 
 ###프로젝트 설치 가이드
 CloudBread 프로젝트를 설치하기 위해서는 **설치 가이드 위키 문서**를 참조하세요.
 
 ###CloudBread-Admin-Web 개발자 가이드
-CloudBread-Admin-Web은 개발자 가이드를 제공하고 있습니다. 아래 링크에서 개발자 가이드 확인해 보실 수 있습니다.
+CloudBread-Admin-Web은 개발자 가이드를 제공하고 있습니다. 아래 링크에서 개발자 가이드에서 확인해 보실 수 있습니다.
 - CloudBread-Admin-Web develop stack reference : https://github.com/CloudBreadProject/CloudBread-Admin-Web/tree/2.0.0-inspector
 - CloudBread-Admin-Web Getting Started : https://github.com/CloudBreadProject/CloudBread-Admin-Web/blob/2.0.0-inspector/docs/getting-started.md
 
