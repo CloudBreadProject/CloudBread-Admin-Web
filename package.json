@@ -1,0 +1,21 @@
+{
+  "name": "cloudbread-admin",
+  "version": "2.5.0",
+  "description": "CloudBread 게임 서버 엔진 프로젝트를 통한 게임 운영자(GM)의 역할을 수행할 수 있는 관리자 페이지입니다.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CloudBreadProject/CloudBread-Admin-Web.git"
+  },
+  "keywords": [
+    "cloudbread"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "admin-lte-express": "^1.4.2"
+  }
+}
