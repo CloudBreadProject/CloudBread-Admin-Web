@@ -290,6 +290,19 @@ app.get('user/profile', 'user.profile' ,function(req, res) {
     });
 });
 
+app.get('user/new', 'user.new' ,function(req, res) {
+    res.render('user/new', {
+        title: 'New User'
+    });
+});
+
+app.get('user/list', 'user.list', function (req, res) {
+    response.render("crud-user/list", {
+        title: 'List Users',
+        crud_user: results
+    });
+});
+
 app.get('/login', 'login', function(req, res) {
     res.render('user/login', {
         title: 'Login',
@@ -300,6 +313,13 @@ app.get('/login', 'login', function(req, res) {
 app.get('/logout', 'logout', function(req, res) {
     req.logout();
     res.redirect('/login');
+});
+
+app.get('/documentation', 'documentation.index' ,function(req, res) {
+    res.render("documentation/index", {
+        title: "Documentation",
+        layout: false
+    });
 });
 
 app.get('/', function (req, res) {
