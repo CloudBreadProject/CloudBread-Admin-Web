@@ -9,7 +9,7 @@ var app = express();
 
 var alePath = __dirname + '/../resources/admin-lte';
 var viewsPath = alePath + '/views';
-var publicPath = alePath + '/public';
+var assetsPath = alePath + '/assets';
 
 // Config named routes
 var router = new Router();
@@ -65,8 +65,8 @@ app.set('views', viewsPath);
 app.set('view engine', 'handlebars');
 
 // Public assets
-app.use('/public', express.static(path.join(publicPath)));
-app.use('/admin', express.static(path.join(publicPath)));
+app.use('/public', express.static(path.join(assetsPath)));
+app.use('/admin', express.static(path.join(assetsPath)));
 
 // Session-persisted message middleware
 app.use(function(req, res, next) {
