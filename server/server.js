@@ -6,7 +6,8 @@ var Router       = require('named-routes');
 var exphbs = require('express-handlebars');
 
 var app = express();
-var alePath = __dirname + '/../node_modules/admin-lte-express';
+
+var alePath = __dirname + '/../resoures/admin-lte';
 var viewsPath = alePath + '/views';
 var publicPath = alePath + '/public';
 
