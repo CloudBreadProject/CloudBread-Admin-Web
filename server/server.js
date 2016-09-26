@@ -7,7 +7,7 @@ var exphbs = require('express-handlebars');
 
 var app = express();
 
-var alePath = __dirname + '/../resoures/admin-lte';
+var alePath = __dirname + '/../resources/admin-lte';
 var viewsPath = alePath + '/views';
 var publicPath = alePath + '/public';
 
