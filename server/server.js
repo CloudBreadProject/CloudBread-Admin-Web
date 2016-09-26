@@ -177,16 +177,19 @@ app.get('/ui-elements/buttons', 'ui-elements.buttons', function(req, res) {
         title: "Buttons"
     })
 });
+
 app.get('/ui-elements/sliders', 'ui-elements.sliders', function(req, res) {
     res.render("ui-elements/sliders", {
         title: "Sliders"
     })
 });
+
 app.get('/ui-elements/timeline', 'ui-elements.timeline', function(req, res) {
     res.render("ui-elements/timeline", {
         title: "Timeline"
     })
 });
+
 app.get('/ui-elements/modals', 'ui-elements.modals', function(req, res) {
     res.render("ui-elements/modals", {
         title: "Modals"
@@ -199,11 +202,13 @@ app.get('/forms/general', 'forms.general' ,function(req, res) {
         title: "General"
     });
 });
+
 app.get('/forms/advanced', 'forms.advanced' ,function(req, res) {
     res.render("forms/advanced", {
         title: "Advanced"
     });
 });
+
 app.get('/forms/editors', 'forms.editors' ,function(req, res) {
     res.render("forms/editors", {
         title: "Editors"
@@ -215,6 +220,7 @@ app.get('/tables/simple', 'tables.simple' ,function(req, res) {
         title: "Simple"
     });
 });
+
 app.get('/tables/dataTables', 'tables.dataTables' ,function(req, res) {
     res.render("tables/data-tables", {
         title: "Data Tables"
@@ -232,11 +238,13 @@ app.get('/mailbox/index', 'mailbox.index' ,function(req, res) {
         title: "Mailbox"
     });
 });
+
 app.get('/mailbox/compose', 'mailbox.compose' ,function(req, res) {
     res.render("mailbox/compose", {
         title: "Compose"
     });
 });
+
 app.get('/mailbox/readMail', 'mailbox.readMail' ,function(req, res) {
     res.render("mailbox/read-mail", {
         title: "Read Mail"
@@ -268,18 +276,21 @@ app.get('/user/lockscreen', 'user.lockscreen' ,function(req, res) {
         layout: 'lockscreen'
     });
 });
+
 app.get('/user/login', 'user.login' ,function(req, res) {
     res.render('user/login', {
         title: 'Login',
         layout: 'auth'
     });
 });
+
 app.get('/user/register', 'user.register' ,function(req, res) {
     res.render('user/register', {
         title: 'Register',
         layout: 'auth'
     });
 });
+
 app.get('/user/profile', 'user.profile' ,function(req, res) {
     res.render('user/profile', {
         title: 'Profile'
