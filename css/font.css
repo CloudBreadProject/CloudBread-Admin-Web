@@ -1,0 +1,10 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@font-face {
+  font-family: appleSDGothicNeo;
+  src: url('fonts/AppleSDGothicNeo-Regular.otf')
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+}
