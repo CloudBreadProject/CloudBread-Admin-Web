@@ -34,7 +34,7 @@ app.engine('handlebars', exphbs({
     partialsDir: viewsPath + '/partials/',
     helpers: {
         url: function(routeName, params) {
-            return routeName;
+            return app.locals.url(routeName, params);
         },
         activeRoute: function(routeName) {
             return routeName === activeRoute ? 'active' : '';
@@ -101,8 +101,8 @@ app.use(function(err, request, response, next) {
         page = 'errors/404';
         title = err.status + ' ' + err.message;
     } else {
-        page = 'errors/500'
-        title = '500 Internal Server Error'
+        page = 'errors/500';
+        title = '500 Internal Server Error';
     }
 
     response.status(err.status || 500);
@@ -123,10 +123,183 @@ app.use(function(err, request, response, next) {
 // Set router
 app.set('router', router);
 
-app.set('dashboard/v1', 'dashboard.v1', function (req, res) {
+app.get('dashboard/v1', 'dashboard.v1', function (req, res) {
     res.render('dashboard/index', {
         title: 'Blank Page'
     });
+});
+
+app.get('dashboard/v2', 'dashboard.v2', function (req, res) {
+    res.render('dashboard/v2', {
+        title: 'Blank Page'
+    });
+});
+
+app.get('user/profile', 'user.profile', function (req, res) {
+    res.render('user/profile', {
+        title: 'Profile'
+    });
+});
+
+app.get('widgets/index', 'widgets.index', function (req, res) {
+    res.render("widgets/index", {
+        title: "Widgets"
+    })
+});
+
+app.get('charts.chartjs', 'charts.chartjs', function(req, res){
+    res.render("charts/chart-js", {
+        title: "ChartJS"
+    })
+});
+
+app.get('charts/morris', 'charts.morris', function(reqt, res) {
+    res.render("charts/morris", {
+        title: "Morris"
+    })
+});
+
+app.get('charts/flot', 'charts.flot', function(reqt, res) {
+    res.render("charts/flot", {
+        title: "Flot"
+    })
+});
+
+app.get('ui-elements/general', 'ui-elements.general' ,function(req, res) {
+    res.render("ui-elements/general", {
+        title: "General"
+    })
+});
+
+app.get('ui-elements/icons', 'ui-elements.icons', function(req, res) {
+    res.render("ui-elements/icons", {
+        title: "Icons"
+    })
+});
+app.get('ui-elements/buttons', 'ui-elements.buttons', function(req, res) {
+    res.render("ui-elements/buttons", {
+        title: "Buttons"
+    })
+});
+app.get('ui-elements/sliders', 'ui-elements.sliders', function(req, res) {
+    res.render("ui-elements/sliders", {
+        title: "Sliders"
+    })
+});
+app.get('ui-elements/timeline', 'ui-elements.timeline', function(req, res) {
+    res.render("ui-elements/timeline", {
+        title: "Timeline"
+    })
+});
+app.get('ui-elements/modals', 'ui-elements.modals', function(req, res) {
+    res.render("ui-elements/modals", {
+        title: "Modals"
+    })
+});
+
+
+app.get('forms/general', 'forms.general' ,function(req, res) {
+    res.render("forms/general", {
+        title: "General"
+    });
+});
+app.get('forms/advanced', 'forms.advanced' ,function(req, res) {
+    res.render("forms/advanced", {
+        title: "Advanced"
+    });
+});
+app.get('forms/editors', 'forms.editors' ,function(req, res) {
+    res.render("forms/editors", {
+        title: "Editors"
+    });
+});
+
+app.get('tables/simple', 'tables.simple' ,function(req, res) {
+    res.render("tables/simple", {
+        title: "Simple"
+    });
+});
+app.get('tables/dataTables', 'tables.dataTables' ,function(req, res) {
+    res.render("tables/data-tables", {
+        title: "Data Tables"
+    });
+});
+
+app.get('calendar/index', 'calendar.index', function(req, res) {
+    res.render("calendar/index", {
+        title: "Calendar"
+    });
+});
+
+app.get('mailbox/index', 'mailbox.index' ,function(req, res) {
+    res.render("mailbox/index", {
+        title: "Mailbox"
+    });
+});
+app.get('mailbox/compose', 'mailbox.compose' ,function(req, res) {
+    res.render("mailbox/compose", {
+        title: "Compose"
+    });
+});
+app.get('mailbox/readMail', 'mailbox.readMail' ,function(req, res) {
+    res.render("mailbox/read-mail", {
+        title: "Read Mail"
+    });
+});
+
+app.get('examples/invoice', 'examples.invoice' , function(req, res) {
+    res.render("examples/invoice", {
+        title: "Invoice"
+    });
+});
+
+app.get('examples/invoicePrint', 'examples.invoicePrint' ,function(req, res) {
+    res.render("examples/invoice-print", {
+        title: "Invoice Print",
+        layout: false
+    });
+});
+
+app.get('charts/inlineCharts', 'charts.inlineCharts', function(reqt, res) {
+    res.render("charts/inlineCharts", {
+        title: "inlineCharts"
+    })
+});
+
+app.get('user/lockscreen', 'user.lockscreen' ,function(req, res) {
+    res.render('user/lockscreen', {
+        title: 'Lock Screen',
+        layout: 'lockscreen'
+    });
+});
+app.get('user/login', 'user.login' ,function(req, res) {
+    res.render('user/login', {
+        title: 'Login',
+        layout: 'auth'
+    });
+});
+app.get('user/register', 'user.register' ,function(req, res) {
+    res.render('user/register', {
+        title: 'Register',
+        layout: 'auth'
+    });
+});
+app.get('user/profile', 'user.profile' ,function(req, res) {
+    res.render('user/profile', {
+        title: 'Profile'
+    });
+});
+
+app.get('/login', 'login', function(req, res) {
+    res.render('user/login', {
+        title: 'Login',
+        layout: 'auth'
+    });
+});
+
+app.get('/logout', 'logout', function(req, res) {
+    req.logout();
+    res.redirect('/login');
 });
 
 app.get('/', function (req, res) {
