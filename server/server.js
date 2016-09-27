@@ -3,7 +3,7 @@ var session      = require('express-session');
 var bodyParser = require('body-parser');
 var path         = require('path');
 var Router       = require('named-routes');
-var exphbs = require('express-handlebars');
+var HandlebarBoot   = require('./bootstraps/handlebar-boot');
 
 var app = express();
 
@@ -27,43 +27,7 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var blocks = [];
-var activeRoute = '';
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main',
-    cache : false,
-    layoutsDir: viewsPath + 'layouts/',
-    partialsDir: viewsPath + 'partials/',
-    helpers: {
-        url: function(routeName, params) {
-            return app.locals.url(routeName, params);
-        },
-        activeRoute: function(routeName) {
-            return routeName === activeRoute ? 'active' : '';
-        },
-        activeRoutes: function(routeNames) {
-            //return routeNames;
-            return routeNames.split(',').indexOf(activeRoute) >= 0 ? 'active' : '';
-        },
-        block: function(name) {
-            var val = (blocks[name] || []).join('\n');
-
-            // clear the block
-            blocks[name] = [];
-            return val;
-        },
-        extend: function(name, context) {
-            var block = blocks[name];
-            if (!block) {
-                block = blocks[name] = [];
-            }
-            block.push(context.fn(this));
-        }
-    }
-}));
-
-app.set('views', viewsPath);
-app.set('view engine', 'handlebars');
+HandlebarBoot(app, viewsPath);
 
 // Public assets
 app.use('/public', express.static(path.join(assetsPath)));
