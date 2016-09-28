@@ -1,6 +1,6 @@
 var Router = require('named-routes');
 
-function RouterBoot(expressApp, viewsPath) {
+function RouterBoot(expressApp) {
     var router = new Router();
     router.extendExpress(expressApp);
     router.registerAppHelpers(expressApp);

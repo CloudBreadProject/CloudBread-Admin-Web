@@ -1,9 +1,9 @@
 var express = require('express');
-var session      = require('express-session');
+var session = require('express-session');
 var bodyParser = require('body-parser');
-var path         = require('path');
-var HandlebarBoot   = require('./bootstraps/handlebar-boot');
-var RouterBoot   = require('./bootstraps/router-boot');
+var path = require('path');
+var HandlebarBoot = require('./bootstraps/handlebar-boot');
+var RouterBoot = require('./bootstraps/router-boot');
 
 var app = express();
 
@@ -20,7 +20,7 @@ app.use(session({
 
 // Body parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 HandlebarBoot(app, viewsPath);
 RouterBoot(app);
@@ -30,7 +30,7 @@ app.use('/public', express.static(path.join(assetsPath)));
 app.use('/admin', express.static(path.join(assetsPath)));
 
 // Session-persisted message middleware
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = req.session.error;
     var msg = req.session.success;
     delete req.session.error;
@@ -42,10 +42,10 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-app.use(function(err, request, response, next) {
+app.use(function (err, request, response, next) {
     var page, title, layout;
 
-    if(false){
+    if (false) {
         if (request.session.user) {
             layout = 'main';
         } else {
