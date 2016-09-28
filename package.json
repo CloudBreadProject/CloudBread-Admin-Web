@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "6.6.0"
+  },
   "dependencies": {
     "body-parser": "~1.13.2",
     "connect-ensure-login": "^0.1.1",
