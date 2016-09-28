@@ -230,9 +230,9 @@ function RouterBoot(expressApp) {
         });
     });
 
-    expressApp.get('/', 'main', restrict, function (req, res) {
-        res.render('home');
-    });
+    // expressApp.get('/', 'main', restrict, function (req, res) {
+    //     res.render('home');
+    // });
 }
 
 module.exports = RouterBoot;
