@@ -231,12 +231,7 @@ function RouterBoot(expressApp) {
     });
 
     expressApp.get('/', 'main', restrict, function (req, res) {
-        if (req.session.user) {
-            res.render('home');
-        } else {
-            req.session.error = 'Access denied!';
-            res.redirect('/login');
-        }
+        res.render('home');
     });
 }
 
