@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var HandlebarBoot = require('./bootstraps/handlebar-boot');
 var RouterBoot = require('./bootstraps/router-boot');
+var AuthBoot = require('./bootstraps/auth-boot');
 
 var app = express();
 
@@ -23,7 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 HandlebarBoot(app, viewsPath);
-RouterBoot(app);
+AuthBoot(app);
+RouterBoot(app, AuthBoot);
 
 // Public assets
 app.use('/public', express.static(path.join(assetsPath)));
@@ -45,14 +47,11 @@ app.use(function (req, res, next) {
 app.use(function (err, request, response, next) {
     var page, title, layout;
 
-    if (false) {
-        if (request.session.user) {
-            layout = 'main';
-        } else {
-            layout = 'auth'
-        }
+    if (request.session.user) {
+        layout = 'main';
+    } else {
+        layout = 'auth'
     }
-    layout = 'main';
     if (err.status == 404) {
         page = 'errors/404';
         title = err.status + ' ' + err.message;
@@ -63,8 +62,6 @@ app.use(function (err, request, response, next) {
 
     response.status(err.status || 500);
 
-    // development error handler
-    // will print stacktrace
     if (app.get('env') !== 'development') err = {};
 
     response.render(page, {
