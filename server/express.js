@@ -19,10 +19,6 @@ module.exports = function(app, config) {
     app.locals.ENV = env;
     app.locals.ENV_DEVELOPMENT = env == 'development';
 
-    HandlebarBoot(app, config.root + '/server/views');
-    AuthBoot(app);
-    RouterBoot(app, AuthBoot);
-
     // Public assets
     app.use('/public', express.static(config.root + '/public'));
     app.use('/admin', express.static(config.root + '/public'));
@@ -36,6 +32,16 @@ module.exports = function(app, config) {
     app.use(cookieParser());
     app.use(compress());
     app.use(methodOverride());
+
+    app.use(session({
+        resave: false, // don't save session if unmodified
+        saveUninitialized: false, // don't create session until something stored
+        secret: 'dev-session'
+    }));
+
+    HandlebarBoot(app, config.root + '/server/views');
+    AuthBoot(app);
+    RouterBoot(app, AuthBoot);
 
     var controllers = glob.sync(config.root + '/server/controllers/*.js');
     controllers.forEach(function (controller) {
@@ -59,14 +65,41 @@ module.exports = function(app, config) {
         });
     }
 
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
+    // app.use(function (err, req, res, next) {
+    //     res.status(err.status || 500);
+    //     res.render('error', {
+    //         message: err.message,
+    //         error: {},
+    //         title: 'error'
+    //     });
+    // });
+
+    app.use(function (err, request, response, next) {
+        var page, title, layout;
+
+        if (request.session.user) {
+            layout = 'main';
+        } else {
+            layout = 'auth'
+        }
+        if (err.status == 404) {
+            page = 'errors/404';
+            title = err.status + ' ' + err.message;
+        } else {
+            page = 'errors/500';
+            title = '500 Internal Server Error';
+        }
+
+        response.status(err.status || 500);
+
+        if (app.get('env') !== 'development') err = {};
+
+        response.render(page, {
             message: err.message,
-            error: {},
-            title: 'error'
+            error: err,
+            title: title,
+            layout: layout
         });
     });
-
 };
 
