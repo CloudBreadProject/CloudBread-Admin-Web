@@ -4,7 +4,7 @@
   "description": "CloudBread 게임 서버 엔진 프로젝트를 통한 게임 운영자(GM)의 역할을 수행할 수 있는 관리자 페이지입니다.",
   "main": "server.js",
   "scripts": {
-    "start": "node ./bin/server"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
