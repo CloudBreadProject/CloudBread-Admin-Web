@@ -22,9 +22,9 @@ var config = {
     production: {
         root: rootPath,
         app: {
-            name: 'cb'
+            name: 'cb-aw1'
         },
-        port: process.env.PORT || 3000,
+        port: process.env.PORT,
     }
 };
 
