@@ -1,5 +1,0 @@
-{
-    "environment": "development",
-    "port": 3000,
-    "secret_key": "development_key"
-}
