@@ -1,7 +1,7 @@
 var    Article = require('../models/article');
 
 function route(expressApp){
-    expressApp.get('/', 'home', function (req, res, next) {
+    expressApp.get('/gameInfoStage', 'gameInfoStage', function (req, res, next) {
         var articles = [new Article(), new Article()];
         res.render('home', {
             title: 'Generator-Express MVC',
