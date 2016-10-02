@@ -222,6 +222,10 @@ function RouterBoot(expressApp) {
         });
     });
 
+    expressApp.get('/logout', 'logout', function (req, res) {
+        req.logout();
+        res.redirect('/login');
+    });
 
     expressApp.get('/register', 'register', function (req, res) {
         res.render("user/register", {
