@@ -1,19 +1,10 @@
 var Router = require('named-routes');
 
-function restrict(req, res, next) {
-    next();
-    //if (req.session.user) {
-    //  next();
-    //} else {
-    //  req.session.error = 'Access denied!';
-    //  res.redirect('/login');
-    //}
-}
-
 function RouterBoot(expressApp) {
     var router = new Router();
     router.extendExpress(expressApp);
     router.registerAppHelpers(expressApp);
+    var restrict = expressApp.restrict;
 
     expressApp.set('router', router);
 
