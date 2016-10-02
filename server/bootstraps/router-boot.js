@@ -187,9 +187,13 @@ function RouterBoot(expressApp) {
     });
 
     expressApp.get('/user/new', 'user.new', restrict, function (req, res) {
-        res.render('user/new', {
+        res.render('crud-user/new', {
             title: 'New User'
         });
+    });
+
+    expressApp.post('/user/create', 'user.create', restrict, function (req, res) {
+        res.redirect('/');
     });
 
     expressApp.get('/user/list', 'user.list', restrict, function (req, res) {

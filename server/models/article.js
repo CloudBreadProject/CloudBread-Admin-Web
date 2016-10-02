@@ -1,5 +1,3 @@
-// Example model
-
 
 function Article (opts) {
   if(!opts) opts = {};
