@@ -11,8 +11,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List Members
-        <small>All members listed</small>
+        List AdminMembers
+        <small>All AdminMember listed</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All members</h3>
+                    <h3 class="box-title">All adminMembers</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -43,12 +43,12 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>MemberID</th>
-                            <th>Email</th>
-                            <th>UserName</th>
-                            <th>MemberGroup</th>
-                            <th>LastDeviceID</th>
-                            <th>PushNotificationID</th>
+                            <th>AdminMemberID</th>
+                            <th>AdminMemberEmail</th>
+                            <th>AdminGroup</th>
+                            <th>TimeZoneID</th>
+                            <th>Name1</th>
+                            <th>DeleteYN</th>
                             <th>CreatedAt</th>
                         </tr>
                         {{#each listObjs }}
@@ -63,16 +63,16 @@
                                 </td>
                                 <td>
                                     <a href="/member/{{this.id}}">
-                                        {{this.username}}
+                                        {{this.adminGroup}}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="/member/{{this.id}}">
-                                        {{this.group}}
+                                        {{this.timezoneid}}
                                     </a>
                                 </td>
-                                <td>{{this.LastDeviceID}}</td>
-                                <td>{{this.pushNotificationId}}</td>
+                                <td>{{this.name1}}</td>
+                                <td>{{this.deleteYB}}</td>
                                 <td>{{this.createdAt}}</td>
                             </tr>
                         {{/each}}
