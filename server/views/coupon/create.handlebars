@@ -1,0 +1,153 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Coupon
+        <small>Create a new Coupon</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'coupon'}}}">List</a></li>
+        <li class="active">New Coupon</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'coupon.store'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Coupon Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponID]" placeholder="Coupon ID"
+                               required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponCategory1]" placeholder="Category 1"/>
+                        <input type="text" class="form-control" name="coupon[couponCategory2]" placeholder="Category 2"/>
+                        <input type="text" class="form-control" name="coupon[couponCategory3]" placeholder="Category 3"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemListID]" placeholder="ItemListID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemCount]" placeholder="ItemCount"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemStatus]" placeholder="ItemStatus"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetGroup]" placeholder="TargetGroup"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetOS]" placeholder="TargetOS"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetDevice]" placeholder="TargetDevice"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[title]" placeholder="Title1" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[content]" placeholder="Content"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol1]" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol2]" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol3]" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol4]" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol5]" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol6]" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol7]" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol8]" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol9]" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol10]" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Coupon Time Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponDurationFrom]" placeholder="CouponDurationFrom" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponDurationTo]" placeholder="CouponDurationTo" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[orderNumber]" placeholder="OrderNumber" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[dupeYN]" placeholder="DupeYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[createAdminID]" placeholder="CreateAdminID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[HideYN]" placeholder="HideYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DeleteYN]" placeholder="DeleteYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[CreatedAt]" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[UpdatedAt]" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DataFromRegion]" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "coupon"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->
