@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Member
-        <small>Create a new Member</small>
+        New AdminMember
+        <small>Create a new AdminMember</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{{url 'member.list'}}}">List</a></li>
-        <li class="active">New Member</li>
+        <li><a href="{{{url 'adminMember'}}}">List</a></li>
+        <li class="active">New AdminMember</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -16,21 +16,21 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'member.store'}}}" method="post">
+            <form action="{{{url 'adminMember.store'}}}" method="post">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Credentials</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[MemberID]" placeholder="Member ID"
+                        <input type="text" class="form-control" name="member[AdminMemberID]" placeholder="AdminMember ID"
                                required/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" name="member[MemberPWD]" placeholder="Password"
+                        <input type="password" class="form-control" name="member[AdminMemberPWD]" placeholder="Password"
                                required/>
-                        <input type="password" class="form-control" name="member[MemberPWD2]"
+                        <input type="password" class="form-control" name="member[AdminMemberPWD2]"
                                placeholder="Retype password" required/>
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" name="member[EmailAddress]" placeholder="Email" required/>
+                        <input type="email" class="form-control" name="member[AdminEmailAddress]" placeholder="Email" required/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                 </div>
@@ -54,9 +54,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[PhomeNumber1]" placeholder="PhoneNumber1" required/>
-                        <input type="tel" class="form-control" name="member[PhomeNumber2]" placeholder="PhoneNumber2" required/>
-                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                        <input type="tel" class="form-control" name="member[IDCreateAdminMember]" placeholder="IDCreateAdminMember"/>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="member[Name1]" placeholder="Name1" />
@@ -76,10 +74,10 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastDeviceID]" placeholder="LastDeviceID" />
+                        <input type="text" class="form-control" name="member[TimeZoneID]" placeholder="TimeZoneID" />
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" />
+                        <input type="text" class="form-control" name="member[PINumber]" placeholder="PINumber" />
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="member[LastLoginDT]" placeholder="LastLoginDT" />
@@ -88,52 +86,7 @@
                         <input type="text" class="form-control" name="member[LastLogoutDT]" placeholder="LastLogoutDT" />
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastMACAddress]" placeholder="LastMACAddress" />
-                    </div>
-                </div>
-            </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Block</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[AccountBlockEndDT]" placeholder="AccountBlockEndDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[AccountBlockYN]" placeholder="AccountBlockYN" />
-                    </div>
-                </div>
-            </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">3rd Party Authentication</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthProvider]" placeholder="3rdAuthProvider" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthID]" placeholder="3rdAuthID" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthParam]" placeholder="3rdAuthParam" />
-                    </div>
-                </div>
-            </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Push Notification </h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[PushNotificationID]" placeholder="PushNotificationID" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[PushNotificationProvider]" placeholder="PushNotificationProvider" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[PushNotificationGroup]" placeholder="PushNotificationGroup" />
+                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" />
                     </div>
                 </div>
             </div>
@@ -176,7 +129,7 @@
             </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "member"}}}'">
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "adminMember"}}}'">
                         Cancel
                     </button>
                 </div>
