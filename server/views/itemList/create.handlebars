@@ -1,0 +1,147 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Item List
+        <small>Create a new Item List</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'itemList'}}}">List</a></li>
+        <li class="active">New Item List</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'itemList.store'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Item List Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemListID]" placeholder="ItemListID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemName]" placeholder="ItemName" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemDescription]" placeholder="ItemDescription" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemPrice]" placeholder="ItemPrice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemSellPrice]" placeholder="ItemSellPrice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory1]" placeholder="ItemCategory1"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory2]" placeholder="ItemCategory2"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory3]" placeholder="ItemCategory3"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol1]" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol2]" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol3]" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol4]" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol5]" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol6]" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol7]" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol8]" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol9]" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol10]" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCreateAdminID]" placeholder="ItemCreateAdminID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemUpdateAdminID]" placeholder="ItemUpdateAdminID" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="itemList[HideYN]" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="itemList[HideYN]" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="itemList[DeleteYN]" class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="itemList[DeleteYN]" class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[CreatedAt]" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[UpdatedAt]" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[DataFromRegion]" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "itemList"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->
