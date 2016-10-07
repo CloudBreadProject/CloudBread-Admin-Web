@@ -11,11 +11,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List Users
-        <small>All users listed</small>
+        List Member Item Purchase
+        <small>All Member Item Purchase listed</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
         <li class="active">List</li>
     </ol>
 </section>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All users</h3>
+                    <h3 class="box-title">All Member Item Purchase</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -43,71 +43,36 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Display Name</th>
-                            <th>Emails</th>
-                            <th>Actions</th>
+                            <th>MemberItemPurchaseID</th>
+                            <th>MemberID</th>
+                            <th>ItemListID</th>
+                            <th>PurchasePrice</th>
+                            <th>PurchaseQuantity</th>
+                            <th>CreatedAt</th>
                         </tr>
-                        {{#each crud_user }}
+                        {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/crud/user/{{this.id}}">
-                                        {{this.id}}
+                                    <a href="/purchase/{{this.MemberItemPurchaseID}}">
+                                        .{{this.MemberItemPurchaseID}}
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="/crud/user/{{this.id}}">
-                                        {{this.username}}
-                                    </a>
-                                </td>
-                                <td>{{this.displayName}}</td>
-                                <td>
-                                    {{#each this.emails}}
-                                        <li>{{this.value}}</li>
-                                    {{/each}}
-                                </td>
-                                <td>
-                                    <a href="/crud/user/{{this.id}}" class="btn btn-xs btn-info">
-                                        <i class="glyphicon glyphicon-eye-open"></i>
-                                        Show
-                                    </a>
-                                    <a href="/crud/user/{{this.id}}/edit" class="btn btn-xs btn-success">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                        Edit
-                                    </a>
-                                    <a href="#" class="btn btn-xs btn-danger" data-href="/crud/user/{{this.id}}?_method=delete">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                        Delete
-                                    </a>
-                                </td>
+                                <td> {{this.MemberID}} </td>
+                                <td> {{this.ItemListID}} </td>
+                                <td> {{this.PurchasePrice}} </td>
+                                <td> {{this.PurchaseQuantity}} </td>
+                                <td>{{this.createdAt}}</td>
                             </tr>
                         {{/each}}
                     </table>
                 </div>
                 <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "purchase.create"}}}'">Create Member Item Purchase</button>
+                </div>
             </div>
             <!-- /.box -->
         </div>
     </div>
     <!-- /.row -->
 </section>
-<!-- /.section -->
-{{#extend 'scripts'}}
-    <script>
-        (function($) {
-            // Delete user button
-            $('.btn-danger').click(function(event) {
-                event.preventDefault();
-
-                var uri = $(this).attr('data-href');
-
-                if (confirm('¿Desea eliminar el usuario?')) {
-                    $.post(uri, function(response) {
-                        window.location.href = '/crud/users';
-                    });
-                }
-            });
-        })(jQuery)
-    </script>
-{{/extend}}
