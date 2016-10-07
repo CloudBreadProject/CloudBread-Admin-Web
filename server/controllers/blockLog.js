@@ -17,7 +17,7 @@ function route(expressApp){
     });
 
     expressApp.post('/blockLog/', 'blockLog.store', expressApp.restrict, function(req, res, next) {
-        res.redirect('/itemList');
+        res.redirect('/blockLog');
     });
 }
 
