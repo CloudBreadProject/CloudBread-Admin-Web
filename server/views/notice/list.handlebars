@@ -11,8 +11,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List Member Game Info
-        <small>All Member Game Info listed</small>
+        List Notice
+        <small>All Notice listed</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Member Game Info</h3>
+                    <h3 class="box-title">All Notice</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -43,24 +43,30 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>MemberID</th>
-                            <th>Level</th>
-                            <th>Exps</th>
-                            <th>Points</th>
-                            <th>UserSTAT1</th>
-                            <th>CreatedAt</th>
+                            <th>NoticeID</th>
+                            <th>NoticeCategory1</th>
+                            <th>NoticeGroup</th>
+                            <th>TargetOS</th>
+                            <th>Title</th>
+                            <th>NoticeDurationFrom</th>
+                            <th>NoticeDurationTo</th>
+                            <th>OrderNumber</th>
+                            <th>CreateAt</th>
                         </tr>
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/memberGameInfo/{{this.MemberID}}">
-                                        .{{this.MemberID}}
+                                    <a href="/notice/{{this.NoticeID}}">
+                                        .{{this.NoticeID}}
                                     </a>
                                 </td>
-                                <td> {{this.Level}} </td>
-                                <td> {{this.Exps}} </td>
-                                <td> {{this.Points}} </td>
-                                <td> {{this.UserSTAT1}} </td>
+                                <td> {{this.NoticeCategory1}} </td>
+                                <td> {{this.NoticeGroup}} </td>
+                                <td> {{this.TargetOS}} </td>
+                                <td> {{this.Title}} </td>
+                                <td> {{this.NoticeDurationFrom}} </td>
+                                <td> {{this.NoticeDurationTo}} </td>
+                                <td> {{this.OrderNumber}} </td>
                                 <td>{{this.createdAt}}</td>
                             </tr>
                         {{/each}}
@@ -68,7 +74,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "memberGameInfo.create"}}}'">Create Member Game Info</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "notice.create"}}}'">Create notice</button>
                 </div>
             </div>
             <!-- /.box -->
