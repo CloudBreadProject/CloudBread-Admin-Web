@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<section class="content-header" xmlns="http://www.w3.org/1999/html">
+    <h1>
+        New Server Info
+        <small>Create a Server Info</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'serverInfo'}}}">List</a></li>
+        <li class="active">New Server Info</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'serverInfo.store'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[InfoID]" placeholder="InfoID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[FEServerLists]" placeholder="FEServerLists"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[SocketServerLists]" placeholder="SocketServerLists"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[Version]" placeholder="Version" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[ResourceLink]" placeholder="ResourceLink"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[EULAText]" placeholder="EULAText"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol1]" placeholder="sCol1"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol2]" placeholder="sCol2"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol3]" placeholder="sCol3"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol4]" placeholder="sCol4"></textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol5]" placeholder="sCol5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[CreatedAt]" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[UpdatedAt]" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[DataFromRegion]" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "serverInfo"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->
