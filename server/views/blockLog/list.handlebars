@@ -46,8 +46,8 @@
                             <th>MemberAccountBlockLogID</th>
                             <th>MemberId</th>
                             <th>MemberAccountBlockReasonCategory1</th>
-                            <th>MemberAccountBlockReasonCategory2</th>
-                            <th>MemberAccountBlockReasonCategory3</th>
+                            <th>MemberAccountBlockProcess</th>
+                            <th>CreateAdminID</th>
                             <th>CreatedAt</th>
                         </tr>
                         {{#each listObjs }}
@@ -59,8 +59,8 @@
                                 </td>
                                 <td> {{this.MemberId}} </td>
                                 <td> {{this.MemberAccountBlockReasonCategory1}} </td>
-                                <td> {{this.MemberAccountBlockReasonCategory2}} </td>
-                                <td> {{this.MemberAccountBlockReasonCategory3}} </td>
+                                <td> {{this.MemberAccountBlockProcess}} </td>
+                                <td> {{this.CreateAdminID}} </td>
                                 <td>{{this.createdAt}}</td>
                             </tr>
                         {{/each}}
