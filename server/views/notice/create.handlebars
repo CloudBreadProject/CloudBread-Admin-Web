@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Member Game Info
-        <small>Create a Member Item Purchase</small>
+        New Notice
+        <small>Create a Notice</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{{url 'purchase'}}}">List</a></li>
-        <li class="active">New Member Item Purchase</li>
+        <li><a href="{{{url 'notice'}}}">List</a></li>
+        <li class="active">New Notice</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -16,86 +16,48 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'purchase.store'}}}" method="post">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">ID Info</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[MemberItemPurchaseID]" placeholder="MemberItemPurchaseID" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[MemberId]" placeholder="MemberId" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[ItemListID]" placeholder="ItemListID" required/>
-                    </div>
-                </div>
-            </div>
+            <form action="{{{url 'notice.store'}}}" method="post">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Basic Info</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchasePrice]" placeholder="PurchasePrice" required/>
+                        <input type="text" class="form-control" name="notice[NoticeID]" placeholder="NoticeID" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseQuantity]" placeholder="PurchaseQuantity" required/>
+                        <input type="text" class="form-control" name="notice[NoticeCategory1]" placeholder="NoticeCategory1" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PGInfo1]" placeholder="PGInfo1"/>
+                        <input type="text" class="form-control" name="notice[NoticeCategory2]" placeholder="NoticeCategory2"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PGInfo2]" placeholder="PGInfo2"/>
+                        <input type="text" class="form-control" name="notice[NoticeCategory3]" placeholder="NoticeCategory3"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PGInfo3]" placeholder="PGInfo3"/>
+                        <input type="text" class="form-control" name="notice[TargetGroup]" placeholder="TargetGroup" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PGInfo4]" placeholder="PGInfo4"/>
+                        <input type="text" class="form-control" name="notice[TargetOS]" placeholder="TargetOS" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PGInfo5]" placeholder="PGInfo5"/>
+                        <input type="text" class="form-control" name="notice[TargetDevice]" placeholder="TargetDevice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="notice[NoticeImageLink]" placeholder="NoticeImageLink"/>
                     </div>
                 </div>
-                <!-- /.box-body -->
             </div>
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Purchase & Cancel Info</h3>
+                    <h3 class="box-title">Content</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseDeviceID]" placeholder="PurchaseDeviceID"/>
+                        <input type="text" class="form-control" name="notice[Title]" placeholder="Title" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseDeviceIPAddress]" placeholder="PurchaseDeviceIPAddress"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseDT]" placeholder="PurchaseDT"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelYN]" placeholder="PurchaseCancelYN"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelDT]" placeholder="PurchaseCancelDT"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelingStatus]" placeholder="PurchaseCancelingStatus"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelReturnedAmount]" placeholder="PurchaseCancelReturnedAmount"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceID]" placeholder="PurchaseCancelDeviceID"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceIPAddress]" placeholder="PurchaseCancelDeviceIPAddress"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceMACAddress]" placeholder="PurchaseCancelDeviceMACAddress"/>
+                        <textarea class="form-control" name="notice[Content]" placeholder="content"></textarea>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -106,34 +68,34 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol1]" placeholder="sCol1" />
+                        <textarea class="form-control" name="notice[sCol1]" placeholder="sCol1"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol2]" placeholder="sCol2" />
+                        <textarea class="form-control" name="notice[sCol2]" placeholder="sCol2"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol3]" placeholder="sCol3" />
+                        <textarea class="form-control" name="notice[sCol3]" placeholder="sCol3"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol4]" placeholder="sCol4" />
+                        <textarea class="form-control" name="notice[sCol4]" placeholder="sCol4"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol5]" placeholder="sCol5" />
+                        <textarea class="form-control" name="notice[sCol5]" placeholder="sCol5"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol6]" placeholder="sCol6" />
+                        <textarea class="form-control" name="notice[sCol6]" placeholder="sCol6"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol7]" placeholder="sCol7" />
+                        <textarea class="form-control" name="notice[sCol7]" placeholder="sCol7"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol8]" placeholder="sCol8" />
+                        <textarea class="form-control" name="notice[sCol8]" placeholder="sCol8"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol9]" placeholder="sCol9" />
+                        <textarea class="form-control" name="notice[sCol9]" placeholder="sCol9"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[sCol10]" placeholder="sCol10" />
+                        <textarea class="form-control" name="notice[sCol10]" placeholder="sCol10"></textarea>
                     </div>
                 </div>
             </div>
@@ -143,43 +105,52 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[PurchaseCancelConfirmAdminMemberID]" placeholder="PurchaseCancelConfirmAdminMemberID"/>
+                        <input type="text" class="form-control" name="notice[NoticeDurationFrom]" placeholder="NoticeDurationFrom" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="notice[NoticeDurationTo]" placeholder="NoticeDurationTo" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="notice[OrderNumber]" placeholder="OrderNumber" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="notice[CreateAdminID]" placeholder="CreateAdminID" required/>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="purchase[HideYN]" class="minimal" checked> Hide Yes
+                            <input type="radio" name="notice[HideYN]" class="minimal" checked> Hide Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="purchase[HideYN]" class="minimal"> Hide No
+                             <input type="radio" name="notice[HideYN]" class="minimal"> Hide No
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="purchase[DeleteYN]" class="minimal" checked> Delete  Yes
+                            <input type="radio" name="notice[DeleteYN]" class="minimal" checked> Delete  Yes
                         </label>
                         &nbsp;
                         <label>
-                            <input type="radio" name="purchase[DeleteYN]" class="minimal"> Delete No
+                            <input type="radio" name="notice[DeleteYN]" class="minimal"> Delete No
                         </label>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[CreatedAt]" placeholder="CreatedAt" required/>
+                        <input type="text" class="form-control" name="notice[CreatedAt]" placeholder="CreatedAt" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[UpdatedAt]" placeholder="UpdatedAt" required/>
+                        <input type="text" class="form-control" name="notice[UpdatedAt]" placeholder="UpdatedAt" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[DataFromRegion]" placeholder="DataFromRegion"/>
+                        <input type="text" class="form-control" name="notice[DataFromRegion]" placeholder="DataFromRegion"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="purchase[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                        <input type="text" class="form-control" name="notice[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberGameInfoStage"}}}'">
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "notice.store"}}}'">
                         Cancel
                     </button>
                 </div>
