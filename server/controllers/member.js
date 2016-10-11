@@ -29,14 +29,14 @@ function route(expressApp){
 
     });
 
-    expressApp.get('/member/create', 'member.create', expressApp.restrict, function (req, res, next) {
-        var articles = [new Article(), new Article()];
+    expressApp.get('/member/create', 'member.create', expressApp.restrict, function (req, res) {
+
         res.render('member/create', {
             title: 'Members Create'
         });
     });
 
-    expressApp.post('/member/', 'member.store', expressApp.restrict, function(req, res, next) {
+    expressApp.post('/member/', 'member.store', expressApp.restrict, function(req, res) {
         res.redirect('/member');
     });
 
