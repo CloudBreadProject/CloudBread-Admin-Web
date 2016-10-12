@@ -1,7 +1,7 @@
 function route(expressApp){
 
     expressApp.get('/adminMember', 'adminMember', expressApp.restrict, function (req, res) {
-        expressApp.models.AdminMember.findAll().then(function(results) {
+        expressApp.models.AdminMembers.findAll().then(function(results) {
             res.render('adminMember/list', {
                 title: 'Members',
                 listObjs: results
@@ -13,7 +13,7 @@ function route(expressApp){
 
     expressApp.get('/adminMember/:id', 'adminMember.show', expressApp.restrict, function(req, res) {
         var adminMemberId = req.params.id;
-        expressApp.models.AdminMember.findOne({
+        expressApp.models.AdminMembers.findOne({
             where: {
                 AdminMemberID: adminMemberId
             }

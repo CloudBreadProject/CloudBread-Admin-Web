@@ -7,6 +7,7 @@ function route(expressApp){
                 listObjs: results
             });
         }).catch(function(err) {
+            console.dir(err);
             next(err);
         });
     });

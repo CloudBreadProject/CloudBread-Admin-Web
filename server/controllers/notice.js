@@ -1,7 +1,7 @@
 function route(expressApp){
 
     expressApp.get('/notice', 'notice', expressApp.restrict, function (req, res) {
-        expressApp.models.Notices.findAll().then(function(results) {
+        expressApp.models.Notice.findAll().then(function(results) {
             res.render('notice/list', {
                 title: 'Notices',
                 listObjs: results
@@ -13,7 +13,7 @@ function route(expressApp){
 
     expressApp.get('/notice/:id', 'notice.show', expressApp.restrict, function(req, res) {
         var memberId = req.params.id;
-        expressApp.models.Notices.findOne({
+        expressApp.models.Notice.findOne({
             where: {
                 MemberID: memberId
             }
