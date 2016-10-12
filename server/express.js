@@ -65,6 +65,9 @@ module.exports = function(app, config) {
         });
     }
 
+    var models = require("./models"); //추가한 부분.
+    app.models = models;
+
     // app.use(function (err, req, res, next) {
     //     res.status(err.status || 500);
     //     res.render('error', {

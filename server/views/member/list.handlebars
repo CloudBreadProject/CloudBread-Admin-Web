@@ -11,8 +11,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List Members
-        <small>All members listed</small>
+        List Member
+        <small>All member listed</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All members</h3>
+                    <h3 class="box-title">All member</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -54,33 +54,25 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/member/{{this.id}}">
-                                        .{{this.id}}
+                                    <a href="/member/{{this.MemberID}}">
+                                        {{this.MemberID}}
                                     </a>
                                 </td>
                                 <td>
-                                    {{this.email}}
+                                    {{this.EmailAddress}}
                                 </td>
-                                <td>
-                                    <a href="/member/{{this.id}}">
-                                        {{this.username}}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/member/{{this.id}}">
-                                        {{this.group}}
-                                    </a>
-                                </td>
+                                <td>{{this.Name1}} </td>
+                                <td>{{this.MemberGroup}} </td>
                                 <td>{{this.LastDeviceID}}</td>
-                                <td>{{this.pushNotificationId}}</td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.PushNotificationId}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "adminMember.create"}}}'">Create New AdminMember</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "member.create"}}}'">Create New Member</button>
                 </div>
             </div>
             <!-- /.box -->

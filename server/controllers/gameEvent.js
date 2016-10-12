@@ -1,23 +1,48 @@
-var    Article = require('../models/article');
-
 function route(expressApp){
-    expressApp.get('/gameEvent', 'gameEvent', expressApp.restrict, function (req, res, next) {
-        var articles = [new Article(), new Article()];
-        res.render('gameEvent/list', {
-            title: 'Generator-Express MVC',
-            articles: articles
+
+    expressApp.get('/gameEvent', 'gameEvent', expressApp.restrict, function (req, res) {
+        expressApp.models.GameEvents.findAll().then(function(results) {
+            res.render('gameEvent/list', {
+                title: 'GameEvents',
+                listObjs: results
+            });
+        }).catch(function(err) {
+            next(err);
         });
     });
 
-    expressApp.get('/gameEvent/create', 'gameEvent.create', expressApp.restrict, function (req, res, next) {
-        var articles = [new Article(), new Article()];
+    expressApp.get('/gameEvent/:id', 'gameEvent.show', expressApp.restrict, function(req, res) {
+        var gameEventId = req.params.id;
+        expressApp.models.GameEvents.findOne({
+            where: {
+                GameEventID: gameEventId
+            }
+        })
+        .then(function(result){
+            res.render('gameEvent/edit', {
+                title: 'GameEvents',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.get('/gameEvent/create', 'gameEvent.create', expressApp.restrict, function (req, res) {
+
         res.render('gameEvent/create', {
-            title: 'GameEvent Create'
+            title: 'GameEvents Create'
         });
     });
 
-    expressApp.post('/gameEvent/', 'gameEvent.store', expressApp.restrict, function(req, res, next) {
+    expressApp.post('/gameEvent/', 'gameEvent.store', expressApp.restrict, function(req, res) {
         res.redirect('/gameEvent');
-    });}
+    });
+
+    expressApp.post('/gameEvent/edit', 'gameEvent.update', expressApp.restrict, function(req, res) {
+        res.redirect('/gameEvent');
+    });
+}
 
 module.exports = route;

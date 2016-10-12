@@ -1,22 +1,46 @@
-var    Article = require('../models/article');
-
 function route(expressApp){
-    expressApp.get('/adminMember', 'adminMember', expressApp.restrict, function (req, res, next) {
-        var articles = [new Article(), new Article()];
-        res.render('adminMember/list', {
-            title: 'Generator-Express MVC',
-            articles: articles
+
+    expressApp.get('/adminMember', 'adminMember', expressApp.restrict, function (req, res) {
+        expressApp.models.AdminMember.findAll().then(function(results) {
+            res.render('adminMember/list', {
+                title: 'Members',
+                listObjs: results
+            });
+        }).catch(function(err) {
+            next(err);
         });
     });
 
-    expressApp.get('/adminMember/create', 'adminMember.create', expressApp.restrict, function (req, res, next) {
-        var articles = [new Article(), new Article()];
+    expressApp.get('/adminMember/:id', 'adminMember.show', expressApp.restrict, function(req, res) {
+        var adminMemberId = req.params.id;
+        expressApp.models.AdminMember.findOne({
+            where: {
+                AdminMemberID: adminMemberId
+            }
+        })
+        .then(function(result){
+            res.render('adminMember/edit', {
+                title: 'AdminMember',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.get('/adminMember/create', 'adminMember.create', expressApp.restrict, function (req, res) {
+
         res.render('adminMember/create', {
-            title: 'AdminMember Create'
+            title: 'AdminMembers Create'
         });
     });
 
-    expressApp.post('/adminMember/', 'adminMember.store', expressApp.restrict, function(req, res, next) {
+    expressApp.post('/adminMember/', 'adminMember.store', expressApp.restrict, function(req, res) {
+        res.redirect('/adminMember');
+    });
+
+    expressApp.post('/adminMember/edit', 'adminMember.update', expressApp.restrict, function(req, res) {
         res.redirect('/adminMember');
     });
 }
