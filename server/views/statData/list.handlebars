@@ -1,0 +1,76 @@
+{{#extend 'styles'}}
+    <style>
+        .error {
+            color: red;
+        }
+        .success {
+            color:green;
+        }
+    </style>
+{{/extend}}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        List StatData
+        <small>All StatData listed</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">List</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            {{#if message}}
+                {{{message}}}
+            {{/if}}
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">All StatData</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>StatID</th>
+                            <th>CategoryName</th>
+                            <th>CountNum</th>
+                            <th>Fields</th>
+                            <th>CreateAt</th>
+                        </tr>
+                        {{#each listObjs }}
+                            <tr>
+                                <td>
+                                    <a href="/statData/{{this.StatID}}">
+                                        .{{this.StatID}}
+                                    </a>
+                                </td>
+                                <td> {{this.CategoryName}} </td>
+                                <td> {{this.CountNum}} </td>
+                                <td> {{this.Fields}} </td>
+                                <td> {{this.CreatedAt}}</td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "statData.create"}}}'">Create Stat Data</button>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
