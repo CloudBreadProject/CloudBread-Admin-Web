@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-  var AdminMember = sequelize.define('AdminMember', {
+  var AdminMembers = sequelize.define('AdminMembers', {
     AdminMemberID : { type : DataTypes.STRING, primaryKey: true, autoIncrement: false}
     , AdminMemberPWD: { type : DataTypes.STRING }
     , AdminMemberEmail : { type : DataTypes.STRING}
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
     timestamps: false,
-    tableName: 'AdminMember'
+    tableName: 'AdminMembers'
   });
-  return AdminMember;
+  return AdminMembers;
 };

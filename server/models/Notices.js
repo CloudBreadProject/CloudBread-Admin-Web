@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
     timestamps: false,
-    tableName: 'Notice'
+    tableName: 'Notices'
   });
   return Notice;
 };

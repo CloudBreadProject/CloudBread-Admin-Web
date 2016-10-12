@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
 
     , Level : { type : DataTypes.STRING}
     , Exps : { type : DataTypes.STRING}
+    , Points : { type : DataTypes.STRING}
 
     , UserSTAT1 : { type : DataTypes.TEXT}
     , UserSTAT2 : { type : DataTypes.TEXT}
@@ -36,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
     timestamps: false,
-    tableName: 'MemberGameInfo'
+    tableName: 'MemberGameInfoes'
   });
   return MemberGameInfo;
 };

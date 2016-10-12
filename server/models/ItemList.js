@@ -21,8 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     , sCol9 : { type : DataTypes.TEXT}
     , sCol10 : { type : DataTypes.TEXT}
 
-    , ItemCreateAdminID : { type : DataTypes.STRING }
-    , ItemUpdateAdminID : { type : DataTypes.STRING }
+    , IteamCreateAdminID : { type : DataTypes.STRING }
+    , IteamUpdateAdminID : { type : DataTypes.STRING }
 
     , HideYN : { type : DataTypes.BOOLEAN}
     , DeleteYN : { type : DataTypes.BOOLEAN}
@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
     timestamps: false,
-    tableName: 'ItemList'
+    tableName: 'ItemLists'
   });
   return ItemList;
 };

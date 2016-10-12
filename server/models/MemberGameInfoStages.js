@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-  var MemberGameInfoStages = sequelize.define('MemberGameInfoStages', {
+  var MemberGameInfoStage = sequelize.define('MemberGameInfoStage', {
     MemberGameInfoStageID : { type : DataTypes.STRING, primaryKey: true, autoIncrement: false}
 
     , MemberID : { type : DataTypes.STRING}
@@ -47,5 +47,5 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     tableName: 'MemberGameInfoStages'
   });
-  return MemberGameInfoStages;
+  return MemberGameInfoStage;
 };
