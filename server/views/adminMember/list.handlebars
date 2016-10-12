@@ -54,26 +54,16 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/member/{{this.id}}">
-                                        .{{this.id}}
-                                    </a>
+                                    <a href="/adminMember/{{this.AdminMemberID}}"> {{this.AdminMemberID}} </a>
                                 </td>
                                 <td>
-                                    {{this.email}}
+                                    {{this.AdminMemberEmail}}
                                 </td>
-                                <td>
-                                    <a href="/member/{{this.id}}">
-                                        {{this.adminGroup}}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/member/{{this.id}}">
-                                        {{this.timezoneid}}
-                                    </a>
-                                </td>
-                                <td>{{this.name1}}</td>
-                                <td>{{this.deleteYB}}</td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.AdminGroup}} </td>
+                                <td>{{this.TimeZoneID}}</td>
+                                <td>{{this.Name1}}</td>
+                                <td>{{this.DeleteYN}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

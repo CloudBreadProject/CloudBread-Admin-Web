@@ -52,18 +52,16 @@
                             <tr>
                                 <td>
                                     <a href="/gameEventMember/{{this.GameEventMemberID}}">
-                                        .{{this.GameEventMemberID}}
+                                        {{this.GameEventMemberID}}
                                     </a>
                                 </td>
                                 <td>
                                     {{this.eventID}}
                                 </td>
-                                <td>
-                                    <a href="/member/{{this.MemberID}}">
-                                        {{this.MmeberID}}
-                                    </a>
+                                <td><a href="/member/{{this.MemberID  }}"> {{this.MemberID}}
+                                </a>
                                 </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

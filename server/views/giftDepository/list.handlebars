@@ -53,15 +53,17 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/giftDepository/{{this.GiftDepositoryID}}">
-                                        .{{this.GiftDepositoryID}}
-                                    </a>
+                                    <a href="/giftDepository/{{this.GiftDepositoryID}}"> {{this.GiftDepositoryID}} </a>
                                 </td>
                                 <td> {{this.ItemListID}} </td>
                                 <td> {{this.ItemCount}} </td>
-                                <td> {{this.FromMemberID}} </td>
-                                <td> {{this.ToMemberID}} </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>
+                                    <a href="/member/{{this.FromMemberID}}"> {{this.FromMemberID}} </a>
+                                </td>
+                                <td>
+                                    <a href="/member/{{this.ToMemberID}}"> {{this.ToMemberID}} </a>
+                                </td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

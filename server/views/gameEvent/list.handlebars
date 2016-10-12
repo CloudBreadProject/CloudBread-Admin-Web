@@ -44,7 +44,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>GameEventID</th>
-                            <th>EventCategoryID</th>
+                            <th>EventCategory1</th>
                             <th>ItemListID</th>
                             <th>ItemCount</th>
                             <th>TargetGroup</th>
@@ -54,15 +54,13 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/gameEvent/{{this.GameEventID}}">
-                                        .{{this.GameEventID}}
-                                    </a>
+                                    <a href="/gameEvent/{{this.GameEventID}}"> {{this.GameEventID}} </a>
                                 </td>
                                 <td>
-                                    {{this.EventCategoryID}}
+                                    {{this.EventCategory1}}
                                 </td>
                                 <td>
-                                    {{this.ItemListID}}
+                                    <a href="/itemList/{{this.ItemListID}}">{{this.ItemListID}}</a>
                                 </td>
                                 <td>
                                     {{this.ItemCount}}
@@ -73,7 +71,7 @@
                                 <td>
                                     {{this.Title}}
                                 </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

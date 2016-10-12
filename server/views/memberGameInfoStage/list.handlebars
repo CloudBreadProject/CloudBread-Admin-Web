@@ -55,17 +55,17 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/memberGameInfoStage/{{this.MemberGameInfoStageId}}">
-                                        .{{this.MemberGameInfoStageId}}
+                                    <a href="/memberGameInfoStage/{{this.MemberGameInfoStageID}}">
+                                        {{this.MemberGameInfoStageID}}
                                     </a>
                                 </td>
-                                <td> {{this.MemberID}} </td>
+                                <td><a href="/member/{{this.MemberID}}"> {{this.MemberID}} </a></td>
                                 <td> {{this.StageName}} </td>
                                 <td> {{this.StageStatus}} </td>
                                 <td> {{this.Category1}} </td>
                                 <td> {{this.Category2}} </td>
                                 <td> {{this.Category3}} </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

@@ -55,9 +55,7 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/memberGameInfo/{{this.MemberID}}">
-                                        .{{this.MemberID}}
-                                    </a>
+                                    <a href="/memberGameInfo/{{this.MemberID}}"> {{this.MemberID}} </a>
                                 </td>
                                 <td> {{this.Level}} </td>
                                 <td> {{this.Exps}} </td>
@@ -65,7 +63,7 @@
                                 <td> {{this.UserSTAT1}} </td>
                                 <td> {{this.UserSTAT2}} </td>
                                 <td> {{this.UserSTAT3}} </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

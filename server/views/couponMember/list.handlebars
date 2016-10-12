@@ -51,9 +51,7 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/couponMember/{{this.couponMemberID}}">
-                                        .{{this.couponMemberID}}
-                                    </a>
+                                    <a href="/couponMember/{{this.CouponMemberID}}"> {{this.CouponMemberID}} </a>
                                 </td>
                                 <td>
                                     {{this.CouponID}}
@@ -63,7 +61,7 @@
                                         {{this.MemberID}}
                                     </a>
                                 </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

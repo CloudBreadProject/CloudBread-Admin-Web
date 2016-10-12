@@ -54,26 +54,16 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/coupon/{{this.couponID}}">
-                                        .{{this.couponID}}
-                                    </a>
+                                    <a href="/coupon/{{this.CouponID }}"> {{this.CouponID }} </a>
                                 </td>
                                 <td>
-                                    {{this.couponCategory}}
+                                    {{this.CouponCategory1}}
                                 </td>
-                                <td>
-                                    <a href="/coupon/{{this.couponID}}">
-                                        {{this.itemListID}}
-                                    </a>
-                                </td>
-                                <td>{{this.itemCount}}</td>
-                                <td>
-                                    <a href="/coupon/{{this.couponID}}">
-                                        {{this.targetGroup}}
-                                    </a>
-                                </td>
-                                <td>{{this.title}}</td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.ItemListID}}</td>
+                                <td>{{this.ItemCount}}</td>
+                                <td>{{this.TargetGroup}}</td>
+                                <td>{{this.Title}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

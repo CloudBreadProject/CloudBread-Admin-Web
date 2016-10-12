@@ -45,29 +45,25 @@
                         <tr>
                             <th>NoticeID</th>
                             <th>NoticeCategory1</th>
-                            <th>NoticeGroup</th>
-                            <th>TargetOS</th>
+                            <th>TargetGroup</th>
                             <th>Title</th>
                             <th>NoticeDurationFrom</th>
                             <th>NoticeDurationTo</th>
-                            <th>OrderNumber</th>
                             <th>CreateAt</th>
                         </tr>
                         {{#each listObjs }}
                             <tr>
                                 <td>
                                     <a href="/notice/{{this.NoticeID}}">
-                                        .{{this.NoticeID}}
+                                        {{this.NoticeID}}
                                     </a>
                                 </td>
                                 <td> {{this.NoticeCategory1}} </td>
-                                <td> {{this.NoticeGroup}} </td>
-                                <td> {{this.TargetOS}} </td>
+                                <td> {{this.TargetGroup}} </td>
                                 <td> {{this.Title}} </td>
                                 <td> {{this.NoticeDurationFrom}} </td>
                                 <td> {{this.NoticeDurationTo}} </td>
-                                <td> {{this.OrderNumber}} </td>
-                                <td>{{this.createdAt}}</td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

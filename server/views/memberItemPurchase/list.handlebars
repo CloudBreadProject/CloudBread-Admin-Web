@@ -11,8 +11,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List StatData
-        <small>All StatData listed</small>
+        List Member Item Purchase
+        <small>All Member Item Purchase listed</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All StatData</h3>
+                    <h3 class="box-title">All Member Item Purchase</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -43,30 +43,32 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>StatID</th>
-                            <th>CategoryName</th>
-                            <th>CountNum</th>
-                            <th>Fields</th>
-                            <th>CreateAt</th>
+                            <th>MemberItemPurchaseID</th>
+                            <th>MemberID</th>
+                            <th>ItemListID</th>
+                            <th>PurchasePrice</th>
+                            <th>PurchaseQuantity</th>
+                            <th>CreatedAt</th>
                         </tr>
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/statData/{{this.StatID}}">
-                                        .{{this.StatID}}
+                                    <a href="/purchase/{{this.MemberItemPurchaseID}}">
+                                        {{this.MemberItemPurchaseID}}
                                     </a>
                                 </td>
-                                <td> {{this.CategoryName}} </td>
-                                <td> {{this.CountNum}} </td>
-                                <td> {{this.Fields}} </td>
-                                <td> {{this.CreatedAt}}</td>
+                                <td><a href="/member/{{this.MemberID}}"> {{this.MemberID}} </a></td>
+                                <td><a href="/itemList/{{this.ItemListID}}"> {{this.ItemListID}}</a> </td>
+                                <td> {{this.PurchasePrice}} </td>
+                                <td> {{this.PurchaseQuantity}} </td>
+                                <td>{{this.CreatedAt}}</td>
                             </tr>
                         {{/each}}
                     </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "statData.create"}}}'">Create Stat Data</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "memberItemPurchase.create"}}}'">Create Member Item Purchase</button>
                 </div>
             </div>
             <!-- /.box -->
