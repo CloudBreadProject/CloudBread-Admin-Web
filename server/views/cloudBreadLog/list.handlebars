@@ -11,8 +11,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List App System Log
-        <small>All App System Loglisted</small>
+        List App User Log
+        <small>All App User Loglisted</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
@@ -28,7 +28,7 @@
             {{/if}}
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All App System Log</h3>
+                    <h3 class="box-title">All App User Log</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
@@ -43,32 +43,32 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>PartitionKey</th>
-                            <th>RowKey</th>
-                            <th>Category1</th>
-                            <th>Category2</th>
-                            <th>Category3</th>
-                            <th>Timestamp</th>
+                            <th>ID</th>
+                            <th>MemberID</th>
+                            <th>JobID</th>
+                            <th>Thread</th>
+                            <th>Level</th>
+                            <th>Date</th>
                         </tr>
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/appSystemLog/{{this.PartitionKey}}">
-                                        .{{this.PartitionKey}}
+                                    <a href="/cloudBreadLog/{{this.ID}}">
+                                        {{this.ID}}
                                     </a>
                                 </td>
-                                <td> {{this.RowKey}} </td>
-                                <td> {{this.Category1}} </td>
-                                <td> {{this.Category2}} </td>
-                                <td> {{this.Category3}} </td>
-                                <td>{{this.Timestamp}}</td>
+                                <td> {{this.MemberID}} </td>
+                                <td> {{this.JobID}} </td>
+                                <td> {{this.Thread}} </td>
+                                <td> {{this.Level}} </td>
+                                <td>{{this.Date}}</td>
                             </tr>
                         {{/each}}
                     </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "appSystemLog.create"}}}'">Create App System Log</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "cloudBreadLog.create"}}}'">Create App User Log</button>
                 </div>
             </div>
             <!-- /.box -->
