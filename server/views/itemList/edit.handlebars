@@ -1,0 +1,147 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Item List
+        <small>Create a new Item List</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'itemList'}}}">List</a></li>
+        <li class="active">New Item List</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'itemList.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Item List Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemListID]" value="{{ obj.ItemListID}}" placeholder="ItemListID" readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemName]" value="{{ obj.ItemName}}" placeholder="ItemName" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemDescription]" value="{{ obj.ItemDescription}}" placeholder="ItemDescription" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemPrice]" value="{{ obj.ItemPrice}}" placeholder="ItemPrice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemSellPrice]" value="{{ obj.ItemSellPrice}}" placeholder="ItemSellPrice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory1]" value="{{ obj.ItemCategory1}}" placeholder="ItemCategory1"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory2]" value="{{ obj.ItemCategory2}}" placeholder="ItemCategory2"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[ItemCategory3]" value="{{ obj.ItemCategory3}}" placeholder="ItemCategory3"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[sCol10]" value="{{ obj.sCol10}}" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[IteamCreateAdminID]" value="{{ obj.IteamCreateAdminID}}" placeholder="IteamCreateAdminID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[IteamUpdateAdminID]" value="{{ obj.IteamUpdateAdminID}}" placeholder="IteamUpdateAdminID" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="itemList[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="itemList[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="itemList[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="itemList[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="itemList[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "itemList"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

@@ -1,0 +1,130 @@
+<!-- Content Header (Page header) -->
+<section class="content-header" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+         xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+         xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+         xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <h1>
+        New Game Event Member
+        <small>Create a new game event member</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'gameEventMember'}}}">List</a></li>
+        <li class="active">New Game Event Member</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'coupon.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Game Event Member Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[GameEventMemberID]" value="{{ obj.GameEventMemberID}}" placeholder="GameEventMemberID"
+                               readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[eventID]" value="{{ obj.EventID}}" placeholder="eventID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[MemberID]" value="{{ obj.MemberID}}" placeholder="MemberID" required/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol1]" placeholder="sCol1">{{ obj.sCol1}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol2]" placeholder="sCol2">{{ obj.sCol2}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol3]" placeholder="sCol3">{{ obj.sCol3}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol4]" placeholder="sCol4">{{ obj.sCol4}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol5]" placeholder="sCol5">{{ obj.sCol5}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol6]" placeholder="sCol6">{{ obj.sCol6}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol7]" placeholder="sCol7">{{ obj.sCol7}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol8]" placeholder="sCol8">{{ obj.sCol8}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol9]" placeholder="sCol9">{{ obj.sCol9}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="gameEventMember[sCol10]" placeholder="sCol10">{{ obj.sCol10}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="gameEventMember[HideYN]" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="gameEventMember[HideYN]" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="gameEventMember[DeleteYN]"  class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="gameEventMember[DeleteYN]"  class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="gameEventMember[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "gameEventMember"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

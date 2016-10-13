@@ -1,0 +1,138 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Member Account Block Log
+        <small>Create a Member Account Block Log</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'memberAccountBlockLog'}}}">List</a></li>
+        <li class="active">New Member Account Block Log</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'memberAccountBlockLog.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Member Account Block Log Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockId]" value="{{ obj.MemberAccountBlockId}}" placeholder="MemberAccountBlockId" readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberID]" value="{{ obj.MemberID}}" placeholder="MemberID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReason]" value="{{ obj.MemberAccountBlockReason}}" placeholder="MemberAccountBlockReason" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockProcess]" value="{{ obj.MemberAccountBlockProcess}}" placeholder="MemberAccountBlockProcess" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory1]" value="{{ obj.MemberAccountBlockReasonCategory1}}" placeholder="MemberAccountBlockReasonCategory1"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory2]" value="{{ obj.MemberAccountBlockReasonCategory2}}" placeholder="MemberAccountBlockReasonCategory2"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory3]" value="{{ obj.MemberAccountBlockReasonCategory3}}" placeholder="MemberAccountBlockReasonCategory3"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol1]" placeholder="sCol1" >{{ obj.sCol1}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol2]" placeholder="sCol2" >{{ obj.sCol2}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol3]" placeholder="sCol3" >{{ obj.sCol3}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol4]" placeholder="sCol4" >{{ obj.sCol4}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol5]" placeholder="sCol5" >{{ obj.sCol5}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol6]" placeholder="sCol6" >{{ obj.sCol6}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol7]" placeholder="sCol7" >{{ obj.sCol7}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol8]" placeholder="sCol8" >{{ obj.sCol8}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol9]" placeholder="sCol9" >{{ obj.sCol9}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="blockLog[sCol10]" placeholder="sCol10" >{{ obj.sCol10}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="blockLog[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="blockLog[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="blockLog[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="blockLog[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="blockLog[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberAccountBlockLog"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

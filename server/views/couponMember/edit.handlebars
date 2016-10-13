@@ -16,21 +16,21 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'couponMember.store'}}}" method="post">
+            <form action="{{{url 'couponMember.update'}}}" method="post">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">CouponMember Basic Info</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[CouponMemberID]" placeholder="CouponMember ID"
-                               required/>
+                        <input type="text" class="form-control" name="CouponMember[CouponMemberID]" value="{{ obj.CouponMemberID}}" placeholder="CouponMember ID"
+                               readonly/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[CouponID]" placeholder="Coupon ID" required/>
+                        <input type="text" class="form-control" name="CouponMember[CouponID]" value="{{ obj.CouponID}}" placeholder="Coupon ID" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[MemberID]" placeholder="MemberID"/>
+                        <input type="text" class="form-control" name="CouponMember[MemberID]" value="{{ obj.MemberID}}" placeholder="MemberID"/>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -41,34 +41,34 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol1]" placeholder="sCol1"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol1]"  placeholder="sCol1">{{ obj.sCol1}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol2]" placeholder="sCol2"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol2]"  placeholder="sCol2">{{ obj.sCol2}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol3]" placeholder="sCol3"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol3]"  placeholder="sCol3">{{ obj.sCol3}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol4]" placeholder="sCol4"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol4]"  placeholder="sCol4">{{ obj.sCol4}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol5]" placeholder="sCol5"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol5]"  placeholder="sCol5">{{ obj.sCol5}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol6]" placeholder="sCol6"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol6]"  placeholder="sCol6">{{ obj.sCol6}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol7]" placeholder="sCol7"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol7]"  placeholder="sCol7">{{ obj.sCol7}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol8]" placeholder="sCol8"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol8]"  placeholder="sCol8">{{ obj.sCol8}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol9]" placeholder="sCol9"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol9]"  placeholder="sCol9">{{ obj.sCol9}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="CouponMember[sCol10]" placeholder="sCol10"></textarea>
+                        <textarea class="form-control" name="CouponMember[sCol10]"  placeholder="sCol10">{{ obj.sCol10}}</textarea>
                     </div>
                 </div>
             </div>
@@ -78,22 +78,22 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[HideYN]" placeholder="HideYN" required/>
+                        <input type="text" class="form-control" name="CouponMember[HideYN]" value="{{ obj.HideYN}}" placeholder="HideYN" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[DeleteYN]" placeholder="DeleteYN" required/>
+                        <input type="text" class="form-control" name="CouponMember[DeleteYN]" value="{{ obj.DeleteYN}}" placeholder="DeleteYN" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[CreatedAt]" placeholder="CreatedAt" required/>
+                        <input type="text" class="form-control" name="CouponMember[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[UpdatedAt]" placeholder="UpdatedAt" required/>
+                        <input type="text" class="form-control" name="CouponMember[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[DataFromRegion]" placeholder="DataFromRegion"/>
+                        <input type="text" class="form-control" name="CouponMember[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="CouponMember[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                        <input type="text" class="form-control" name="CouponMember[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>

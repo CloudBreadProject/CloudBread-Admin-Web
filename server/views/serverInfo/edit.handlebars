@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<section class="content-header" xmlns="http://www.w3.org/1999/html">
+    <h1>
+        New Server Info
+        <small>Create a Server Info</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'serverInfo'}}}">List</a></li>
+        <li class="active">New Server Info</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'serverInfo.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[InfoID]" value="{{ obj.InfoID}}" placeholder="InfoID" readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[FEServerLists]" placeholder="FEServerLists">{{ obj.FEServerLists}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[SocketServerLists]" placeholder="SocketServerLists">{{ obj.SocketServerLists}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[Version]" value="{{ obj.Version}}" placeholder="Version" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[ResourceLink]" placeholder="ResourceLink">{{ obj.ResourceLink}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[EULAText]" placeholder="EULAText">{{ obj.EULAText}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol1]" placeholder="sCol1">{{ obj.sCol1}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol2]" placeholder="sCol2">{{ obj.sCol2}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol3]" placeholder="sCol3">{{ obj.sCol3}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol4]" placeholder="sCol4">{{ obj.sCol4}}</textarea>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="serverInfo[sCol5]" placeholder="sCol5">{{ obj.sCol5}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="serverInfo[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "serverInfo"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

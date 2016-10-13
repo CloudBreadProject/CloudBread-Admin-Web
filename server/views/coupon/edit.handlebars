@@ -1,0 +1,153 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Coupon
+        <small>Create a new Coupon</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'coupon'}}}">List</a></li>
+        <li class="active">New Coupon</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'coupon.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Coupon Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponID]" value="{{ obj.CouponID}}" placeholder="Coupon ID"
+                               readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponCategory1]" value="{{ obj.CouponCategory1}}" placeholder="Category 1"/>
+                        <input type="text" class="form-control" name="coupon[couponCategory2]" value="{{ obj.CouponCategory2}}" placeholder="Category 2"/>
+                        <input type="text" class="form-control" name="coupon[couponCategory3]" value="{{ obj.CouponCategory3}}" placeholder="Category 3"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemListID]" value="{{ obj.ItemListID}}" placeholder="ItemListID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemCount]" value="{{ obj.ItemCount}}" placeholder="ItemCount"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[itemStatus]" value="{{ obj.ItemStatus}}" placeholder="ItemStatus"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetGroup]" value="{{ obj.TargetGroup}}" placeholder="TargetGroup"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetOS]" value="{{ obj.TargetOS}}" placeholder="TargetOS"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[targetDevice]" value="{{ obj.TargetDevice}}" placeholder="TargetDevice"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[title]" value="{{ obj.Title}}" placeholder="Title1" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <textarea class="form-control" name="coupon[content]" placeholder="Content">{{ obj.Content}}</textarea>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[sCol10]" value="{{ obj.sCol10}}" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Coupon Time Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponDurationFrom]" value="{{ obj.CouponDurationFrom}}" placeholder="CouponDurationFrom" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[couponDurationTo]" value="{{ obj.CouponDurationTo}}" placeholder="CouponDurationTo" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[orderNumber]" value="{{ obj.OrderNumber}}" placeholder="OrderNumber" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[dupeYN]" value="{{ obj.DupeYN}}" placeholder="DupeYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[createAdminID]" value="{{ obj.CreateAdminID}}" placeholder="CreateAdminID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[HideYN]" value="{{ obj.HideYN}}" placeholder="HideYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DeleteYN]" value="{{ obj.DeleteYN}}" placeholder="DeleteYN" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="coupon[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "coupon"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

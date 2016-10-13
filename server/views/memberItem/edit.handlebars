@@ -1,0 +1,132 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Member Item
+        <small>Create a Member Item</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'memberItem'}}}">List</a></li>
+        <li class="active">New Member Item</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'memberItem.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Member Item</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[MemberItemID]" value="{{ obj.MemberItemID}}" placeholder="MemberItemID" readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[MemberID]" value="{{ obj.MemberID}}" placeholder="MemberID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[ItemListID]" value="{{ obj.ItemListID}}" placeholder="ItemListID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[ItemCount]" value="{{ obj.ItemCount}}" placeholder="ItemCount" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[ItemStatus]" value="{{ obj.ItemStatus}}" placeholder="ItemStatus" required/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[sCol10]" value="{{ obj.sCol10}}" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="memberItem[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="memberItem[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="memberItem[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="memberItem[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="memberItem[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberItem"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->

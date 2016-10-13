@@ -1,0 +1,195 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New Member Game Info
+        <small>Create a Member Item Purchase</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'memberItemPurchase'}}}">List</a></li>
+        <li class="active">New Member Item Purchase</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'memberItemPurchase.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">ID Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[MemberItemPurchaseID]" value="{{ obj.MemberItemPurchaseID}}" placeholder="MemberItemPurchaseID" readonly/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[MemberID]" value="{{ obj.MemberID}}" placeholder="MemberID" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[ItemListID]" value="{{ obj.ItemListID}}" placeholder="ItemListID" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Basic Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchasePrice]" value="{{ obj.PurchasePrice}}" placeholder="PurchasePrice" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseQuantity]" value="{{ obj.PurchaseQuantity}}" placeholder="PurchaseQuantity" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PGinfo1]" value="{{ obj.PGinfo1}}" placeholder="PGinfo1"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PGinfo2]" value="{{ obj.PGinfo2}}" placeholder="PGinfo2"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PGinfo3]" value="{{ obj.PGinfo3}}" placeholder="PGinfo3"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PGinfo4]" value="{{ obj.PGinfo4}}" placeholder="PGinfo4"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PGinfo5]" value="{{ obj.PGinfo5}}" placeholder="PGinfo5"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Purchase & Cancel Info</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseDeviceID]" value="{{ obj.PurchaseDeviceID}}" placeholder="PurchaseDeviceID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseDeviceIPAddress]" value="{{ obj.PurchaseDeviceIPAddress}}" placeholder="PurchaseDeviceIPAddress"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseDT]" value="{{ obj.PurchaseDT}}" placeholder="PurchaseDT"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelYN]" value="{{ obj.PurchaseCancelYN}}" placeholder="PurchaseCancelYN"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelDT]" value="{{ obj.PurchaseCancelDT}}" placeholder="PurchaseCancelDT"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelingStatus]" value="{{ obj.PurchaseCancelingStatus}}" placeholder="PurchaseCancelingStatus"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelReturnedAmount]" value="{{ obj.PurchaseCancelReturnedAmount}}" placeholder="PurchaseCancelReturnedAmount"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceID]" value="{{ obj.PurchaseCancelDeviceID}}" placeholder="PurchaseCancelDeviceID"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceIPAddress]" value="{{ obj.PurchaseCancelDeviceIPAddress}}" placeholder="PurchaseCancelDeviceIPAddress"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelDeviceMACAddress]" value="{{ obj.PurchaseCancelDeviceMACAddress}}" placeholder="PurchaseCancelDeviceMACAddress"/>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Extra Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[sCol10]" value="{{ obj.sCol10}}" placeholder="sCol10" />
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[PurchaseCancelConfirmAdminMemberID]" value="{{ obj.PurchaseCancelConfirmAdminMemberID}}" placeholder="PurchaseCancelConfirmAdminMemberID"/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="purchase[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                             <input type="radio" name="purchase[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="purchase[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="purchase[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                        </label>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="purchase[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
+                    </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberItemPurchase"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->
