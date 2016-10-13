@@ -12,10 +12,10 @@ function route(expressApp){
     });
 
     expressApp.get('/memberGameInfo/:id', 'memberGameInfo.show', expressApp.restrict, function(req, res) {
-        var memberGameInfoId = req.params.id;
+        var memberID = req.params.id;
         expressApp.models.MemberGameInfo.findOne({
             where: {
-                MemberGameInfoID: memberGameInfoId
+                MemberID: memberID
             }
         })
         .then(function(result){

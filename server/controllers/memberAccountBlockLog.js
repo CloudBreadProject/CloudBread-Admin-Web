@@ -15,7 +15,7 @@ function route(expressApp){
         var memberAccountBlockId = req.params.id;
         expressApp.models.MemberAccountBlockLog.findOne({
             where: {
-                MemberAccountBlockLogID: memberAccountBlockLogId
+                MemberAccountBlockID: memberAccountBlockId
             }
         })
         .then(function(result){

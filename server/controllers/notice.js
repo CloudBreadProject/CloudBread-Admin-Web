@@ -12,10 +12,10 @@ function route(expressApp){
     });
 
     expressApp.get('/notice/:id', 'notice.show', expressApp.restrict, function(req, res) {
-        var memberId = req.params.id;
+        var NoticeID = req.params.id;
         expressApp.models.Notice.findOne({
             where: {
-                MemberID: memberId
+                NoticeID: NoticeID
             }
         })
         .then(function(result){

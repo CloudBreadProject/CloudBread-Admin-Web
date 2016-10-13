@@ -12,10 +12,10 @@ function route(expressApp){
     });
 
     expressApp.get('/statsData/:id', 'statsData.show', expressApp.restrict, function(req, res) {
-        var memberId = req.params.id;
+        var StatID = req.params.id;
         expressApp.models.StatsData.findOne({
             where: {
-                MemberID: memberId
+                StatID: StatID
             }
         })
         .then(function(result){
