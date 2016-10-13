@@ -1,0 +1,144 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        New AdminMember
+        <small>Create a new AdminMember</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'adminMember'}}}">List</a></li>
+        <li class="active">New AdminMember</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Input addon -->
+            <!-- form -->
+            <form action="{{{url 'adminMember.update'}}}" method="post">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Credentials</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[AdminMemberID]" placeholder="AdminMember ID" value="{{obj.AdminMemberID}}"
+                               readonly/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" name="member[AdminMemberPWD]" placeholder="Password"
+                               required/>
+                        <input type="password" class="form-control" name="member[AdminMemberPWD2]" placeholder="Retype password" required/>
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Email</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="email" class="form-control" name="member[AdminEmailAddress]" placeholder="Email" value="{{ obj.AdminMemberEmail }}" required/>
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Privates</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="member[IDCreateAdminMember]" placeholder="IDCreateAdminMember" value="{{ obj.IDCreateAdminMember}}"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[Name1]" placeholder="Name1" value="{{ obj.Name1}}" />
+                        <input type="text" class="form-control" name="member[Name2]" placeholder="Name2" value="{{ obj.Name2}}" />
+                        <input type="text" class="form-control" name="member[Name3]" placeholder="Name3" value="{{ obj.Name3}}" />
+                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="member[DOB]" placeholder="Date of Birth" value="{{ obj.DOB}}"/>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[TimeZoneID]" placeholder="TimeZoneID" value="{{ obj.TimeZoneID}}" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[PINumber]" placeholder="PINumber" value="{{ obj.PINumber}}" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[LastLoginDT]" placeholder="LastLoginDT" value="{{ obj.LastLoginDT}}" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[LastLogoutDT]" placeholder="LastLogoutDT" value="{{ obj.LastLogoutDT}}" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" value="{{ obj.LastIPaddress}}" />
+                    </div>
+                </div>
+            </div>
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Extra Data</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol1]" placeholder="sCol1" value="{{ obj.sCol1}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol2]" placeholder="sCol2" value="{{ obj.sCol2}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol3]" placeholder="sCol3" value="{{ obj.sCol3}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol4]" placeholder="sCol4" value="{{ obj.sCol4}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol5]" placeholder="sCol5" value="{{ obj.sCol5}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol6]" placeholder="sCol6" value="{{ obj.sCol6}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol7]" placeholder="sCol7" value="{{ obj.sCol7}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol8]" placeholder="sCol8" value="{{ obj.sCol8}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol9]" placeholder="sCol9" value="{{ obj.sCol9}}" />
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[sCol10]" placeholder="sCol10" value="{{ obj.sCol10}}" />
+                        </div>
+                </div>
+            </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "adminMember"}}}'">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+            <!-- /form -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.section -->
