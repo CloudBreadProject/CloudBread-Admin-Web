@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{{url 'member.list'}}}">List</a></li>
+        <li><a href="{{{url 'member'}}}">List</a></li>
         <li class="active">New Member</li>
     </ol>
 </section>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" name="member[EmailAddress]" placeholder="Email" required/>
+                        <input type="email" class="form-control" name="member[EmailAddress]" placeholder="Email"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                 </div>
@@ -54,8 +54,12 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[PhomeNumber1]" placeholder="PhoneNumber1" required/>
-                        <input type="tel" class="form-control" name="member[PhomeNumber2]" placeholder="PhoneNumber2" required/>
+                        <input type="tel" class="form-control" name="member[PhoneNumber1]" placeholder="PhoneNumber1"/>
+                        <input type="tel" class="form-control" name="member[PhoneNumber2]" placeholder="PhoneNumber2"/>
+                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="member[PINumber]" placeholder="PINumber"/>
                         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
@@ -68,56 +72,40 @@
                         <input type="tel" class="form-control" name="member[DOB]" placeholder="Date of Birth"/>
                         <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     </div>
-                </div>
-            </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Access</h3>
-                </div>
-                <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastDeviceID]" placeholder="LastDeviceID" />
+                        <input type="tel" class="form-control" name="member[RecommenderID]" placeholder="RecommenderID"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLoginDT]" placeholder="LastLoginDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLogoutDT]" placeholder="LastLogoutDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastMACAddress]" placeholder="LastMACAddress" />
+                        <input type="tel" class="form-control" name="member[MemberGroup]" placeholder="MemberGroup"/>
                     </div>
                 </div>
             </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Block</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[AccountBlockEndDT]" placeholder="AccountBlockEndDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[AccountBlockYN]" placeholder="AccountBlockYN" />
-                    </div>
-                </div>
-            </div>
+            <!--<div class="box box-info">-->
+                <!--<div class="box-header with-border">-->
+                    <!--<h3 class="box-title">Block</h3>-->
+                <!--</div>-->
+                <!--<div class="box-body">-->
+                    <!--<div class="form-group has-feedback">-->
+                        <!--<input type="text" class="form-control" name="member[AccountBlockEndDT]" placeholder="AccountBlockEndDT" />-->
+                    <!--</div>-->
+                    <!--<div class="form-group has-feedback">-->
+                        <!--<input type="text" class="form-control" name="member[AccountBlockYN]" placeholder="AccountBlockYN" />-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">3rd Party Authentication</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthProvider]" placeholder="3rdAuthProvider" />
+                        <input type="text" class="form-control" name="member[thirdAuthProvider]" placeholder="thirdAuthProvider" />
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthID]" placeholder="3rdAuthID" />
+                        <input type="text" class="form-control" name="member[thirdAuthID]" placeholder="thirdAuthID" />
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthParam]" placeholder="3rdAuthParam" />
+                        <input type="text" class="form-control" name="member[thirdAuthParam]" placeholder="thirdAuthParam" />
                     </div>
                 </div>
             </div>
@@ -143,35 +131,63 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol1]" placeholder="sCol1" />
+                            <textarea class="form-control" name="member[sCol1]" placeholder="sCol1"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol2]" placeholder="sCol2" />
+                            <textarea class="form-control" name="member[sCol2]" placeholder="sCol2"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol3]" placeholder="sCol3" />
+                            <textarea class="form-control" name="member[sCol3]" placeholder="sCol3"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol4]" placeholder="sCol4" />
+                            <textarea class="form-control" name="member[sCol4]" placeholder="sCol4"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol5]" placeholder="sCol5" />
+                            <textarea class="form-control" name="member[sCol5]" placeholder="sCol5"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol6]" placeholder="sCol6" />
+                            <textarea class="form-control" name="member[sCol6]" placeholder="sCol6"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol7]" placeholder="sCol7" />
+                            <textarea class="form-control" name="member[sCol7]" placeholder="sCol7"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol8]" placeholder="sCol8" />
+                            <textarea class="form-control" name="member[sCol8]" placeholder="sCol8"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol9]" placeholder="sCol9" />
+                            <textarea class="form-control" name="member[sCol9]" placeholder="sCol9"></textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol10]" placeholder="sCol10" />
+                            <textarea class="form-control" name="member[sCol10]" placeholder="sCol10"></textarea>
                         </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Access</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[TimeZoneID]" placeholder="TimeZoneID"  value="Korea Standard Time" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="member[HideYN]" class="minimal" value="Y" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="member[HideYN]" class="minimal" value="N" > Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="member[DeleteYN]" class="minimal" value="Y" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="member[DeleteYN]" class="minimal" value="N" > Delete No
+                        </label>
+                    </div>
                 </div>
             </div>
                 <div class="box-footer">

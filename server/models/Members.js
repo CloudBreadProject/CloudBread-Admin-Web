@@ -14,13 +14,13 @@ module.exports = function(sequelize, DataTypes) {
     , DOB : { type : DataTypes.STRING}
     , RecommenderID : { type : DataTypes.STRING}
     , MemberGroup : { type : DataTypes.STRING}
-    , LastDeviceID : { type : DataTypes.STRING}
-    , LastIPaddress : { type : DataTypes.STRING}
-    , LastLoginDT : { type : DataTypes.STRING}
-    , LastLogoutDT : { type : DataTypes.STRING}
-    , LastMACAddress : { type : DataTypes.STRING}
-    , AccountBlockYN : { type : DataTypes.STRING}
-    , AccountBlockEndDT : { type : DataTypes.STRING}
+    , LastDeviceID : { type : DataTypes.STRING, defaultValue: ''}
+    , LastIPaddress : { type : DataTypes.STRING, defaultValue: ''}
+    , LastLoginDT : { type : DataTypes.STRING, defaultValue: ''}
+    , LastLogoutDT : { type : DataTypes.STRING, defaultValue: ''}
+    , LastMACAddress : { type : DataTypes.STRING, defaultValue: ''}
+    , AccountBlockYN : { type : DataTypes.STRING, defaultValue: 'N'}
+    , AccountBlockEndDT : { type : DataTypes.STRING, defaultValue: ''}
     , AnonymousYN : { type : DataTypes.STRING}
     , '3rdAuthProvider' : { type : DataTypes.STRING}
     , '3rdAuthID' : { type : DataTypes.STRING}
@@ -43,8 +43,6 @@ module.exports = function(sequelize, DataTypes) {
     , TimeZoneID : { type : DataTypes.STRING}
     , HideYN : { type : DataTypes.BOOLEAN}
     , DeleteYN : { type : DataTypes.BOOLEAN}
-    , CreatedAt : { type : DataTypes.DATE}
-    , UpdatedAt : { type : DataTypes.DATE}
     , DataFromRegion : { type : DataTypes.STRING}
     , DataFromRegionDT : { type : DataTypes.DATE}
     // , coins : { type : DataTypes.INTEGER.UNSIGNED, defaultValue: 0}
@@ -53,7 +51,6 @@ module.exports = function(sequelize, DataTypes) {
     // , loginTime : { type : DataTypes.DATE, defaultValue: '2002-06-05 00:00:00'
     //   , get:function(){var convertTime=new Date(this.getDataValue('loginTime')); return convertTime.getTime()/1000;}}
   }, {
-    timestamps: false,
     tableName: 'Members'
   });
   return Members;
