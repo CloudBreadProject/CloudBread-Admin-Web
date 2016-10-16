@@ -23,37 +23,37 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[couponID]" placeholder="Coupon ID"
+                        <input type="text" class="form-control" name="coupon[CouponID]" placeholder="Coupon ID"
                                required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[couponCategory1]" placeholder="Category 1"/>
-                        <input type="text" class="form-control" name="coupon[couponCategory2]" placeholder="Category 2"/>
-                        <input type="text" class="form-control" name="coupon[couponCategory3]" placeholder="Category 3"/>
+                        <input type="text" class="form-control" name="coupon[CouponCategory1]" placeholder="Category 1"/>
+                        <input type="text" class="form-control" name="coupon[CouponCategory2]" placeholder="Category 2"/>
+                        <input type="text" class="form-control" name="coupon[CouponCategory3]" placeholder="Category 3"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[itemListID]" placeholder="ItemListID"/>
+                        <input type="text" class="form-control" name="coupon[ItemListID]" placeholder="ItemListID" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[itemCount]" placeholder="ItemCount"/>
+                        <input type="text" class="form-control" name="coupon[ItemCount]" placeholder="ItemCount"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[itemStatus]" placeholder="ItemStatus"/>
+                        <input type="text" class="form-control" name="coupon[ItemStatus]" placeholder="ItemStatus"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[targetGroup]" placeholder="TargetGroup"/>
+                        <input type="text" class="form-control" name="coupon[TargetGroup]" placeholder="TargetGroup"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[targetOS]" placeholder="TargetOS"/>
+                        <input type="text" class="form-control" name="coupon[TargetOS]" placeholder="TargetOS"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[targetDevice]" placeholder="TargetDevice"/>
+                        <input type="text" class="form-control" name="coupon[TargetDevice]" placeholder="TargetDevice"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[title]" placeholder="Title1" required/>
+                        <input type="text" class="form-control" name="coupon[Title]" placeholder="Title" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <textarea class="form-control" name="coupon[content]" placeholder="Content"></textarea>
+                        <textarea class="form-control" name="coupon[Content]" placeholder="Content"></textarea>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -101,37 +101,40 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[couponDurationFrom]" placeholder="CouponDurationFrom" required/>
+                        <input type="text" class="form-control" name="coupon[CouponDurationFrom]" placeholder="CouponDurationFrom" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[couponDurationTo]" placeholder="CouponDurationTo" required/>
+                        <input type="text" class="form-control" name="coupon[CouponDurationTo]" placeholder="CouponDurationTo" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[orderNumber]" placeholder="OrderNumber" required/>
+                        <input type="text" class="form-control" name="coupon[OrderNumber]" placeholder="OrderNumber" required/>
                     </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[dupeYN]" placeholder="DupeYN" required/>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="coupon[DupeYN]" class="minimal" value="Y" checked> Dupe Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="coupon[DupeYN]" class="minimal" value="N" > Dupe No
+                        </label>
                     </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[createAdminID]" placeholder="CreateAdminID"/>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="coupon[HideYN]" class="minimal" value="Y" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="coupon[HideYN]" class="minimal" value="N" > Hide No
+                        </label>
                     </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[HideYN]" placeholder="HideYN" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[DeleteYN]" placeholder="DeleteYN" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[CreatedAt]" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[UpdatedAt]" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[DataFromRegion]" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="coupon[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="coupon[DeleteYN]" class="minimal" value="Y" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="coupon[DeleteYN]" class="minimal" value="N" > Delete No
+                        </label>
                     </div>
                 </div>
             </div>
