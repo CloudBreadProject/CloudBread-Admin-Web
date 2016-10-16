@@ -29,20 +29,6 @@ function route(expressApp){
 
     });
 
-    expressApp.get('/cloudBreadErrorLog/create', 'cloudBreadErrorLog.create', expressApp.restrict, function (req, res) {
-
-        res.render('cloudBreadErrorLog/create', {
-            title: 'CloudBreadErrorLog Create'
-        });
-    });
-
-    expressApp.post('/cloudBreadErrorLog/', 'cloudBreadErrorLog.store', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadErrorLog');
-    });
-
-    expressApp.post('/cloudBreadErrorLog/edit', 'cloudBreadErrorLog.update', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadErrorLog');
-    });
 }
 
 module.exports = route;

@@ -28,21 +28,6 @@ function route(expressApp){
         });
 
     });
-
-    expressApp.get('/cloudBreadLog/create', 'cloudBreadLog.create', expressApp.restrict, function (req, res) {
-
-        res.render('cloudBreadLog/create', {
-            title: 'CloudBreadLog Create'
-        });
-    });
-
-    expressApp.post('/cloudBreadLog/', 'cloudBreadLog.store', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadLog');
-    });
-
-    expressApp.post('/cloudBreadLog/edit', 'cloudBreadLog.update', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadLog');
-    });
 }
 
 module.exports = route;

@@ -29,20 +29,6 @@ function route(expressApp){
 
     });
 
-    expressApp.get('/cloudBreadAdminLog/create', 'cloudBreadAdminLog.create', expressApp.restrict, function (req, res) {
-
-        res.render('cloudBreadAdminLog/create', {
-            title: 'CloudBreadAdminLog Create'
-        });
-    });
-
-    expressApp.post('/cloudBreadAdminLog/', 'cloudBreadAdminLog.store', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadAdminLog');
-    });
-
-    expressApp.post('/cloudBreadAdminLog/edit', 'cloudBreadAdminLog.update', expressApp.restrict, function(req, res) {
-        res.redirect('/cloudBreadAdminLog');
-    });
 }
 
 module.exports = route;
