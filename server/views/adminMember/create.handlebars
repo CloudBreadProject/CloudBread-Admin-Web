@@ -23,14 +23,14 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[AdminMemberID]" placeholder="AdminMember ID"
+                        <input type="text" class="form-control" name="adminMember[AdminMemberID]" placeholder="AdminMember ID"
                                required/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" name="member[AdminMemberPWD]" placeholder="Password"
+                        <input type="password" class="form-control" name="adminMember[AdminMemberPWD]" placeholder="Password"
                                required/>
-                        <input type="password" class="form-control" name="member[AdminMemberPWD2]"
+                        <input type="password" class="form-control" name="adminMember[AdminMemberPWD2]"
                                placeholder="Retype password" required/>
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" name="member[AdminEmailAddress]" placeholder="Email" required/>
+                        <input type="email" class="form-control" name="adminMember[AdminMemberEmail]" placeholder="Email" required/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                 </div>
@@ -54,16 +54,16 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[IDCreateAdminMember]" placeholder="IDCreateAdminMember"/>
+                        <input type="tel" class="form-control" name="adminMember[IDCreateAdminMember]" placeholder="IDCreateAdminMember"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[Name1]" placeholder="Name1" />
-                        <input type="text" class="form-control" name="member[Name2]" placeholder="Name2" />
-                        <input type="text" class="form-control" name="member[Name3]" placeholder="Name3" />
+                        <input type="text" class="form-control" name="adminMember[Name1]" placeholder="Name1" />
+                        <input type="text" class="form-control" name="adminMember[Name2]" placeholder="Name2" />
+                        <input type="text" class="form-control" name="adminMember[Name3]" placeholder="Name3" />
                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[DOB]" placeholder="Date of Birth"/>
+                        <input type="tel" class="form-control" name="adminMember[DOB]" placeholder="Date of Birth"/>
                         <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     </div>
                 </div>
@@ -74,19 +74,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[TimeZoneID]" placeholder="TimeZoneID" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[PINumber]" placeholder="PINumber" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLoginDT]" placeholder="LastLoginDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLogoutDT]" placeholder="LastLogoutDT" />
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" />
+                        <input type="text" class="form-control" name="adminMember[PINumber]" placeholder="PINumber" />
                     </div>
                 </div>
             </div>
@@ -96,35 +84,63 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol1]" placeholder="sCol1" />
+                            <input type="text" class="form-control" name="adminMember[sCol1]" placeholder="sCol1" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol2]" placeholder="sCol2" />
+                            <input type="text" class="form-control" name="adminMember[sCol2]" placeholder="sCol2" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol3]" placeholder="sCol3" />
+                            <input type="text" class="form-control" name="adminMember[sCol3]" placeholder="sCol3" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol4]" placeholder="sCol4" />
+                            <input type="text" class="form-control" name="adminMember[sCol4]" placeholder="sCol4" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol5]" placeholder="sCol5" />
+                            <input type="text" class="form-control" name="adminMember[sCol5]" placeholder="sCol5" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol6]" placeholder="sCol6" />
+                            <input type="text" class="form-control" name="adminMember[sCol6]" placeholder="sCol6" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol7]" placeholder="sCol7" />
+                            <input type="text" class="form-control" name="adminMember[sCol7]" placeholder="sCol7" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol8]" placeholder="sCol8" />
+                            <input type="text" class="form-control" name="adminMember[sCol8]" placeholder="sCol8" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol9]" placeholder="sCol9" />
+                            <input type="text" class="form-control" name="adminMember[sCol9]" placeholder="sCol9" />
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol10]" placeholder="sCol10" />
+                            <input type="text" class="form-control" name="adminMember[sCol10]" placeholder="sCol10" />
                         </div>
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">DateTime</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="adminMember[TimeZoneID]" placeholder="TimeZoneID"  value="Korea Standard Time" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="adminMember[HideYN]" class="minimal" value="Y" checked> Hide Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="adminMember[HideYN]" class="minimal" value="N" > Hide No
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="adminMember[DeleteYN]" class="minimal" value="Y" checked> Delete  Yes
+                        </label>
+                        &nbsp;
+                        <label>
+                            <input type="radio" name="adminMember[DeleteYN]" class="minimal" value="N" > Delete No
+                        </label>
+                    </div>
                 </div>
             </div>
                 <div class="box-footer">

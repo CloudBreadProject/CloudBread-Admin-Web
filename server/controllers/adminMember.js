@@ -11,6 +11,12 @@ function route(expressApp){
         });
     });
 
+    expressApp.get('/adminMember/create', 'adminMember.create', expressApp.restrict, function (req, res) {
+        res.render('adminMember/create', {
+            title: 'AdminMembers Create'
+        });
+    });
+
     expressApp.get('/adminMember/:id', 'adminMember.show', expressApp.restrict, function(req, res) {
         var adminMemberId = req.params.id;
         expressApp.models.AdminMembers.findOne({
@@ -29,15 +35,44 @@ function route(expressApp){
 
     });
 
-    expressApp.get('/adminMember/create', 'adminMember.create', expressApp.restrict, function (req, res) {
+    expressApp.post('/adminMember/', 'adminMember.store', expressApp.restrict, function(req, res, next) {
+        var adminMembers = req.body.adminMember;
+        expressApp.models.AdminMembers.create({
+            AdminMemberID : adminMembers.AdminMemberID
+            , AdminMemberPWD: adminMembers.AdminMemberPWD
+            , AdminMemberEmail : adminMembers.AdminMemberEmail
+            , IDCreateAdminMember : ''
+            , AdminGroup : adminMembers.AdminGroup
+            , TimeZoneID : adminMembers.TimeZoneID || 'Korea Standard Time'
+            , PINumber : adminMembers.PINumber
+            , Name1 : adminMembers.Name1
+            , Name2 : adminMembers.Name2
+            , Name3 : adminMembers.Name3
+            , DOB : adminMembers.DOB || '19900101'
+            , LastIPaddress : ''
+            , LastLoginDT : '1900.1.1'
+            , LastLogoutDT : '1900.1.1'
 
-        res.render('adminMember/create', {
-            title: 'AdminMembers Create'
+            , sCol1 : adminMembers.sCol1
+            , sCol2 : adminMembers.sCol2
+            , sCol3 : adminMembers.sCol3
+            , sCol4 : adminMembers.sCol4
+            , sCol5 : adminMembers.sCol5
+            , sCol6 : adminMembers.sCol6
+            , sCol7 : adminMembers.sCol7
+            , sCol8 : adminMembers.sCol8
+            , sCol9 : adminMembers.sCol9
+            , sCol10 : adminMembers.sCol10
+
+            , HideYN : adminMembers.HideYN
+            , DeleteYN : adminMembers.DeleteYN
+            , DataFromRegion : adminMembers.DataFromRegion || ''
+            , DataFromRegionDT : adminMembers.DataFromRegionDT || '1900-01-01 00:00:00:000 +00:00'
+        }).then(function() {
+            res.redirect('/adminMember');
+        }).catch(function(err) {
+            next(err);
         });
-    });
-
-    expressApp.post('/adminMember/', 'adminMember.store', expressApp.restrict, function(req, res) {
-        res.redirect('/adminMember');
     });
 
     expressApp.post('/adminMember/edit', 'adminMember.update', expressApp.restrict, function(req, res) {
