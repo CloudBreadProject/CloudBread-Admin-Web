@@ -90,7 +90,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/member/edit', 'member.update', expressApp.restrict, function(req, res) {
+    expressApp.post('/member/edit', 'member.update', expressApp.restrict, function(req, res, next) {
         var member = req.body.member;
         expressApp.models.Members.update({
             EmailAddress: member.EmailAddress
@@ -127,7 +127,6 @@ function route(expressApp){
             , HideYN: member.HideYN
             , DeleteYN: member.DeleteYN
             , DataFromRegion: member.DataFromRegion || ''
-            , DataFromRegionDT: member.DataFromRegionDT || '1900-01-01 00:00:00:000 +00:00'
         }, {
             where: { MemberID: member.MemberID}
         }). then(function() {

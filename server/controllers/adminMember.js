@@ -75,8 +75,39 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/adminMember/edit', 'adminMember.update', expressApp.restrict, function(req, res) {
-        res.redirect('/adminMember');
+    expressApp.post('/adminMember/edit', 'adminMember.update', expressApp.restrict, function(req, res, next) {
+        var adminMembers = req.body.adminMember;
+        expressApp.models.AdminMembers.update({
+            AdminMemberEmail : adminMembers.AdminMemberEmail
+            , AdminGroup : adminMembers.AdminGroup
+            , TimeZoneID : adminMembers.TimeZoneID
+            , PINumber : adminMembers.PINumber
+            , Name1 : adminMembers.Name1
+            , Name2 : adminMembers.Name2
+            , Name3 : adminMembers.Name3
+            , DOB : adminMembers.DOB
+
+            , sCol1 : adminMembers.sCol1
+            , sCol2 : adminMembers.sCol2
+            , sCol3 : adminMembers.sCol3
+            , sCol4 : adminMembers.sCol4
+            , sCol5 : adminMembers.sCol5
+            , sCol6 : adminMembers.sCol6
+            , sCol7 : adminMembers.sCol7
+            , sCol8 : adminMembers.sCol8
+            , sCol9 : adminMembers.sCol9
+            , sCol10 : adminMembers.sCol10
+
+            , HideYN : adminMembers.HideYN
+            , DeleteYN : adminMembers.DeleteYN
+            , DataFromRegion : adminMembers.DataFromRegion || ''
+        }, {
+            where: { AdminMemberID: adminMembers.AdminMemberID}
+        }). then(function() {
+            res.redirect('/adminMember');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 

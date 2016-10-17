@@ -46,6 +46,17 @@
                         <input type="email" class="form-control" name="adminMember[AdminMemberEmail]" placeholder="Email" required/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
+                    <div class="form-group has-feedback">
+                        <label>
+                            <input type="radio" name="adminMember[AdminGroup]" class="minimal" value="Admin" checked> Admin
+                        </label>
+                        <label>
+                            <input type="radio" name="adminMember[AdminGroup]" class="minimal" value="Operator"> Operator
+                        </label>
+                        <label>
+                            <input type="radio" name="adminMember[AdminGroup]" class="minimal" value="Reader"> Reader
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="box box-info">

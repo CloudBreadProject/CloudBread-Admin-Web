@@ -33,6 +33,27 @@ function HandlebarBoot(expressApp, viewsPath) {
                     return '';
                 }
             },
+            isAdmin: function(value) {
+                if(value=='Admin'){
+                    return 'checked'
+                }else{
+                    return '';
+                }
+            },
+            isOperator: function(value) {
+                if(value=='Operator'){
+                    return 'checked'
+                }else{
+                    return '';
+                }
+            },
+            isReader: function(value) {
+                if(value=='Reader'){
+                    return 'checked'
+                }else{
+                    return '';
+                }
+            },
             block: function(name) {
                 var val = (blocks[name] || []).join('\n');
 
