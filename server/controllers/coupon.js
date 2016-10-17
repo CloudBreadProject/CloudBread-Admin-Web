@@ -77,11 +77,48 @@ function route(expressApp){
         }).catch(function(err) {
             next(err);
         });
-
     });
 
-    expressApp.post('/coupon/edit', 'coupon.update', expressApp.restrict, function(req, res) {
-        res.redirect('/coupon');
+    expressApp.post('/coupon/edit', 'coupon.update', expressApp.restrict, function(req, res, next) {
+        var coupon = req.body.coupon;
+        expressApp.models.Coupon.update({
+            CouponCategory1 : coupon.CouponCategory1
+            , CouponCategory2 : coupon.CouponCategory2
+            , CouponCategory3 : coupon.CouponCategory3
+            , ItemListID : coupon.ItemListID
+
+            , ItemCount : coupon.ItemCount
+            , ItemStatus : coupon.ItemStatus
+            , TargetGroup : coupon.TargetGroup
+            , TargetOS : coupon.TargetOS
+            , TargetDevice : coupon.TargetDevice
+            , Title : coupon.Title
+            , Content : coupon.Content
+
+            , sCol1 : coupon.sCol1
+            , sCol2 : coupon.sCol2
+            , sCol3 : coupon.sCol3
+            , sCol4 : coupon.sCol4
+            , sCol5 : coupon.sCol5
+            , sCol6 : coupon.sCol6
+            , sCol7 : coupon.sCol7
+            , sCol8 : coupon.sCol8
+            , sCol9 : coupon.sCol9
+            , sCol10 : coupon.sCol10
+
+            , CouponDurationFrom : coupon.CouponDurationFrom
+            , CouponDurationTo  : coupon.CouponDurationTo
+            , OrderNumber   : coupon.OrderNumber
+            , HideYN : coupon.HideYN
+            , DupeYN : coupon.DupeYN
+            , DeleteYN : coupon.DeleteYN
+        }, {
+            where: { CouponID: coupon.CouponID}
+        }).then(function() {
+            res.redirect('/coupon');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
