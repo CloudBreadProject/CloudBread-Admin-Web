@@ -53,8 +53,20 @@ function route(expressApp){
 
     });
 
-    expressApp.post('/statsData/edit', 'statsData.update', expressApp.restrict, function(req, res) {
-        res.redirect('/statsData');
+    expressApp.post('/statsData/edit', 'statsData.update', expressApp.restrict, function(req, res, next) {
+        var statData = req.body.statData;
+        expressApp.models.StatsData.update({
+            CategoryName : statData.CategoryName
+            , CountNum : statData.CountNum
+
+            , Fields : statData.Fields
+        }, {
+            where : {StatID : statData.StatID}
+        }).then(function() {
+            res.redirect('/statsData');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 

@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{{url 'statData'}}}">List</a></li>
+        <li><a href="{{{url 'statsData'}}}">List</a></li>
         <li class="active">New Stat Data</li>
     </ol>
 </section>
@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'statData.update'}}}" method="post">
+            <form action="{{{url 'statsData.update'}}}" method="post">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Basic Info</h3>
@@ -36,22 +36,9 @@
                     </div>
                 </div>
             </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Access</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="statData[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="statData[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
-                    </div>
-                </div>
-            </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "statData"}}}'">
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "statsData"}}}'">
                         Cancel
                     </button>
                 </div>
