@@ -79,8 +79,45 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/notice/edit', 'notice.update', expressApp.restrict, function(req, res) {
-        res.redirect('/notice');
+    expressApp.post('/notice/edit', 'notice.update', expressApp.restrict, function(req, res, next) {
+        var notice = req.body.notice;
+        expressApp.models.Notice.update({
+            NoticeCategory1 : notice.NoticeCategory1
+            , NoticeCategory2 : notice.NoticeCategory2
+            , NoticeCategory3 : notice.NoticeCategory3
+
+            , TargetGroup : notice.TargetGroup
+            , TargetOS : notice.TargetOS
+            , TargetDevice : notice.TargetDevice
+            , NoticeImageLink : notice.NoticeImageLink
+            , Title : notice.Title
+            , Content : notice.Content
+
+            , sCol1 : notice.sCol1
+            , sCol2 : notice.sCol2
+            , sCol3 : notice.sCol3
+            , sCol4 : notice.sCol4
+            , sCol5 : notice.sCol5
+            , sCol6 : notice.sCol6
+            , sCol7 : notice.sCol7
+            , sCol8 : notice.sCol8
+            , sCol9 : notice.sCol9
+            , sCol10 : notice.sCol10
+
+            , NoticeDurationFrom : notice.NoticeDurationFrom
+            , NoticeDurationTo : notice.NoticeDurationTo
+            , OrderNumber : notice.OrderNumber
+
+
+            , HideYN : notice.HideYN
+            , DeleteYN : notice.DeleteYN
+        }, {
+            where : {NoticeID : notice.NoticeID}
+        }).then(function() {
+            res.redirect('/notice');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
