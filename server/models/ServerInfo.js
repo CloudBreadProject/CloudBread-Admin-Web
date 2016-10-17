@@ -17,12 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     , sCol4 : { type : DataTypes.TEXT}
     , sCol5 : { type : DataTypes.TEXT}
 
-    , CreatedAt : { type : DataTypes.DATE}
-    , UpdatedAt : { type : DataTypes.DATE}
     , DataFromRegion : { type : DataTypes.STRING}
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
-    timestamps: false,
     tableName: 'ServerInfo'
   });
   return ServerInfo;
