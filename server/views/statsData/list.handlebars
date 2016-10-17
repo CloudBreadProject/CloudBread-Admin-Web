@@ -52,14 +52,14 @@
                         {{#each listObjs }}
                             <tr>
                                 <td>
-                                    <a href="/statData/{{this.StatID}}">
+                                    <a href="/statsData/{{this.StatID}}">
                                         {{this.StatID}}
                                     </a>
                                 </td>
                                 <td> {{this.CategoryName}} </td>
                                 <td> {{this.CountNum}} </td>
                                 <td> {{this.Fields}} </td>
-                                <td> {{this.CreatedAt}}</td>
+                                <td> {{this.createdAt}}</td>
                             </tr>
                         {{/each}}
                     </table>

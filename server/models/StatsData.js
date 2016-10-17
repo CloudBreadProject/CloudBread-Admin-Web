@@ -8,10 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 
     , Fields : { type : DataTypes.TEXT}
 
-    , CreatedAt : { type : DataTypes.DATE}
-    , UpdatedAt : { type : DataTypes.DATE}
   }, {
-    timestamps: false,
     tableName: 'StatsData'
   });
   return StatsData;
