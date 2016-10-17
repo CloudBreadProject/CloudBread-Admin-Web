@@ -74,8 +74,40 @@ function route(expressApp){
 
     });
 
-    expressApp.post('/itemList/edit', 'itemList.update', expressApp.restrict, function(req, res) {
-        res.redirect('/itemList');
+    expressApp.post('/itemList/edit', 'itemList.update', expressApp.restrict, function(req, res, next) {
+        var itemList = req.body.itemList;
+        expressApp.models.ItemList.update({
+
+            ItemName: itemList.ItemName
+            , ItemDescription : itemList.ItemDescription
+            , ItemPrice : itemList.ItemPrice
+            , ItemSellPrice : itemList.ItemSellPrice
+            , ItemCategory1 : itemList.ItemCategory1
+            , ItemCategory2 : itemList.ItemCategory2
+            , ItemCategory3 : itemList.ItemCategory3
+
+            , sCol1 : itemList.sCol1
+            , sCol2 : itemList.sCol2
+            , sCol3 : itemList.sCol3
+            , sCol4 : itemList.sCol4
+            , sCol5 : itemList.sCol5
+            , sCol6 : itemList.sCol6
+            , sCol7 : itemList.sCol7
+            , sCol8 : itemList.sCol8
+            , sCol9 : itemList.sCol9
+            , sCol10 : itemList.sCol10
+
+            , ItemUpdateAdminID    :  ''
+            , HideYN : itemList.HideYN
+            , DeleteYN : itemList.DeleteYN
+
+        }, {
+            where : {ItemListID  : itemList.ItemListID}
+        }).then(function() {
+            res.redirect('/itemList');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 

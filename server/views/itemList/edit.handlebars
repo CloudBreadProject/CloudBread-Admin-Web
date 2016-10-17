@@ -55,34 +55,34 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1" />
+                        <textarea class="form-control" name="itemList[sCol1]" placeholder="sCol1">{{ obj.sCol1}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2" />
+                        <textarea class="form-control" name="itemList[sCol2]" placeholder="sCol2">{{ obj.sCol2}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3" />
+                        <textarea class="form-control" name="itemList[sCol3]" placeholder="sCol3">{{ obj.sCol3}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4" />
+                        <textarea class="form-control" name="itemList[sCol4]" placeholder="sCol4">{{ obj.sCol4}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5" />
+                        <textarea class="form-control" name="itemList[sCol5]" placeholder="sCol5">{{ obj.sCol5}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6" />
+                        <textarea class="form-control" name="itemList[sCol6]" placeholder="sCol6">{{ obj.sCol6}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7" />
+                        <textarea class="form-control" name="itemList[sCol7]" placeholder="sCol7">{{ obj.sCol7}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8" />
+                        <textarea class="form-control" name="itemList[sCol8]" placeholder="sCol8">{{ obj.sCol8}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9" />
+                        <textarea class="form-control" name="itemList[sCol9]" placeholder="sCol9">{{ obj.sCol9}}</textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[sCol10]" value="{{ obj.sCol10}}" placeholder="sCol10" />
+                        <textarea class="form-control" name="itemList[sCol10]" placeholder="sCol10">{{ obj.sCol10}}</textarea>
                     </div>
                 </div>
             </div>
@@ -91,41 +91,31 @@
                     <h3 class="box-title">Access</h3>
                 </div>
                 <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[IteamCreateAdminID]" value="{{ obj.IteamCreateAdminID}}" placeholder="IteamCreateAdminID" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[IteamUpdateAdminID]" value="{{ obj.IteamUpdateAdminID}}" placeholder="IteamUpdateAdminID" required/>
-                    </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="itemList[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                            <input type="radio" name="itemList[HideYN]" class="minimal" value="Y"
+                                {{#isYes obj.HideYN}} {{/isYes}}
+                            > Hide Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="itemList[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                            <input type="radio" name="itemList[HideYN]" class="minimal" value="N"
+                                {{#isNo obj.HideYN}} {{/isNo}}
+                            > Hide No
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="itemList[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                            <input type="radio" name="itemList[DeleteYN]" class="minimal" value="Y"
+                                {{#isYes obj.DeleteYN}} {{/isYes}}
+                            > Delete  Yes
                         </label>
                         &nbsp;
                         <label>
-                            <input type="radio" name="itemList[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                            <input type="radio" name="itemList[DeleteYN]" class="minimal" value="N"
+                                {{#isNo obj.DeleteYN}} {{/isNo}}
+                            > Delete No
                         </label>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="itemList[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>
