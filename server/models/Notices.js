@@ -31,12 +31,9 @@ module.exports = function(sequelize, DataTypes) {
     , CreateAdminID : { type : DataTypes.STRING}
     , HideYN : { type : DataTypes.BOOLEAN}
     , DeleteYN : { type : DataTypes.BOOLEAN}
-    , CreatedAt : { type : DataTypes.DATE}
-    , UpdatedAt : { type : DataTypes.DATE}
     , DataFromRegion : { type : DataTypes.STRING}
     , DataFromRegionDT : { type : DataTypes.DATE}
   }, {
-    timestamps: false,
     tableName: 'Notices'
   });
   return Notice;
