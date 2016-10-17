@@ -71,8 +71,38 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/memberAccountBlockLog/edit', 'memberAccountBlockLog.update', expressApp.restrict, function(req, res) {
-        res.redirect('/memberAccountBlockLog');
+    expressApp.post('/memberAccountBlockLog/edit', 'memberAccountBlockLog.update', expressApp.restrict, function(req, res, next) {
+        var blockLog = req.body.blockLog;
+        expressApp.models.MemberAccountBlockLog.update({
+
+            MemberID : blockLog.MemberID
+            , MemberAccountBlockReasonCategory1 : blockLog.MemberAccountBlockReasonCategory1
+            , MemberAccountBlockReasonCategory2 : blockLog.MemberAccountBlockReasonCategory2
+            , MemberAccountBlockReasonCategory3 : blockLog.MemberAccountBlockReasonCategory3
+            , MemberAccountBlockReason : blockLog.MemberAccountBlockReason
+            , MemberAccountBlockProcess : blockLog.MemberAccountBlockProcess
+
+            , sCol1 : blockLog.sCol1
+            , sCol2 : blockLog.sCol2
+            , sCol3 : blockLog.sCol3
+            , sCol4 : blockLog.sCol4
+            , sCol5 : blockLog.sCol5
+            , sCol6 : blockLog.sCol6
+            , sCol7 : blockLog.sCol7
+            , sCol8 : blockLog.sCol8
+            , sCol9 : blockLog.sCol9
+            , sCol10 : blockLog.sCol10
+
+            , HideYN : blockLog.HideYN
+            , DeleteYN : blockLog.DeleteYN
+
+        }, {
+            where : {MemberAccountBlockID  : blockLog.MemberAccountBlockID}
+        }).then(function() {
+            res.redirect('/memberAccountBlockLog');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
