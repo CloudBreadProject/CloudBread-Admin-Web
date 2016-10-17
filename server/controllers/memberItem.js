@@ -71,8 +71,37 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/memberItem/edit', 'memberItem.update', expressApp.restrict, function(req, res) {
-        res.redirect('/memberItem');
+    expressApp.post('/memberItem/edit', 'memberItem.update', expressApp.restrict, function(req, res, next) {
+        var memberItem = req.body.memberItem;
+        expressApp.models.MemberItems.update({
+            MemberID : memberItem.MemberID
+
+            , ItemListID : memberItem.ItemListID
+
+            , ItemCount : memberItem.ItemCount
+            , ItemStatus : memberItem.ItemStatus
+
+            , sCol1 : memberItem.sCol1
+            , sCol2 : memberItem.sCol2
+            , sCol3 : memberItem.sCol3
+            , sCol4 : memberItem.sCol4
+            , sCol5 : memberItem.sCol5
+            , sCol6 : memberItem.sCol6
+            , sCol7 : memberItem.sCol7
+            , sCol8 : memberItem.sCol8
+            , sCol9 : memberItem.sCol9
+            , sCol10 : memberItem.sCol10
+
+            , HideYN : memberItem.HideYN
+            , DeleteYN : memberItem.DeleteYN
+
+        }, {
+            where : {MemberItemID : memberItem.MemberItemID}
+        }).then(function() {
+            res.redirect('/memberItem');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
