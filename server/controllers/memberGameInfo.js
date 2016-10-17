@@ -79,8 +79,47 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/memberGameInfo/edit', 'memberGameInfo.update', expressApp.restrict, function(req, res) {
-        res.redirect('/memberGameInfo');
+    expressApp.post('/memberGameInfo/edit', 'memberGameInfo.update', expressApp.restrict, function(req, res, next) {
+        var memberGameInfo = req.body.memberGameInfo;
+        expressApp.models.MemberGameInfo.update({
+
+
+            Level : memberGameInfo.Level
+            , Exps : memberGameInfo.Exps
+            , Points : memberGameInfo.Points
+
+            , UserSTAT1 : memberGameInfo.UserSTAT1
+            , UserSTAT2 : memberGameInfo.UserSTAT2
+            , UserSTAT3 : memberGameInfo.UserSTAT3
+            , UserSTAT4 : memberGameInfo.UserSTAT4
+            , UserSTAT5 : memberGameInfo.UserSTAT5
+            , UserSTAT6 : memberGameInfo.UserSTAT6
+            , UserSTAT7 : memberGameInfo.UserSTAT7
+            , UserSTAT8 : memberGameInfo.UserSTAT8
+            , UserSTAT9 : memberGameInfo.UserSTAT9
+            , UserSTAT10 : memberGameInfo.UserSTAT10
+
+            , sCol1 : memberGameInfo.sCol1
+            , sCol2 : memberGameInfo.sCol2
+            , sCol3 : memberGameInfo.sCol3
+            , sCol4 : memberGameInfo.sCol4
+            , sCol5 : memberGameInfo.sCol5
+            , sCol6 : memberGameInfo.sCol6
+            , sCol7 : memberGameInfo.sCol7
+            , sCol8 : memberGameInfo.sCol8
+            , sCol9 : memberGameInfo.sCol9
+            , sCol10 : memberGameInfo.sCol10
+
+            , HideYN : memberGameInfo.HideYN
+            , DeleteYN : memberGameInfo.DeleteYN
+
+        }, {
+            where : {MemberID : memberGameInfo.MemberID}
+        }).then(function() {
+            res.redirect('/memberGameInfo');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
