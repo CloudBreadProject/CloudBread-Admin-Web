@@ -93,8 +93,53 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/memberItemPurchase/edit', 'memberItemPurchase.update', expressApp.restrict, function(req, res) {
-        res.redirect('/memberItemPurchase');
+    expressApp.post('/memberItemPurchase/edit', 'memberItemPurchase.update', expressApp.restrict, function(req, res, next) {
+        var purchase = req.body.purchase;
+        expressApp.models.MemberItemPurchase.update({
+            MemberID : purchase.MemberID
+
+            , ItemListID : purchase.ItemListID
+
+            , PurchasePrice : purchase.PurchasePrice
+            , PurchaseQuantity : purchase.PurchaseQuantity
+
+            , PGinfo1 : purchase.PGinfo1
+            , PGinfo2 : purchase.PGinfo2
+            , PGinfo3 : purchase.PGinfo3
+            , PGinfo4 : purchase.PGinfo4
+            , PGinfo5 : purchase.PGinfo5
+
+            , PurchaseCancelYN : purchase.PurchaseCancelYN
+            , PurchaseCancelDT : purchase.PurchaseCancelDT
+            , PurchaseCancelingStatus : purchase.PurchaseCancelingStatus
+            , PurchaseCancelReturnedAmount : purchase.PurchaseCancelReturnedAmount
+            , PurchaseCancelDeviceID : purchase.PurchaseCancelDeviceID
+            , PurchaseCancelDeviceIPAddress : purchase.PurchaseCancelDeviceIPAddress
+            , PurchaseCancelDeviceMACAddress : purchase.PurchaseCancelDeviceMACAddress
+
+            , sCol1 : purchase.sCol1
+            , sCol2 : purchase.sCol2
+            , sCol3 : purchase.sCol3
+            , sCol4 : purchase.sCol4
+            , sCol5 : purchase.sCol5
+            , sCol6 : purchase.sCol6
+            , sCol7 : purchase.sCol7
+            , sCol8 : purchase.sCol8
+            , sCol9 : purchase.sCol9
+            , sCol10 : purchase.sCol10
+
+            , PurchaseCancelConfirmAdminMemberID : ''
+
+            , HideYN : purchase.HideYN
+            , DeleteYN : purchase.DeleteYN
+
+        }, {
+            where : {MemberItemPurchaseID : purchase.MemberItemPurchaseID}
+        }).then(function() {
+            res.redirect('/memberItemPurchase');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
