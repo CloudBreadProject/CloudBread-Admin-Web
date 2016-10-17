@@ -70,8 +70,36 @@ function route(expressApp){
 
     });
 
-    expressApp.post('/giftDepository/edit', 'giftDepository.update', expressApp.restrict, function(req, res) {
-        res.redirect('/giftDepository');
+    expressApp.post('/giftDepository/edit', 'giftDepository.update', expressApp.restrict, function(req, res, next) {
+        var giftDepository = req.body.giftDepository;
+        expressApp.models.GiftDepository.update({
+            ItemListID : giftDepository.ItemListID
+            , ItemCount : giftDepository.ItemCount
+            , FromMemberID : giftDepository.FromMemberID
+            , ToMemberID : giftDepository.ToMemberID
+
+            , sCol1 : giftDepository.sCol1
+            , sCol2 : giftDepository.sCol2
+            , sCol3 : giftDepository.sCol3
+            , sCol4 : giftDepository.sCol4
+            , sCol5 : giftDepository.sCol5
+            , sCol6 : giftDepository.sCol6
+            , sCol7 : giftDepository.sCol7
+            , sCol8 : giftDepository.sCol8
+            , sCol9 : giftDepository.sCol9
+            , sCol10 : giftDepository.sCol10
+
+            , SentMemberYN : giftDepository.SentMemberYN
+            , HideYN : giftDepository.HideYN
+            , DeleteYN : giftDepository.DeleteYN
+
+        }, {
+            where : {GiftDepositoryID  : giftDepository.GiftDepositoryID}
+        }).then(function() {
+            res.redirect('/giftDepository');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 

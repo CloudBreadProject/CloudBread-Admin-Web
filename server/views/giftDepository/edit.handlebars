@@ -23,7 +23,7 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="giftDepository[giftDepositoryID]" value="{{ obj.giftDepositoryID}}" placeholder="giftDepositoryID"
+                        <input type="text" class="form-control" name="giftDepository[GiftDepositoryID]" value="{{ obj.GiftDepositoryID}}" placeholder="giftDepositoryID"
                                readonly/>
                     </div>
                     <div class="form-group has-feedback">
@@ -85,42 +85,42 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="giftDepository[SentMemberYN]" value="{{ obj.SentMemberYN}}" class="minimal" checked> Sent Member Yes
+                            <input type="radio" name="giftDepository[SentMemberYN]" class="minimal" value="Y"
+                                {{#isYes obj.SentMemberYN}} {{/isYes}}
+                            > Sent Member Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="giftDepository[SentMemberYN]" value="{{ obj.SentMemberYN}}" class="minimal"> Sent Member No
+                            <input type="radio" name="giftDepository[SentMemberYN]" class="minimal" value="N"
+                                {{#isNo obj.SentMemberYN}} {{/isNo}}
+                            > Sent Member NO
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="giftDepository[HideYN]" value="{{ obj.HideYN}}" class="minimal" checked> Hide Yes
+                            <input type="radio" name="giftDepository[HideYN]" class="minimal" value="Y"
+                                {{#isYes obj.HideYN}} {{/isYes}}
+                            > Hide Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="giftDepository[HideYN]" value="{{ obj.HideYN}}" class="minimal"> Hide No
+                            <input type="radio" name="giftDepository[HideYN]" class="minimal" value="N"
+                                {{#isNo obj.HideYN}} {{/isNo}}
+                            > Hide No
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="giftDepository[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal" checked> Delete  Yes
+                            <input type="radio" name="giftDepository[DeleteYN]" class="minimal" value="Y"
+                                {{#isYes obj.DeleteYN}} {{/isYes}}
+                            > Delete  Yes
                         </label>
                         &nbsp;
                         <label>
-                            <input type="radio" name="giftDepository[DeleteYN]" value="{{ obj.DeleteYN}}" class="minimal"> Delete No
+                            <input type="radio" name="giftDepository[DeleteYN]" class="minimal" value="N"
+                                {{#isNo obj.DeleteYN}} {{/isNo}}
+                            > Delete No
                         </label>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="giftDepository[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="giftDepository[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="giftDepository[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="giftDepository[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>
