@@ -19,6 +19,20 @@ function HandlebarBoot(expressApp, viewsPath) {
                 // TODO
                 return routeNames.split(',').indexOf(activeRoute) >= 0 ? 'active' : '';
             },
+            isYes: function(value) {
+                if(value=='Y'){
+                    return 'checked'
+                }else{
+                    return '';
+                }
+            },
+            isNo: function(value) {
+                if(value=='N'){
+                    return 'checked'
+                }else{
+                    return '';
+                }
+            },
             block: function(name) {
                 var val = (blocks[name] || []).join('\n');
 

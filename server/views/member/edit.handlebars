@@ -27,11 +27,6 @@
                                readonly/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
-                    <div class="form-group has-feedback">
-                        <input type="password" class="form-control" name="member[MemberPWD]" placeholder="Password" />
-                        <input type="password" class="form-control" name="member[MemberPWD2]" placeholder="Retype password" />
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -53,8 +48,12 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[PhomeNumber1]" placeholder="PhoneNumber1" required value="{{ obj.PhoneNumber1}}"/>
-                        <input type="tel" class="form-control" name="member[PhomeNumber2]" placeholder="PhoneNumber2" required value="{{ obj.PhoneNumber2}}"/>
+                        <input type="tel" class="form-control" name="member[PhoneNumber1]" placeholder="PhoneNumber1" required value="{{ obj.PhoneNumber1}}"/>
+                        <input type="tel" class="form-control" name="member[PhoneNumber2]" placeholder="PhoneNumber2" required value="{{ obj.PhoneNumber2}}"/>
+                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="member[PINumber]" placeholder="PINumber" value="{{ obj.PINumber}}"/>
                         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
@@ -64,30 +63,14 @@
                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="member[DOB]" placeholder="Date of Birth"value="{{ obj.DOB}}"/>
+                        <input type="tel" class="form-control" name="member[RecommenderID]" placeholder="RecommenderID" value="{{ obj.RecommenderID}}"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="member[MemberGroup]" placeholder="MemberGroup" value="{{ obj.MemberGroup}}"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="member[DOB]" placeholder="Date of Birth" value="{{ obj.DOB}}"/>
                         <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Access</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastDeviceID]" placeholder="LastDeviceID" value="{{ obj.LastDeviceID}}"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastIPaddress]" placeholder="LastIPaddress" value="{{ obj.LastIPaddress}}"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLoginDT]" placeholder="LastLoginDT" value="{{ obj.LastLoginDT}}"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastLogoutDT]" placeholder="LastLogoutDT" value="{{ obj.LastLogoutDT}}"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[LastMACAddress]" placeholder="LastMACAddress" value="{{ obj.LastMACAddress}}"/>
                     </div>
                 </div>
             </div>
@@ -110,13 +93,13 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthProvider]" placeholder="3rdAuthProvider" value="{{ obj.3rdAuthProvider}}"/>
+                        <input type="text" class="form-control" name="member[thirdAuthProvider]" placeholder="thirdAuthProvider" value="{{ obj.3rdAuthProvider}}"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthID]" placeholder="3rdAuthID" value="{{ obj.3rdAuthID}}"/>
+                        <input type="text" class="form-control" name="member[thirdAuthID]" placeholder="thirdAuthID" value="{{ obj.3rdAuthID}}"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="member[3rdAuthParam]" placeholder="3rdAuthParam" value="{{ obj.3rdAuthParam}}"/>
+                        <input type="text" class="form-control" name="member[thirdAuthParam]" placeholder="thirdAuthParam" value="{{ obj.3rdAuthParam}}"/>
                     </div>
                 </div>
             </div>
@@ -142,37 +125,73 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol1]" value="{{ obj.sCol1}}" placeholder="sCol1"/>
+                            <textarea class="form-control" name="member[sCol1]" placeholder="sCol1">{{ obj.sCol1}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol2]" value="{{ obj.sCol2}}" placeholder="sCol2"/>
+                            <textarea class="form-control" name="member[sCol2]" placeholder="sCol2">{{ obj.sCol2}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol3]" value="{{ obj.sCol3}}" placeholder="sCol3"/>
+                            <textarea class="form-control" name="member[sCol3]" placeholder="sCol3">{{ obj.sCol3}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol4]" value="{{ obj.sCol4}}" placeholder="sCol4"/>
+                            <textarea class="form-control" name="member[sCol4]" placeholder="sCol4">{{ obj.sCol4}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol5]" value="{{ obj.sCol5}}" placeholder="sCol5"/>
+                            <textarea class="form-control" name="member[sCol5]" placeholder="sCol5">{{ obj.sCol5}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol6]" value="{{ obj.sCol6}}" placeholder="sCol6"/>
+                            <textarea class="form-control" name="member[sCol6]" placeholder="sCol6">{{ obj.sCol6}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol7]" value="{{ obj.sCol7}}" placeholder="sCol7"/>
+                            <textarea class="form-control" name="member[sCol7]" placeholder="sCol7">{{ obj.sCol7}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol8]" value="{{ obj.sCol8}}" placeholder="sCol8"/>
+                            <textarea class="form-control" name="member[sCol8]" placeholder="sCol8">{{ obj.sCol8}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol9]" value="{{ obj.sCol9}}" placeholder="sCol9"/>
+                            <textarea class="form-control" name="member[sCol9]" placeholder="sCol9">{{ obj.sCol9}}</textarea>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="member[sCol10]" value="{{ obj.sCol1}}" placeholder="sCol10"/>
+                            <textarea class="form-control" name="member[sCol10]" placeholder="sCol10">{{ obj.sCol1}}</textarea>
                         </div>
                 </div>
             </div>
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">DateTime</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" name="member[TimeZoneID]" placeholder="TimeZoneID"  value="{{ obj.TimeZoneID}}" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="member[HideYN]" class="minimal" value="Y"
+                                {{#isYes obj.HideYN}} {{/isYes}}
+                                > Hide Yes
+                            </label>
+                            &nbsp;
+                            <label>
+                                <input type="radio" name="member[HideYN]" class="minimal" value="N"
+                                {{#isNo obj.HideYN}} {{/isNo}}
+                                > Hide No
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="member[DeleteYN]" class="minimal" value="Y"
+                                    {{#isYes obj.DeleteYN}} {{/isYes}}
+                                > Delete  Yes
+                            </label>
+                            &nbsp;
+                            <label>
+                                <input type="radio" name="member[DeleteYN]" class="minimal" value="N"
+                                    {{#isNo obj.DeleteYN}} {{/isNo}}
+                                > Delete No
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "member"}}}'">
