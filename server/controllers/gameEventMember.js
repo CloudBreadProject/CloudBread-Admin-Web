@@ -66,8 +66,33 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/gameEventMember/edit', 'gameEventMember.update', expressApp.restrict, function(req, res) {
-        res.redirect('/gameEventMember');
+    expressApp.post('/gameEventMember/edit', 'gameEventMember.update', expressApp.restrict, function(req, res, next) {
+        var gameEventMember = req.body.gameEventMember;
+        expressApp.models.GameEventMember.update({
+
+            eventID : gameEventMember.eventID
+            , MemberID : gameEventMember.MemberID
+
+            , sCol1 : gameEventMember.sCol1 || ''
+            , sCol2 : gameEventMember.sCol2 || ''
+            , sCol3 : gameEventMember.sCol3 || ''
+            , sCol4 : gameEventMember.sCol4 || ''
+            , sCol5 : gameEventMember.sCol5 || ''
+            , sCol6 : gameEventMember.sCol6 || ''
+            , sCol7 : gameEventMember.sCol7 || ''
+            , sCol8 : gameEventMember.sCol8 || ''
+            , sCol9 : gameEventMember.sCol9 || ''
+            , sCol10 : gameEventMember.sCol10 || ''
+
+            , HideYN : gameEventMember.HideYN
+            , DeleteYN : gameEventMember.DeleteYN
+        }, {
+            where : {GameEventMemberID  : gameEventMember.GameEventMemberID}
+        }).then(function() {
+            res.redirect('/gameEventMember');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
