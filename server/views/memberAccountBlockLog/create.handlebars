@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{{url 'blockLog'}}}">List</a></li>
+        <li><a href="{{{url 'memberAccountBlockLog'}}}">List</a></li>
         <li class="active">New Member Account Block Log</li>
     </ol>
 </section>
@@ -16,17 +16,17 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'blockLog.store'}}}" method="post">
+            <form action="{{{url 'memberAccountBlockLog.store'}}}" method="post">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Member Account Block Log Info</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockId]" placeholder="MemberAccountBlockId" required/>
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockID]" placeholder="MemberAccountBlockID" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[MemberId]" placeholder="ItemName" required/>
+                        <input type="text" class="form-control" name="blockLog[MemberID]" placeholder="MemberID" required/>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="blockLog[MemberAccountBlockReason]" placeholder="MemberAccountBlockReason" required/>
@@ -35,13 +35,13 @@
                         <input type="text" class="form-control" name="blockLog[MemberAccountBlockProcess]" placeholder="MemberAccountBlockProcess" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockCategory1]" placeholder="MemberAccountBlockCategory1"/>
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory1]" placeholder="MemberAccountBlockReasonCategory1"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockCategory2]" placeholder="MemberAccountBlockCategory2"/>
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory2]" placeholder="MemberAccountBlockReasonCategory2"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockCategory3]" placeholder="MemberAccountBlockCategory3"/>
+                        <input type="text" class="form-control" name="blockLog[MemberAccountBlockReasonCategory3]" placeholder="MemberAccountBlockReasonCategory3"/>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -90,39 +90,27 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="blockLog[HideYN]" class="minimal" checked> Hide Yes
+                            <input type="radio" name="blockLog[HideYN]" value="Y" class="minimal" checked> Hide Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="blockLog[HideYN]" class="minimal"> Hide No
+                             <input type="radio" name="blockLog[HideYN]" value="N" class="minimal"> Hide No
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="blockLog[DeleteYN]" class="minimal" checked> Delete  Yes
+                            <input type="radio" name="blockLog[DeleteYN]" value="Y" class="minimal" checked> Delete  Yes
                         </label>
                         &nbsp;
                         <label>
-                            <input type="radio" name="blockLog[DeleteYN]" class="minimal"> Delete No
+                            <input type="radio" name="blockLog[DeleteYN]" value="N" class="minimal"> Delete No
                         </label>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[CreatedAt]" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[UpdatedAt]" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[DataFromRegion]" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="blockLog[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "blockLog"}}}'">
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberAccountBlockLog"}}}'">
                         Cancel
                     </button>
                 </div>
