@@ -66,8 +66,32 @@ function route(expressApp){
         });
     });
 
-    expressApp.post('/couponMember/edit', 'couponMember.update', expressApp.restrict, function(req, res) {
-        res.redirect('/couponMember');
+    expressApp.post('/couponMember/edit', 'couponMember.update', expressApp.restrict, function(req, res, next) {
+        var couponMember = req.body.CouponMember;
+        expressApp.models.CouponMember.update({
+            CouponID: couponMember.CouponID
+            , MemberID : couponMember.MemberID
+
+            , sCol1 : couponMember.sCol1
+            , sCol2 : couponMember.sCol2
+            , sCol3 : couponMember.sCol3
+            , sCol4 : couponMember.sCol4
+            , sCol5 : couponMember.sCol5
+            , sCol6 : couponMember.sCol6
+            , sCol7 : couponMember.sCol7
+            , sCol8 : couponMember.sCol8
+            , sCol9 : couponMember.sCol9
+            , sCol10 : couponMember.sCol10
+
+            , HideYN : couponMember.HideYN
+            , DeleteYN : couponMember.DeleteYN
+        }, {
+            where : {CouponMemberID : couponMember.CouponMemberID}
+        }).then(function() {
+            res.redirect('/couponMember');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
