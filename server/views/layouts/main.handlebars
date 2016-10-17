@@ -50,6 +50,14 @@
     <script src="/admin/admin-lte/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/admin/admin-lte/js/demo.js"></script>
+    <!-- bootstrap datepicker -->
+    <script src="/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({ format: 'yyyy-mm-dd' });
+        });
+    </script>
     {{! Scripts block}}
     {{{block "scripts"}}}
 </body>
