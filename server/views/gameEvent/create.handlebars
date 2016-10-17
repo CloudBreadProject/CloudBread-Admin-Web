@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <!-- Input addon -->
             <!-- form -->
-            <form action="{{{url 'coupon.store'}}}" method="post">
+            <form action="{{{url 'gameEvent.store'}}}" method="post">
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Game Event Basic Info</h3>
@@ -27,9 +27,9 @@
                                    required/>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="gameEvent[eventCategory1]" placeholder="eventCategory1" required/>
-                            <input type="text" class="form-control" name="gameEvent[eventCategory2]" placeholder="eventCategory2"/>
-                            <input type="text" class="form-control" name="gameEvent[eventCategory3]" placeholder="eventCategory3"/>
+                            <input type="text" class="form-control" name="gameEvent[EventCategory1]" placeholder="EventCategory1" required/>
+                            <input type="text" class="form-control" name="gameEvent[EventCategory2]" placeholder="EventCategory2"/>
+                            <input type="text" class="form-control" name="gameEvent[EventCategory3]" placeholder="EventCategory3"/>
                         </div>
                         <div class="form-group has-feedback">
                             <input type="text" class="form-control" name="gameEvent[ItemListID]" placeholder="ItemListID" required/>
@@ -75,34 +75,34 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol1]" placeholder="sCol1" />
+                        <textarea class="form-control" name="gameEvent[sCol1]" placeholder="sCol1"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol2]" placeholder="sCol2" />
+                        <textarea class="form-control" name="gameEvent[sCol2]" placeholder="sCol2"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol3]" placeholder="sCol3" />
+                        <textarea class="form-control" name="gameEvent[sCol3]" placeholder="sCol3"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol4]" placeholder="sCol4" />
+                        <textarea class="form-control" name="gameEvent[sCol4]" placeholder="sCol4"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol5]" placeholder="sCol5" />
+                        <textarea class="form-control" name="gameEvent[sCol5]" placeholder="sCol5"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol6]" placeholder="sCol6" />
+                        <textarea class="form-control" name="gameEvent[sCol6]" placeholder="sCol6"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol7]" placeholder="sCol7" />
+                        <textarea class="form-control" name="gameEvent[sCol7]" placeholder="sCol7"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol8]" placeholder="sCol8" />
+                        <textarea class="form-control" name="gameEvent[sCol8]" placeholder="sCol8"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol9]" placeholder="sCol9" />
+                        <textarea class="form-control" name="gameEvent[sCol9]" placeholder="sCol9"></textarea>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[sCol10]" placeholder="sCol10" />
+                        <textarea class="form-control" name="gameEvent[sCol10]" placeholder="sCol10"></textarea>
                     </div>
                 </div>
             </div>
@@ -111,25 +111,22 @@
                     <h3 class="box-title">Access</h3>
                 </div>
                 <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[CreateAdminID]" placeholder="CreateAdminID" required/>
-                    </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="gameEvent[HideYN]" class="minimal" checked> Hide Yes
+                            <input type="radio" name="gameEvent[HideYN]"  value="Y" class="minimal" checked> Hide Yes
                         </label>
                         &nbsp;
                         <label>
-                             <input type="radio" name="gameEvent[HideYN]" class="minimal"> Hide No
+                             <input type="radio" name="gameEvent[HideYN]"  value="N" class="minimal"> Hide No
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="gameEvent[DeleteYN]" class="minimal" checked> Delete  Yes
+                            <input type="radio" name="gameEvent[DeleteYN]"  value="Y" class="minimal" checked> Delete  Yes
                         </label>
                         &nbsp;
                         <label>
-                            <input type="radio" name="gameEvent[DeleteYN]" class="minimal"> Delete No
+                            <input type="radio" name="gameEvent[DeleteYN]"  value="N" class="minimal"> Delete No
                         </label>
                     </div>
                     <div class="form-group has-feedback">
@@ -140,18 +137,6 @@
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="gameEvent[EventDurationTo]" placeholder="EventDurationTo" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[CreatedAt]" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[UpdatedAt]" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[DataFromRegion]" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="gameEvent[DataFromRegionDT]" placeholder="DataFromRegionDT"/>
                     </div>
                 </div>
             </div>
