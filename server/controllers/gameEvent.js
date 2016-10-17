@@ -82,8 +82,49 @@ function route(expressApp){
 
     });
 
-    expressApp.post('/gameEvent/edit', 'gameEvent.update', expressApp.restrict, function(req, res) {
-        res.redirect('/gameEvent');
+    expressApp.post('/gameEvent/edit', 'gameEvent.update', expressApp.restrict, function(req, res, next) {
+        var gameEvent = req.body.gameEvent;
+        expressApp.models.GameEvents.update({
+
+            EventCategory1 : gameEvent.EventCategory1
+            , EventCategory2 : gameEvent.EventCategory2
+            , EventCategory3 : gameEvent.EventCategory3
+            , ItemListID : gameEvent.ItemListID
+
+            , ItemCount : gameEvent.ItemCount
+            , ItemStatus : gameEvent.ItemStatus
+            , TargetGroup : gameEvent.TargetGroup
+            , TargetOS : gameEvent.TargetOS
+            , TargetDevice : gameEvent.TargetDevice
+            , EventImageLink : gameEvent.EventImageLink
+            , Title : gameEvent.Title
+            , Content : gameEvent.Content
+
+            , sCol1 : gameEvent.sCol1
+            , sCol2 : gameEvent.sCol2
+            , sCol3 : gameEvent.sCol3
+            , sCol4 : gameEvent.sCol4
+            , sCol5 : gameEvent.sCol5
+            , sCol6 : gameEvent.sCol6
+            , sCol7 : gameEvent.sCol7
+            , sCol8 : gameEvent.sCol8
+            , sCol9 : gameEvent.sCol9
+            , sCol10 : gameEvent.sCol10
+
+            , EventDurationFrom : gameEvent.EventDurationFrom
+            , EventDurationTo  : gameEvent.EventDurationTo
+            , OrderNumber   : gameEvent.OrderNumber
+
+            , HideYN : gameEvent.HideYN
+            , DeleteYN : gameEvent.DeleteYN
+
+        }, {
+            where: {GameEventID  : gameEvent.GameEventID}
+        }).then(function() {
+            res.redirect('/gameEvent');
+        }).catch(function(err) {
+            next(err);
+        });
     });
 }
 
