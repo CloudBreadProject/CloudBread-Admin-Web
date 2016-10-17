@@ -64,25 +64,6 @@
                     </div>
                 </div>
             </div>
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Access</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="serverInfo[CreatedAt]" value="{{ obj.CreatedAt}}" placeholder="CreatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="serverInfo[UpdatedAt]" value="{{ obj.UpdatedAt}}" placeholder="UpdatedAt" required/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="serverInfo[DataFromRegion]" value="{{ obj.DataFromRegion}}" placeholder="DataFromRegion"/>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="serverInfo[DataFromRegionDT]" value="{{ obj.DataFromRegionDT}}" placeholder="DataFromRegionDT"/>
-                    </div>
-                </div>
-            </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "serverInfo"}}}'">

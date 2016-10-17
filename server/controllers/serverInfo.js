@@ -49,11 +49,11 @@ function route(expressApp){
             , ResourceLink : info.ResourceLink
             , EULAText : info.EULAText
 
-            , sCol1 : info.sCol1
-            , sCol2 : info.sCol2
-            , sCol3 : info.sCol3
-            , sCol4 : info.sCol4
-            , sCol5 : info.sCol5
+            , sCol1 : info.sCol1 || ''
+            , sCol2 : info.sCol2 || ''
+            , sCol3 : info.sCol3 || ''
+            , sCol4 : info.sCol4 || ''
+            , sCol5 : info.sCol5 || ''
 
             , DataFromRegion : info.DataFromRegion || ''
             , DataFromRegionDT : info.DataFromRegionDT || '1900-01-01 00:00:00:000 +00:00'
@@ -65,8 +65,31 @@ function route(expressApp){
 
     });
 
-    expressApp.post('/serverInfo/edit', 'serverInfo.update', expressApp.restrict, function(req, res) {
-        res.redirect('/serverInfo');
+    expressApp.post('/serverInfo/edit', 'serverInfo.update', expressApp.restrict, function(req, res, next) {
+        var info = req.body.serverInfo;
+        expressApp.models.ServerInfo.update({
+            FEServerLists : info.FEServerLists
+            , SocketServerLists : info.SocketServerLists
+
+            , Version : info.Version
+
+            , ResourceLink : info.ResourceLink
+            , EULAText : info.EULAText
+
+            , sCol1 : info.sCol1
+            , sCol2 : info.sCol2
+            , sCol3 : info.sCol3
+            , sCol4 : info.sCol4
+            , sCol5 : info.sCol5
+
+        }, {
+            where : {InfoID : info.InfoID}
+        }).then(function() {
+            res.redirect('/serverInfo');
+        }).catch(function(err) {
+            next(err);
+        });
+
     });
 }
 
