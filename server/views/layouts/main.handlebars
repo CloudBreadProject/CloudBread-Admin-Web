@@ -17,6 +17,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/admin/admin-lte/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/admin/plugins/datetimepicker/jquery.datetimepicker.css">
     {{! Styles Block}}
     {{{block 'styles'}}}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,10 +53,12 @@
     <script src="/admin/admin-lte/js/demo.js"></script>
     <!-- bootstrap datepicker -->
     <script src="/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="/admin/plugins/datetimepicker/jquery.datetimepicker.full.js"></script>
 
     <script>
         $(function () {
-            $(".datepicker").datepicker({ format: 'yyyy-mm-dd' });
+            $(".datepicker").datepicker({format: 'yyyy-mm-dd' });
+            $(".datetimepicker").datetimepicker({format:'Y-m-d H:i'});
         });
     </script>
     {{! Scripts block}}
