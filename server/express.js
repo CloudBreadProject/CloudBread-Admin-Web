@@ -12,6 +12,7 @@ var HandlebarBoot = require('./bootstraps/handlebar-boot');
 var RouterBoot = require('./bootstraps/router-boot');
 var AuthBoot = require('./bootstraps/auth-boot');
 
+var moment = require('moment');
 
 
 module.exports = function(app, config) {

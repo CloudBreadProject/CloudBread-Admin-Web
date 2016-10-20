@@ -144,10 +144,10 @@
                         <input type="text" class="form-control" name="gameEvent[OrderNumber]" value="{{ obj.OrderNumber}}" placeholder="OrderNumber" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control datetimepicker" name="gameEvent[EventDurationFrom]" value="{{ obj.EventDurationFrom}}" placeholder="EventDurationFrom" required/>
+                        <input type="text" class="form-control datetimepicker" name="gameEvent[EventDurationFrom]" value="{{ formatTimeDate obj.EventDurationFrom}}" placeholder="EventDurationFrom" required/>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control datetimepicker" name="gameEvent[EventDurationTo]" value="{{ obj.EventDurationTo}}" placeholder="EventDurationTo" required/>
+                        <input type="text" class="form-control datetimepicker" name="gameEvent[EventDurationTo]" value="{{ formatTimeDate obj.EventDurationTo}}" placeholder="EventDurationTo" required/>
                     </div>
                 </div>
             </div>

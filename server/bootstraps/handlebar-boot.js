@@ -1,4 +1,5 @@
 var exphbs = require('express-handlebars');
+var moment = require('moment');
 
 var activeRoute = '';
 var blocks = [];
@@ -60,6 +61,13 @@ function HandlebarBoot(expressApp, viewsPath) {
                 // clear the block
                 blocks[name] = [];
                 return val;
+            },
+            formatTimeDate: function(date, displaySecond) {
+
+                if(displaySecond === true)
+                    return moment(date).format('YYYY-MM-DD HH:mm:ss');
+                else
+                    return moment(date).format('YYYY-MM-DD HH:mm');
             },
             extend: function(name, context) {
                 var block = blocks[name];
