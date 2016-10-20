@@ -70,8 +70,10 @@
                         {{/each}}
                     </table>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        {{{ pagination page count }}}
+                    </ul>
                     <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "member.create"}}}'">Create New Member</button>
                 </div>
             </div>

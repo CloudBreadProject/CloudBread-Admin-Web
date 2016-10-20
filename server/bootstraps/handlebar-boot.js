@@ -69,6 +69,36 @@ function HandlebarBoot(expressApp, viewsPath) {
                 else
                     return moment(date).format('YYYY-MM-DD HH:mm');
             },
+            pagination: function(currentPage, totalCount) {
+
+                console.log('currentPage : '+currentPage);
+                console.log('totalCount : '+totalCount);
+
+
+                var str = '';
+                var perPage = 15;
+                var lastPage = Math.ceil((totalCount / perPage - 1) + 1);
+                var maxDisplayPage = 10;
+
+                console.log('lastPage : '+lastPage);
+
+                if(currentPage > 1){
+                    str += '<li><a href="?page='+(currentPage - 1) + '">&laquo;</a></li>';
+                }
+                str += '<li><a href="#">' + currentPage  + '</a></li>';
+                var i = currentPage + 1;
+                for(; i < lastPage ; i++)
+                {
+                    str += '<li><a href="?page='+i + '">'+i+'</a></li>';
+                }
+                console.log(' after loop i '+i);
+                if(i <= lastPage){
+                    str += '<li><a href="?page=';
+                    str += i;
+                    str += '">&raquo;</a></li>';
+                }
+                return str;
+            },
             extend: function(name, context) {
                 var block = blocks[name];
                 if (!block) {
