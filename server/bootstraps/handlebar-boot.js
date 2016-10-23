@@ -71,32 +71,33 @@ function HandlebarBoot(expressApp, viewsPath) {
             },
             pagination: function(currentPage, totalCount) {
 
-                console.log('currentPage : '+currentPage);
-                console.log('totalCount : '+totalCount);
-
-
                 var str = '';
                 var perPage = 15;
+                var block = 5;
+
                 var lastPage = Math.ceil((totalCount / perPage - 1) + 1);
-                var maxDisplayPage = 10;
 
-                console.log('lastPage : '+lastPage);
+                var totalPage = Math.ceil(totalCount / perPage);
+                var totalBlock = Math.ceil(totalPage / block);
+                var currentBlock = Math.ceil(currentPage / block);
 
-                if(currentPage > 1){
-                    str += '<li><a href="?page='+(currentPage - 1) + '">&laquo;</a></li>';
+                var startPage = (currentBlock * block) - (block - 1);
+
+                if(startPage < 1) { startPage = 1;}
+
+                var endPage = currentBlock * block;
+                if(totalPage <= endPage){
+                    endPage = totalPage;
                 }
-                str += '<li><a href="#">' + currentPage  + '</a></li>';
-                var i = currentPage + 1;
-                for(; i < lastPage ; i++)
-                {
-                    str += '<li><a href="?page='+i + '">'+i+'</a></li>';
+
+                for(var p = startPage; p<=endPage; p++){
+                    if(currentPage == p) {
+                        str += '<li class="paginate_button active"><a href="?page=' + p + '">' + p + '</a></li>';
+                    }else {
+                        str += '<li class="paginate_button"><a href="?page=' + p + '">' + p + '</a></li>';
+                    }
                 }
-                console.log(' after loop i '+i);
-                if(i <= lastPage){
-                    str += '<li><a href="?page=';
-                    str += i;
-                    str += '">&raquo;</a></li>';
-                }
+
                 return str;
             },
             extend: function(name, context) {
