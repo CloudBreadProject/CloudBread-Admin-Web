@@ -1,12 +1,35 @@
 function route(expressApp){
 
-    expressApp.get('/couponMember', 'couponMember', expressApp.restrict, function (req, res) {
-        expressApp.models.CouponMember.findAll().then(function(results) {
-            res.render('couponMember/list', {
-                title: 'Members',
-                listObjs: results
-            });
-        }).catch(function(err) {
+    expressApp.get('/couponMember', 'couponMember', expressApp.restrict, function (req, res, next) {
+        var perPage = 15;
+        var currentPage = Number(req.query.page || 1);
+        var filter = {};
+
+        var Model = expressApp.models.CouponMember;
+
+        Model.findAll({
+                where : filter
+            })
+            .then(function(filteredModel) {
+                var count = filteredModel.length;
+
+                Model.findAll({
+                        where : filter,
+                        limit : perPage,
+                        offset : (currentPage <= 1) ? 0 : perPage*(currentPage-1)
+                    })
+                    .then(function (results) {
+                        res.render('couponMember/list', {
+                            title: 'Coupon Members',
+                            listObjs: results,
+                            page:currentPage,
+                            count:count
+                        });
+                    }).catch(function (err) {
+                    next(err);
+                });
+
+            }).catch(function(err){
             next(err);
         });
     });
