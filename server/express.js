@@ -13,6 +13,7 @@ var RouterBoot = require('./bootstraps/router-boot');
 var AuthBoot = require('./bootstraps/auth-boot');
 
 var moment = require('moment');
+var flash = require('connect-flash');
 
 
 module.exports = function(app, config) {
@@ -33,12 +34,7 @@ module.exports = function(app, config) {
     app.use(cookieParser());
     app.use(compress());
     app.use(methodOverride());
-
-    app.use(session({
-        resave: false, // don't save session if unmodified
-        saveUninitialized: false, // don't create session until something stored
-        secret: 'dev-session'
-    }));
+    app.use(flash());
 
     HandlebarBoot(app, config.root + '/server/views');
     AuthBoot(app);

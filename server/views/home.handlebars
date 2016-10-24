@@ -1,1 +1,62 @@
-<h1>Welcome Home!</h1>
+{{#extend 'scripts'}}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{{/extend}}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        List AdminMembers
+        <small>All AdminMember listed</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">List</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            {{#if message}}
+                {{{message}}}
+            {{/if}}
+            <div class="box">
+                    <ul id="nav" class="mainMenu">
+                        <li class="" id="main1">
+                            <a class="underbar" href="#/" style="margin-left:160px;">기본지표 </a>
+                            <ul class="subMenu">
+                                <li id="sub11"><a href="#/Overview/AU" style="margin-left:120px;">활동 유저수 </a></li>
+                                <li id="sub12"><a href="#/Overview/DPA">매출액 </a></li>
+                                <li id="sub13"><a href="#/Realtime/HAU" style="margin-left:-35px;">시간별 활동 유저수 </a></li>
+                                <li id="sub14"><a href="#" onclick="yet()" style="margin-left:60px;">평균 게임플레이 시간 </a></li>
+                            </ul>
+                        </li>
+                        <li class="" id="main2">
+                            <a class="underbar" href="#/Revenue/DARPU">인앱매출 </a>
+                            <ul class="subMenu">
+                                <li id="sub21"><a href="#/Revenue/DARPU" style="margin-left:120px;">평균 매출 </a></li>
+                                <li id="sub22"><a href="#/Revenue/PU" style="margin-left:-17px;">구매 유저수 </a></li>
+                                <li id="sub23"><a href="#/Revenue/FPU" >최초 구매 유저수 </a></li>
+                            </ul>
+                        </li>
+                        <li class="" id="main3">
+                            <a class="underbar" href="#/Retention/Dormant">리텐션 </a>
+                            <ul class="subMenu">
+                                <li id="sub31"><a href="#/Retention/Dormant" style="margin-left:120px;">휴면유저 </a></li>
+                                <li id="sub32"><a href="#" onclick="yet()" style="margin-left:-19px;">복귀유저 </a></li>
+                            </ul>
+                        </li>
+                        <li class="" id="main4">
+                            <a class="underbar" id="ML" href="#/ML/start">머신러닝 </a>
+                            <ul class="subMenu">
+                                <li id="sub41"><a href="#/ML/start" style="margin-left:120px;">ML 시작하기</a></li>
+                                <li id="sub42"><a href="#/ML/predict" style="margin-left:10px;">이탈율 예측</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+

@@ -52,24 +52,7 @@ function RouterBoot(expressApp) {
         });
     });
 
-    expressApp.get('/login', 'login', function (req, res) {
-        res.render("admin-lte/user/login", {
-            title: "login",
-            layout: 'auth'
-        });
-    });
 
-    expressApp.get('/logout', 'logout', function (req, res) {
-        req.logout();
-        res.redirect('/login');
-    });
-
-    expressApp.get('/register', 'register', function (req, res) {
-        res.render("admin-lte/user/register", {
-            title: "register",
-            layout: 'auth'
-        });
-    });
 
     // expressApp.get('/', 'main', restrict, function (req, res) {
     //     res.render('home');
