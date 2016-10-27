@@ -41,7 +41,41 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/giftDepository/:id', 'giftDepository.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/giftDepository/delete/:id', 'giftDepository.delete', expressApp.restrict, function(req, res, next) {
+        var giftDepositoryId = req.params.id;
+        expressApp.models.GiftDepository.findOne({
+            where: {
+                GiftDepositoryID: giftDepositoryId
+            }
+        })
+        .then(function(result){
+            res.render('giftDepository/delete', {
+                title: 'GiftDepository Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.delete("/giftDepository/delete/:id", function(req,res, next){
+        var giftDepositoryId = req.params.id;
+        expressApp.models.GiftDepository.destroy({
+            where: {
+                GiftDepositoryID: giftDepositoryId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/giftDepository');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/giftDepository/:id', 'giftDepository.show', expressApp.restrict, function(req, res, next) {
         var giftDepositoryId = req.params.id;
         expressApp.models.GiftDepository.findOne({
             where: {

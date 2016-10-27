@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/memberItemPurchase/:id', 'memberItemPurchase.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/memberItemPurchase/delete/:id', 'memberItemPurchase.delete', expressApp.restrict, function(req, res, next) {
+        var memberItemPurchaseId = req.params.id;
+        expressApp.models.MemberItemPurchase.findOne({
+            where: {
+                MemberItemPurchaseID: memberItemPurchaseId
+            }
+        })
+        .then(function(result){
+            res.render('memberItemPurchase/delete', {
+                title: 'MemberItemPurchase Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/memberItemPurchase/delete/:id", function(req,res, next){
+        var memberItemPurchaseId = req.params.id;
+        expressApp.models.MemberItemPurchase.destroy({
+            where: {
+                MemberItemPurchaseID: memberItemPurchaseId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/memberItemPurchase');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/memberItemPurchase/:id', 'memberItemPurchase.show', expressApp.restrict, function(req, res, next) {
         var memberItemPurchaseId = req.params.id;
         expressApp.models.MemberItemPurchase.findOne({
             where: {

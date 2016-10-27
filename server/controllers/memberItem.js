@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/memberItem/:id', 'memberItem.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/memberItem/delete/:id', 'memberItem.delete', expressApp.restrict, function(req, res, next) {
+        var memberItemId = req.params.id;
+        expressApp.models.MemberItems.findOne({
+            where: {
+                MemberItemID: memberItemId
+            }
+        })
+        .then(function(result){
+            res.render('memberItem/delete', {
+                title: 'MemberItems Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/memberItem/delete/:id", function(req,res, next){
+        var memberItemId = req.params.id;
+        expressApp.models.MemberItems.destroy({
+            where: {
+                MemberItemID: memberItemId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/memberItem');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/memberItem/:id', 'memberItem.show', expressApp.restrict, function(req, res, next) {
         var memberItemId = req.params.id;
         expressApp.models.MemberItems.findOne({
             where: {

@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/couponMember/:id', 'couponMember.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/couponMember/delete/:id', 'couponMember.delete', expressApp.restrict, function(req, res, next) {
+        var couponMemberId = req.params.id;
+        expressApp.models.CouponMember.findOne({
+            where: {
+                CouponMemberID: couponMemberId
+            }
+        })
+        .then(function(result){
+            res.render('couponMember/delete', {
+                title: 'CouponMember Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/couponMember/delete/:id", function(req,res, next){
+        var couponMemberId = req.params.id;
+        expressApp.models.CouponMember.destroy({
+            where: {
+                CouponMemberID: couponMemberId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/couponMember');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/couponMember/:id', 'couponMember.show', expressApp.restrict, function(req, res, next) {
         var couponMemberId = req.params.id;
         expressApp.models.CouponMember.findOne({
             where: {

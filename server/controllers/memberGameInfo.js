@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/memberGameInfo/:id', 'memberGameInfo.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/memberGameInfo/delete/:id', 'memberGameInfo.delete', expressApp.restrict, function(req, res, next) {
+        var memberID = req.params.id;
+        expressApp.models.MemberGameInfo.findOne({
+            where: {
+                MemberID: memberID
+            }
+        })
+        .then(function(result){
+            res.render('memberGameInfo/delete', {
+                title: 'MemberGameInfo Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/memberGameInfo/delete/:id", function(req,res, next){
+        var memberID = req.params.id;
+        expressApp.models.MemberGameInfo.destroy({
+            where: {
+                MemberID: memberID
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/memberGameInfo');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/memberGameInfo/:id', 'memberGameInfo.show', expressApp.restrict, function(req, res, next) {
         var memberID = req.params.id;
         expressApp.models.MemberGameInfo.findOne({
             where: {

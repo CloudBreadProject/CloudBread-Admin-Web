@@ -40,7 +40,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/itemList/:id', 'itemList.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/itemList/delete/:id', 'itemList.delete', expressApp.restrict, function(req, res, next) {
+        var itemListId = req.params.id;
+        expressApp.models.ItemList.findOne({
+            where: {
+                ItemListID: itemListId
+            }
+        })
+        .then(function(result){
+            res.render('itemList/delete', {
+                title: 'ItemList Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/itemList/delete/:id", function(req,res, next){
+        var itemListId = req.params.id;
+        expressApp.models.ItemList.destroy({
+            where: {
+                ItemListID: itemListId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/itemList');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/itemList/:id', 'itemList.show', expressApp.restrict, function(req, res, next) {
         var itemListId = req.params.id;
         expressApp.models.ItemList.findOne({
             where: {

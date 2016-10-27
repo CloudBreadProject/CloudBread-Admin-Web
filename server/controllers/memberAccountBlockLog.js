@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/memberAccountBlockLog/:id', 'memberAccountBlockLog.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/memberAccountBlockLog/delete/:id', 'memberAccountBlockLog.delete', expressApp.restrict, function(req, res, next) {
+        var memberAccountBlockId = req.params.id;
+        expressApp.models.MemberAccountBlockLog.findOne({
+            where: {
+                MemberAccountBlockID: memberAccountBlockId
+            }
+        })
+        .then(function(result){
+            res.render('memberAccountBlockLog/delete', {
+                title: 'MemberAccountBlockLog Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/memberAccountBlockLog/delete/:id", function(req,res, next){
+        var memberAccountBlockId = req.params.id;
+        expressApp.models.MemberAccountBlockLog.destroy({
+            where: {
+                MemberAccountBlockID: memberAccountBlockId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/memberAccountBlockLog');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/memberAccountBlockLog/:id', 'memberAccountBlockLog.show', expressApp.restrict, function(req, res, next) {
         var memberAccountBlockId = req.params.id;
         expressApp.models.MemberAccountBlockLog.findOne({
             where: {

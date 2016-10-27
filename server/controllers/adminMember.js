@@ -40,7 +40,44 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/adminMember/:id', 'adminMember.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/adminMember/delete/:id', 'adminMember.delete', expressApp.restrict, function (req, res, next) {
+        var adminMemberId = req.params.id;
+        expressApp.models.AdminMembers.findOne({
+            where: {
+                AdminMemberID: adminMemberId
+            }
+        })
+            .then(function(result){
+                res.render('adminMember/delete', {
+                    title: 'AdminMembers Delete'
+                });
+            }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.delete("/adminMember/delete/:id", function(req,res, next){
+        var adminMemberId = req.params.id;
+        expressApp.models.AdminMembers.destroy({
+            where: {
+                AdminMemberID: adminMemberId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/adminMember');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/adminMember/:id', 'adminMember.show', expressApp.restrict, function(req, res, next) {
+
+        console.log(req.params);
+        console.log(req.params.id);
+
         var adminMemberId = req.params.id;
         expressApp.models.AdminMembers.findOne({
             where: {

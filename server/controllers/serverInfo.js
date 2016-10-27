@@ -41,7 +41,41 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/serverInfo/:id', 'serverInfo.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/serverInfo/delete/:id', 'serverInfo.delete', expressApp.restrict, function(req, res, next) {
+        var InfoID = req.params.id;
+        expressApp.models.ServerInfo.findOne({
+            where: {
+                InfoID: InfoID
+            }
+        })
+        .then(function(result){
+            res.render('serverInfo/delete', {
+                title: 'ServerInfo Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.delete("/serverInfo/delete/:id", function(req,res, next){
+        var InfoID = req.params.id;
+        expressApp.models.ServerInfo.destroy({
+            where: {
+                InfoID: InfoID
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/serverInfo');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/serverInfo/:id', 'serverInfo.show', expressApp.restrict, function(req, res, next) {
         var InfoID = req.params.id;
         expressApp.models.ServerInfo.findOne({
             where: {

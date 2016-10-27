@@ -41,7 +41,40 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/notice/:id', 'notice.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/notice/delete/:id', 'notice.delete', expressApp.restrict, function(req, res, next) {
+        var NoticeID = req.params.id;
+        expressApp.models.Notice.findOne({
+            where: {
+                NoticeID: NoticeID
+            }
+        })
+        .then(function(result){
+            res.render('notice/delete', {
+                title: 'Notices Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/notice/delete/:id", function(req,res, next){
+        var NoticeID = req.params.id;
+        expressApp.models.Notice.destroy({
+            where: {
+                NoticeID: NoticeID
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/notice');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/notice/:id', 'notice.show', expressApp.restrict, function(req, res, next) {
         var NoticeID = req.params.id;
         expressApp.models.Notice.findOne({
             where: {

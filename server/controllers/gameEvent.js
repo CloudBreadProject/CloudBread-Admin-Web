@@ -40,7 +40,41 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/gameEvent/:id', 'gameEvent.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/gameEvent/delete/:id', 'gameEvent.delete', expressApp.restrict, function(req, res, next) {
+        var gameEventId = req.params.id;
+        expressApp.models.GameEvents.findOne({
+            where: {
+                GameEventID: gameEventId
+            }
+        })
+        .then(function(result){
+            res.render('gameEvent/delete', {
+                title: 'GameEvents Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.delete("/gameEvent/delete/:id", function(req,res, next){
+        var gameEventId = req.params.id;
+        expressApp.models.GameEvents.destroy({
+            where: {
+                GameEventID: gameEventId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/gameEvent');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/gameEvent/:id', 'gameEvent.show', expressApp.restrict, function(req, res, next) {
         var gameEventId = req.params.id;
         expressApp.models.GameEvents.findOne({
             where: {

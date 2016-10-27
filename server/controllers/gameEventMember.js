@@ -41,7 +41,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/gameEventMember/:id', 'gameEventMember.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/gameEventMember/delete/:id', 'gameEventMember.delete', expressApp.restrict, function(req, res, next) {
         var gameEventMemberId = req.params.id;
         expressApp.models.GameEventMember.findOne({
             where: {
@@ -49,11 +49,45 @@ function route(expressApp){
             }
         })
         .then(function(result){
-            res.render('gameEventMember/edit', {
-                title: 'GameEventMember',
+            res.render('gameEventMember/delete', {
+                title: 'GameEventMember Delete',
                 obj : result
             });
         }).catch(function(err) {
+            next(err);
+        });
+
+    });
+
+    expressApp.delete("/gameEventMember/delete/:id", function(req,res, next){
+        var gameEventMemberId = req.params.id;
+        expressApp.models.GameEventMember.destroy({
+            where: {
+                GameEventMemberID: gameEventMemberId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/gameEventMember');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+    expressApp.get('/gameEventMember/:id', 'gameEventMember.show', expressApp.restrict, function(req, res, next) {
+        var gameEventMemberId = req.params.id;
+        expressApp.models.GameEventMember.findOne({
+            where: {
+                GameEventMemberID: gameEventMemberId
+            }
+        })
+            .then(function(result){
+                res.render('gameEventMember/edit', {
+                    title: 'GameEventMember',
+                    obj : result
+                });
+            }).catch(function(err) {
             next(err);
         });
 

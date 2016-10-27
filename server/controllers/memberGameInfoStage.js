@@ -41,7 +41,41 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/memberGameInfoStage/:id', 'memberGameInfoStage.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/memberGameInfoStage/delete/:id', 'memberGameInfoStage.delete', expressApp.restrict, function(req, res, next) {
+        var memberGameInfoStageId = req.params.id;
+        expressApp.models.MemberGameInfoStage.findOne({
+            where: {
+                MemberGameInfoStageID: memberGameInfoStageId
+            }
+        })
+        .then(function(result){
+            res.render('memberGameInfoStage/delete', {
+                title: 'MemberGameInfoStage Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/memberGameInfoStage/delete/:id", function(req,res, next){
+        var memberGameInfoStageId = req.params.id;
+        expressApp.models.MemberGameInfoStage.destroy({
+            where: {
+                MemberGameInfoStageID: memberGameInfoStageId
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/memberGameInfoStage');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+
+    expressApp.get('/memberGameInfoStage/:id', 'memberGameInfoStage.show', expressApp.restrict, function(req, res, next) {
         var memberGameInfoStageId = req.params.id;
         expressApp.models.MemberGameInfoStage.findOne({
             where: {

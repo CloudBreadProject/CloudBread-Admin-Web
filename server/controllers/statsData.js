@@ -41,7 +41,41 @@ function route(expressApp){
         });
     });
 
-    expressApp.get('/statsData/:id', 'statsData.show', expressApp.restrict, function(req, res) {
+    expressApp.get('/statsData/delete/:id', 'statsData.delete', expressApp.restrict, function(req, res, next) {
+        var StatID = req.params.id;
+        expressApp.models.StatsData.findOne({
+            where: {
+                StatID: StatID
+            }
+        })
+        .then(function(result){
+            res.render('statsData/delete', {
+                title: 'StatsData Delete',
+                obj : result
+            });
+        }).catch(function(err) {
+            next(err);
+        });
+    });
+
+    expressApp.delete("/statsData/delete/:id", function(req,res, next){
+        var StatID = req.params.id;
+        expressApp.models.StatsData.destroy({
+            where: {
+                StatID: StatID
+            }
+        })
+            .then(function(result){
+                console.log(result);
+                res.redirect('/statsData');
+            })
+            .catch(function(err) {
+                next(err);
+            });
+    });
+
+
+    expressApp.get('/statsData/:id', 'statsData.show', expressApp.restrict, function(req, res, next) {
         var StatID = req.params.id;
         expressApp.models.StatsData.findOne({
             where: {
