@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Gift Depository
-        <small>Create a new game event member</small>
+        Edit Gift Depository
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'giftDepository'}}}">List</a></li>
-        <li class="active">New Gift Depository</li>
+        <li class="active">Edit Gift Depository</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -128,6 +127,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "giftDepository"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "giftDepository"  }}/delete/{{obj.GiftDepositoryID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

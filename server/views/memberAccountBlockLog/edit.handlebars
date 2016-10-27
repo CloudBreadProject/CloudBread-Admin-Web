@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Member Account Block Log
-        <small>Create a Member Account Block Log</small>
+        Edit Member Account Block Log
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'memberAccountBlockLog'}}}">List</a></li>
-        <li class="active">New Member Account Block Log</li>
+        <li class="active">Edit Account Block Log</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -120,6 +119,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberAccountBlockLog"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "memberAccountBlockLog"  }}/delete/{{obj.MemberAccountBlockID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

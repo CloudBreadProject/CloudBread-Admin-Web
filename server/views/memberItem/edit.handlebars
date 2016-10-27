@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Member Item
-        <small>Create a Member Item</small>
+        Edit Member Item
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'memberItem'}}}">List</a></li>
-        <li class="active">New Member Item</li>
+        <li class="active">Edit Member Item</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -114,6 +113,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberItem"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "memberItem"  }}/delete/{{obj.MemberItemID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

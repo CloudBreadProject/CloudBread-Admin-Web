@@ -1,0 +1,60 @@
+{{#extend 'styles'}}
+    <style>
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+{{/extend}}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Delete Member Account Block Log
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{{url 'memberAccountBlockLog'}}}">List</a></li>
+        <li class="active">Delete Account Block Log</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<form action="{{{url 'memberAccountBlockLog.destroy'}}}" method="post">
+    <input type="hidden" class="form-control" name="id" value="{{obj.MemberAccountBlockID}}"/>
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal modal-danger">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Model Delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{obj.MemberAccountBlockID}} will delete.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onclick="location.href = '{{{url "memberAccountBlockLog"}}}'">Close</button>
+                            <button type="submit" class="btn btn-outline">Delete</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        <!-- /.example-modal -->
+    </section>
+<!-- /.content -->
+</form>

@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header" xmlns="http://www.w3.org/1999/html">
     <h1>
-        New Server Info
-        <small>Create a Server Info</small>
+        Edit Server Info
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'serverInfo'}}}">List</a></li>
-        <li class="active">New Server Info</li>
+        <li class="active">Edit Server Info</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -68,6 +67,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "serverInfo"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "serverInfo"  }}/delete/{{obj.InfoID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Notice
+        Edit Notice
         <small>Create a Notice</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'notice'}}}">List</a></li>
-        <li class="active">New Notice</li>
+        <li class="active">Edit Notice</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -143,8 +143,11 @@
             </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "notice.store"}}}'">
+                    <button type="button" class="btn btn-default" onclick="location.href = '{{{url "notice"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "notice"  }}/delete/{{obj.NoticeID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Member Game Info
-        <small>Create a Member Game Info</small>
+        Edit Member Game Info
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'memberGameInfo'}}}">List</a></li>
-        <li class="active">New Member Game Info</li>
+        <li class="active">Edit Member Game Info</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -148,6 +147,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "memberGameInfo"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "memberGameInfo"  }}/delete/{{obj.MemberID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

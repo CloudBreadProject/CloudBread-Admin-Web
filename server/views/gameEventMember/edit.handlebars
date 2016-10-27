@@ -4,13 +4,13 @@
          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <h1>
-        New Game Event Member
-        <small>Create a new game event member</small>
+        Edit Game Event Member
+        <small>Edit game event member</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'gameEventMember'}}}">List</a></li>
-        <li class="active">New Game Event Member</li>
+        <li class="active">Edit Game Event Member</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -112,6 +112,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "gameEventMember"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "gameEventMember"  }}/delete/{{obj.GameEventMemberID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->

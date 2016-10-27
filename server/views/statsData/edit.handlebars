@@ -1,13 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        New Stat Data
-        <small>Create a Stat Data</small>
+        Edit Stat Data
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{{url 'home'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{{url 'statsData'}}}">List</a></li>
-        <li class="active">New Stat Data</li>
+        <li class="active">Edit Stat Data</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -40,6 +39,9 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" onclick="location.href = '{{{url "statsData"}}}'">
                         Cancel
+                    </button>
+                    <button type="button" class="btn pull-right btn-warning" onclick="location.href = '{{url "statsData"  }}/delete/{{obj.StatID}}'">
+                        Delete
                     </button>
                 </div>
                 <!-- /.box-footer -->
