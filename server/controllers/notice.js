@@ -58,7 +58,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/notice/delete/", 'notice.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/notice/delete/", 'notice.destroy', expressApp.restrict, function(req,res, next){
         var NoticeID = req.body.id;
         expressApp.models.Notice.destroy({
             where: {

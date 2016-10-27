@@ -49,7 +49,8 @@ function route(expressApp){
         })
             .then(function(result){
                 res.render('adminMember/delete', {
-                    title: 'AdminMembers Delete'
+                    title: 'AdminMembers Delete',
+                    obj : result
                 });
             }).catch(function(err) {
             next(err);
@@ -57,7 +58,7 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/adminMember/delete/", 'adminMember.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/adminMember/delete/", 'adminMember.destroy', expressApp.restrict, function(req,res, next){
         var adminMemberId = req.body.id;
         expressApp.models.AdminMembers.destroy({
             where: {

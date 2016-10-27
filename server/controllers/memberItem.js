@@ -58,7 +58,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/memberItem/delete/", 'memberItem.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/memberItem/delete/", 'memberItem.destroy', expressApp.restrict, function(req,res, next){
         var memberItemId = req.body.id;
         expressApp.models.MemberItems.destroy({
             where: {

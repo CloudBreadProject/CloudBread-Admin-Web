@@ -58,7 +58,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/memberGameInfo/delete/", 'memberGameInfo.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/memberGameInfo/delete/", 'memberGameInfo.destroy', expressApp.restrict, function(req,res, next){
         var memberID = req.body.id;
         expressApp.models.MemberGameInfo.destroy({
             where: {

@@ -58,7 +58,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/couponMember/delete/", 'couponMember.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/couponMember/delete/", 'couponMember.destroy', expressApp.restrict, function(req,res, next){
         var couponMemberId = req.body.id;
         expressApp.models.CouponMember.destroy({
             where: {

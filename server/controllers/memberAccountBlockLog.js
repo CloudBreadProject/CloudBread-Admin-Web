@@ -58,7 +58,7 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/memberAccountBlockLog/delete/", 'memberAccountBlockLog.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/memberAccountBlockLog/delete/", 'memberAccountBlockLog.destroy', expressApp.restrict, function(req,res, next){
         var memberAccountBlockId = req.body.id;
         expressApp.models.MemberAccountBlockLog.destroy({
             where: {

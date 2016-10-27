@@ -59,7 +59,7 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/giftDepository/delete/", 'giftDepository.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/giftDepository/delete/", 'giftDepository.destroy', expressApp.restrict, function(req,res, next){
         var giftDepositoryId = req.body.id;
         expressApp.models.GiftDepository.destroy({
             where: {

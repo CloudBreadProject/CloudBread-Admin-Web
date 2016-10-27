@@ -59,7 +59,7 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/gameEventMember/delete/", 'gameEventMember.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/gameEventMember/delete/", 'gameEventMember.destroy', expressApp.restrict, function(req,res, next){
         var gameEventMemberId = req.body.id;
         expressApp.models.GameEventMember.destroy({
             where: {

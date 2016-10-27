@@ -59,7 +59,7 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/serverInfo/delete/", 'serverInfo.destroy', expressApp.restrict, function(req,res, next){
+    expressApp.post("/serverInfo/delete/", 'serverInfo.destroy', expressApp.restrict, function(req,res, next){
         var InfoID = req.body.id;
         expressApp.models.ServerInfo.destroy({
             where: {
