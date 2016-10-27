@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/adminMember', 'adminMember', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,18 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.AdminMembers;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { AdminMemberID: { $like : '%'+keyword+'%'} },
+                { AdminMemberEmail: { $like : '%'+keyword+'%'} },
+                { Name1: { $like : '%'+keyword+'%'} },
+                { AdminGroup: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

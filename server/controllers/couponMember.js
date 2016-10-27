@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/couponMember', 'couponMember', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,17 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.CouponMember;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { CouponMemberID: { $like : '%'+keyword+'%'} },
+                { CouponID: { $like : '%'+keyword+'%'} },
+                { MemberID: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/memberAccountBlockLog', 'memberAccountBlockLog', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,19 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.MemberAccountBlockLog;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { MemberAccountBlockLogID: { $like : '%'+keyword+'%'} },
+                { MemberId: { $like : '%'+keyword+'%'} },
+                { MemberAccountBlockReasonCategory1: { $like : '%'+keyword+'%'} },
+                { MemberAccountBlockReasonCategory2: { $like : '%'+keyword+'%'} },
+                { MemberAccountBlockReasonCategory3: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

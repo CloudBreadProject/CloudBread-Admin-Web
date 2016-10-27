@@ -27,18 +27,20 @@
                 {{{message}}}
             {{/if}}
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">All Member Item</h3>
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
+                <form method="get">
+                    <div class="box-header">
+                        <h3 class="box-title">All member item</h3>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" id="table-search" name="keyword" class="form-control pull-right" placeholder="Search">
 
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">

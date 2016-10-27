@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/memberGameInfo', 'memberGameInfo', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,21 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.MemberGameInfo;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { MemberID: { $like : '%'+keyword+'%'} },
+                { Level: keyword },
+                { Exps: keyword },
+                { Points: keyword },
+                { UserSTAT1: { $like : '%'+keyword+'%'} },
+                { UserSTAT2: { $like : '%'+keyword+'%'} },
+                { UserSTAT3: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

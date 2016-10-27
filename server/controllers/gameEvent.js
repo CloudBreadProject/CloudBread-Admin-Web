@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/gameEvent', 'gameEvent', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,23 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.GameEvents;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { GameEventID: { $like : '%'+keyword+'%'} },
+                { EventCategory1: { $like : '%'+keyword+'%'} },
+                { EventCategory2: { $like : '%'+keyword+'%'} },
+                { EventCategory3: { $like : '%'+keyword+'%'} },
+                { EventCategory3: { $like : '%'+keyword+'%'} },
+                { Title: { $like : '%'+keyword+'%'} },
+                { Content: { $like : '%'+keyword+'%'} },
+                { TargetGroup: { $like : '%'+keyword+'%'} }
+
+            )
+        }
 
         Model.findAll({
                 where : filter

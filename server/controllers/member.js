@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/member', 'member', expressApp.restrict, function (req, res, next) {
@@ -8,8 +10,19 @@ function route(expressApp){
 
         var Model = expressApp.models.Members;
 
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { MemberID: { $like : '%'+keyword+'%'} },
+                { EmailAddress: { $like : '%'+keyword+'%'} },
+                { Name1: { $like : '%'+keyword+'%'} },
+                { MemberGroup: { $like : '%'+keyword+'%'} }
+            )
+        }
         Model.findAll({
-            where : filter
+            where: filter
         })
             .then(function(filteredModel) {
                 var count = filteredModel.length;

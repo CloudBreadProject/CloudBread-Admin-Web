@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/itemList', 'itemList', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,22 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.ItemList;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { ItemListID: { $like : '%'+keyword+'%'} },
+                { ItemName: { $like : '%'+keyword+'%'} },
+                { ItemDescription: { $like : '%'+keyword+'%'} },
+                { ItemCategory1: { $like : '%'+keyword+'%'} },
+                { ItemCategory2: { $like : '%'+keyword+'%'} },
+                { ItemCategory3: { $like : '%'+keyword+'%'} },
+                { ItemPrice: { $like : '%'+keyword+'%'} },
+                { ItemSellPrice: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/serverInfo', 'serverInfo', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,18 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.ServerInfo;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { InfoID: { $like : '%'+keyword+'%'} },
+                { FEServerLists: { $like : '%'+keyword+'%'} },
+                { SocketServerLists: { $like : '%'+keyword+'%'} },
+                { Version: keyword }
+            )
+        }
 
         Model.findAll({
                 where : filter

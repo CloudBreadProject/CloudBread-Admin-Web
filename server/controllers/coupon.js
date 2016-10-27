@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/coupon', 'coupon', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,22 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.Coupon;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { CouponID: { $like : '%'+keyword+'%'} },
+                { CouponCategory1: { $like : '%'+keyword+'%'} },
+                { CouponCategory2: { $like : '%'+keyword+'%'} },
+                { CouponCategory3: { $like : '%'+keyword+'%'} },
+                { ItemListId: { $like : '%'+keyword+'%'} },
+                { Title: { $like : '%'+keyword+'%'} },
+                { Content: { $like : '%'+keyword+'%'} },
+                { TargetGroup: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

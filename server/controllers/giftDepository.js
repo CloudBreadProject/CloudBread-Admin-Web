@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/giftDepository', 'giftDepository', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,18 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.GiftDepository;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { GiftDepositoryID: { $like : '%'+keyword+'%'} },
+                { FromMemberID: { $like : '%'+keyword+'%'} },
+                { ToMemberID: { $like : '%'+keyword+'%'} },
+                { ItemListID: { $like : '%'+keyword+'%'} }
+            )
+        }
 
         Model.findAll({
                 where : filter

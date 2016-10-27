@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 function route(expressApp){
 
     expressApp.get('/statsData', 'statsData', expressApp.restrict, function (req, res, next) {
@@ -6,6 +8,18 @@ function route(expressApp){
         var filter = {};
 
         var Model = expressApp.models.StatsData;
+
+        var keyword = req.query.keyword || '';
+        keyword = keyword.trim();
+
+        if(keyword != ''){
+            filter = Sequelize.or(
+                { StatID: { $like : '%'+keyword+'%'} },
+                { CategoryName: { $like : '%'+keyword+'%'} },
+                { CountNum: keyword },
+                { Fields: keyword }
+            )
+        }
 
         Model.findAll({
                 where : filter
