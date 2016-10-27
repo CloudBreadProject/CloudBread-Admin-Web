@@ -58,8 +58,8 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/memberGameInfoStage/delete/:id", function(req,res, next){
-        var memberGameInfoStageId = req.params.id;
+    expressApp.delete("/memberGameInfoStage/delete/", 'memberGameInfoStage.destroy', expressApp.restrict, function(req,res, next){
+        var memberGameInfoStageId = req.body.id;
         expressApp.models.MemberGameInfoStage.destroy({
             where: {
                 MemberGameInfoStageID: memberGameInfoStageId

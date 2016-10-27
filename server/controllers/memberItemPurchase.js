@@ -58,8 +58,8 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/memberItemPurchase/delete/:id", function(req,res, next){
-        var memberItemPurchaseId = req.params.id;
+    expressApp.delete("/memberItemPurchase/delete/", 'memberItemPurchase.destroy', expressApp.restrict, function(req,res, next){
+        var memberItemPurchaseId = req.body.id;
         expressApp.models.MemberItemPurchase.destroy({
             where: {
                 MemberItemPurchaseID: memberItemPurchaseId

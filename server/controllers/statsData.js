@@ -58,8 +58,8 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/statsData/delete/:id", function(req,res, next){
-        var StatID = req.params.id;
+    expressApp.delete("/statsData/delete/", 'statsData.destroy', expressApp.restrict, function(req,res, next){
+        var StatID = req.body.id;
         expressApp.models.StatsData.destroy({
             where: {
                 StatID: StatID

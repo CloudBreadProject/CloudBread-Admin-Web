@@ -57,8 +57,8 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/adminMember/delete/:id", function(req,res, next){
-        var adminMemberId = req.params.id;
+    expressApp.delete("/adminMember/delete/", 'adminMember.destroy', expressApp.restrict, function(req,res, next){
+        var adminMemberId = req.body.id;
         expressApp.models.AdminMembers.destroy({
             where: {
                 AdminMemberID: adminMemberId

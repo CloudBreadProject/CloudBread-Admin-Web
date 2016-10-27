@@ -59,8 +59,8 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/serverInfo/delete/:id", function(req,res, next){
-        var InfoID = req.params.id;
+    expressApp.delete("/serverInfo/delete/", 'serverInfo.destroy', expressApp.restrict, function(req,res, next){
+        var InfoID = req.body.id;
         expressApp.models.ServerInfo.destroy({
             where: {
                 InfoID: InfoID

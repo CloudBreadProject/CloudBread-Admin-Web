@@ -57,8 +57,8 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/itemList/delete/:id", function(req,res, next){
-        var itemListId = req.params.id;
+    expressApp.delete("/itemList/delete/", 'itemList.destroy', expressApp.restrict, function(req,res, next){
+        var itemListId = req.body.id;
         expressApp.models.ItemList.destroy({
             where: {
                 ItemListID: itemListId

@@ -58,8 +58,8 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/coupon/delete/:id", function(req,res, next){
-        var couponId = req.params.id;
+    expressApp.delete("/coupon/delete/", 'coupon.destroy', expressApp.restrict, function(req,res, next){
+        var couponId = req.body.id;
         expressApp.models.Coupon.destroy({
             where: {
                 CouponID: couponId

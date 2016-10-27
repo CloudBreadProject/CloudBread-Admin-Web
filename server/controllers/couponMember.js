@@ -58,8 +58,8 @@ function route(expressApp){
         });
     });
 
-    expressApp.delete("/couponMember/delete/:id", function(req,res, next){
-        var couponMemberId = req.params.id;
+    expressApp.delete("/couponMember/delete/", 'couponMember.destroy', expressApp.restrict, function(req,res, next){
+        var couponMemberId = req.body.id;
         expressApp.models.CouponMember.destroy({
             where: {
                 CouponMemberID: couponMemberId

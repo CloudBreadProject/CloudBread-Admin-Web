@@ -59,8 +59,8 @@ function route(expressApp){
 
     });
 
-    expressApp.delete("/giftDepository/delete/:id", function(req,res, next){
-        var giftDepositoryId = req.params.id;
+    expressApp.delete("/giftDepository/delete/", 'giftDepository.destroy', expressApp.restrict, function(req,res, next){
+        var giftDepositoryId = req.body.id;
         expressApp.models.GiftDepository.destroy({
             where: {
                 GiftDepositoryID: giftDepositoryId
