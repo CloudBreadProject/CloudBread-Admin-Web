@@ -1,16 +1,291 @@
 {{#extend 'scripts'}}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!--Load the graph logic js-->
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'table']});
+
+        var host = "/";
+        var DAU_list = new Array();
+        var BPI_list = new Array();
+        var BPItem1 = {}, BPItem2 = {}, BPItem3 = {};
+
+        $(function() {
+            callDAU();
+        })
+        function callDAU() {
+            DAU_list = [];
+            $.ajax({
+                type: "GET",
+                url: host + "odata/StatsDatas?top=10&filter=DAU",
+                dataType: "text",
+                error: function() {
+                    alert('Host not found! Please check the host name.');
+                },
+                success: function(data) {
+                    //anything
+                }
+            }).done(function(data) {
+                var pars = JSON.parse(data);
+                var value = pars['value'];
+                var max = (value.length != 10) ? value.length-1 : 9
+
+                if(value.length == 0) {
+                    alert('Not exist "DAU" Data anything');
+                    return;
+                }
+
+                for (var i = max; i >= 0; i--) {
+                    var dataset = {
+                        'Field': value[i]['Fields'],
+                        'Count': Number(value[i]['CountNum'])
+                    };
+                    DAU_list.push(dataset);
+                }
+                google.charts.setOnLoadCallback(drawDAUGraph);
+                google.charts.setOnLoadCallback(drawDAUTable);
+                $("#graph_loading").empty();
+            });
+        }
+
+        var pro_BPI1 = new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: host + "odata/StatsDatas?top=1&filter=BPI1",
+                dataType: "text",
+                error: function() {
+                    alert('Host not found! Please check the host name.');
+                    reject();
+                },
+                success: function(data) {
+                    //anything
+                }
+            }).done(function(data) {
+                var pars = JSON.parse(data);
+                var value = pars['value'];
+
+                if(value.length == 0) {
+                    alert('Not exist "BPI1" Data anything');
+                    return;
+                }
+
+                var dataset = {
+                    'Field': value[0]['Fields'],
+                    'Item' : value[0]['Groups'],
+                    'Count': Number(value[0]['CountNum'])
+                };
+                BPItem1 = dataset;
+                resolve("Complete");
+            });
+        });
+
+        var pro_BPI2 = new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: host + "odata/StatsDatas?top=1&filter=BPI2",
+                dataType: "text"
+            }).done(function(data) {
+                var pars = JSON.parse(data);
+                var value = pars['value'];
+
+                if(value.length == 0) {
+                    alert('Not exist "BPI2" Data anything');
+                    reject();
+                }
+
+                var dataset = {
+                    'Field': value[0]['Fields'],
+                    'Item' : value[0]['Groups'],
+                    'Count': Number(value[0]['CountNum'])
+                };
+                BPItem2 = dataset;
+                resolve("Complete");
+            });
+        });
+
+        var pro_BPI3 = new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: host + "odata/StatsDatas?top=1&filter=BPI3",
+                dataType: "text"
+            }).done(function(data) {
+                var pars = JSON.parse(data);
+                var value = pars['value'];
+
+                if(value.length == 0) {
+                    alert('Not exist "BPI3" Data anything');
+                    reject();
+                }
+
+                var dataset = {
+                    'Field': value[0]['Fields'],
+                    'Item' : value[0]['Groups'],
+                    'Count': Number(value[0]['CountNum'])
+                };
+                BPItem3 = dataset;
+                resolve("Complete");
+            });
+        });
+
+        function drawDAUGraph() {
+            var DAU_data = new google.visualization.DataTable();
+            DAU_data.addColumn('string', 'Time of Day');
+            DAU_data.addColumn('number', '재방문 유저');
+            DAU_data.addColumn('number', '신규 유저');
+
+            for (i = 0; i < DAU_list.length; i++) {
+                var mon = DAU_list[i]['Field'].substring(4, 6);
+                var day = DAU_list[i]['Field'].substring(6, 8);
+                DAU_data.addRows([
+                    [{
+                        v: mon + '/' + day
+                    }, Number(DAU_list[i]['Count']), 1]
+                ]);
+            }
+            var DAU_options = {
+                title: 'DAU 일일 활동 유저수',
+                isStacked: true,
+                hAxis: {
+                    title: 'Date'
+                },
+                vAxis: {
+                    title: 'DAU (명)'
+                },
+                backgroundColor: '#fafafa',
+                legend: {position: 'top', maxLines: 1, alignment: 'end'}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('DAU_div'));
+            chart.draw(DAU_data, DAU_options);
+        }
+
+        function drawDAUTable() {
+            var DAU_table = new google.visualization.DataTable();
+            DAU_table.addColumn('string', 'Date (mon/day)');
+            DAU_table.addColumn('number', 'User');
+            DAU_table.addColumn('number', 'New User');
+            DAU_table.addRows(5);
+            for(var i = 0; i < 5; i++) {
+                var mon = DAU_list[i]['Field'].substring(4, 6);
+                var day = DAU_list[i]['Field'].substring(6, 8);
+
+                DAU_table.setCell(i, 0, mon + '/' + day);
+                DAU_table.setCell(i, 1, DAU_list[i]['Count']);
+                DAU_table.setCell(i, 2, 1);
+            }
+
+            var table = new google.visualization.Table(document.getElementById('DAU_table_div'));
+            table.draw(DAU_table, {showRowNumber: false, width: '90%', height: '150px'});
+        }
+
+        Promise.all([pro_BPI1, pro_BPI2, pro_BPI3]).then(function() {
+            BPI_list.push(BPItem1);
+            BPI_list.push(BPItem2);
+            BPI_list.push(BPItem3);
+            google.charts.setOnLoadCallback(drawBPIGraph);
+            google.charts.setOnLoadCallback(drawBPITable);
+            $("#graph_loading").empty();
+        });
+
+        function drawBPIGraph() {
+            var BPI_data = new google.visualization.DataTable();
+            BPI_data.addColumn('string', 'ItemName');
+            BPI_data.addColumn('number', 'Amount');
+
+            for (var i = 0; i < BPI_list.length; i++) {
+                BPI_data.addRows([
+                    [BPI_list[i]['Item'], Number(BPI_list[i]['Count'])]
+                ]);
+            }
+            var mon = BPI_list[0]['Field'].substring(4, 6);
+            var day = BPI_list[0]['Field'].substring(6, 8);
+            var BPI_options = {
+                title: 'BPI 주간 아이템 순위 (' + mon + '/' + day + ')',
+                isStacked: true,
+                hAxis: {
+                    title: 'The number'
+                },
+                vAxis: {
+                    title: 'Item'
+                },
+                backgroundColor: '#fafafa',
+                legend: {position: 'top', maxLines: 1, alignment: 'end'}
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('BPI_div'));
+            chart.draw(BPI_data, BPI_options);
+        }
+
+        function drawBPITable() {
+            var BPI_table = new google.visualization.DataTable();
+            BPI_table.addColumn('string', 'Date');
+            BPI_table.addColumn('string', 'BestItem');
+            BPI_table.addColumn('number', 'Full Time');
+            BPI_table.addRows(3);
+            var mon = BPI_list[0]['Field'].substring(4, 6);
+            var day = BPI_list[0]['Field'].substring(6, 8);
+            for(var i = 0; i < 3; i++) {
+                BPI_table.setCell(i, 0, mon + '/' + day);
+                BPI_table.setCell(i, 1, BPI_list[i]['Item']);
+                BPI_table.setCell(i, 2, BPI_list[i]['Count']);
+            }
+
+            var table = new google.visualization.Table(document.getElementById('BPI_table_div'));
+            table.draw(BPI_table, {showRowNumber: false, width: '90%', height: '150px'});
+        }
+        $(window).resize(function() {
+            drawDAUGraph();
+            drawBPIGraph();
+        });
+    </script>
+    <style>
+        #main_content {
+            padding-top: 10px;
+            width: 100%;
+            background-color: #cfd8dc;
+            margin-top: 2px;
+            z-index: 100;
+        }
+        .graph {
+            margin: 40px 100px 0px 100px;
+            position:relative;
+        }
+        .graph_main {
+            height:75px;
+            background-color: #FAFAFA;
+            border-left: 5px solid #4C5ACC;
+            border-top: 1px solid #A6A6A6;
+            border-right: 1px solid #A6A6A6;
+            border-bottom: 1px solid #A6A6A6;
+            font-size: 18px;
+            color: #4C5ACC;
+            line-height: 21px;
+        }
+        #DAU_div, #BPI_div, #DAU_table_div, #BPI_table_div {
+            background-color: #FAFAFA;
+            border: 1px solid #A6A6A6;
+            border-top: 0px;
+            padding: 53px 23px;
+        }
+        #loading {
+            display:inline-block;
+            margin-bottom: 20px;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #DDD;
+            color: #4C5ACC;
+            border-radius: 50%;
+            border-top-color: #4C5ACC;
+            animation:spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1s ease-in-out infinite;
+        }
+    </style>
 {{/extend}}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        List AdminMembers
-        <small>All AdminMember listed</small>
+        Overview
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="{{{url 'home'}}}"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active">List</li>
-    </ol>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -20,39 +295,34 @@
                 {{{message}}}
             {{/if}}
             <div class="box">
-                    <ul id="nav" class="mainMenu">
-                        <li class="" id="main1">
-                            <a class="underbar" href="#/" style="margin-left:160px;">기본지표 </a>
-                            <ul class="subMenu">
-                                <li id="sub11"><a href="#/Overview/AU" style="margin-left:120px;">활동 유저수 </a></li>
-                                <li id="sub12"><a href="#/Overview/DPA">매출액 </a></li>
-                                <li id="sub13"><a href="#/Realtime/HAU" style="margin-left:-35px;">시간별 활동 유저수 </a></li>
-                                <li id="sub14"><a href="#" onclick="yet()" style="margin-left:60px;">평균 게임플레이 시간 </a></li>
-                            </ul>
-                        </li>
-                        <li class="" id="main2">
-                            <a class="underbar" href="#/Revenue/DARPU">인앱매출 </a>
-                            <ul class="subMenu">
-                                <li id="sub21"><a href="#/Revenue/DARPU" style="margin-left:120px;">평균 매출 </a></li>
-                                <li id="sub22"><a href="#/Revenue/PU" style="margin-left:-17px;">구매 유저수 </a></li>
-                                <li id="sub23"><a href="#/Revenue/FPU" >최초 구매 유저수 </a></li>
-                            </ul>
-                        </li>
-                        <li class="" id="main3">
-                            <a class="underbar" href="#/Retention/Dormant">리텐션 </a>
-                            <ul class="subMenu">
-                                <li id="sub31"><a href="#/Retention/Dormant" style="margin-left:120px;">휴면유저 </a></li>
-                                <li id="sub32"><a href="#" onclick="yet()" style="margin-left:-19px;">복귀유저 </a></li>
-                            </ul>
-                        </li>
-                        <li class="" id="main4">
-                            <a class="underbar" id="ML" href="#/ML/start">머신러닝 </a>
-                            <ul class="subMenu">
-                                <li id="sub41"><a href="#/ML/start" style="margin-left:120px;">ML 시작하기</a></li>
-                                <li id="sub42"><a href="#/ML/predict" style="margin-left:10px;">이탈율 예측</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div id="main_content">
+                    <div id="graph_loading" style="text-align:center;">
+                        <br>
+                        Loading...
+                        <br>
+                        <div id="loading">●</div>
+                    </div>
+
+                    <div class="graph">
+                        <div class="graph_main">
+                            <div style="margin-top:27px; margin-left:29px;">
+                                DAU(일일 활성 유저수)
+                            </div>
+                        </div>
+                        <div id="DAU_div"></div>
+                        <div id="DAU_table_div" style="text-align:center;"></div>
+                    </div>
+
+                    <div class="graph">
+                        <div class="graph_main">
+                            <div style="margin-top:27px; margin-left:29px;">
+                                BPI(구매수 높은 아이템)
+                            </div>
+                        </div>
+                        <div id="BPI_div" style="text-align:center;"></div>
+                        <div id="BPI_table_div" style="text-align:center;"></div>
+                    </div>
+                </div>
             </div>
             <!-- /.box -->
         </div>
