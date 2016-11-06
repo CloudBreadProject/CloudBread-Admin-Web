@@ -69,7 +69,7 @@ function HandlebarBoot(expressApp, viewsPath) {
                 else
                     return moment(date).format('YYYY-MM-DD HH:mm');
             },
-            pagination: function(currentPage, totalCount) {
+            pagination: function(currentPage, totalCount, keyword) {
 
                 var str = '';
                 var perPage = 15;
@@ -92,9 +92,9 @@ function HandlebarBoot(expressApp, viewsPath) {
 
                 for(var p = startPage; p<=endPage; p++){
                     if(currentPage == p) {
-                        str += '<li class="paginate_button active"><a href="?page=' + p + '">' + p + '</a></li>';
+                        str += '<li class="paginate_button active"><a href="?page=' + p + '&keyword='+keyword+'">' + p + '</a></li>';
                     }else {
-                        str += '<li class="paginate_button"><a href="?page=' + p + '">' + p + '</a></li>';
+                        str += '<li class="paginate_button"><a href="?page=' + p + '&keyword='+keyword+'">' + p + '</a></li>';
                     }
                 }
 

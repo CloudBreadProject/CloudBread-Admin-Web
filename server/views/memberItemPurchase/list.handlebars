@@ -32,7 +32,7 @@
                         <h3 class="box-title">All member item purchase</h3>
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" id="table-search" name="keyword" class="form-control pull-right" placeholder="Search">
+                                <input type="text" id="table-search" name="keyword" class="form-control pull-right" placeholder="Search" value="{{ keyword}}">
 
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
@@ -71,7 +71,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        {{{ pagination page count }}}
+                        {{{ pagination page count keyword}}}
                     </ul>
                     <button type="button" class="btn btn-primary" onclick="location.href = '{{{url "memberItemPurchase.create"}}}'">Create Member Item Purchase</button>
                 </div>
