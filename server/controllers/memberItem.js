@@ -35,7 +35,8 @@ function route(expressApp){
                             title: 'MemberItems',
                             listObjs: results,
                             page:currentPage,
-                            count:count
+                            count:count,
+                            keyword:keyword
                         });
                     }).catch(function (err) {
                     next(err);

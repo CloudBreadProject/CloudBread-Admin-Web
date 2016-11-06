@@ -41,7 +41,8 @@ function route(expressApp){
                             title: 'Coupon',
                             listObjs: results,
                             page:currentPage,
-                            count:count
+                            count:count,
+                            keyword:keyword
                         });
                     }).catch(function (err) {
                     next(err);

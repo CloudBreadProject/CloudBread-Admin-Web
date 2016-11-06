@@ -38,7 +38,8 @@ function route(expressApp){
                             title: 'MemberAccountBlockLog',
                             listObjs: results,
                             page:currentPage,
-                            count:count
+                            count:count,
+                            keyword:keyword
                         });
                     }).catch(function (err) {
                     next(err);

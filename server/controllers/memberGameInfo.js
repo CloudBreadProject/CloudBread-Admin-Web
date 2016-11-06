@@ -40,7 +40,8 @@ function route(expressApp){
                             title: 'MemberGameInfo',
                             listObjs: results,
                             page:currentPage,
-                            count:count
+                            count:count,
+                            keyword:keyword
                         });
                     }).catch(function (err) {
                     next(err);
