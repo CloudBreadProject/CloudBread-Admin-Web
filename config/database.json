@@ -1,0 +1,5 @@
+{
+    "port": 1443,
+    "dialect": "mssql",
+    "pool": { "max": 5, "min": 0, "idle": 10000 }
+}
