@@ -1,4 +1,4 @@
-![Build status](https://travis-ci.org/CloudBreadPaPa/CloudBread-Admin-Web.svg?branch=master)
+[![Build Status](https://travis-ci.org/CloudBreadProject/CloudBread-Admin-Web.svg?branch=master)](https://travis-ci.org/CloudBreadProject/CloudBread-Admin-Web)  
 
 ## CloudBread-Admin-Web 은
 CloudBread 게임 서버 엔진 프로젝트를 통한 게임 운영자(GM)의 역할을 수행할 수 있는 **관리자 페이지**입니다.
