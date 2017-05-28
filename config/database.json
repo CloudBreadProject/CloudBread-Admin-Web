@@ -1,8 +1,8 @@
 { 
-    "username": "YOUR_AZURE_SQL_DB_LOGON_ID",
-    "password": "YOUR_PASSWORD",
-    "database": "YOUR_DATABASE_NAME",
-    "host": "YOUR_HOSTNAME.database.windows.net",
+    "username": "cbsample@cbsample-sqlsvr",
+    "password": "Aa_123452147",
+    "database": "cbsample-sqldb",
+    "host": "cbsample-sqlsvr.database.windows.net",
     "port": 1443,
     "dialect": "mssql",
     "pool": { "max": 5, "min": 0, "idle": 10000 }
