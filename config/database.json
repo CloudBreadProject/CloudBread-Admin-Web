@@ -1,13 +1,2 @@
-{
-  "username": "rumiga0",
-  "password": "9843007aAA!@#",
-  "database": "illang-sqldb",
-  "host": "illang-sqlsvr.database.windows.net",
-  "port": 1443,
-  "dialect": "mssql",
-  "pool": {
-    "max": 5,
-    "min": 0,
-    "idle": 10000
-  }
+
 }
